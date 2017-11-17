@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COTS.DAL", "COTS.DAL\COTS.DAL.csproj", "{E008668A-A01D-4C38-B2ED-4DFD79A6E380}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2BD2DE6D-1E51-44BC-87C4-0CFAF3A8BD12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E008668A-A01D-4C38-B2ED-4DFD79A6E380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E008668A-A01D-4C38-B2ED-4DFD79A6E380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E008668A-A01D-4C38-B2ED-4DFD79A6E380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E008668A-A01D-4C38-B2ED-4DFD79A6E380}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27F99E63-3BEB-485D-AE79-97EB31FE6453}
+	EndGlobalSection
+EndGlobal
