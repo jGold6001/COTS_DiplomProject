@@ -19,11 +19,10 @@ namespace COTS.DAL.Entities
             Seances = new List<Seance>();
         }
 
-        public Cinema(string name, string address, ICollection<Seance> seances)
+        public Cinema(string name, string address)
         {
             Name = name;
             Address = address;
-            Seances = seances;
             Seances = new List<Seance>();
         }
     }

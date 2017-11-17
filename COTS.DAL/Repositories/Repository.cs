@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using System.Data.Entity.Migrations;
 using COTS.DAL.Interfaces;
+using System.Data.SqlClient;
 
 namespace COTS.DAL.Repositories
 {

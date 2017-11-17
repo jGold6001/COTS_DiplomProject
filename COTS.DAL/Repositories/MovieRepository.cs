@@ -15,6 +15,12 @@ namespace COTS.DAL.Repositories
 
         }
 
-        
+        //public IEnumerable<Movie> FindAllPremeries()
+        //{
+        //    return context.Database.SqlQuery<Movie>(
+                
+        //    ).ToList();
+        //}
+
     }
 }
