@@ -8,5 +8,23 @@ namespace COTS.DAL.Entities
 {
     public class Cinema
     {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public ICollection<Seance> Seances { get; set; }
+        public City City { get; set; }
+        public int? CityId { get; set; }
+        public Cinema()
+        {
+            Seances = new List<Seance>();
+        }
+
+        public Cinema(string name, string address, ICollection<Seance> seances)
+        {
+            Name = name;
+            Address = address;
+            Seances = seances;
+            Seances = new List<Seance>();
+        }
     }
 }

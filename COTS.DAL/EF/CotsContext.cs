@@ -1,12 +1,22 @@
-﻿using System;
+﻿using COTS.DAL.Entities;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace COTS.DAL.EF
 {
-    public class CotsContext
+    public class CotsContext : DbContext
     {
+        public CotsContext(string connectionString): base(connectionString)
+        {
+        }
+
+        public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Seance> Seances { get; set; }
+        public virtual DbSet<Cinema> Cinemas { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
     }
 }
