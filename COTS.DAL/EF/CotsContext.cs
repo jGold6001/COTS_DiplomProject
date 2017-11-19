@@ -13,7 +13,6 @@ namespace COTS.DAL.EF
         public CotsContext(string connectionString): base(connectionString)
         {
         }
-
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<Seance> Seances { get; set; }
         public virtual DbSet<Cinema> Cinemas { get; set; }
