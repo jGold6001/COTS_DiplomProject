@@ -13,12 +13,13 @@ namespace COTS.DAL.Entities
         public ICollection<Cinema> Cinemas { get; set; }
         public City()
         {
-
+            Cinemas = new List<Cinema>();
         }
 
         public City(string name)
         {
             Name = name;
+            Cinemas = new List<Cinema>();
         }
     }
 }

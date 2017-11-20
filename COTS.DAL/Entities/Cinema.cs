@@ -13,7 +13,7 @@ namespace COTS.DAL.Entities
         public string Address { get; set; }
         public ICollection<Seance> Seances { get; set; }
         public City City { get; set; }
-        public int? CityId { get; set; }
+        public long? CityId { get; set; }
         public Cinema()
         {
             Seances = new List<Seance>();

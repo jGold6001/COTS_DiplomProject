@@ -55,11 +55,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionForData\CinemasCollection.cs" />
-    <Compile Include="CollectionForData\CitiesCollection.cs" />
-    <Compile Include="CollectionForData\MoviesCollection.cs" />
-    <Compile Include="CollectionForData\SeancesCollection.cs" />
+    <Compile Include="CollectionForData\Cinemas\CinemasCollection.cs" />
+    <Compile Include="CollectionForData\Cities\CitiesCollection.cs" />
+    <Compile Include="CollectionForData\Movies\MoviesCollection.cs" />
+    <Compile Include="CollectionForData\Seances\FlorenceSeancesCollection.cs" />
+    <Compile Include="CollectionForData\Seances\MultiplexProspectSeancesCollection.cs" />
+    <Compile Include="CollectionForData\Seances\MultiplexSkyMallSeancesCollection.cs" />
+    <Compile Include="CollectionForData\Seances\TypeD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EFUnitOfWorkTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

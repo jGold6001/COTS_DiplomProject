@@ -27,7 +27,7 @@ namespace COTS.DAL.Entities
             Seances = new List<Seance>();
         }
 
-        public Movie(string name, string genre, string destination, int year, int duration, string ageCategory, string country, string director, string actors, string trailerUrl, int rankSales, DateTime dateIssue)
+        public Movie(string name, string genre, string destination, int year, int duration, string ageCategory, string country, string director, string actors, string trailerUrl,DateTime dateIssue, int rankSales)
         {
             Name = name;
             Genre = genre;
