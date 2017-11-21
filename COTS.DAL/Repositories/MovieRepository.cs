@@ -31,10 +31,10 @@ namespace COTS.DAL.Repositories
             ).ToList();
         }
         
-        public IEnumerable<Movie> GetAllByRankOrder()
+        public IEnumerable<Movie> GetTop10ByRankOrder()
         {
             return context.Database.SqlQuery<Movie>(
-                "SELECT * FROM dbo.Movies ORDER BY dbo.Movies.RankSales DESC;"
+                "SELECT TOP(10) * FROM dbo.Movies ORDER BY dbo.Movies.RankSales DESC;"
             ).ToList();
         }
     }

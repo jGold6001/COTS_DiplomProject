@@ -127,9 +127,9 @@ namespace COTS.DAL.Test.Repositories
         }
 
         [TestMethod]
-        public void TestGetMoviesByRankOrder()
+        public void TestGetMoviesTop10ByRankOrder()
         {
-            List<Movie> moviesPremeries = movieRepo.GetAllByRankOrder() as List<Movie>;
+            List<Movie> moviesPremeries = movieRepo.GetTop10ByRankOrder() as List<Movie>;
             foreach (var item in moviesPremeries)
                 Trace.WriteLine(item.RankSales);
         }
