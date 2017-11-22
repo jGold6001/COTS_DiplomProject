@@ -19,6 +19,7 @@ namespace COTS.BLL.DTO
         public string Director { get; set; }
         public string Actors { get; set; }
         public string TrailerUrl { get; set; }
+        public string ImagePath { get; set; }
         public int RankSales { get; set; }
         public DateTime DateIssue { get; set; }
 

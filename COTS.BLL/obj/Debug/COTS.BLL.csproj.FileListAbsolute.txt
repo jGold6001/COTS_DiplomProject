@@ -1,0 +1,15 @@
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\COTS.BLL.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\COTS.BLL.pdb
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\AutoMapper.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\COTS.DAL.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\Ninject.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\EntityFramework.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\COTS.DAL.pdb
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\COTS.DAL.dll.config
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\AutoMapper.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\Ninject.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\bin\Debug\EntityFramework.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\obj\Debug\COTS.BLL.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\obj\Debug\COTS.BLL.csproj.CoreCompileInputs.cache
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\obj\Debug\COTS.BLL.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL\obj\Debug\COTS.BLL.pdb

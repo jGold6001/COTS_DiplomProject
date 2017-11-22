@@ -15,6 +15,6 @@ namespace COTS.BLL.Interfaces
         IEnumerable<MovieDTO> FindAllPremeries();
         IEnumerable<MovieDTO> FindAllComingSoon();
         IEnumerable<MovieDTO> GetTop10();      
-        void Delete(int id);
+        void Delete(int? id);
     }
 }

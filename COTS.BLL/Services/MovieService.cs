@@ -17,11 +17,13 @@ namespace COTS.BLL.Services
     {
         IUnitOfWork UnitOfWork { get; set; }
         MovieRepository movieRepo;
+        IMapper mapper;
 
         public MovieService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
             movieRepo = unitOfWork.Movies as MovieRepository;
+            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Movie, MovieDTO>()));
         }
 
         public void AddOrUpdate(MovieDTO movieDTO)
@@ -31,26 +33,22 @@ namespace COTS.BLL.Services
        
         public IEnumerable<MovieDTO> GetTop10()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Movie, MovieDTO>());
-            return Mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetTop10ByRankOrder());
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetTop10ByRankOrder());
         }
 
         public IEnumerable<MovieDTO> FindAllComingSoon()
-        {
-            Mapper.Initialize(cfg => cfg.CreateMap<Movie, MovieDTO>());
-            return Mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.FindAllComingSoon());
+        {            
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.FindAllComingSoon());
         }
 
         public IEnumerable<MovieDTO> FindAllPremeries()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Movie, MovieDTO>());
-            return Mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>> (movieRepo.FindAllPremeries());
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>> (movieRepo.FindAllPremeries());
         }
 
         public IEnumerable<MovieDTO> GetAll()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Movie, MovieDTO>());
-            return Mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetAll());
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetAll());
         }
 
         public MovieDTO GetOne(int? id)
@@ -62,10 +60,9 @@ namespace COTS.BLL.Services
             if (movie == null)
                 throw new ValidationException("Movie not found","");
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Movie, MovieDTO>());
-            return Mapper.Map<Movie, MovieDTO>(movie);
+            return mapper.Map<Movie, MovieDTO>(movie);
         }
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             throw new NotImplementedException();
         }

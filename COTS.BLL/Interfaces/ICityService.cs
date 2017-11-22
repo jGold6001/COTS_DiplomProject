@@ -9,7 +9,9 @@ namespace COTS.BLL.Interfaces
 {
     public interface ICityService
     {
-        void AddOrUpdate(City city); 
+        void AddOrUpdate(City city);
+        City GetOne(int? id);
+        IEnumerable<City> GetAll();
         void Delete(int? id);
     }
 }

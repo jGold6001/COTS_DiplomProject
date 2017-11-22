@@ -12,8 +12,8 @@ namespace COTS.DAL.Test.CollectionForData.Cities
         public static List<City> Get()
         {
             return new List<City>() {
-                new City("Киев"),
-                new City("Харьков")
+                new City("kiev","Киев"),
+                new City("harkov","Харьков")
             };
         }
     }
