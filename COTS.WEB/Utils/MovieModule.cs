@@ -13,6 +13,9 @@ namespace COTS.WEB.Utils
         public override void Load()
         {
             Bind<IMovieService>().To<MovieService>();
+            Bind<ICityService>().To<CityService>();
+            Bind<ICinemaService>().To<CinemaService>();
+            Bind<ISeanceService>().To<SeanceService>();
         }
     }
 }

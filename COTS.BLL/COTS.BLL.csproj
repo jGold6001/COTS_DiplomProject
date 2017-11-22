@@ -59,7 +59,9 @@
     <Compile Include="Interfaces\ISeanceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CinemaService.cs" />
+    <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\MovieService.cs" />
+    <Compile Include="Services\SeanceService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessModels\" />

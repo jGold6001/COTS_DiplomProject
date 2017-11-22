@@ -1,4 +1,5 @@
-﻿using COTS.DAL.Entities;
+﻿using COTS.BLL.DTO;
+using COTS.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace COTS.BLL.Interfaces
 {
     public interface ICityService
     {
-        void AddOrUpdate(City city);
-        City GetOne(int? id);
-        IEnumerable<City> GetAll();
+        void AddOrUpdate(CityDTO city);
+        CityDTO GetOne(int? id);
+        IEnumerable<CityDTO> GetAll();
         void Delete(int? id);
     }
 }
