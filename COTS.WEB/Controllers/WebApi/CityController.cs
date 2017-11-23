@@ -22,9 +22,17 @@ namespace COTS.WEB.Controllers.WebApi
             mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<CityDTO, CityViewModel>()));
         }
 
-        [HttpGet]
+        public CityController()
+        {
+
+        }
         public IEnumerable<CityViewModel> GetCities()
         {
+            //return new List<CityViewModel>()
+            //{
+            //    new CityViewModel("h", "Harkov"),
+            //    new CityViewModel("k", "Kiew")
+            //};
             return mapper.Map<IEnumerable<CityDTO>, IEnumerable<CityViewModel>>(cityService.GetAll());
         }
     }

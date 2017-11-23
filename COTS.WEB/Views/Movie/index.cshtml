@@ -16,13 +16,21 @@
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
-    $(function () {
-        var cities;
+<script type="text/javascript">
+    $(function () {        
         $.ajax({
-            
+            url: '/api/city',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
         });
-    
+
+       
         for (var i = 0; i < 3; i++){
             $('#city_sel').append("<option>city_" + i + "</option>");
         }

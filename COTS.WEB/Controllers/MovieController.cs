@@ -32,14 +32,10 @@ namespace COTS.WEB.Controllers
 
         [Route("{city}")]
         public ActionResult FindByCity(string city)
-        {
-            if(city == "kiev")
-            {
-                IEnumerable<MovieDTO> moviesDTOs = movieService.GetAll();
-                var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
-                return View("index",movies);
-            }
-            return Content("<p>FUCK</p>");
+        {           
+            IEnumerable<MovieDTO> moviesDTOs = movieService.GetAll();
+            var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
+            return View("index",movies);
         }
     }
 }

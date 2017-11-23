@@ -7,7 +7,17 @@ namespace COTS.WEB.Models
 {
     public class CityViewModel
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
+        public CityViewModel()
+        {
+
+        }
+
+        public CityViewModel(string id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

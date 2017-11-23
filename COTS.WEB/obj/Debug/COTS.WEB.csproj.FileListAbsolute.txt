@@ -7,11 +7,15 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\EntityFramework.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\EntityFramework.SqlServer.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Web.Infrastructure.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Newtonsoft.Json.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.Common.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.Common.WebHost.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.Mvc.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Net.Http.Formatting.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Helpers.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Http.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Http.WebHost.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Mvc.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Razor.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Webpages.Deployment.dll
@@ -33,6 +37,10 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Webpages.De
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Webpages.Razor.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Helpers.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Mvc.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Newtonsoft.Json.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Net.Http.Formatting.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Http.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Http.WebHost.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\COTS.DAL.pdb
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\COTS.DAL.dll.config
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\obj\Debug\COTS.WEB.csprojResolveAssemblyReference.cache
