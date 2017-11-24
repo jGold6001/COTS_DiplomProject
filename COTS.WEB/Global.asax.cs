@@ -12,6 +12,7 @@ using Ninject;
 using Ninject.Web.Mvc;
 using COTS.BLL.Infrastructure;
 using COTS.WEB.Utils;
+using Ninject.Web.Common;
 
 namespace COTS.WEB
 {
@@ -24,11 +25,12 @@ namespace COTS.WEB
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            // inject dependencies
-            NinjectModule webModule = new WebModule();
+            // inject dependencies         
+            NinjectModule registrations = new NinjectRegistrations();
             NinjectModule serviceModule = new ServiceModule("CotsContext");
-            var kernel = new StandardKernel(webModule, serviceModule);
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+            var kernel = new StandardKernel(registrations, serviceModule);
+            var ninjectResolver = new Utils.NinjectDependencyResolver(kernel);
+            DependencyResolver.SetResolver(ninjectResolver); 
         }
     }
 }

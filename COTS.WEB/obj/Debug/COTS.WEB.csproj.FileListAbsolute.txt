@@ -47,3 +47,7 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\obj\Debug\COTS.WEB.csprojR
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\obj\Debug\COTS.WEB.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\obj\Debug\COTS.WEB.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\obj\Debug\COTS.WEB.pdb
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.WebApi.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.WebApi.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.WebApi.WebHost.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.WebApi.WebHost.xml

@@ -29,13 +29,5 @@ namespace COTS.WEB.Controllers
             var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
             return View(movies);           
         }
-
-        [Route("{city}")]
-        public ActionResult FindByCity(string city)
-        {           
-            IEnumerable<MovieDTO> moviesDTOs = movieService.GetAll();
-            var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
-            return View("index",movies);
-        }
     }
 }

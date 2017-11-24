@@ -3,38 +3,11 @@
 @{
     ViewBag.Title = "index";
 }
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <p>@item.Name</p>
+        </div>
+    }
 
-<div class="row">
-    <div class="col-lg-6">
-        <p>Cities</p>
-        <select id="city_sel"></select>
-    </div>
-    <div class="col-lg-6">
-        <p>Cinemas</p>
-        <select id="cinema_sel"></select>
-    </div>
-</div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
-    $(function () {        
-        $.ajax({
-            url: '/api/city',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (x, y, z) {
-                alert(x + '\n' + y + '\n' + z);
-            }
-        });
-
-       
-        for (var i = 0; i < 3; i++){
-            $('#city_sel').append("<option>city_" + i + "</option>");
-        }
-       
-       
-    });
-</script>
+    

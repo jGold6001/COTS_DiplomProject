@@ -8,14 +8,14 @@ using System.Web;
 
 namespace COTS.WEB.Utils
 {
-    public class WebModule : NinjectModule
+    public class NinjectRegistrations : NinjectModule
     {
         public override void Load()
         {
             Bind<IMovieService>().To<MovieService>();
             Bind<ICityService>().To<CityService>();
             Bind<ICinemaService>().To<CinemaService>();
-            Bind<ISeanceService>().To<SeanceService>();
+            Bind<ISeanceService>().To<SeanceService>();           
         }
     }
 }
