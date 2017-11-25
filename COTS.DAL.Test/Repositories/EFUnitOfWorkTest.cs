@@ -22,6 +22,7 @@ namespace COTS.DAL.Test.Repositories
         private List<Seance> seancesFlorence = FlorenceSeancesCollection.Get();
         private List<Seance> seancesMultProspect = MultiplexProspectSeancesCollection.Get();
         private List<Seance> seancesMultSkyMall = MultiplexSkyMallSeancesCollection.Get();
+        private List<Seance> seancesMultDafi = MultiplexDafiSeancesCollection.Get();
         private List<Cinema> cinemas = CinemasCollection.Get();
         private List<City> cities = CitiesCollection.Get();
 
@@ -51,9 +52,11 @@ namespace COTS.DAL.Test.Repositories
             Movie bladeRunner = movies[0];
             Movie pony =  movies[1];
             Movie salut = movies[2];
+            Movie comatose = movies[3];
 
             Cinema mSkymall = cinemas[0];
             Cinema mProspect = cinemas[1];
+            Cinema mDafi = cinemas[2];
             Cinema florence = cinemas[3];
 
             cityRepo.AddOrUpdate(cityKiev);
@@ -109,6 +112,19 @@ namespace COTS.DAL.Test.Repositories
                 seanceRepo.AddOrUpdate(seancesMultSkyMall[i]);
             }
 
+            for (int i = 0; i < seancesMultDafi.Count; i++)
+            {
+                if (i < 3)
+                    seancesMultDafi[i].Movie = bladeRunner;
+                else if (i >= 3 && i < 5)
+                    seancesMultDafi[i].Movie = pony;
+                else
+                    seancesMultDafi[i].Movie = comatose;
+
+                seancesMultDafi[i].Cinema = mDafi;
+                seanceRepo.AddOrUpdate(seancesMultDafi[i]);
+            }
+
             unitOfwork.Save();
         }
 
@@ -129,12 +145,40 @@ namespace COTS.DAL.Test.Repositories
         [TestMethod]
         public void TestGetMoviesTop10ByRankOrder()
         {
-            List<Movie> moviesPremeries = movieRepo.GetTop10ByRankOrder() as List<Movie>;
-            foreach (var item in moviesPremeries)
+            List<Movie> moviesTop10 = movieRepo.GetTop10ByRankOrder() as List<Movie>;
+            foreach (var item in moviesTop10)
                 Trace.WriteLine(item.RankSales);
         }
 
         [TestMethod]
+        public void TestFindMoviesByCity()
+        {
+            List<Movie> moviesByCity = movieRepo.FindAllByCity("harkov") as List<Movie>;           
+        }
+
+        [TestMethod]
+        public void TestFindMoviesPremeriesByCity()
+        {
+            List<Movie> moviesByCity = movieRepo.FindAllPremeriesByCity("harkov") as List<Movie>;          
+        }
+
+        [TestMethod]
+        public void TestFindAllComingSoonByCity()
+        {
+            List<Movie> moviesByCity = movieRepo.FindAllComingSoonByCity("kiev") as List<Movie>;
+            Assert.AreEqual(movies[1].Name, moviesByCity[0].Name);
+        }
+
+        [TestMethod]
+        public void TestGetTop10ByRankOrder()
+        {
+            List<Movie> moviesTop10 = movieRepo.GetTop10ByRankOrderByCity("kiev") as List<Movie>;
+            foreach (var item in moviesTop10)
+                Trace.WriteLine(item.RankSales);
+        }
+
+
+       [TestMethod]
         public void TestFindSeancesByDate()
         {
             List<Seance> seancesByDate = seanceRepo.FindByDate(DateTime.Now.Date)as List<Seance>;

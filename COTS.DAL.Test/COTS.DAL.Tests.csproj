@@ -59,6 +59,7 @@
     <Compile Include="CollectionForData\Cities\CitiesCollection.cs" />
     <Compile Include="CollectionForData\Movies\MoviesCollection.cs" />
     <Compile Include="CollectionForData\Seances\FlorenceSeancesCollection.cs" />
+    <Compile Include="CollectionForData\Seances\MultiplexDafiSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\MultiplexProspectSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\MultiplexSkyMallSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\TypeD.cs" />

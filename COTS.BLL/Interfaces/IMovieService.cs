@@ -14,7 +14,10 @@ namespace COTS.BLL.Interfaces
         IEnumerable<MovieDTO> GetAll();
         IEnumerable<MovieDTO> FindAllPremeries();
         IEnumerable<MovieDTO> FindAllComingSoon();
-        IEnumerable<MovieDTO> GetTop10();      
+        IEnumerable<MovieDTO> GetTop10();
+        IEnumerable<MovieDTO> FindAllPremeriesByCity(string cityId);
+        IEnumerable<MovieDTO> FindAllComingSoonByCity(string cityId);
+        IEnumerable<MovieDTO> GetTop10ByRankOrderByCity(string cityId);
         void Delete(int? id);
     }
 }

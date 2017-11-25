@@ -5,21 +5,32 @@
 
 <h2>Main</h2>
 
-
 <div id="dropDownBlock">
     <div class="row">
+
         <div class="col-lg-6">
             <p>Cities</p>
             <select id="city_sel"></select>
         </div>
+
         <div class="col-lg-6">
             <p>Cinemas</p>
             <select id="cinema_sel"></select>
         </div>
+
     </div>
 </div>
 
-<div id="movies"></div>
+<div id="movies">
+    <!--premeries-->
+    <div id="premeries"></div>
+
+    <!--comming_soon-->
+    <div id="comming_soon"></div>
+
+    <!--top10-->
+    <div id="top10"></div>
+</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
@@ -36,10 +47,11 @@
             });
         }
 
-        function fillSelectCinemas() {
+        function updateSelectCinemas() {
+            $('#cinema_sel').children('option').remove();
             var city_id = $('#city_sel').find(':selected').data('id');
             $.getJSON('/Cinema/FindByCity/' + city_id, function (data) {
-                var cinemas = data;
+                var cinemas = data;                
                 cinemas.forEach(function (item, index) {
                     $('#cinema_sel').append("<option data-id=" + item.Id + ">" + item.Name + "</option>");
                 });
@@ -50,13 +62,12 @@
 
             //default
             fillSelectCities(data);
-            fillSelectCinemas();
+            updateSelectCinemas();
 
             //event of select Cities
-            $('#city_sel').onchange = function () {
-                var city_id = $('#city_sel').find(':selected').data('id');
-                console.log(city_id);
-            };
+            $('#city_sel').on('change', function (e) {
+                updateSelectCinemas();
+            });
         });
     });
 </script>

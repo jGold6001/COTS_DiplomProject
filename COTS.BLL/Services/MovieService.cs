@@ -62,10 +62,34 @@ namespace COTS.BLL.Services
 
             return mapper.Map<Movie, MovieDTO>(movie);
         }
+
         public void Delete(int? id)
         {
             throw new NotImplementedException();
         }
 
+        public IEnumerable<MovieDTO> FindAllPremeriesByCity(string cityId)
+        {
+            if (cityId == null)
+                throw new ValidationException("'CityId' not set", "");
+
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.FindAllPremeriesByCity(cityId));
+        }
+
+        public IEnumerable<MovieDTO> FindAllComingSoonByCity(string cityId)
+        {
+            if (cityId == null)
+                throw new ValidationException("'CityId' not set", "");
+
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.FindAllComingSoonByCity(cityId));
+        }
+
+        public IEnumerable<MovieDTO> GetTop10ByRankOrderByCity(string cityId)
+        {
+            if (cityId == null)
+                throw new ValidationException("'CityId' not set", "");
+
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetTop10ByRankOrderByCity(cityId));
+        }
     }
 }

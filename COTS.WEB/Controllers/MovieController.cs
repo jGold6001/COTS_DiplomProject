@@ -29,5 +29,7 @@ namespace COTS.WEB.Controllers
             var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
             return View(movies);           
         }
+
+
     }
 }
