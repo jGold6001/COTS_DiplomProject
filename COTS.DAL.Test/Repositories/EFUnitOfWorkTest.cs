@@ -135,13 +135,6 @@ namespace COTS.DAL.Test.Repositories
         }
 
         [TestMethod]
-        public void TestFindCinemasByCity()
-        {
-            List<Cinema> cinemasByCity = cinemaRepo.FindAllByCity("Харьков") as List<Cinema>;          
-            Assert.AreEqual(cinemas[2].Name, cinemasByCity[0].Name);
-        }
-
-        [TestMethod]
         public void TestFindSeancesByDate()
         {
             List<Seance> seancesByDate = seanceRepo.FindByDate(DateTime.Now.Date)as List<Seance>;

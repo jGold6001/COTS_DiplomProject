@@ -181,7 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CInema\" />
+    <Folder Include="Views\Cinema\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COTS.BLL\COTS.BLL.csproj">

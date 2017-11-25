@@ -14,15 +14,6 @@ namespace COTS.DAL.Repositories
         public CinemaRepository(DbContext context) : base(context)
         {
 
-        }
-
-        public IEnumerable<Cinema> FindAllByCity(string cityName)
-        {
-            return context.Database.SqlQuery<Cinema>(
-                "SELECT * FROM dbo.Cinemas " +
-                "INNER JOIN dbo.Cities ON dbo.Cinemas.CityId = dbo.Cities.Id " +
-                "AND dbo.Cities.Name = @cityName", new SqlParameter("@cityName", cityName)
-            ).ToList();
-        }
+        }        
     }
 }

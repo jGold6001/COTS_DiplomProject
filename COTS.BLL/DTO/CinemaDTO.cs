@@ -11,7 +11,7 @@ namespace COTS.BLL.DTO
         public long Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }     
-        public long CityId { get; set; }
+        public string CityId { get; set; }
 
         public CinemaDTO()
         {
@@ -24,7 +24,7 @@ namespace COTS.BLL.DTO
             Address = address;
         }
 
-        public CinemaDTO(string name, string address, long cityId) : this(name, address)
+        public CinemaDTO(string name, string address, string cityId) : this(name, address)
         {
             CityId = cityId;
         }

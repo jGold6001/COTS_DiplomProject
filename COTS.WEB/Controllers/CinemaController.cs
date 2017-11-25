@@ -25,9 +25,9 @@ namespace COTS.WEB.Controllers
             return View();
         }
 
-        public JsonResult FindAllByCity(string cityName)
+        public JsonResult FindByCity(string id)
         {
-            IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, IEnumerable<CinemaViewModel>>(cinemaService.FindAllByCity(cityName));
+            IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemaService.FindAllByCity(id));
             return Json(cinemas, JsonRequestBehavior.AllowGet);
         }
     }

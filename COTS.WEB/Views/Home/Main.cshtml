@@ -24,13 +24,39 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $.getJSON('/City/GetAll', function (data) {
-            data.forEach(function (item, index) {
-                $('#city_sel').append("<option data-id=" + item.Id + ">" + item.Name + "</option>");
+
+        function fillSelectCities(data) {
+            var cities = data;
+            cities.forEach(function (item, index) {
+                if (item.Id == 'kiev') {
+                    $('#city_sel').append("<option selected data-id=" + item.Id + ">" + item.Name + "</option>");
+                } else {
+                    $('#city_sel').append("<option data-id=" + item.Id + ">" + item.Name + "</option>");
+                }
             });
+        }
 
+        function fillSelectCinemas() {
+            var city_id = $('#city_sel').find(':selected').data('id');
+            $.getJSON('/Cinema/FindByCity/' + city_id, function (data) {
+                var cinemas = data;
+                cinemas.forEach(function (item, index) {
+                    $('#cinema_sel').append("<option data-id=" + item.Id + ">" + item.Name + "</option>");
+                });
+            });
+        }
+      
+        $.getJSON('/City/GetAll', function (data) {
 
+            //default
+            fillSelectCities(data);
+            fillSelectCinemas();
 
+            //event of select Cities
+            $('#city_sel').onchange = function () {
+                var city_id = $('#city_sel').find(':selected').data('id');
+                console.log(city_id);
+            };
         });
     });
 </script>

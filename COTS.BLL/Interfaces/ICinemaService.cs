@@ -11,7 +11,7 @@ namespace COTS.BLL.Interfaces
     public interface ICinemaService
     {
         void AddOrUpdate(CinemaDTO cinemaDTO);
-        IEnumerable<CinemaDTO> FindAllByCity(string cityName);        
-        void Delete(int? id);
+        IEnumerable<CinemaDTO> FindAllByCity(string id);        
+        void Delete(string id);
     }
 }
