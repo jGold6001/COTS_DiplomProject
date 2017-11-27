@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace COTS.WEB.Controllers
 {
-    [RoutePrefix("movie")]
+    //[RoutePrefix("movie")]
     public class MovieController : Controller
     {
         IMovieService movieService;
@@ -30,6 +30,26 @@ namespace COTS.WEB.Controllers
             return View(movies);           
         }
 
+        //[Route("premeries/{cityId}")]
+        public ActionResult GetAllPremeriesByCity(string cityId)
+        {
+            IEnumerable<MovieDTO> moviesDTOs = movieService.FindAllPremeriesByCity(cityId);
+            var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
+            return PartialView("GetAllByCity", movies);
+        }
 
+        public ActionResult GetAllCommingSoonByCity(string cityId)
+        {
+            IEnumerable<MovieDTO> moviesDTOs = movieService.FindAllComingSoonByCity(cityId);
+            var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
+            return PartialView("GetAllByCity", movies);
+        }
+
+        public ActionResult GetTop10ByCity(string cityId)
+        {
+            IEnumerable<MovieDTO> moviesDTOs = movieService.GetTop10ByRankOrderByCity(cityId);
+            var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
+            return PartialView("GetAllByCity", movies);
+        }
     }
 }

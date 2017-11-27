@@ -25,10 +25,17 @@ namespace COTS.WEB.Controllers
             return View();
         }
 
-        public JsonResult FindByCity(string id)
+        //public JsonResult FindByCity(string cityId)
+        //{
+        //    IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemaService.FindAllByCity(cityId));
+        //    return Json(cinemas, JsonRequestBehavior.AllowGet);
+        //}
+
+        public ActionResult GetAllByCity(string cityId)
         {
-            IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemaService.FindAllByCity(id));
-            return Json(cinemas, JsonRequestBehavior.AllowGet);
+            IEnumerable<CinemaDTO> cinemasDTOs = cinemaService.FindAllByCity(cityId); 
+            var cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemasDTOs);
+            return PartialView("GetAllByCity", cinemas);
         }
     }
 }

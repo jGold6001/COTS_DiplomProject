@@ -17,6 +17,7 @@
 <div class="row">
     <h1>Movies</h1>
     <div id="movies">
+
         <!--premeries-->
         <div class="col-lg-4">
             <h3>Premeries</h3>
@@ -34,6 +35,7 @@
             <h3>Top 10</h3>
             <div id="top10"></div>
         </div>
+
     </div>
 </div>
 
@@ -56,7 +58,18 @@
 <script type="text/javascript">
     $(function () {
 
-        function fillSelectCities(data) {
+        function updateLists()
+        {
+            let city_id = $('#city_sel').find(':selected').data('id');
+            $('#premeries').load('@Url.Action("GetAllPremeriesByCity", "Movie")?cityId=' + city_id);
+            $('#comming_soon').load('@Url.Action("GetAllCommingSoonByCity", "Movie")?cityId=' + city_id);
+            $('#top10').load('@Url.Action("GetTop10ByCity", "Movie")?cityId=' + city_id);
+            $('#cinemas_of_city').load('@Url.Action("GetAllByCity", "Cinema")?cityId=' + city_id);
+        }
+
+        $.getJSON('/City/GetAll', function (data) {
+
+            //create dropDown City
             var cities = data;
             cities.forEach(function (item, index) {
                 if (item.Id == 'kiev') {
@@ -65,15 +78,13 @@
                     $('#city_sel').append("<option data-id=" + item.Id + ">" + item.Name + "</option>");
                 }
             });
-        }
-       
-        $.getJSON('/City/GetAll', function (data) {
-            fillSelectCities(data);
-           
-            //event of select Cities
-            $('#city_sel').on('change', function (e) {
-                let city_id = $('#city_sel').find(':selected').data('id');
-                console.log(city_id);
+
+            //default values
+            updateLists();           
+
+            //event of dropDown City
+            $('#city_sel').on('change', function (e) {            
+                updateLists();
             });
         });
     });

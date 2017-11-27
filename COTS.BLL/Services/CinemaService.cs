@@ -34,12 +34,12 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CinemaDTO> FindAllByCity(string id)
+        public IEnumerable<CinemaDTO> FindAllByCity(string cityId)
         {
-            if (id == null)
+            if (cityId == null)
                 throw new ValidationException("City 'Id' not set", "");
 
-            IEnumerable<CinemaDTO> cinemas = mapper.Map<IEnumerable<Cinema>, IEnumerable<CinemaDTO>>(UnitOfWork.Cinemas.FindBy(c => c.CityId == id));
+            IEnumerable<CinemaDTO> cinemas = mapper.Map<IEnumerable<Cinema>, IEnumerable<CinemaDTO>>(UnitOfWork.Cinemas.FindBy(c => c.CityId == cityId));
             if(cinemas.Count() == 0)
                 throw new ValidationException("Cinemas by city not found", "");
 
