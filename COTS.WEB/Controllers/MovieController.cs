@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace COTS.WEB.Controllers
 {
-    //[RoutePrefix("movie")]
+    [RoutePrefix("movie")]
     public class MovieController : Controller
     {
         IMovieService movieService;
@@ -24,13 +24,19 @@ namespace COTS.WEB.Controllers
         }
 
         public ActionResult Index()
-        {           
-            IEnumerable<MovieDTO> moviesDTOs = movieService.GetAll();
-            var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
-            return View(movies);           
+        {
+            ViewBag.CityId = "kiev";
+            return View("Index");
         }
 
-        //[Route("premeries/{cityId}")]
+        [Route("{cityId}")]
+        public ActionResult GetAllByCity(string cityId)
+        {
+            ViewBag.CityId = cityId;           
+            return View("Index");
+        }
+
+        [Route("premeries/{cityId}")]
         public ActionResult GetAllPremeriesByCity(string cityId)
         {
             IEnumerable<MovieDTO> moviesDTOs = movieService.FindAllPremeriesByCity(cityId);
@@ -38,6 +44,8 @@ namespace COTS.WEB.Controllers
             return PartialView("GetAllByCity", movies);
         }
 
+
+        [Route("comingsoon/{cityId}")]
         public ActionResult GetAllCommingSoonByCity(string cityId)
         {
             IEnumerable<MovieDTO> moviesDTOs = movieService.FindAllComingSoonByCity(cityId);
@@ -45,6 +53,7 @@ namespace COTS.WEB.Controllers
             return PartialView("GetAllByCity", movies);
         }
 
+        [Route("top10/{cityId}")]
         public ActionResult GetTop10ByCity(string cityId)
         {
             IEnumerable<MovieDTO> moviesDTOs = movieService.GetTop10ByRankOrderByCity(cityId);

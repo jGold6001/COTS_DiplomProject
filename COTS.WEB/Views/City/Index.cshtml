@@ -1,33 +1,7 @@
-﻿
+﻿@model IEnumerable<COTS.WEB.Models.CityViewModel>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<div id="dropDownBlock">
-    <div class="row">
-        <div class="col-lg-6">
-            <p>Cities</p>
-            <select id="city_sel"></select>
-        </div>
-        <div class="col-lg-6">
-            <p>Cinemas</p>
-            <select id="cinema_sel"></select>
-        </div>
-    </div>
-</div>
-
-<div id="movies"></div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
-    $(function () {    
-        $.getJSON('/City/GetAll', function (data) {
-            data.forEach(function (item, index) {
-                $('#city_sel').append("<option data-id=" + item.Id + ">" + item.Name + "</option>");
-            });
-        });
-    });
-</script>
 

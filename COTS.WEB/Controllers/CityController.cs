@@ -23,13 +23,19 @@ namespace COTS.WEB.Controllers
 
         public ActionResult Index()
         {
-            return View("Index");
+            IEnumerable<CityViewModel> cities = mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityService.GetAll());
+            return View("Index", cities);
         }
 
         public JsonResult GetAll()
         {
             IEnumerable<CityViewModel> cities = mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityService.GetAll());
-            return Json(cities, JsonRequestBehavior.AllowGet);               
+            return Json(cities, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetOne(string id)
+        {
+            return View();
         }
     }
 }

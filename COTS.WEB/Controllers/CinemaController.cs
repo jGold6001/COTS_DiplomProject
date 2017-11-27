@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace COTS.WEB.Controllers
 {
+    [RoutePrefix("cinema")]
     public class CinemaController : Controller
     {
         ICinemaService cinemaService;
@@ -31,6 +32,7 @@ namespace COTS.WEB.Controllers
         //    return Json(cinemas, JsonRequestBehavior.AllowGet);
         //}
 
+        [Route("cinemasbycity/{cityId}")]
         public ActionResult GetAllByCity(string cityId)
         {
             IEnumerable<CinemaDTO> cinemasDTOs = cinemaService.FindAllByCity(cityId); 

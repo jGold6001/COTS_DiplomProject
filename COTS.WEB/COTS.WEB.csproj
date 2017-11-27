@@ -165,15 +165,14 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Movie\findbycity.cshtml" />
-    <Content Include="Views\Movie\index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\City\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Movie\GetAllByCity.cshtml" />
     <Content Include="Views\Cinema\GetAllByCity.cshtml" />
+    <Content Include="Views\City\Index.cshtml" />
+    <Content Include="Views\Movie\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

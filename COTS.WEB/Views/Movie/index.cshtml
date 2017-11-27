@@ -1,13 +1,91 @@
-﻿@model IEnumerable<COTS.WEB.Models.MovieViewModel>
-
+﻿
 @{
-    ViewBag.Title = "index";
+    ViewBag.Title = "Index";
 }
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <p>@item.Name</p>
-        </div>
-    }
 
-    
+
+
+<h2>@ViewBag.CityId</h2>
+
+<div id="dropDownBlock">
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Cities</p>
+            <select id="city_sel"></select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h1>Movies</h1>
+    <div id="movies">
+
+        <!--premeries-->
+        <div class="col-lg-4">
+            <h3>Premeries</h3>
+            <div id="premeries"></div>
+        </div>
+
+        <!--comming_soon-->
+        <div class="col-lg-4">
+            <h3>Comming Soon</h3>
+            <div id="comming_soon"></div>
+        </div>
+
+        <!--top10-->
+        <div class="col-lg-4">
+            <h3>Top 10</h3>
+            <div id="top10"></div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <h1>Cinemas</h1>
+    <div id="cinemas">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <!--cinemas of current city-->
+            <h3>Cinemas of city</h3>
+            <div id="cinemas_of_city"></div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $.getJSON('@Url.Action("GetAll", "City")', function (data) {
+            var cities = data;
+            cities.forEach(function (item, index) {
+                if (item.Id == "@ViewBag.CityId") {
+                    $('#city_sel').append("<option selected data-id=" + item.Id + ">" + item.Name + "</option>");
+                } else {
+                    $('#city_sel').append("<option data-id=" + item.Id + ">" + item.Name + "</option>");
+                }
+            });
+
+
+            $('#premeries').load("premeries/" + "@ViewBag.CityId");
+            $('#comming_soon').load("comingsoon/" + "@ViewBag.CityId");
+            $('#top10').load("top10/" + "@ViewBag.CityId");
+            $('#cinemas_of_city').load('@Url.Action("GetAllByCity", "Cinema")?cityId=' + "@ViewBag.CityId");
+
+
+            //event of dropDown City
+            $('#city_sel').on('change', function (e) {
+                let city_id = $('#city_sel').find(':selected').data('id');
+                let url = '@Url.Action("GetAllByCity", "Movie", new { cityId = "__city_id__" })';
+                window.location.href = url.replace('__city_id__', city_id);
+            });
+
+        });
+    });
+</script>
