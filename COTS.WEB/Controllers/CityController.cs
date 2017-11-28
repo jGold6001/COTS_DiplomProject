@@ -24,7 +24,7 @@ namespace COTS.WEB.Controllers
         public ActionResult Index()
         {
             IEnumerable<CityViewModel> cities = mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityService.GetAll());
-            return View("Index", cities);
+            return View(cities);
         }
 
         public JsonResult GetAll()

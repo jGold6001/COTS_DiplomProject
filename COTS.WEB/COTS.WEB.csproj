@@ -168,10 +168,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Movie\GetAllByCity.cshtml" />
     <Content Include="Views\Cinema\GetAllByCity.cshtml" />
-    <Content Include="Views\City\Index.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -182,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\City\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COTS.BLL\COTS.BLL.csproj">

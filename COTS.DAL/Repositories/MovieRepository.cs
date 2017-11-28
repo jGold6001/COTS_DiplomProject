@@ -16,6 +16,20 @@ namespace COTS.DAL.Repositories
 
         }
 
+        public Movie GetOneByCity(long id, string cityId)
+        {
+            return context.Database.SqlQuery<Movie>(
+                "SELECT  dbo.Movies.Id, dbo.Movies.Name, dbo.Movies.Genre, dbo.Movies.Destination, dbo.Movies.Year, dbo.Movies.Duration, dbo.Movies.AgeCategory, dbo.Movies.Country, dbo.Movies.Director, dbo.Movies.Actors, dbo.Movies.TrailerUrl, dbo.Movies.ImagePath, dbo.Movies.DateIssue, dbo.Movies.RankSales " +
+                "FROM dbo.Movies " +
+                "INNER JOIN dbo.Seances on dbo.Movies.Id = dbo.Seances.MovieId " +
+                "INNER JOIN dbo.Cinemas on dbo.Cinemas.Id = dbo.Seances.CinemaId " +
+                "INNER JOIN dbo.Cities on dbo.Cities.Id = dbo.Cinemas.CityId AND dbo.Cities.Id = @cityId " +
+                "AND dbo.Movies.Id = @id " +
+                "GROUP BY dbo.Movies.Id, dbo.Movies.Name, dbo.Movies.Genre, dbo.Movies.Destination, dbo.Movies.Year, dbo.Movies.Duration, dbo.Movies.AgeCategory, dbo.Movies.Country, dbo.Movies.Director, dbo.Movies.Actors, dbo.Movies.TrailerUrl, dbo.Movies.ImagePath, dbo.Movies.DateIssue, dbo.Movies.RankSales "
+                ,new SqlParameter("@id", id), new SqlParameter("@cityId", cityId) 
+            ).FirstOrDefault();
+        }
+
         public IEnumerable<Movie> FindAllByCity(string cityId)
         {
             return context.Database.SqlQuery<Movie>(

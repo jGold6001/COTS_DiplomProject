@@ -14,9 +14,5 @@ namespace COTS.WEB.Controllers
             return View("Index");
         }
 
-        public ActionResult Main()
-        {
-            return View("Main");
-        }
     }
 }
