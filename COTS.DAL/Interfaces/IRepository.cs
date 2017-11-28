@@ -11,7 +11,7 @@ namespace COTS.DAL.Interfaces
     public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
-        T Get(int id);
+        T Get(dynamic id);
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
         void AddOrUpdate(T entity);
         void Delete(T entity);

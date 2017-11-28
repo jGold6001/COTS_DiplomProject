@@ -36,6 +36,15 @@ namespace COTS.WEB.Controllers
             return View("Index");
         }
 
+        [Route("{cityId}/{id:long}")]
+        public ActionResult GetOneByCity(string cityId, long id)
+        {
+            MovieDTO movieDTO = movieService.GetOne(id);
+            var movie = mapper.Map<MovieDTO, MovieViewModel>(movieDTO);
+            ViewBag.CityId = cityId;
+            return View("MovieView", movie);
+        }
+
         [Route("premeries/{cityId}")]
         public ActionResult GetAllPremeriesByCity(string cityId)
         {

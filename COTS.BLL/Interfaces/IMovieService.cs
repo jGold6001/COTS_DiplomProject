@@ -10,7 +10,7 @@ namespace COTS.BLL.Interfaces
     public interface IMovieService
     {
         void AddOrUpdate(MovieDTO movieDTO);
-        MovieDTO GetOne(int? id);
+        MovieDTO GetOne(long? id);
         IEnumerable<MovieDTO> GetAll();
         IEnumerable<MovieDTO> FindAllPremeries();
         IEnumerable<MovieDTO> FindAllComingSoon();
@@ -18,6 +18,6 @@ namespace COTS.BLL.Interfaces
         IEnumerable<MovieDTO> FindAllPremeriesByCity(string cityId);
         IEnumerable<MovieDTO> FindAllComingSoonByCity(string cityId);
         IEnumerable<MovieDTO> GetTop10ByRankOrderByCity(string cityId);
-        void Delete(int? id);
+        void Delete(long? id);
     }
 }

@@ -36,7 +36,7 @@ namespace COTS.DAL.Repositories
             return dbSet.Where(predicate);
         }
 
-        public T Get(int id)
+        public T Get(dynamic id)
         {
             return dbSet.Find(id);
         }

@@ -51,7 +51,7 @@ namespace COTS.BLL.Services
             return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetAll());
         }
 
-        public MovieDTO GetOne(int? id)
+        public MovieDTO GetOne(long? id)
         {
             if (id == null)
                 throw new ValidationException("Movie 'Id' not set", "");
@@ -63,7 +63,7 @@ namespace COTS.BLL.Services
             return mapper.Map<Movie, MovieDTO>(movie);
         }
 
-        public void Delete(int? id)
+        public void Delete(long? id)
         {
             throw new NotImplementedException();
         }
