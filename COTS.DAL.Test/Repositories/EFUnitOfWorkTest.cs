@@ -8,6 +8,7 @@ using COTS.DAL.Test.CollectionForData.Seances;
 using COTS.DAL.Test.CollectionForData.Cities;
 using COTS.DAL.Test.CollectionForData.Cinemas;
 using System.Diagnostics;
+using System.Linq;
 
 namespace COTS.DAL.Test.Repositories
 {
@@ -187,23 +188,31 @@ namespace COTS.DAL.Test.Repositories
               Trace.WriteLine(item.DateAndTime);
         }
 
-        [TestMethod]
-        public void FindSeancesByMovieNameTest()
-        {
-            List<Seance> seancesByMovie = seanceRepo.FindByMovie(movies[0].Name) as List<Seance>;
-            foreach (var item in seancesByMovie)
-                Trace.WriteLine(item.MovieId);
-        }
 
         [TestMethod]
-        public void FindSeancesByCinemaNameTest()
+        public void FindSeancesByCinemaTest()
         {
-            List<Seance> seancesByCinema = seanceRepo.FindByCinema(cinemas[0].Name) as List<Seance>;
+            List<Seance> seancesByCinema = seanceRepo.FindAllByCinema(cinemas[0].Id) as List<Seance>;
             foreach (var item in seancesByCinema)
                 Trace.WriteLine(item.CinemaId);
         }
 
+        [TestMethod]
+        public void FindSeancesByCinemaAndDateTest()
+        {
+            IEnumerable<Seance> seancesByCinema = seanceRepo.FindAllByCinemaAndDate(cinemas[0].Id, seancesFlorence[1].DateAndTime.Date);
+            foreach (var item in seancesByCinema)
+                Trace.WriteLine(item.CinemaId + " "+ item.DateAndTime);
+        }
 
+        [TestMethod]
+        public void FindSeancesByMovieAndDateTest()
+        {
+            long movieId = movieRepo.GetAll().Select(m => m.Id).FirstOrDefault();
+            IEnumerable<Seance> seancesByMovies = seanceRepo.FindAllByMovieAndDate(movieId, DateTime.Now.Date);
+            foreach (var item in seancesByMovies)
+                Trace.WriteLine($"Movie: {item.MovieId} and Date: {item.DateAndTime}");
+        }
 
         [TestMethod]
         public void DeleteTest()

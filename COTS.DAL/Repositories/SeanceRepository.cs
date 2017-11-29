@@ -26,17 +26,8 @@ namespace COTS.DAL.Repositories
             ).ToList();
         }
 
-        public IEnumerable<Seance> FindByMovie(string movieName)
-        {
-            return context.Database.SqlQuery<Seance>(
-                "SELECT * FROM dbo.Seances " +
-                "INNER JOIN dbo.Movies ON " +
-                "dbo.Seances.MovieId = dbo.Movies.ID " +
-                "AND dbo.Movies.Name = @movieName", new SqlParameter("@movieName", movieName)
-            ).ToList();
-        }
 
-        public IEnumerable<Seance> FindByMovie(long movieId)
+        public IEnumerable<Seance> FindAllByMovie(long movieId)
         {
             return context.Database.SqlQuery<Seance>(
                 "SELECT * FROM dbo.Seances " +
@@ -46,23 +37,39 @@ namespace COTS.DAL.Repositories
             ).ToList();
         }
 
-        public IEnumerable<Seance> FindByCinema(string cinemaName)
+        public IEnumerable<Seance> FindAllByMovieAndDate(long movieId, DateTime date)
         {
             return context.Database.SqlQuery<Seance>(
                 "SELECT * FROM dbo.Seances " +
-                "INNER JOIN dbo.Cinemas ON " +
-                "dbo.Seances.CinemaId = dbo.Cinemas.Id " +
-                "AND dbo.Cinemas.Name = @cinemaName", new SqlParameter("@cinemaName", cinemaName)
+                "INNER JOIN dbo.Movies ON " +
+                "dbo.Seances.MovieId = dbo.Movies.ID " +
+                "AND dbo.Movies.Id = @movieId " +
+                "AND CONVERT(date, dbo.Seances.DateAndTime) = @date",
+                new SqlParameter("@movieId", movieId),
+                new SqlParameter("@date", date)
             ).ToList();
         }
 
-        public IEnumerable<Seance> FindByCinema(long cinemaId)
+        public IEnumerable<Seance> FindAllByCinema(string cinemaId)
         {
             return context.Database.SqlQuery<Seance>(
                 "SELECT * FROM dbo.Seances " +
                 "INNER JOIN dbo.Cinemas ON " +
                 "dbo.Seances.CinemaId = dbo.Cinemas.Id " +
                 "AND dbo.Cinemas.Id = @cinemaId", new SqlParameter("@cinemaId", cinemaId)
+            ).ToList();
+        }
+
+        public IEnumerable<Seance> FindAllByCinemaAndDate(string cinemaId, DateTime date)
+        {
+            return context.Database.SqlQuery<Seance>(
+               "SELECT * FROM dbo.Seances " +
+                "INNER JOIN dbo.Cinemas ON " +
+                "dbo.Seances.CinemaId = dbo.Cinemas.Id " +
+                "AND dbo.Cinemas.Id = @cinemaId "+
+                "AND CONVERT(date, dbo.Seances.DateAndTime) = @date",
+                new SqlParameter("@cinemaId", cinemaId),
+                new SqlParameter("@date", date)
             ).ToList();
         }
     }

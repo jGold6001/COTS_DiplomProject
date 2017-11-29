@@ -26,17 +26,21 @@ namespace COTS.BLL.Services
             seanceRepo = UnitOfWork.Seances as SeanceRepository;
         }
 
-        public void AddOrUpdate(Seance seance)
+        public void AddOrUpdate(SeanceDTO seance)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<SeanceDTO> FindByCinema(long? cinemaId)
+        public IEnumerable<SeanceDTO> FindByCinemaAndDate(string cinemaId, long? dateTicks)
         {
             if (cinemaId == null)
                 throw new ValidationException("'CinemaId' not set", "");
 
-            IEnumerable<Seance> seances = seanceRepo.FindByCinema(cinemaId.Value);
+            if (dateTicks == null)
+                throw new ValidationException("'dateTicks' not set", "");
+
+
+            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaAndDate(cinemaId, new DateTime(dateTicks.Value));
             if (seances.Count() == 0)
                 throw new ValidationException("Seances by cinema not found", "");
 
@@ -44,12 +48,15 @@ namespace COTS.BLL.Services
             return seancesDTO;
         }
 
-        public IEnumerable<SeanceDTO> FindByMovie(long? movieId)
+        public IEnumerable<SeanceDTO> FindByMovieAndDate(long? movieId, long? dateTicks)
         {
             if (movieId == null)
                 throw new ValidationException("'MovieId' not set", "");
 
-            IEnumerable<Seance> seances = seanceRepo.FindByMovie(movieId.Value);
+            if (dateTicks == null)
+                throw new ValidationException("'dateTicks' not set", "");
+
+            IEnumerable<Seance> seances = seanceRepo.FindAllByMovieAndDate(movieId.Value, new DateTime(dateTicks.Value));
             if(seances.Count() == 0)
                 throw new ValidationException("Seances by movie not found", "");
 
@@ -57,7 +64,6 @@ namespace COTS.BLL.Services
             return seancesDTO;
             
         }
-
 
         public IEnumerable<SeanceDTO> FindByDate(DateTime date)
         {

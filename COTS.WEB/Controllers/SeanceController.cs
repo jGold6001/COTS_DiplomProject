@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace COTS.WEB.Controllers
 {
+    [RoutePrefix("seance")]
     public class SeanceController : Controller
     {
         ISeanceService seanceService;
@@ -18,14 +19,19 @@ namespace COTS.WEB.Controllers
         public SeanceController(ISeanceService seanceService)
         {
             this.seanceService = seanceService;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<SeanceDTO, SeanceViewModel>()));
+            mapper = new Mapper(new MapperConfiguration(
+                cfg => cfg.CreateMap<SeanceDTO, SeanceViewModel>()
+                    .ForMember("DateSeance", opt => opt.MapFrom(src => src.DateAndTime.Date.ToString()))
+                    .ForMember("TimeBegin", opt => opt.MapFrom(src => src.DateAndTime.ToString("HH:mm")))
+                ));
         }
 
-        public ActionResult GetAllByCinema(long cinemaId)
+        [Route("{cinemaId}/{dateTicks}")]
+        public ActionResult GetAllByCinemaAndDate(string cinemaId, long? dateTicks)
         {
-            IEnumerable<SeanceDTO> seanceDTO = seanceService.FindByCinema(cinemaId);
-            var seances = mapper.Map<IEnumerable<SeanceDTO>, IEnumerable<SeanceViewModel>>(seanceDTO);
-            return PartialView("GetAllByCinema", seances);
+            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByCinemaAndDate(cinemaId, dateTicks);
+            var seances = mapper.Map<IEnumerable<SeanceDTO>, IEnumerable<SeanceViewModel>>(seancesDTO);
+            return PartialView("GetAllByCinemaAndDate", seances);
         }
     }
 }

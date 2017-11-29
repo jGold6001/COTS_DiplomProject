@@ -10,10 +10,9 @@ namespace COTS.BLL.Interfaces
 {
     public interface ISeanceService
     {
-        void AddOrUpdate(Seance seance);
-        IEnumerable<SeanceDTO> FindByDate(DateTime date);
-        IEnumerable<SeanceDTO> FindByMovie(long? movieId);
-        IEnumerable<SeanceDTO> FindByCinema(long? cinemaId);
+        void AddOrUpdate(SeanceDTO seance);
+        IEnumerable<SeanceDTO> FindByMovieAndDate(long? movieId, long? dateTicks);
+        IEnumerable<SeanceDTO> FindByCinemaAndDate(string cinemaId, long? dateTicks);
         void Delete(long? id);
     }
 }

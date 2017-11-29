@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<COTS.WEB.Models.SeanceViewModel>
 
 @{
-    ViewBag.Title = "GetAllByCinema";
+    ViewBag.Title = "GetAllByCinemaAndDate";
 }
 
 @foreach (var item in Model)
 {
-    <button>@item.DateAndTime.TimeOfDay</button>
+    <button>@item.TimeBegin</button>
 }
 
