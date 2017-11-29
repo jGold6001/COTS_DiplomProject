@@ -195,13 +195,14 @@
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\SeanceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
-    <Compile Include="Models\SeamceViewModel.cs" />
+    <Compile Include="Models\SeanceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\NinjectDependencyResolver.cs" />
     <Compile Include="Utils\NinjectDependencyScope.cs" />
@@ -220,6 +221,8 @@
     <Content Include="Views\Movie\MovieView.cshtml" />
     <Content Include="Views\Home\ExampleViews.cshtml" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <Content Include="Views\Cinema\GetAllWithSeancesByCity.cshtml" />
+    <Content Include="Views\Seance\GetAllByCinema.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -235,6 +238,10 @@
     <ProjectReference Include="..\COTS.BLL\COTS.BLL.csproj">
       <Project>{f9da4526-4717-4293-9ae9-b1f0f9632054}</Project>
       <Name>COTS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\COTS.DAL\COTS.DAL.csproj">
+      <Project>{E008668A-A01D-4C38-B2ED-4DFD79A6E380}</Project>
+      <Name>COTS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -12,10 +12,10 @@ namespace COTS.DAL.Test.CollectionForData.Cinemas
         public static List<Cinema> Get()
         {
             return new List<Cinema>() {
-                new Cinema("Multiplex SkyMall", "ул.Ватутина 2Т"),
-                new Cinema("Multiplex Проспект", "ул. Гната Хоткевича 1В"),
-                new Cinema("Multiplex Dafi", "ул. Героев Труда 9"),
-                new Cinema("Флоренция", "ул.Маяковского 31")
+                new Cinema("mpx_skymall","Multiplex SkyMall", "ул.Ватутина 2Т"),
+                new Cinema("mpx_prospect","Multiplex Проспект", "ул. Гната Хоткевича 1В"),
+                new Cinema("mpx_dafi","Multiplex Dafi", "ул. Героев Труда 9"),
+                new Cinema("florence","Флоренция", "ул.Маяковского 31")
             };
         }
     }

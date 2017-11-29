@@ -1,0 +1,36 @@
+﻿@model IEnumerable<COTS.WEB.Models.CinemaViewModel>
+
+@{
+    ViewBag.Title = "GetAllWithSeancesByCity";
+}
+
+ <!--cinemas block-->
+@foreach (var item in Model)
+{
+    <div id="cinemas_block">
+        <div class="row" style="border: 1px solid #BDBDBD; padding: 5px;">
+            <div class="col-lg-4">
+                <div id="row">
+                    <p>@item.Name</p>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div id="btns_seances"></div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#btns_seances').load();
+    });
+</script>
+
+
+
+
+

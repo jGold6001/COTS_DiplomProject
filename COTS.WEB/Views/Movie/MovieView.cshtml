@@ -54,16 +54,14 @@
                 month = "0" + month;
             }
             var date = year + '-' + month + '-' + day;
-
             return date;
         };
 
         //set current date
         $('#sel_date').val($.date($.now()));
 
-
-
         //cinemas
+        $('#cinemas_list').load('@Url.Action("GetAllWithSeancesByCity", "Cinema")?cityId=' + "@ViewBag.CityId");
 
         //times seances buttons
     });

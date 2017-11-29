@@ -10,15 +10,5 @@ namespace COTS.BLL.DTO
     {
         public string Id { get; set; }
         public string Name { get; set; }
-
-        public CityDTO()
-        {
-
-        }
-
-        public CityDTO(string name)
-        {
-            Name = name;
-        }
     }
 }

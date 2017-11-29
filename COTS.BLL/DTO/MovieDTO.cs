@@ -23,40 +23,5 @@ namespace COTS.BLL.DTO
         public int RankSales { get; set; }
         public DateTime DateIssue { get; set; }
 
-        public MovieDTO()
-        {
-
-        }
-
-        public MovieDTO(string name, string genre, string destination, int year, int duration, string ageCategory, string country, string director, string actors, string trailerUrl, DateTime dateIssue)
-        {
-            Name = name;
-            Genre = genre;
-            Destination = destination;
-            Year = year;
-            Duration = duration;
-            AgeCategory = ageCategory;
-            Country = country;
-            Director = director;
-            Actors = actors;
-            TrailerUrl = trailerUrl;
-            DateIssue = dateIssue;
-        }
-
-        public MovieDTO(string name, string genre, string destination, int year, int duration, string ageCategory, string country, string director, string actors, string trailerUrl, int rankSales, DateTime dateIssue)
-        {
-            Name = name;
-            Genre = genre;
-            Destination = destination;
-            Year = year;
-            Duration = duration;
-            AgeCategory = ageCategory;
-            Country = country;
-            Director = director;
-            Actors = actors;
-            TrailerUrl = trailerUrl;
-            RankSales = rankSales;
-            DateIssue = dateIssue;
-        }
     }
 }

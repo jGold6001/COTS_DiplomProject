@@ -13,7 +13,7 @@ namespace COTS.DAL.Entities
         public string TypeD { get; set; }
         public string Hall { get; set; }
         public Cinema Cinema { get; set; }
-        public long? CinemaId { get; set; }
+        public string CinemaId { get; set; }
 
         public Movie Movie { get; set; }
         public long? MovieId { get; set; }

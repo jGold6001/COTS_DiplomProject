@@ -26,11 +26,18 @@ namespace COTS.WEB.Controllers
             return View();
         }
 
-        //public JsonResult FindByCity(string cityId)
-        //{
-        //    IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemaService.FindAllByCity(cityId));
-        //    return Json(cinemas, JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult GetAllByCityJson(string cityId)
+        {
+            IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemaService.FindAllByCity(cityId));
+            return Json(cinemas, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAllWithSeancesByCity(string cityId)
+        {
+            IEnumerable<CinemaDTO> cinemasDTOs = cinemaService.FindAllByCity(cityId);
+            var cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemasDTOs);
+            return PartialView("GetAllWithSeancesByCity", cinemas);
+        }
 
         [Route("cinemasbycity/{cityId}")]
         public ActionResult GetAllByCity(string cityId)
