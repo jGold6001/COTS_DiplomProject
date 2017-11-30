@@ -57,11 +57,19 @@
             return date;
         };
 
-        //set current date
-        $('#sel_date').val($.date($.now()));
+        //default setting
+        var current_date = $.date($.now())
+        $('#sel_date').val(current_date);
+        $('#cinemas_list').load('@Url.Action("GetAllWithSeancesByCity", "Cinema", new { cityId = ViewBag.City, date = "2017-11-30"})');
+
+
+        $('#sel_date').on('change', function () {
+            var sel_date = $('#sel_date').val();
+
+        });
 
         //cinemas
-        $('#cinemas_list').load('@Url.Action("GetAllWithSeancesByCity", "Cinema")?cityId=' + "@ViewBag.CityId");
+        //$('#cinemas_list').load();
 
         //times seances buttons
     });

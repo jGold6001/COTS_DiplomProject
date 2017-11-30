@@ -28,8 +28,7 @@ namespace COTS.BLL.Services.Tests
         public void FindByCinemaAndDateTest()
         {
             string cinemaId = "mpx_skymall";
-            var ticks = DateTime.Now.Date.Ticks;
-            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByCinemaAndDate(cinemaId, ticks);
+            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByCinemaAndDate(cinemaId, DateTime.Now.Date);
 
             foreach (var item in seancesDTO)
                 Trace.WriteLine($"CinemaId: {item.CinemaId} and date {item.DateAndTime}");
@@ -39,8 +38,7 @@ namespace COTS.BLL.Services.Tests
         public void FindByMovieAndDateTest()
         {
             long movieId = unitOfWork.Movies.GetAll().Select(m => m.Id).FirstOrDefault();
-            var ticks = DateTime.Now.Date.Ticks;
-            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByMovieAndDate(movieId, ticks);
+            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByMovieAndDate(movieId, DateTime.Now.Date);
 
             foreach (var item in seancesDTO)
                 Trace.WriteLine($"MovieId: {item.MovieId} and date {item.DateAndTime}");

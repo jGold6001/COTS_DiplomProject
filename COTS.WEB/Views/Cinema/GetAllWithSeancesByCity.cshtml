@@ -15,20 +15,14 @@
                 </div>
             </div>
 
-            <div class="col-lg-8">  <!--GOTO-->
-                <div id="btns_seances">@Ajax.ActionLink($"seance/{item.Id}/{}")</div>
+            <div class="col-lg-8">  
+                <div id="btns_seances">@Html.Action("GetAllByCinemaAndDate", "Seance", new { cityId = item.Id, date = ViewBag.Date})</div>
             </div>
         </div>
     </div>
 
 }
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#btns_seances').load('@Url.Action("GetAllByCinemaAndDate", "Seance")?cinemaId=' + "@");
-    });
-</script>
 
 
 

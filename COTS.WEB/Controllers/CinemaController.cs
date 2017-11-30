@@ -32,8 +32,10 @@ namespace COTS.WEB.Controllers
             return Json(cinemas, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetAllWithSeancesByCity(string cityId)
+        [Route("cineams_by_city_with_date/{cityId}/{date:datetime}")]
+        public ActionResult GetAllWithSeancesByCity(string cityId, DateTime date)
         {
+            ViewBag.Date = date;
             IEnumerable<CinemaDTO> cinemasDTOs = cinemaService.FindAllByCity(cityId);
             var cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemasDTOs);
             return PartialView("GetAllWithSeancesByCity", cinemas);

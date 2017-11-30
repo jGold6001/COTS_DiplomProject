@@ -31,16 +31,16 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<SeanceDTO> FindByCinemaAndDate(string cinemaId, long? dateTicks)
+        public IEnumerable<SeanceDTO> FindByCinemaAndDate(string cinemaId, DateTime date)
         {
             if (cinemaId == null)
                 throw new ValidationException("'CinemaId' not set", "");
 
-            if (dateTicks == null)
-                throw new ValidationException("'dateTicks' not set", "");
+            if (date == null)
+                throw new ValidationException("'date' not set", "");
 
 
-            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaAndDate(cinemaId, new DateTime(dateTicks.Value));
+            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaAndDate(cinemaId, date);
             if (seances.Count() == 0)
                 throw new ValidationException("Seances by cinema not found", "");
 
@@ -48,16 +48,16 @@ namespace COTS.BLL.Services
             return seancesDTO;
         }
 
-        public IEnumerable<SeanceDTO> FindByMovieAndDate(long? movieId, long? dateTicks)
+        public IEnumerable<SeanceDTO> FindByMovieAndDate(long? movieId, DateTime date)
         {
             if (movieId == null)
                 throw new ValidationException("'MovieId' not set", "");
 
-            if (dateTicks == null)
-                throw new ValidationException("'dateTicks' not set", "");
+            if (date == null)
+                throw new ValidationException("'date' not set", "");
 
-            IEnumerable<Seance> seances = seanceRepo.FindAllByMovieAndDate(movieId.Value, new DateTime(dateTicks.Value));
-            if(seances.Count() == 0)
+            IEnumerable<Seance> seances = seanceRepo.FindAllByMovieAndDate(movieId.Value, date);
+            if (seances.Count() == 0)
                 throw new ValidationException("Seances by movie not found", "");
 
             IEnumerable<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, IEnumerable<SeanceDTO>>(seances);
