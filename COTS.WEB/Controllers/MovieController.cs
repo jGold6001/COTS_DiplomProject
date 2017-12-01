@@ -42,6 +42,7 @@ namespace COTS.WEB.Controllers
             MovieDTO movieDTO = movieService.GetOne(id);
             var movie = mapper.Map<MovieDTO, MovieViewModel>(movieDTO);
             ViewBag.CityId = cityId;
+            ViewBag.BaseUrl = Request.Url.Authority;                    //host name
             return View("MovieView", movie);
         }
 
