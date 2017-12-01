@@ -60,13 +60,16 @@
         //default setting
         var current_date = $.date($.now())
         $('#sel_date').val(current_date);
-        $('#cinemas_list').load('@Url.Action("GetAllWithSeancesByCity", "Cinema", new { cityId = ViewBag.City, date = "2017-11-30"})');
+
+         console.log(@ViewBag.BaseUrl);
+        var url = 'http://localhost:50945/cinema/cinemas_by_city_with_date/' +"@ViewBag.CityId" + '/' + current_date;
+         $('#cinemas_list').load(url);
 
 
-        $('#sel_date').on('change', function () {
-            var sel_date = $('#sel_date').val();
+         $('#sel_date').on('change', function () {
+             var sel_date = $('#sel_date').val();
 
-        });
+         });
 
         //cinemas
         //$('#cinemas_list').load();
