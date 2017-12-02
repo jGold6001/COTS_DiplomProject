@@ -26,7 +26,21 @@ namespace COTS.WEB.Controllers
             return View();
         }
 
-        [Route("{cityId:alpha}")]
+        [Route("{cityId}/{id}")]
+        public ActionResult GetOneByCity(string cityId, string id)
+        {
+            CinemaDTO cinemaDTO = cinemaService.GetOne(id);
+            var cinema = mapper.Map<CinemaDTO, CinemaViewModel>(cinemaDTO);
+
+            ViewBag.CityId = cityId;
+
+            //host name
+            ViewBag.BaseUrl = Request.Url.Authority; 
+            
+            return View("CinemaView", cinema);
+        }
+
+        [Route("get_json/{cityId}")]
         public JsonResult GetAllByCityJson(string cityId)
         {
             IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemaService.FindAllByCity(cityId));
@@ -48,6 +62,7 @@ namespace COTS.WEB.Controllers
         [Route("cinemasbycity/{cityId}")]
         public ActionResult GetAllByCity(string cityId)
         {
+            ViewData["cityId"] = cityId;
             IEnumerable<CinemaDTO> cinemasDTOs = cinemaService.FindAllByCity(cityId); 
             var cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemasDTOs);
             return PartialView("GetAllByCity", cinemas);

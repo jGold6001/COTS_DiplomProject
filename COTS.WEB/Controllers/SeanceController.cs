@@ -31,7 +31,7 @@ namespace COTS.WEB.Controllers
         {
             IEnumerable<SeanceDTO> seancesDTO = seanceService.FindAllByCinemaMovieAndDate(cinemaId, movieId, date);
             var seances = mapper.Map<IEnumerable<SeanceDTO>, IEnumerable<SeanceViewModel>>(seancesDTO);
-            return PartialView("GetAllByCinemaAndDate", seances);
+            return PartialView("GetAllByCinemaMovieAndDate", seances);
         }
     }
 }

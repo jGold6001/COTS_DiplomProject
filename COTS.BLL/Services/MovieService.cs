@@ -68,6 +68,18 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<MovieDTO> FindAllByCity(string cityId)
+        {
+            if (cityId == null)
+                throw new ValidationException("'CityId' not set", "");
+
+            var movies = movieRepo.FindAllByCity(cityId);
+            if(movies.Count() == 0)
+                throw new ValidationException("Movies not found", "");
+
+            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movies);
+        }
+
         public IEnumerable<MovieDTO> FindAllPremeriesByCity(string cityId)
         {
             if (cityId == null)

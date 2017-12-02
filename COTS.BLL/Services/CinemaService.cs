@@ -29,6 +29,19 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
+        public CinemaDTO GetOne(string id)
+        {
+            if (id == null)
+                throw new ValidationException("Cinema 'Id' not set", "");
+
+            var cinema = UnitOfWork.Cinemas.Get(id);
+            if(cinema == null)
+                throw new ValidationException("Cinema not found", "");
+
+
+            return mapper.Map<Cinema, CinemaDTO>(cinema);
+        }
+
         public void Delete(string id)
         {
             throw new NotImplementedException();
@@ -45,5 +58,6 @@ namespace COTS.BLL.Services
 
             return cinemas;
         }
+
     }
 }

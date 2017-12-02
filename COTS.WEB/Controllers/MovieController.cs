@@ -32,7 +32,7 @@ namespace COTS.WEB.Controllers
         [Route("{cityId}")]
         public ActionResult GetAllByCity(string cityId)
         {
-            ViewBag.CityId = cityId;           
+            ViewBag.CityId = cityId;
             return View("Index");
         }
 
@@ -41,23 +41,27 @@ namespace COTS.WEB.Controllers
         {
             MovieDTO movieDTO = movieService.GetOne(id);
             var movie = mapper.Map<MovieDTO, MovieViewModel>(movieDTO);
+
             ViewBag.CityId = cityId;
-            ViewBag.BaseUrl = Request.Url.Authority;                    //host name
+
+            //host name
+            ViewBag.BaseUrl = Request.Url.Authority;                    
             return View("MovieView", movie);
         }
 
         [Route("premeries/{cityId}")]
         public ActionResult GetAllPremeriesByCity(string cityId)
         {
+            ViewData["cityId"] = cityId;
             IEnumerable<MovieDTO> moviesDTOs = movieService.FindAllPremeriesByCity(cityId);
             var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
             return PartialView("GetAllByCity", movies);
         }
 
-
         [Route("comingsoon/{cityId}")]
         public ActionResult GetAllCommingSoonByCity(string cityId)
         {
+            ViewData["cityId"] = cityId;
             IEnumerable<MovieDTO> moviesDTOs = movieService.FindAllComingSoonByCity(cityId);
             var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
             return PartialView("GetAllByCity", movies);
@@ -66,9 +70,18 @@ namespace COTS.WEB.Controllers
         [Route("top10/{cityId}")]
         public ActionResult GetTop10ByCity(string cityId)
         {
+            ViewData["cityId"] = cityId;
             IEnumerable<MovieDTO> moviesDTOs = movieService.GetTop10ByRankOrderByCity(cityId);
             var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
             return PartialView("GetAllByCity", movies);
+        }
+
+        [Route("get_json/{cityId}")]
+        public JsonResult GetAllByCityJson(string cityId)
+        {
+            IEnumerable<MovieDTO> moviesDTOs = movieService.FindAllByCity(cityId);
+            var movies = mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(moviesDTOs);
+            return Json(movies, JsonRequestBehavior.AllowGet);
         }
     }
 }

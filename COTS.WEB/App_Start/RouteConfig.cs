@@ -18,7 +18,7 @@ namespace COTS.WEB
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "home", action = "index", id = UrlParameter.Optional }
+                defaults: new { controller = "Movie", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

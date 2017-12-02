@@ -60,6 +60,7 @@
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
+
     $(function () {
 
         $.getJSON('@Url.Action("GetAll", "City")', function (data) {
@@ -73,10 +74,10 @@
             });
 
 
-            $('#premeries').load("premeries/" + "@ViewBag.CityId");
-            $('#comming_soon').load("comingsoon/" + "@ViewBag.CityId");
-            $('#top10').load("top10/" + "@ViewBag.CityId");
-            $('#cinemas_of_city').load('@Url.Action("GetAllByCity", "Cinema")?cityId=' + "@ViewBag.CityId");
+            $('#premeries').load('@Url.Action("GetAllPremeriesByCity", "Movie", new { cityId= @ViewBag.CityId})');
+            $('#comming_soon').load('@Url.Action("GetAllCommingSoonByCity", "Movie", new { cityId= @ViewBag.CityId})');
+            $('#top10').load('@Url.Action("GetTop10ByCity", "Movie", new { cityId= @ViewBag.CityId})');
+            $('#cinemas_of_city').load('@Url.Action("GetAllByCity", "Cinema", new { cityId= @ViewBag.CityId})');
 
 
             //event of dropDown City

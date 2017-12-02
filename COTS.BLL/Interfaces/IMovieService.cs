@@ -11,10 +11,11 @@ namespace COTS.BLL.Interfaces
     {
         void AddOrUpdate(MovieDTO movieDTO);
         MovieDTO GetOne(long? id);
-        IEnumerable<MovieDTO> GetAll();
+        IEnumerable<MovieDTO> GetAll();       
         IEnumerable<MovieDTO> FindAllPremeries();
         IEnumerable<MovieDTO> FindAllComingSoon();
         IEnumerable<MovieDTO> GetTop10();
+        IEnumerable<MovieDTO> FindAllByCity(string cityId);
         IEnumerable<MovieDTO> FindAllPremeriesByCity(string cityId);
         IEnumerable<MovieDTO> FindAllComingSoonByCity(string cityId);
         IEnumerable<MovieDTO> GetTop10ByRankOrderByCity(string cityId);
