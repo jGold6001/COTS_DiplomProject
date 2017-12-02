@@ -221,7 +221,6 @@
     <Content Include="Views\Movie\MovieView.cshtml" />
     <Content Include="Views\Home\ExampleViews.cshtml" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
-    <Content Include="Views\Cinema\GetAllWithSeancesByCity.cshtml" />
     <Content Include="Views\Seance\GetAllByCinemaAndDate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

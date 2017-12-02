@@ -35,13 +35,14 @@
     </div>
    
     <!--cinemas block--> 
-    <div id="cinemas_list"></div>
+    <div id="seances_by_cinema"></div>
 
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
     $(function () {
+        //get current date
         $.date = function (dateObject) {
             var d = new Date(dateObject);
             var day = d.getDate();
@@ -57,20 +58,36 @@
             return date;
         };
 
+        //get cinemas with seances
+        function getCinemasWithSeancesByDate(current_date) {
+            $.getJSON('@Url.Action("GetAllByCityJson", "Cinema", new { cityId = ViewBag.CityId })', function (data) {
+            var cinemas = data;
+            cinemas.forEach(function (item, index) {
+                $('#seances_by_cinema').append(
+                    '<div class="row" style="border: 1px solid #BDBDBD; padding: 5px;">' +
+                        '<div class="col-lg-4">' +
+                            '<div class="row">'+item.Name+'</div>' +
+                        '</div>' +
+                        '<div class="col-lg-8">' +
+                            '<div id="btns_seances_of_' + item.Id + '"></div>' +
+                        '</div>' +
+                    '</div>'
+                );
+                $("#btns_seances_of_" + item.Id).load('http://' + "@ViewBag.BaseUrl" + '/seance/' + item.Id + '/'+@Model.Id+'/' + current_date);
+            });
+        });
+        }
+
         //default setting
         var current_date = $.date($.now())
         $('#sel_date').val(current_date);
+        getCinemasWithSeancesByDate(current_date);
 
-         @*var url = 'http://'+"@ViewBag.BaseUrl"+'/cinema/cinemas_by_city_with_date/' +"@ViewBag.CityId" + '/' + current_date;
-         $('#cinemas_list').load(url);*@
-
-        $.getJSON('@Url.Action("GetAllByCityJson", "Cinema", new { cityId = ViewBag.CityId })', function (data) {
-            //GOTO
-        });
-
-
+        //event data
          $('#sel_date').on('change', function () {
-             var sel_date = $('#sel_date').val();
+            var sel_date = $('#sel_date').val();
+            $('#seances_by_cinema').empty();
+            getCinemasWithSeancesByDate(sel_date);
          });
 
 

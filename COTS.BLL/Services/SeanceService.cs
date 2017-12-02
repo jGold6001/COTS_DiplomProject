@@ -70,6 +70,26 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<SeanceDTO> FindAllByCinemaMovieAndDate(string cinemaId, long? movieId, DateTime date)
+        {
+            if (cinemaId == null)
+                throw new ValidationException("'CinemaId' not set", "");
+
+            if (movieId == null)
+                throw new ValidationException("'MovieId' not set", "");
+
+            if (date == null)
+                throw new ValidationException("'date' not set", "");
+
+            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId.Value, date);
+            if (seances.Count() == 0)
+                throw new ValidationException("Seances by movie not found", "");
+
+            IEnumerable<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, IEnumerable<SeanceDTO>>(seances);
+            return seancesDTO;
+
+        }
+
         public void Delete(long? id)
         {
             throw new NotImplementedException();

@@ -26,10 +26,10 @@ namespace COTS.WEB.Controllers
                 ));
         }
 
-        [Route("{cinemaId}/{date:datetime}")]
-        public ActionResult GetAllByCinemaAndDate(string cinemaId, DateTime date)
+        [Route("{cinemaId}/{movieId}/{date:datetime}")]
+        public ActionResult GetAllByCinemaMovieAndDate(string cinemaId,long movieId, DateTime date)
         {
-            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByCinemaAndDate(cinemaId, date);
+            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindAllByCinemaMovieAndDate(cinemaId, movieId, date);
             var seances = mapper.Map<IEnumerable<SeanceDTO>, IEnumerable<SeanceViewModel>>(seancesDTO);
             return PartialView("GetAllByCinemaAndDate", seances);
         }

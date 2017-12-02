@@ -26,12 +26,15 @@ namespace COTS.WEB.Controllers
             return View();
         }
 
+        [Route("{cityId:alpha}")]
         public JsonResult GetAllByCityJson(string cityId)
         {
             IEnumerable<CinemaViewModel> cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemaService.FindAllByCity(cityId));
+
+            //GOTO... Write the method, which check cinema's items  if their get seances collections 
+
             return Json(cinemas, JsonRequestBehavior.AllowGet);
         }
-
         
         [Route("cinemas_by_city_with_date/{cityId}/{date:datetime}")]
         public ActionResult GetAllWithSeancesByCity(string cityId, DateTime date)

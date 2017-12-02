@@ -215,6 +215,17 @@ namespace COTS.DAL.Test.Repositories
         }
 
         [TestMethod]
+        public void FindAllByCinemaMovieAndDateTest()
+        {
+            long movieId = movieRepo.GetAll().Select(m => m.Id).FirstOrDefault();
+            string cinemaId = cinemas[0].Id;
+            DateTime date = DateTime.Now.Date;
+            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId, date);
+            foreach (var item in seances)
+                Trace.WriteLine($"Cinema: {item.CinemaId} Movie: {item.MovieId} and Date: {item.DateAndTime}");
+        }
+
+        [TestMethod]
         public void DeleteTest()
         {
             foreach (var item in movieRepo.GetAll())
