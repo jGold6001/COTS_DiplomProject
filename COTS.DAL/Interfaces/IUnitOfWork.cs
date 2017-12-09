@@ -13,6 +13,7 @@ namespace COTS.DAL.Interfaces
         IRepository<Seance> Seances { get; }
         IRepository<Cinema> Cinemas { get; }
         IRepository<City> Cities { get; }
+        IRepository<Ticket> Tickets {get;}
         void Save();
     }
 }

@@ -18,6 +18,7 @@ namespace COTS.DAL.Repositories
         private CinemaRepository cinemaRepository;
         private SeanceRepository seanceRepository;
         private CityRepository cityRepository;
+        private TicketRepository ticketRepository;
 
         public EFUnitOfWork(string connectionString)
         {
@@ -59,6 +60,16 @@ namespace COTS.DAL.Repositories
                 if (cityRepository == null)
                     cityRepository = new CityRepository(db);
                 return cityRepository;
+            }
+        }
+
+        public IRepository<Ticket> Tickets
+        {
+            get
+            {
+                if (ticketRepository == null)
+                    ticketRepository = new TicketRepository(db);
+                return ticketRepository;
             }
         }
 

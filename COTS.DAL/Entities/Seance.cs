@@ -17,9 +17,10 @@ namespace COTS.DAL.Entities
 
         public Movie Movie { get; set; }
         public long? MovieId { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
         public Seance()
         {
-                
+            Tickets = new List<Ticket>();
         }
 
         public Seance(DateTime dateAndTime, string typeD, string hall)
@@ -27,6 +28,7 @@ namespace COTS.DAL.Entities
             DateAndTime = dateAndTime;
             TypeD = typeD;
             Hall = hall;
+            Tickets = new List<Ticket>();
         }
     }
 }
