@@ -32,6 +32,7 @@ namespace COTS.DAL.Test.Repositories
         private SeanceRepository seanceRepo;
         private CinemaRepository cinemaRepo;
         private CityRepository cityRepo;
+        private TicketRepository ticketRepo;
 
 
         [TestInitialize]
@@ -42,6 +43,7 @@ namespace COTS.DAL.Test.Repositories
             seanceRepo = unitOfwork.Seances as SeanceRepository;
             cinemaRepo = unitOfwork.Cinemas as CinemaRepository;
             cityRepo = unitOfwork.Cities as CityRepository;
+            ticketRepo = unitOfwork.Tickets as TicketRepository;
         }
 
         [TestMethod]
@@ -125,6 +127,32 @@ namespace COTS.DAL.Test.Repositories
                 seancesMultDafi[i].Cinema = mDafi;
                 seanceRepo.AddOrUpdate(seancesMultDafi[i]);
             }
+
+            unitOfwork.Save();
+        }
+
+        [TestMethod]
+        public void AddOrUpdateTicketTest()
+        {
+            var seance = seanceRepo.GetAll().FirstOrDefault();
+            var ticket = new Ticket()
+            {
+                SeanceId = seance.Id,
+                Hall = "#1",
+                Raw = 2,
+                Place = 1,
+                Price = 100,
+                Tariff = "Simple"
+            };
+
+            ticketRepo.AddOrUpdate(ticket);
+            unitOfwork.Save();
+
+            var ticketIndB = ticketRepo.GetAll().FirstOrDefault();
+            Assert.AreEqual("#1", ticketIndB.Hall);
+
+            foreach (var item in ticketRepo.GetAll())
+                ticketRepo.Delete(item);
 
             unitOfwork.Save();
         }
@@ -238,6 +266,9 @@ namespace COTS.DAL.Test.Repositories
 
             foreach (var item in seanceRepo.GetAll())
                 seanceRepo.Delete(item);
+
+            foreach (var item in ticketRepo.GetAll())
+                ticketRepo.Delete(item);
 
             unitOfwork.Save();
         }

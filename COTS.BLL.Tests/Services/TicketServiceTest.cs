@@ -6,6 +6,7 @@ using COTS.BLL.Interfaces;
 using COTS.DAL.Repositories;
 using System.Linq;
 using COTS.BLL.DTO;
+using COTS.DAL.Entities;
 
 namespace COTS.BLL.Services.Tests
 {
@@ -26,27 +27,26 @@ namespace COTS.BLL.Services.Tests
         public void AddOrUpdateTest()
         {
             var seance = unitOfWork.Seances.GetAll().FirstOrDefault();
-            var ticketDTO = new TicketDTO()
+            var ticketDTO = new Ticket()
             {
+                Id = 34,
                 SeanceId = seance.Id,
                 Hall = "#1",
                 Raw = 2,
                 Place = 1,
                 Price = 100,
                 Tariff = "Simple"
-
             };
 
-            ticketService.AddOrUpdate(ticketDTO);
+            //ticketService.AddOrUpdate(ticketDTO);
 
-            var ticket = ticketService.GetAll().Where(t=> t.Hall == "#1").FirstOrDefault();
-            Assert.AreEqual("#1", ticket.Hall);
+            //var ticket = ticketService.GetAll().FirstOrDefault();
+            //Assert.AreEqual("#1", ticket.Hall);
 
-            if(ticketService.GetAll().Count() > 0)
-            {
-                foreach (var item in ticketService.GetAll())
-                    ticketService.Delete(item);
-            }
+            //ticketService.Delete(ticketDTO);
+
+            unitOfWork.Tickets.Delete(ticketDTO);
+
         }
     }
 }

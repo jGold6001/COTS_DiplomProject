@@ -27,7 +27,7 @@ namespace COTS.DAL.Repositories
         }
 
         public void Delete(T entity)
-        {
+        {            
             dbSet.Remove(entity);
         }
 

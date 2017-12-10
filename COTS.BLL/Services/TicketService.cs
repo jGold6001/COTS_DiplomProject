@@ -41,7 +41,7 @@ namespace COTS.BLL.Services
 
             var ticket = mapperReverse.Map<TicketDTO, Ticket>(ticketDTO);
             UnitOfWork.Tickets.Delete(ticket);
-            UnitOfWork.Save();
+            //UnitOfWork.Save();
         }
 
         public IEnumerable<TicketDTO> GetAll()
