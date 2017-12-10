@@ -34,14 +34,14 @@ namespace COTS.BLL.Services
             UnitOfWork.Save();
         }
 
-        public void Delete(TicketDTO ticketDTO)
+        public void Delete(long? id)
         {
-            if (ticketDTO == null)
+            if (id == null)
                 throw new ValidationException("'id' not set", "");
 
-            var ticket = mapperReverse.Map<TicketDTO, Ticket>(ticketDTO);
+            var ticket = UnitOfWork.Tickets.Get(id.Value);
             UnitOfWork.Tickets.Delete(ticket);
-            //UnitOfWork.Save();
+            UnitOfWork.Save();
         }
 
         public IEnumerable<TicketDTO> GetAll()

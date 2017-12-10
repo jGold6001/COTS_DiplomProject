@@ -27,9 +27,8 @@ namespace COTS.BLL.Services.Tests
         public void AddOrUpdateTest()
         {
             var seance = unitOfWork.Seances.GetAll().FirstOrDefault();
-            var ticketDTO = new Ticket()
+            var ticketDTO = new TicketDTO()
             {
-                Id = 34,
                 SeanceId = seance.Id,
                 Hall = "#1",
                 Raw = 2,
@@ -38,15 +37,12 @@ namespace COTS.BLL.Services.Tests
                 Tariff = "Simple"
             };
 
-            //ticketService.AddOrUpdate(ticketDTO);
+            ticketService.AddOrUpdate(ticketDTO);
 
-            //var ticket = ticketService.GetAll().FirstOrDefault();
-            //Assert.AreEqual("#1", ticket.Hall);
+            var ticket = ticketService.GetAll().FirstOrDefault();
+            Assert.AreEqual("#1", ticket.Hall);
 
-            //ticketService.Delete(ticketDTO);
-
-            unitOfWork.Tickets.Delete(ticketDTO);
-
+            ticketService.Delete(ticket.Id);
         }
     }
 }
