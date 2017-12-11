@@ -1,0 +1,35 @@
+﻿@model COTS.WEB.Models.SeanceViewModel
+
+@{
+    ViewBag.Title = "LoadHall";
+}
+
+<!--information-->
+<section class="row" id="info">
+    <div class="row" id="movie_block">
+        <b>Фильм: </b>
+        <span>@Model.Movie.Name</span>
+    </div>
+    <br />
+    <div class="row" id="cinema_block">
+        <b>Кинотеатр: </b>
+        <span>@Model.Cinema.Name (@Model.Cinema.Address)</span>
+    </div>
+    <br />
+    <div class="row" id="seance_block">
+        <b>Сеанс: </b>
+        <span>@Model.DateSeance  @Model.TimeBegin</span>
+    </div>
+</section>
+
+<!--hall scheme-->
+<section id="hall_scheme"><!--GOTO url to hall--></section>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        
+    });
+</script>
+

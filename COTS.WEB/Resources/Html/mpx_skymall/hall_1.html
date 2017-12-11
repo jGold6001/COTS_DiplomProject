@@ -5,10 +5,16 @@
     <title>Hall #1</title>
     <link href="/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <style>
-        
+
         #screen {
             background-color: lightblue;
             text-align: center;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+
+        #hall{
+            
         }
 
         .row_hall_right, .row_hall_left{
@@ -18,59 +24,75 @@
         .row_hall_right{
             text-align:right;
         }
+
     </style>
 </head>
 <body>  
-    <main class="container">      
-        <section id="hall" class="col-lg-6">
-            <table>
-                <tr>
-                    <td id="screen" colspan="8" height="20">Экран</td>
-                </tr>
-                <tr>
-                    <td class="row_hall_left">Ряд 1</td>
-                    <td><button>1</button></td>
-                    <td><button>2</button></td>
-                    <td><button>3</button></td>
-                    <td><button>4</button></td>
-                    <td><button>5</button></td>
-                    <td><button>6</button></td>
-                    <td class="row_hall_right">Ряд 1</td>
-                </tr>
-                <tr>
-                    <td class="row_hall_left">Ряд 2</td>
-                    <td><button>1</button></td>
-                    <td><button>2</button></td>
-                    <td><button>3</button></td>
-                    <td><button>4</button></td>
-                    <td><button>5</button></td>
-                    <td><button>6</button></td>
-                    <td class="row_hall_right">Ряд 2</td>
-                </tr>
-                <tr>
-                    <td class="row_hall_left">Ряд 3</td>
-                    <td><button>1</button></td>
-                    <td><button>2</button></td>
-                    <td><button>3</button></td>
-                    <td><button>4</button></td>
-                    <td><button>5</button></td>
-                    <td><button>6</button></td>
-                    <td class="row_hall_right">Ряд 3</td>
-                </tr>
-                <tr>
-                    <td class="row_hall_left">Ряд 4</td>
-                    <td><button>1</button></td>
-                    <td><button>2</button></td>
-                    <td><button>3</button></td>
-                    <td><button>4</button></td>
-                    <td><button>5</button></td>
-                    <td><button>6</button></td>
-                    <td class="row_hall_right">Ряд 4</td>
-                </tr>
-            </table>
-        </section>
+    <main class="container"> 
+    
         <section class="col-lg-6">
-            sdsd
+            <!--Hall Scheme-->
+            <div id="hall" >
+                <table class="container">
+                    <tr>
+                        <td colspan="8">
+                            <div id="screen">Экран</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row_hall_left">Ряд 1</td>
+                        <td><button>1</button></td>
+                        <td><button>2</button></td>
+                        <td><button>3</button></td>
+                        <td><button>4</button></td>
+                        <td><button>5</button></td>
+                        <td><button>6</button></td>
+                        <td class="row_hall_right">Ряд 1</td>
+                    </tr>
+                    <tr>
+                        <td class="row_hall_left">Ряд 2</td>
+                        <td><button>1</button></td>
+                        <td><button>2</button></td>
+                        <td><button>3</button></td>
+                        <td><button>4</button></td>
+                        <td><button>5</button></td>
+                        <td><button>6</button></td>
+                        <td class="row_hall_right">Ряд 2</td>
+                    </tr>
+                    <tr>
+                        <td class="row_hall_left">Ряд 3</td>
+                        <td><button>1</button></td>
+                        <td><button>2</button></td>
+                        <td><button>3</button></td>
+                        <td><button>4</button></td>
+                        <td><button>5</button></td>
+                        <td><button>6</button></td>
+                        <td class="row_hall_right">Ряд 3</td>
+                    </tr>
+                    <tr>
+                        <td class="row_hall_left">Ряд 4</td>
+                        <td><button>1</button></td>
+                        <td><button>2</button></td>
+                        <td><button>3</button></td>
+                        <td><button>4</button></td>
+                        <td><button>5</button></td>
+                        <td><button>6</button></td>
+                        <td class="row_hall_right">Ряд 4</td>
+                    </tr>
+                </table>
+            </div>          
+        </section>
+
+        
+        <section class="col-lg-6">
+            <!--select places-->
+            <div class="row">
+               <div id="sel_places" class="container"></div>
+            </div>
+
+            <div class="row">
+                <div  id="information" class="container"></div>
+            </div>
         </section>
     </main>
 </body>

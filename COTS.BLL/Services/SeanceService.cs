@@ -94,5 +94,18 @@ namespace COTS.BLL.Services
         {
             throw new NotImplementedException();
         }
+
+        public SeanceDTO GetOne(long? id)
+        {
+            if (id == null)
+                throw new ValidationException("'Id' not set", "");
+
+            var seance = seanceRepo.Get(id.Value);
+
+            if(seance == null)
+                throw new ValidationException("seance not found", "");
+
+            return mapper.Map<Seance, SeanceDTO>(seance);
+        }
     }
 }

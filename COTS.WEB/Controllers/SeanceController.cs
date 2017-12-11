@@ -44,5 +44,13 @@ namespace COTS.WEB.Controllers
             var seances = mapper.Map<IEnumerable<SeanceDTO>, IEnumerable<SeanceViewModel>>(seancesDTO);
             return PartialView("GetAllByCinemaMovieAndDate", seances);
         }
+
+        [Route("{seanceId}")]
+        public ActionResult LoadHall(long seanceId)
+        {
+            var seanceDTO = seanceService.GetOne(seanceId);
+            SeanceViewModel seanceViewModel = mapper.Map<SeanceDTO, SeanceViewModel>(seanceDTO);
+            return PartialView(seanceViewModel);
+        }
     }
 }

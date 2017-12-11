@@ -4,10 +4,30 @@
     ViewBag.Title = "GetAllByCinemaMovieAndDate";
 }
 
+
 @foreach (var item in Model)
 {
-    <button>@item.TimeBegin</button>  
+    <button id="btn_@item.Id">@item.TimeBegin</button>
+    
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {         
+            $('#btn_' +@item.Id).on('click', function () {
+                $('#load_hall').load('http://@Request.Url.Authority/seance/@item.Id');
+               
+            });
+    });
+    </script>
 }
+
+
+
+
+
+
+
+
 
 
 
