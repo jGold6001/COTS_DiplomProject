@@ -220,7 +220,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CinemaController.cs" />
     <Compile Include="Controllers\CityController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\SeanceController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
@@ -228,8 +227,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\TicketHub.cs" />
+    <Compile Include="Models\CinemaPurchaseViewModel.cs" />
     <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
+    <Compile Include="Models\MoviePurchaseViewModel.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\SeanceViewModel.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
@@ -242,7 +243,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -250,7 +250,6 @@
     <Content Include="Views\Cinema\GetAllByCity.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\MovieView.cshtml" />
-    <Content Include="Views\Home\ExampleViews.cshtml" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <Content Include="Views\Seance\GetAllByCinemaMovieAndDate.cshtml" />
     <Content Include="Views\Cinema\CinemaView.cshtml" />

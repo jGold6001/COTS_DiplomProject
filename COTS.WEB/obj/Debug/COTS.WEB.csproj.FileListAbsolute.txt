@@ -6,7 +6,12 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\COTS.BLL.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\COTS.DAL.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\EntityFramework.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\EntityFramework.SqlServer.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.AspNet.SignalR.Core.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Owin.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Owin.Security.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Web.Infrastructure.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Newtonsoft.Json.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.dll
@@ -15,6 +20,7 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.Common.Web
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.Mvc.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.WebApi.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.WebApi.WebHost.dll
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Owin.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Net.Http.Formatting.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Helpers.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\System.Web.Http.dll
@@ -30,7 +36,12 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\COTS.DAL.dll.config
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\AutoMapper.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\EntityFramework.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\EntityFramework.SqlServer.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.AspNet.SignalR.Core.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Owin.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Microsoft.Owin.Security.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.Common.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEB\bin\Ninject.Web.Common.WebHost.xml
