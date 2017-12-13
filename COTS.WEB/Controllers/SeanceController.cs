@@ -52,5 +52,11 @@ namespace COTS.WEB.Controllers
             SeanceViewModel seanceViewModel = mapper.Map<SeanceDTO, SeanceViewModel>(seanceDTO);
             return PartialView(seanceViewModel);
         }
+
+        [Route("modal")]
+        public ActionResult Modal()
+        {            
+            return PartialView("Modal");
+        }
     }
 }

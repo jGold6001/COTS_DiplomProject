@@ -254,7 +254,7 @@
     <Content Include="Views\Seance\GetAllByCinemaMovieAndDate.cshtml" />
     <Content Include="Views\Cinema\CinemaView.cshtml" />
     <Content Include="Views\Seance\LoadHall.cshtml" />
-    <Content Include="Views\Seance\HallModal.cshtml" />
+    <Content Include="Views\Seance\Modal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

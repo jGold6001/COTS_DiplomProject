@@ -5,17 +5,27 @@
 }
 
 
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
 @foreach (var item in Model)
 {
-    <button id="btn_@item.Id">@item.TimeBegin</button>
-    
+   
+    <input type="button" id="btn_@item.Id" value="@item.TimeBegin" @*onclick="location.href='@Url.Action("LoadHall", "Seance", new { seanceId = item.Id})'"*@/>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(function () {         
-            $('#btn_' +@item.Id).on('click', function () {
-                $('#load_hall').load('http://@Request.Url.Authority/seance/@item.Id');
-               
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $("#btn_" +@item.Id).click(function (e) {
+                e.preventDefault();
+                
+                $.get('@Url.Action("Modal", "Seance")', function (data) {               
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
             });
     });
     </script>
