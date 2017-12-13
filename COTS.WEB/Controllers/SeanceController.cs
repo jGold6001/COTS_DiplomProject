@@ -53,10 +53,6 @@ namespace COTS.WEB.Controllers
             return PartialView(seanceViewModel);
         }
 
-        [Route("modal")]
-        public ActionResult Modal()
-        {            
-            return PartialView("Modal");
-        }
+      
     }
 }
