@@ -4,9 +4,14 @@
     ViewBag.Title = "GetAllByCinemaMovieAndDate";
 }
 
+<style>
+    .modal-dialog{
+        width:900px;
+    }
+</style>
 
 <div id="modDialog" class="modal fade">  
-    <div id="dialogContent" class="modal-dialog modal-lg"></div>
+    <div id="dialogContent" class="modal-dialog"></div>
 </div>
 
 @foreach (var item in Model)
@@ -23,11 +28,11 @@
                 e.preventDefault();
 
                 //load modal dialog
-                $.get('@Url.Action("LoadHall", "Seance", new { seanceId = item.Id})', function (data) {               
+                $.get('@Url.Action("LoadHall", "Seance", new { seanceId = item.Id})', function (data) {
                     $('#dialogContent').html(data);
                     $('#modDialog').modal('show');
 
-                    
+                    $('#hall_scheme').load('http://@Request.Url.Authority/Resources/Html/mpx_skymall/hall_1.html');
                 });
             });
     });
