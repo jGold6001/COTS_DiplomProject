@@ -49,8 +49,10 @@ namespace COTS.WEB.Controllers
         public ActionResult LoadHall(long seanceId)
         {
             var seanceDTO = seanceService.GetOne(seanceId);
+            var cinema = "mpx_skymall";
+            var hall = "1";
             SeanceViewModel seanceViewModel = mapper.Map<SeanceDTO, SeanceViewModel>(seanceDTO);
-            return PartialView(seanceViewModel);
+            return PartialView($"cinemas_halls/{cinema}/Hall_{hall}", seanceViewModel);
         }
 
       

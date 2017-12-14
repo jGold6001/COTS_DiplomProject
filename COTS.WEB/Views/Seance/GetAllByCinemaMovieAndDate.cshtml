@@ -22,9 +22,21 @@
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
     <script type="text/javascript">
         $(function () {
-           
+
+            function addPropertyId(arr) {
+                arr.forEach(function (item, index) {
+                    item.id = index + 1;
+                });
+            }
+
+            function selectionPlaces(places, selectedPlaces) {
+
+            }
+
             $.ajaxSetup({ cache: false });
             $("#btn_" +@item.Id).click(function (e) {
                 e.preventDefault();
@@ -34,9 +46,75 @@
                     $('#dialogContent').html(data);
                     $('#modDialog').modal('show');
 
-                    
-                    $('#hall_scheme').load('http://@Request.Url.Authority/Resources/Html/mpx_skymall/hall_1.html');
+                    $.getJSON("/Resources/Json/mpx_skymall/hall_1.json", function (data) {
 
+                       
+
+                        var places = data;
+                        addPropertyId(places);
+
+                        var sum = 0;
+
+                        $('#selected_places').hide();
+
+                        var selectedPlaces = new Array();
+
+                        var ticket_hub = $.connection.ticketsHub;
+
+
+
+                        places.forEach(function (item, index) {
+                            $('#item_' + item.id).on('click', { obj: item }, function (e) {
+                                var place = e.data.obj;
+                                var place_id = '#' + e.currentTarget.id;
+                                var sel_place = $('#selected_places')
+
+                                if (!$(place_id).hasClass("btn-primary")) {
+                                    $(place_id).addClass("btn-primary");
+
+                                    sel_place.show();
+
+                                    $('#data_block').append(
+                                        '<div class="row place" id="_place_' + place.id + '" style="border-bottom: 1px solid grey">' +
+                                        '<p class="col-lg-2" > ' + place.row + '</p >' +
+                                        '<p class="col-lg-3">' + place.num + '</p>' +
+                                        '<p class="col-lg-5">' + place.price + ' grn</p>' +
+                                        '</div >'
+                                    );
+
+                                    sum += place.price;
+                                    $('#total_sum').find('h5').find('span').empty();
+
+                                    selectedPlaces.push(place);
+
+                                } else {
+                                    $(place_id).removeClass("btn-primary");
+
+                                    $('#_place_' + place.id).remove();
+                                    if ($('#data_block').children().length == 0)
+                                        sel_place.hide();
+
+                                    $('#total_sum').find('h5').find('span').empty();
+                                    sum -= place.price;
+
+                                    selectedPlaces.forEach(function (item, index) {
+                                        if (item.row == place.row && item.num == place.num)
+                                            delete selectedPlaces[index];
+                                    });
+                                }
+                                $('#total_sum').find('h5').find('span').append(sum + " grn");
+                            });
+                        });
+
+                        $('#next_step').on('click', function () {
+                            selectedPlaces.forEach(function (item, index) {
+                                item.movie = '@item.Movie.Name';
+                                item.cinema = '@item.Cinema.Name';
+                            });
+                            
+                        });
+
+                    });
 
                 });
             });

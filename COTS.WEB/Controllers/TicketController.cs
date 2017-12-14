@@ -35,7 +35,7 @@ namespace COTS.WEB.Controllers
         [HttpPost]
         public ActionResult NextStep(IEnumerable<TicketViewModel> ticketViewModel)
         {
-            return PartialView();
+            return PartialView(ticketViewModel);
         }
         
     }
