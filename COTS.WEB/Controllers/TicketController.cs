@@ -13,15 +13,30 @@ namespace COTS.WEB.Controllers
     public class TicketController : Controller
     {
         ITicketService ticketService;
+        ISeanceService seanceService;
+        IMovieService movieService;
+        ICinemaService cinemaService;
+
         IMapper mapper;
 
-        public TicketController(ITicketService ticketService)
+        public TicketController(ITicketService ticketService, ISeanceService seanceService, IMovieService movieService, ICinemaService cinemaService)
         {
             this.ticketService = ticketService;
-            mapper = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, TicketViewModel>()));
+            this.seanceService = seanceService;
+            this.movieService = movieService;
+            this.cinemaService = cinemaService;
+
+            mapper = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, TicketViewModel>()
+                 .ForMember("Cinema", opt => opt.MapFrom(src => cinemaService.GetOne(seanceService.GetOne(src.SeanceId).CinemaId).Name))
+                 .ForMember("Movie", opt => opt.MapFrom(src => movieService.GetOne(seanceService.GetOne(src.SeanceId).MovieId).Name))
+            ));
         }
 
-        //public ActionResult Get
+        [HttpPost]
+        public ActionResult NextStep(IEnumerable<TicketViewModel> ticketViewModel)
+        {
+            return PartialView();
+        }
         
     }
 }

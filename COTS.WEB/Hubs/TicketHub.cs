@@ -8,6 +8,9 @@ namespace COTS.WEB.Hubs
 {
     public class TicketHub : Hub
     {
-       
+        public void Send(object[] places)
+        {
+            Clients.AllExcept(Context.ConnectionId).addData(places);
+        }
     }
 }

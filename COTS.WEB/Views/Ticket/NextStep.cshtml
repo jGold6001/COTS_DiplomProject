@@ -1,0 +1,20 @@
+﻿@model IEnumerable<COTS.WEB.Models.TicketViewModel>
+
+@{
+    ViewBag.Title = "NextStep";
+}
+
+<h2>NextStep</h2>
+<main class="container">
+    <div id="tickets" class="row">
+        <h5>Выбранные места</h5>
+      
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-lg-6">Ряд: @item.Raw, Место: @item.Place</div>              
+                <div class="col-lg-6" style="text-align:right">Цена: @item.Price</div>
+            </div>
+        }
+    </div>    
+</main>

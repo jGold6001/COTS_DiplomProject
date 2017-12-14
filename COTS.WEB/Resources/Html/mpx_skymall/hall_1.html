@@ -50,7 +50,7 @@
 
             <section class="col-lg-6">
                 <!--Hall Scheme-->
-                <div id="hall">
+                <div id="hall" >
                     <table>
                         <tr>
                             <td colspan="8">
@@ -59,42 +59,42 @@
                         </tr>
                         <tr id="row_1">
                             <td class="row_hall_left">Ряд 1</td>
-                            <td><button>1</button></td>
-                            <td><button>2</button></td>
-                            <td><button>3</button></td>
-                            <td><button>4</button></td>
-                            <td><button>5</button></td>
-                            <td><button>6</button></td>
+                            <td><button id="item_1" class="btn">1</button></td>
+                            <td><button id="item_2" class="btn">2</button></td>
+                            <td><button id="item_3" class="btn">3</button></td>
+                            <td><button id="item_4" class="btn">4</button></td>
+                            <td><button id="item_5" class="btn">5</button></td>
+                            <td><button id="item_6" class="btn">6</button></td>
                             <td class="row_hall_right">Ряд 1</td>
                         </tr>
                         <tr id="row_2">
                             <td class="row_hall_left">Ряд 2</td>
-                            <td><button>1</button></td>
-                            <td><button>2</button></td>
-                            <td><button>3</button></td>
-                            <td><button>4</button></td>
-                            <td><button>5</button></td>
-                            <td><button>6</button></td>
+                            <td><button id="item_7" class="btn">1</button></td>
+                            <td><button id="item_8" class="btn">2</button></td>
+                            <td><button id="item_9" class="btn">3</button></td>
+                            <td><button id="item_10" class="btn">4</button></td>
+                            <td><button id="item_11" class="btn">5</button></td>
+                            <td><button id="item_12" class="btn">6</button></td>
                             <td class="row_hall_right">Ряд 2</td>
                         </tr>
                         <tr id="row_3">
                             <td class="row_hall_left">Ряд 3</td>
-                            <td><button>1</button></td>
-                            <td><button>2</button></td>
-                            <td><button>3</button></td>
-                            <td><button>4</button></td>
-                            <td><button>5</button></td>
-                            <td><button>6</button></td>
+                            <td><button id="item_13" class="btn">1</button></td>
+                            <td><button id="item_14" class="btn">2</button></td>
+                            <td><button id="item_15" class="btn">3</button></td>
+                            <td><button id="item_16" class="btn">4</button></td>
+                            <td><button id="item_17" class="btn">5</button></td>
+                            <td><button id="item_18" class="btn">6</button></td>
                             <td class="row_hall_right">Ряд 3</td>
                         </tr>
                         <tr id="row_4">
                             <td class="row_hall_left">Ряд 4</td>
-                            <td><button>1</button></td>
-                            <td><button>2</button></td>
-                            <td><button>3</button></td>
-                            <td><button>4</button></td>
-                            <td><button>5</button></td>
-                            <td><button>6</button></td>
+                            <td><button id="item_19" class="btn">1</button></td>
+                            <td><button id="item_20" class="btn">2</button></td>
+                            <td><button id="item_21" class="btn">3</button></td>
+                            <td><button id="item_22" class="btn">4</button></td>
+                            <td><button id="item_23" class="btn">5</button></td>
+                            <td><button id="item_24" class="btn">6</button></td>
                             <td class="row_hall_right">Ряд 4</td>
                         </tr>
                     </table>
@@ -105,7 +105,23 @@
             <section class="col-lg-6">
                 <!--select places-->
                 <div class="row">
-                    <div id="sel_places" class="container"></div>
+                    <div id="selected_places" class="container">
+                        <h5><b>Selected places</b></h5>
+                        <div class="row" style="border-bottom: 1px solid grey" id="sel_place_header">
+                            <p class="col-lg-2">Row</p>
+                            <p class="col-lg-3">Place</p>
+                            <p class="col-lg-5">Price</p>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <div id="data_block"></div>
+                        <div class="row" id="total_sum">
+                            <h5><b>Total sum: </b><span></span></h5>
+                        </div>
+                        <div class="row">
+                            <button class="col-lg-12" id="next_step">Next step</button>
+                        </div>
+
+                    </div>
                 </div>
             </section>
         </div>       
@@ -125,17 +141,72 @@
             });
         }
 
+        function selectionPlaces(places, selectedPlaces) {
+
+        }
+
         $.getJSON("/Resources/Json/mpx_skymall/hall_1.json", function (data) {
+
+           
+
             var places = data;
             addPropertyId(places);
 
-            places.forEach(function (item, index) {               
-                var btn = $('#hall').find('button');
-                console.log(btn.val()+'\n');
-                if (!btn.attr('id')) {
-                    btn.attr('id', 'item_' + item.id)
-                }
-               
+            var sum = 0;
+
+            $('#selected_places').hide();
+
+            var selectedPlaces = new Array();
+
+            var ticket_hub = $.connection.ticketsHub;
+
+            
+
+            places.forEach(function (item, index) {
+                $('#item_' + item.id).on('click', { obj: item }, function (e) {
+                    var place = e.data.obj;
+                    var place_id = '#' + e.currentTarget.id;
+                    var sel_place = $('#selected_places')
+
+                    if (!$(place_id).hasClass("btn-primary")) {                      
+                        $(place_id).addClass("btn-primary");
+
+                        sel_place.show(); 
+
+                        $('#data_block').append(
+                            '<div class="row place" id="_place_' + place.id + '" style="border-bottom: 1px solid grey">' +
+                            '<p class="col-lg-2" > ' + place.row + '</p >' +
+                            '<p class="col-lg-3">' + place.num + '</p>' +
+                            '<p class="col-lg-5">' + place.price + ' grn</p>' +
+                            '</div >'
+                        );
+                       
+                        sum += place.price;
+                        $('#total_sum').find('h5').find('span').empty();
+
+                        selectedPlaces.push(place);
+
+                    } else {                        
+                        $(place_id).removeClass("btn-primary");
+                        
+                        $('#_place_' + place.id).remove();
+                        if ($('#data_block').children().length == 0)
+                            sel_place.hide();
+
+                        $('#total_sum').find('h5').find('span').empty();
+                        sum -= place.price;
+
+                        selectedPlaces.forEach(function (item, index) {
+                            if (item.row == place.row && item.num == place.num)
+                                delete selectedPlaces[index];
+                        });
+                    }
+                    $('#total_sum').find('h5').find('span').append(sum + " grn");
+                });
+            });
+
+            $('#next_step').on('click', function () {               
+
 
             });
 

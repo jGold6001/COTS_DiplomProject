@@ -7,8 +7,9 @@ namespace COTS.WEB.Models
 {
     public class TicketViewModel
     {
-        public long Id { get; set; }
-        public long SeanceId { get; set; }
+        public string Id { get; set; }
+        public string Movie { get; set; }
+        public string Cinema { get; set; }
         public string Hall { get; set; }
         public int Raw { get; set; }
         public int Place { get; set; }

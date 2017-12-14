@@ -15,7 +15,8 @@ namespace COTS.WEB.Utils
             Bind<IMovieService>().To<MovieService>();
             Bind<ICityService>().To<CityService>();
             Bind<ICinemaService>().To<CinemaService>();
-            Bind<ISeanceService>().To<SeanceService>();           
+            Bind<ISeanceService>().To<SeanceService>();
+            Bind<ITicketService>().To<TicketService>();
         }
     }
 }

@@ -89,5 +89,7 @@ namespace COTS.DAL.Repositories
                 new SqlParameter("@date", date)
             ).ToList();
         }
+
+        
     }
 }

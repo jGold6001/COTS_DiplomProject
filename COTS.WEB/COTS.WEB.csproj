@@ -268,6 +268,7 @@
     <Content Include="Views\Seance\GetAllByCinemaMovieAndDate.cshtml" />
     <Content Include="Views\Cinema\CinemaView.cshtml" />
     <Content Include="Views\Seance\LoadHall.cshtml" />
+    <Content Include="Views\Ticket\NextStep.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -278,7 +279,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\City\" />
-    <Folder Include="Views\Ticket\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COTS.BLL\COTS.BLL.csproj">
