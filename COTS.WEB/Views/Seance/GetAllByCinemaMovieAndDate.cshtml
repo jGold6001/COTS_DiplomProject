@@ -128,8 +128,7 @@
                                 method: "POST",
                                 data: JSON.stringify(tickets),
                                 contentType: "application/json; charset=utf-8",
-                                success: function (data, textStatus, jqXHR) {
-                                    window.location.href = 'http://@Request.Url.Authority/ticket/nextstep';
+                                success: function (data, textStatus, jqXHR) {                                    
                                     console.log("data: " + data);
                                     console.log("textStatus: " + textStatus);
                                     console.log("jqXHR: " + jqXHR.responseText);
