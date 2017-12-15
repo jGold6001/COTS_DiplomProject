@@ -11,13 +11,11 @@
     </div>
 
     <div class="modal-body">
-
-
         <main class="container">
 
             <!--information-->
             <section class="row" id="info">
-                <div class="col-lg-4" id="movie_block">
+                <div class="col-lg-2" id="movie_block">
                     <b>Фильм: </b>
                     <span>@Model.Movie.Name</span>
                 </div>
@@ -27,7 +25,7 @@
                     <span>@Model.Cinema.Name (@Model.Cinema.Address)</span>
                 </div>
 
-                <div class="col-lg-4" id="seance_block">
+                <div class="col-lg-2" id="seance_block">
                     <b>Сеанс: </b>
                     <span>@Model.DateSeance  @Model.TimeBegin</span>
                 </div>
@@ -39,13 +37,13 @@
                 <div class="row">
                     <!--about places-->
                     <section id="about_places">
-                        <div class="col-lg-4" id="tariffs">
+                        <div class="col-lg-2" id="tariffs">
                             <b>Тарифы: </b>
                         </div>
                         <div class="col-lg-4" id="free">
                             <b>Свободные: </b>
                         </div>
-                        <div class="col-lg-4" id="busies">
+                        <div class="col-lg-2" id="busies">
                             <b>Занятые: </b>
                         </div>
                     </section>
@@ -54,7 +52,7 @@
 
                 <div class="row">
 
-                    <section class="col-lg-6">
+                    <section class="col-lg-4">
                         <!--Hall Scheme-->
                         <div id="hall">
                             <table>
@@ -108,10 +106,10 @@
                     </section>
 
 
-                    <section class="col-lg-6">
+                    <section class="col-lg-4">
                         <!--select places-->
                         <div class="row">
-                            <div id="selected_places" class="container">
+                            <div id="selected_places">
                                 <h5><b>Selected places</b></h5>
                                 <div class="row" style="border-bottom: 1px solid grey" id="sel_place_header">
                                     <p class="col-lg-2">Row</p>

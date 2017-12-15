@@ -2,42 +2,42 @@
   {
     "num": 1,
     "row": 1,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 2,
     "row": 1,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 3,
     "row": 1,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 4,
     "row": 1,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 5,
     "row": 1,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 6,
     "row": 1,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
@@ -47,42 +47,42 @@
   {
     "num": 1,
     "row": 2,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 2,
     "row": 2,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 3,
     "row": 2,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 4,
     "row": 2,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 5,
     "row": 2,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 6,
     "row": 2,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
@@ -91,42 +91,42 @@
   {
     "num": 1,
     "row": 3,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 2,
     "row": 3,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 3,
     "row": 3,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 4,
     "row": 3,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 5,
     "row": 3,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
   {
     "num": 6,
     "row": 3,
-    "tafiff": "simple",
+    "tariff": "simple",
     "price": 120
   },
 
@@ -136,42 +136,42 @@
   {
     "num": 1,
     "row": 4,
-    "tafiff": "vip",
+    "tariff": "vip",
     "price": 220
   },
 
   {
     "num": 2,
     "row": 4,
-    "tafiff": "vip",
+    "tariff": "vip",
     "price": 220
   },
 
   {
     "num": 3,
     "row": 4,
-    "tafiff": "vip",
+    "tariff": "vip",
     "price": 220
   },
 
   {
     "num": 4,
     "row": 4,
-    "tafiff": "vip",
+    "tariff": "vip",
     "price": 220
   },
 
   {
     "num": 5,
     "row": 4,
-    "tafiff": "vip",
+    "tariff": "vip",
     "price": 220
   },
 
   {
     "num": 6,
     "row": 4,
-    "tafiff": "vip",
+    "tariff": "vip",
     "price": 220
   }
 ]

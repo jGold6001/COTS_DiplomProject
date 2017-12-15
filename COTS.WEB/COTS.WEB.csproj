@@ -266,7 +266,6 @@
     <Content Include="Views\Movie\MovieView.cshtml" />
     <Content Include="Views\Seance\GetAllByCinemaMovieAndDate.cshtml" />
     <Content Include="Views\Cinema\CinemaView.cshtml" />
-    <Content Include="Views\Seance\LoadHall.cshtml" />
     <Content Include="Views\Ticket\NextStep.cshtml" />
     <Content Include="Views\Seance\cinemas_halls\mpx_skymall\Hall_1.cshtml" />
     <None Include="Web.Debug.config">

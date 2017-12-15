@@ -17,7 +17,6 @@
 
 @foreach (var item in Model)
 {
-    <span id="seance_id" data-id="@item.Id"></span>
     <input type="button" id="btn_@item.Id" value="@item.TimeBegin"/>
 
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
@@ -31,6 +30,10 @@
                 arr.forEach(function (item, index) {
                     item.id = index + 1;
                 });
+            }
+
+            function nextStep(arr) {
+
             }
 
             function selectionPlaces(places, selectedPlaces) {
@@ -48,8 +51,6 @@
 
                     $.getJSON("/Resources/Json/mpx_skymall/hall_1.json", function (data) {
 
-                       
-
                         var places = data;
                         addPropertyId(places);
 
@@ -58,9 +59,6 @@
                         $('#selected_places').hide();
 
                         var selectedPlaces = new Array();
-
-                        var ticket_hub = $.connection.ticketsHub;
-
 
 
                         places.forEach(function (item, index) {
@@ -107,11 +105,41 @@
                         });
 
                         $('#next_step').on('click', function () {
+                            var tickets = new Array();
+
                             selectedPlaces.forEach(function (item, index) {
-                                item.movie = '@item.Movie.Name';
-                                item.cinema = '@item.Cinema.Name';
+
+                                var ticket = {
+                                    id : item.id,
+                                    movie : '@item.Movie.Name',
+                                    cinema : '@item.Cinema.Name',
+                                    hall: item.id,
+                                    row: item.row,
+                                    place: item.num,
+                                    tariff: item.tariff,
+                                    price: item.price
+                                };
+                                tickets.push(ticket);
                             });
-                            
+
+
+                            $.ajax({
+                                url: 'http://@Request.Url.Authority/ticket/nextstep',
+                                method: "POST",
+                                data: JSON.stringify(tickets),
+                                contentType: "application/json; charset=utf-8",
+                                success: function (data, textStatus, jqXHR) {
+                                    window.location.href = 'http://@Request.Url.Authority/ticket/nextstep';
+                                    console.log("data: " + data);
+                                    console.log("textStatus: " + textStatus);
+                                    console.log("jqXHR: " + jqXHR.responseText);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log("jqXHR: " + jqXHR.responseText);
+                                    console.log("textStatus: " + textStatus);
+                                    console.log("errorThrown: " + errorThrown);
+                                }
+                            });
                         });
 
                     });

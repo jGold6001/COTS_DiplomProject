@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace COTS.WEB.Controllers
 {
+    [RoutePrefix("ticket")]
     public class TicketController : Controller
     {
         ITicketService ticketService;
@@ -33,10 +34,16 @@ namespace COTS.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult NextStep(IEnumerable<TicketViewModel> ticketViewModel)
-        {
-            return PartialView(ticketViewModel);
+        [Route("nextstep")]
+        public ActionResult NextStep(IEnumerable<TicketViewModel> tickets)
+        {          
+            return View(tickets);
         }
-        
+
+        [HttpGet]
+        public ActionResult NextStep()
+        {
+            return View();
+        }
     }
 }
