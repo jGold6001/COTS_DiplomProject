@@ -36,10 +36,17 @@ namespace COTS.WEB.Controllers
         [HttpPost]
         [Route("nextstep")]
         public ActionResult NextStep(IEnumerable<TicketViewModel> tickets)
-        {           
-            return View(tickets);
+        {
+            ViewBag.Tickets = tickets;
+            return GetNextStep();
         }
-        
-       
+
+        [HttpGet]
+        [Route("getnextstep")]
+        public ActionResult GetNextStep()
+        {
+            IEnumerable<TicketViewModel> tickets = ViewBag.Tickets;
+            return View("NextStep",tickets);
+        }
     }
 }
