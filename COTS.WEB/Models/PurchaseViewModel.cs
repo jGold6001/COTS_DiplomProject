@@ -5,10 +5,8 @@ using System.Web;
 
 namespace COTS.WEB.Models
 {
-    public class CinemaPurchaseViewModel
+    public class PurchaseViewModel
     {
         public string Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
     }
 }

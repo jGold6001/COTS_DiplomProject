@@ -8,7 +8,7 @@ namespace COTS.DAL.Entities
 {
     public class Ticket
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public Seance Seance { get; set; }
         public long? SeanceId { get; set; }
         public string Hall { get; set; }
@@ -16,5 +16,7 @@ namespace COTS.DAL.Entities
         public int Place { get; set; }
         public string Tariff { get; set; }
         public decimal Price { get; set; }
+        public Purchase Purchase { get; set; }
+        public string PurchaseId { get; set; }
     }
 }

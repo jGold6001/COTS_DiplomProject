@@ -33,6 +33,7 @@ namespace COTS.DAL.Test.Repositories
         private CinemaRepository cinemaRepo;
         private CityRepository cityRepo;
         private TicketRepository ticketRepo;
+        private PurchaseRepository purchaseRepo;
 
 
         [TestInitialize]
@@ -44,6 +45,7 @@ namespace COTS.DAL.Test.Repositories
             cinemaRepo = unitOfwork.Cinemas as CinemaRepository;
             cityRepo = unitOfwork.Cities as CityRepository;
             ticketRepo = unitOfwork.Tickets as TicketRepository;
+            purchaseRepo = unitOfwork.Purchases as PurchaseRepository;
         }
 
         [TestMethod]
@@ -130,29 +132,53 @@ namespace COTS.DAL.Test.Repositories
 
             unitOfwork.Save();
         }
+     
 
-        [TestMethod]
-        public void AddOrUpdateTicketTest()
+        [TestMethod()]
+        public void AddOrUpdatePurchaseAndTicketsTest()
         {
-            var seance = seanceRepo.GetAll().FirstOrDefault();
-            var ticket = new Ticket()
+            var purchase = new Purchase()
             {
-                SeanceId = seance.Id,
-                Hall = "#1",
-                Raw = 2,
-                Place = 1,
-                Price = 100,
-                Tariff = "Simple"
+                Id = "as231243"
             };
-
-            ticketRepo.AddOrUpdate(ticket);
+            purchaseRepo.AddOrUpdate(purchase);
             unitOfwork.Save();
 
-            var ticketIndB = ticketRepo.GetAll().FirstOrDefault();
-            Assert.AreEqual("#1", ticketIndB.Hall);
+            var seance = seanceRepo.GetAll().FirstOrDefault();
+            var ticket_1 = new Ticket()
+            {
+                Id = "001",
+                Seance = seance,
+                Hall = "1",
+                Place = 1,
+                Raw = 1,
+                Price = 100,
+                Tariff = "simple",
+                Purchase = purchase
+            };
+
+            var ticket_2 = new Ticket()
+            {
+                Id = "002",
+                Seance = seance,
+                Hall = "1",
+                Place = 1,
+                Raw = 2,
+                Price = 200,
+                Tariff = "vip",
+                Purchase = purchase
+            };
+
+            ticketRepo.AddOrUpdate(ticket_1);
+            ticketRepo.AddOrUpdate(ticket_1);
+            unitOfwork.Save();
 
             foreach (var item in ticketRepo.GetAll())
                 ticketRepo.Delete(item);
+
+
+            foreach (var item in purchaseRepo.GetAll())
+                purchaseRepo.Delete(item);
 
             unitOfwork.Save();
         }

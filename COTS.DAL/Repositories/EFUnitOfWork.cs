@@ -19,6 +19,7 @@ namespace COTS.DAL.Repositories
         private SeanceRepository seanceRepository;
         private CityRepository cityRepository;
         private TicketRepository ticketRepository;
+        private PurchaseRepository purchaseRepository;
 
         public EFUnitOfWork(string connectionString)
         {
@@ -72,6 +73,17 @@ namespace COTS.DAL.Repositories
                 return ticketRepository;
             }
         }
+
+        public IRepository<Purchase> Purchases
+        {
+            get
+            {
+                if (purchaseRepository == null)
+                    purchaseRepository = new PurchaseRepository(db);
+                return purchaseRepository;
+            }
+        }
+
 
         private bool disposed = false;
         public virtual void Dispose(bool disposing)

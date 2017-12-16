@@ -17,36 +17,52 @@ namespace COTS.WEB.Controllers
         ISeanceService seanceService;
         IMovieService movieService;
         ICinemaService cinemaService;
+        IPurchaseService purchaseService;
 
-        IMapper mapper;
+        IMapper mapper, mapperReverse;
 
-        public TicketController(ITicketService ticketService, ISeanceService seanceService, IMovieService movieService, ICinemaService cinemaService)
+        public TicketController(ITicketService ticketService, ISeanceService seanceService, IMovieService movieService, ICinemaService cinemaService, IPurchaseService purchaseService)
         {
             this.ticketService = ticketService;
             this.seanceService = seanceService;
             this.movieService = movieService;
             this.cinemaService = cinemaService;
+            this.purchaseService = purchaseService;
 
             mapper = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, TicketViewModel>()
                  .ForMember("Cinema", opt => opt.MapFrom(src => cinemaService.GetOne(seanceService.GetOne(src.SeanceId).CinemaId).Name))
                  .ForMember("Movie", opt => opt.MapFrom(src => movieService.GetOne(seanceService.GetOne(src.SeanceId).MovieId).Name))
             ));
+
+            mapperReverse = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketViewModel, TicketDTO>()));
         }
 
-        [HttpPost]
-        [Route("nextstep")]
-        public ActionResult NextStep(IEnumerable<TicketViewModel> tickets)
+        [HttpPost]         
+        public ActionResult SaveInDb(IEnumerable<TicketViewModel> tickets)
         {
-            ViewBag.Tickets = tickets;
-            return GetNextStep();
+            PurchaseDTO purchaseDTO = new PurchaseDTO()
+            {
+                Id = Guid.NewGuid().ToString()
+            };
+            purchaseService.AddOrUpdate(purchaseDTO);
+
+            foreach (var item in tickets)
+            {
+                var ticket = mapperReverse.Map<TicketViewModel, TicketDTO>(item);
+                ticket.PurchaseId = purchaseDTO.Id;
+                ticketService.AddOrUpdate(ticket);
+            }
+            return Content("Data are saving in DataBase!!!");
         }
 
         [HttpGet]
-        [Route("getnextstep")]
-        public ActionResult GetNextStep()
+        [Route("nextstep")]
+        public ActionResult NextStep(string purchaseId)
         {
-            IEnumerable<TicketViewModel> tickets = ViewBag.Tickets;
-            return View("NextStep",tickets);
+            var purchase = purchaseService.GetOne(purchaseId);
+            
+            //GOTO
+            return View("NextStep");
         }
     }
 }

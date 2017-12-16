@@ -51,6 +51,7 @@
     <Compile Include="Entities\Cinema.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Movie.cs" />
+    <Compile Include="Entities\Purchase.cs" />
     <Compile Include="Entities\Seance.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
+    <Compile Include="Repositories\PurchaseRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SeanceRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
