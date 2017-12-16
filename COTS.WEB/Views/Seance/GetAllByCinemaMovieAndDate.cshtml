@@ -59,9 +59,9 @@
                     $('#dialogContent').html(data);
                     $('#modDialog').modal('show');
 
-                  
+
                     var cinema = 'mpx_skymall';
-                    var hall = 'hall_1';                   
+                    var hall = 'hall_1';
 
                     $.getJSON("/Resources/Json/" + cinema + "/" + hall + ".json", function (data) {
 
@@ -136,16 +136,17 @@
                             });
 
                             var purchase = {
-                                id: guid(),                               
-                                tickets: tickets
+                                id: guid(),
+                                ticketViewModels: tickets
                             };
-                            
+
+
                             $.ajax({
                                 url: '@Url.Action("SaveInDb", "Ticket")',
                                 method: "POST",
                                 data: JSON.stringify(purchase),
                                 contentType: "application/json; charset=utf-8",
-                                success: function (data, textStatus, jqXHR) {                                 
+                                success: function (data, textStatus, jqXHR) {
                                     console.log("data: " + data);
                                     console.log("textStatus: " + textStatus);
                                     console.log("jqXHR: " + jqXHR.responseText);
@@ -156,6 +157,12 @@
                                     console.log("errorThrown: " + errorThrown);
                                 }
                             });
+
+                            setTimeout(function () {
+                                var url = '@Url.Action("NextStep", "Ticket", new { purchaseId = "_purchase_" })';
+                                window.location.href = url.replace("_purchase_", purchase.id);
+                            }, 1000);
+
                         });
 
                     });

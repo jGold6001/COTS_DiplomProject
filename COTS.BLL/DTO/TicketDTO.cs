@@ -12,7 +12,7 @@ namespace COTS.BLL.DTO
         public long Id { get; set; }
         public long SeanceId { get; set; }
         public string Hall { get; set; }
-        public int Raw { get; set; }
+        public int Row { get; set; }
         public int Place { get; set; }
         public string Tariff { get; set; }
         public decimal Price { get; set; }

@@ -13,6 +13,7 @@ namespace COTS.BLL.Interfaces
         void AddOrUpdate(TicketDTO ticketDTO);
         TicketDTO GetOne(long? id);
         IEnumerable<TicketDTO> GetAll();
+        IEnumerable<TicketDTO> GetByPurchase(string purchaseId);
         void Delete(long? id);
     }
 }

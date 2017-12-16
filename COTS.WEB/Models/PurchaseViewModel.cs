@@ -8,5 +8,7 @@ namespace COTS.WEB.Models
     public class PurchaseViewModel
     {
         public string Id { get; set; }
+        public TicketViewModel[] TicketViewModels { get; set; }
+        
     }
 }

@@ -151,7 +151,7 @@ namespace COTS.DAL.Test.Repositories
                 Seance = seance,
                 Hall = "1",
                 Place = 1,
-                Raw = 1,
+                Row = 1,
                 Price = 100,
                 Tariff = "simple",
                 Purchase = purchase
@@ -163,7 +163,7 @@ namespace COTS.DAL.Test.Repositories
                 Seance = seance,
                 Hall = "1",
                 Place = 1,
-                Raw = 2,
+                Row = 2,
                 Price = 200,
                 Tariff = "vip",
                 Purchase = purchase

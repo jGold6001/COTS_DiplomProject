@@ -52,6 +52,7 @@ namespace COTS.BLL.Services
 
             return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
         }
+       
 
         public TicketDTO GetOne(long? id)
         {
@@ -59,6 +60,15 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'id' not set", "");
 
             return mapper.Map<Ticket, TicketDTO>(UnitOfWork.Tickets.Get(id.Value));
+        }
+
+        public IEnumerable<TicketDTO> GetByPurchase(string purchaseId)
+        {
+            if (purchaseId == null)
+                throw new ValidationException("'purchaseId' not set", "");
+
+            var tickets = UnitOfWork.Tickets.FindBy(t => t.PurchaseId == purchaseId);
+            return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
         }
     }
 }

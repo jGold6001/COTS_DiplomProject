@@ -38,14 +38,13 @@ namespace COTS.WEB.Controllers
         }
 
         [HttpPost]         
-        public ActionResult SaveInDb(IEnumerable<TicketViewModel> tickets)
+        public ActionResult SaveInDb(PurchaseViewModel purchaseViewModel)
         {
-            PurchaseDTO purchaseDTO = new PurchaseDTO()
-            {
-                Id = Guid.NewGuid().ToString()
-            };
+            IMapper mapperPurchase = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseViewModel, PurchaseDTO>()));
+            var purchaseDTO = mapperPurchase.Map<PurchaseViewModel, PurchaseDTO>(purchaseViewModel);
             purchaseService.AddOrUpdate(purchaseDTO);
 
+            var tickets = purchaseViewModel.TicketViewModels;
             foreach (var item in tickets)
             {
                 var ticket = mapperReverse.Map<TicketViewModel, TicketDTO>(item);
@@ -59,10 +58,9 @@ namespace COTS.WEB.Controllers
         [Route("nextstep")]
         public ActionResult NextStep(string purchaseId)
         {
-            var purchase = purchaseService.GetOne(purchaseId);
-            
-            //GOTO
-            return View("NextStep");
+            var tickets = ticketService.GetByPurchase(purchaseId);
+            var ticketsVM = mapper.Map<IEnumerable<TicketDTO>, IEnumerable<TicketViewModel>>(tickets);
+            return View("NextStep", ticketsVM);
         }
     }
 }

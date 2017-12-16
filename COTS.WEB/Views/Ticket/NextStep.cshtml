@@ -6,15 +6,26 @@
 
 <h2>NextStep</h2>
 <main class="container">
-    <div id="tickets" class="row">
-        <h5>Выбранные места</h5>
-      
+    <div id="tickets" class="row" style="border-bottom: 1px solid grey">
+        <h5><b>Выбранные места</b></h5>
+        <p><b>Фильм:</b> @Model.FirstOrDefault().Movie</p>
+        <p><b>Кинотеатр:</b> @Model.FirstOrDefault().Cinema</p>
         @foreach (var item in Model)
         {
             <div class="row">
                 <div class="col-lg-6">Ряд: @item.Row, Место: @item.Place</div>              
                 <div class="col-lg-6" style="text-align:right">Цена: @item.Price</div>
             </div>
-        }
-    </div>    
+        }      
+    </div>
+    <div class="row" style="margin-top: 10px;">  
+        <div class="col-lg-6">
+            <div class="col-lg-6 container">
+                <input type="button" value="Оформить покупку" />
+            </div>
+            <div class="col-lg-6 container">
+                <input type="button" value="Отмена" />
+            </div>
+        </div>   
+    </div>
 </main>
