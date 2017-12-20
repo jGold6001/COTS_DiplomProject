@@ -18,5 +18,6 @@ namespace COTS.DAL.Entities
         public decimal Price { get; set; }
         public Purchase Purchase { get; set; }
         public string PurchaseId { get; set; }
+        public int State { get; set; }
     }
 }

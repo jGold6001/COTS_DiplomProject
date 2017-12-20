@@ -6,6 +6,9 @@
 
 <h2>NextStep</h2>
 <main class="container">
+    <div class="row">
+        <div id="timer"></div>
+    </div>
     <div id="tickets" class="row" style="border-bottom: 1px solid grey">
         <h5><b>Выбранные места</b></h5>
         <p><b>Фильм:</b> @Model.FirstOrDefault().Movie</p>
@@ -29,3 +32,31 @@
         </div>   
     </div>
 </main>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+       
+
+        var d1 = new Date(),
+            d2 = new Date(d1);
+        d2.setMinutes(d1.getMinutes() + 1);
+
+        var countDown = d2;
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = countDown - now;
+
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML =  minutes + " : " + seconds;
+
+            if (distance < 0) {
+                clearInterval(x);               
+                document.location.href = '@Url.Action("Index", "Movie")';
+            }
+        }, 1000);
+
+    });
+</script>

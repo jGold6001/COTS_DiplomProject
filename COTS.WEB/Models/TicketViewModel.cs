@@ -17,5 +17,6 @@ namespace COTS.WEB.Models
         public string Tariff { get; set; }
         public decimal Price { get; set; }
         public string PurchaseId { get; set; }
+        public int State { get; set; }
     }
 }

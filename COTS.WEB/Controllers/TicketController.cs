@@ -2,6 +2,7 @@
 using COTS.BLL.DTO;
 using COTS.BLL.Interfaces;
 using COTS.WEB.Models;
+using COTS.WEB.Resources.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,15 @@ namespace COTS.WEB.Controllers
             var tickets = ticketService.GetByPurchase(purchaseId);
             var ticketsVM = mapper.Map<IEnumerable<TicketDTO>, IEnumerable<TicketViewModel>>(tickets);
             return View("NextStep", ticketsVM);
+        }
+
+
+       
+        public JsonResult GetAll()
+        {
+            var ticketsDTO = ticketService.GetAll();
+            var tickets = mapper.Map<IEnumerable<TicketDTO>, IEnumerable<TicketViewModel>>(ticketsDTO);
+            return Json(tickets);
         }
     }
 }

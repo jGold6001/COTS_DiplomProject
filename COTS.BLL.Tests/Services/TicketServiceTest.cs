@@ -31,7 +31,7 @@ namespace COTS.BLL.Services.Tests
             {
                 SeanceId = seance.Id,
                 Hall = "#1",
-                Raw = 2,
+                Row = 2,
                 Place = 1,
                 Price = 100,
                 Tariff = "Simple"

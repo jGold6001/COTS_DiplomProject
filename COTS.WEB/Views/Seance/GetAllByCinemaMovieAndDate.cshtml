@@ -74,11 +74,31 @@
 
                         var selectedPlaces = new Array();
 
+                        $.getJSON('@Url.Action("GetAll", "Ticket")', function (data) {
+                            var soldTickets = data;
+
+                            places.forEach(function (place, indexPlace) {
+                                soldTickets.forEach(function (ticket, indexTicket) {
+                                    if (place.row == ticket.row && place.num == ticket.Place) {
+                                        place.status == "busy";
+                                    }
+                                    else {
+                                        place.status == "free";
+                                    }
+                                }); 
+                            });
+
+
+                        });
+
+                         console.log(places);
+
                         places.forEach(function (item, index) {
                             $('#item_' + item.id).on('click', { obj: item }, function (e) {
                                 var place = e.data.obj;
                                 var place_id = '#' + e.currentTarget.id;
                                 var sel_place = $('#selected_places')
+
 
                                 if (!$(place_id).hasClass("btn-primary")) {
                                     $(place_id).addClass("btn-primary");
@@ -116,6 +136,8 @@
                                 $('#total_sum').find('h5').find('span').append(sum + " grn");
                             });
                         });
+
+
 
                         $('#next_step').on('click', function () {
                             var tickets = new Array();
