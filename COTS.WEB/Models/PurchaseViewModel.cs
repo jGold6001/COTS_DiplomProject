@@ -9,6 +9,8 @@ namespace COTS.WEB.Models
     {
         public string Id { get; set; }
         public TicketViewModel[] TicketViewModels { get; set; }
-        
+        public string ClientName { get; set; }
+        public string ClientEmail { get; set; }
+
     }
 }

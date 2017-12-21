@@ -34,12 +34,12 @@ namespace COTS.BLL.Services
             UnitOfWork.Save();
         }
 
-        public void Delete(long? id)
+        public void Delete(string id)
         {
             if (id == null)
                 throw new ValidationException("'id' not set", "");
 
-            var ticket = UnitOfWork.Tickets.Get(id.Value);
+            var ticket = UnitOfWork.Tickets.Get(id);
             UnitOfWork.Tickets.Delete(ticket);
             UnitOfWork.Save();
         }
@@ -47,19 +47,19 @@ namespace COTS.BLL.Services
         public IEnumerable<TicketDTO> GetAll()
         {
             var tickets = UnitOfWork.Tickets.GetAll();
-            if(tickets.Count() == 0)
-                throw new ValidationException("Tickets table is empty", "");
+            if (tickets.Count() == 0)
+                return null;
 
             return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
         }
        
 
-        public TicketDTO GetOne(long? id)
+        public TicketDTO GetOne(string id)
         {
             if(id == null)
                 throw new ValidationException("'id' not set", "");
 
-            return mapper.Map<Ticket, TicketDTO>(UnitOfWork.Tickets.Get(id.Value));
+            return mapper.Map<Ticket, TicketDTO>(UnitOfWork.Tickets.Get(id));
         }
 
         public IEnumerable<TicketDTO> GetByPurchase(string purchaseId)
@@ -68,6 +68,12 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'purchaseId' not set", "");
 
             var tickets = UnitOfWork.Tickets.FindBy(t => t.PurchaseId == purchaseId);
+            return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
+        }
+
+        public IEnumerable<TicketDTO> GetByState(int state)
+        {
+            var tickets = UnitOfWork.Tickets.FindBy(t => t.State == state);
             return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
         }
     }

@@ -9,5 +9,7 @@ namespace COTS.BLL.DTO
     public class PurchaseDTO
     {
         public string Id { get; set; }
+        public string ClientName { get; set; }
+        public string ClientEmail { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace COTS.BLL.DTO
 {
     public class TicketDTO
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public long SeanceId { get; set; }
         public string Hall { get; set; }
         public int Row { get; set; }

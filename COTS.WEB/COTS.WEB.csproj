@@ -270,6 +270,7 @@
     <Content Include="Views\Ticket\NextStep.cshtml" />
     <Content Include="Views\Seance\cinemas_halls\mpx_skymall\Hall_1.cshtml" />
     <Content Include="Views\Seance\cinemas_halls\florence\Hall_Blue.cshtml" />
+    <Content Include="Views\Ticket\Ordering.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

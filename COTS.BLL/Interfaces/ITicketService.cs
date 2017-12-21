@@ -11,9 +11,11 @@ namespace COTS.BLL.Interfaces
     public interface ITicketService
     {
         void AddOrUpdate(TicketDTO ticketDTO);
-        TicketDTO GetOne(long? id);
+        TicketDTO GetOne(string id);
         IEnumerable<TicketDTO> GetAll();
         IEnumerable<TicketDTO> GetByPurchase(string purchaseId);
-        void Delete(long? id);
+
+        IEnumerable<TicketDTO> GetByState(int state);
+        void Delete(string id);
     }
 }

@@ -24,10 +24,10 @@
     <div class="row" style="margin-top: 10px;">  
         <div class="col-lg-6">
             <div class="col-lg-6 container">
-                <input type="button" value="Оформить покупку" />
+                <input type="button" id="order" value="Оформить покупку" />
             </div>
             <div class="col-lg-6 container">
-                <input type="button" value="Отмена" />
+                <input type="button" id="cancel" value="Отмена" />
             </div>
         </div>   
     </div>
@@ -36,27 +36,50 @@
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     $(function () {
-       
 
-        var d1 = new Date(),
-            d2 = new Date(d1);
-        d2.setMinutes(d1.getMinutes() + 1);
+        function bookingTime() {
+            var dateNow = new Date(),
+            date = new Date(dateNow);
+            date.setMinutes(dateNow.getMinutes() + 7);
 
-        var countDown = d2;
-        var x = setInterval(function () {
-            var now = new Date().getTime();
-            var distance = countDown - now;
+            var countDown = date;
 
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("timer").innerHTML =  minutes + " : " + seconds;
+            var x = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countDown - now;
 
-            if (distance < 0) {
-                clearInterval(x);               
-                document.location.href = '@Url.Action("Index", "Movie")';
-            }
-        }, 1000);
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("timer").innerHTML =  minutes + " : " + seconds;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    $.post('@Url.Action("RemovePurchase", "Ticket")', { purchaseId: '@ViewData["PurchaseID"]' });
+                    document.location.href = '@Url.Action("Index", "Movie")';
+                }
+            }, 1000);
+        };
+
+
+        bookingTime();
+
+        $('#order').on('click', function () {
+            var url = '@Url.Action("Ordering", "Ticket", new { purchaseId = ViewData["PurchaseID"] })';
+            window.location.href = url;
+        });
+
+
+        $('#cancel').on('click', function () {
+             $.post('@Url.Action("RemovePurchase", "Ticket")', { purchaseId: '@ViewData["PurchaseID"]' });
+
+             setTimeout(function () {
+                 document.location.href = '@Url.Action("Index", "Movie")';
+             }, 1000);
+
+
+        });
 
     });
 </script>

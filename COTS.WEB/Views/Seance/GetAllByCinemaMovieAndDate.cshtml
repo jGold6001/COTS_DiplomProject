@@ -74,25 +74,34 @@
 
                         var selectedPlaces = new Array();
 
-                        $.getJSON('@Url.Action("GetAll", "Ticket")', function (data) {
-                            var soldTickets = data;
 
-                            places.forEach(function (place, indexPlace) {
-                                soldTickets.forEach(function (ticket, indexTicket) {
-                                    if (place.row == ticket.row && place.num == ticket.Place) {
-                                        place.status == "busy";
-                                    }
-                                    else {
-                                        place.status == "free";
-                                    }
-                                }); 
+                        //set busies places
+                        $.getJSON('@Url.Action("GetAll", "Ticket")', function (dataJson) {
+                            var soldTickets = dataJson;
+
+                            soldTickets.forEach(function (item, index) {
+                                places.forEach(function (place, indexPlace) {
+                                    if (item.Row == place.row && item.Place == place.num)
+                                        place.status = "busy";
+
+                                    if (place.status != "busy")
+                                        place.status = "free";
+                                });
                             });
 
 
+                            places.forEach(function (place, index) {
+                                if (place.status == "busy") {
+                                    var place = $('#item_' + place.id);
+                                    place.attr("disabled", true);
+                                    place.addClass("btn-danger");
+                                }
+                            });
                         });
 
-                         console.log(places);
 
+
+                        //selecting places
                         places.forEach(function (item, index) {
                             $('#item_' + item.id).on('click', { obj: item }, function (e) {
                                 var place = e.data.obj;
@@ -144,7 +153,6 @@
 
                             selectedPlaces.forEach(function (item, index) {
                                 var ticket = {
-                                    id : item.id,
                                     movie : '@item.Movie.Name',
                                     cinema: '@item.Cinema.Name',
                                     seanceId: '@item.Id',
@@ -152,7 +160,8 @@
                                     row: item.row,
                                     place: item.num,
                                     tariff: item.tariff,
-                                    price: item.price
+                                    price: item.price,
+                                    state: 1
                                 };
                                 tickets.push(ticket);
                             });
@@ -162,29 +171,46 @@
                                 ticketViewModels: tickets
                             };
 
+                            $.getJSON('@Url.Action("GetAllBooking", "Ticket")', function (dataJson) {
+                                var ticketsBooking = dataJson;
+                                var flag = false;
+                                
+                                tickets.forEach(function (item, index) {
+                                    if (item.row == ticketsBooking.row && item.num == ticketsBooking.place)
+                                        flag = true;
+                                });
+                                
+                                console.log(flag);
+                                console.log(tickets);
+                                if (!flag) {
+                                 $.ajax({
+                                    url: '@Url.Action("SaveInDb", "Ticket")',
+                                    method: "POST",
+                                    data: JSON.stringify(purchase),
+                                    contentType: "application/json; charset=utf-8",
+                                    success: function (data, textStatus, jqXHR) {
+                                        console.log("data: " + data);
+                                        console.log("textStatus: " + textStatus);
+                                        console.log("jqXHR: " + jqXHR.responseText);
+                                        },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        console.log("jqXHR: " + jqXHR.responseText);
+                                        console.log("textStatus: " + textStatus);
+                                        console.log("errorThrown: " + errorThrown);
+                                    }
+                                });
+                                setTimeout(function () {
+                                        var url = '@Url.Action("NextStep", "Ticket", new { purchaseId = "_purchase_" })';
+                                        window.location.href = url.replace("_purchase_", purchase.id);
+                                 }, 1000);
+                            } else
+                            {
+                                alert("Sorry places is busies");
+                                window.location.reload();
+                            }
 
-                            $.ajax({
-                                url: '@Url.Action("SaveInDb", "Ticket")',
-                                method: "POST",
-                                data: JSON.stringify(purchase),
-                                contentType: "application/json; charset=utf-8",
-                                success: function (data, textStatus, jqXHR) {
-                                    console.log("data: " + data);
-                                    console.log("textStatus: " + textStatus);
-                                    console.log("jqXHR: " + jqXHR.responseText);
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                    console.log("jqXHR: " + jqXHR.responseText);
-                                    console.log("textStatus: " + textStatus);
-                                    console.log("errorThrown: " + errorThrown);
-                                }
+
                             });
-
-                            setTimeout(function () {
-                                var url = '@Url.Action("NextStep", "Ticket", new { purchaseId = "_purchase_" })';
-                                window.location.href = url.replace("_purchase_", purchase.id);
-                            }, 1000);
-
                         });
 
                     });
