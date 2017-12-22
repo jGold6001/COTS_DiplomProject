@@ -42,13 +42,19 @@
                     s4() + '-' + s4() + s4() + s4();
             }
 
-            function nextStep(arr) {
-
+            function isBusies(selectedPlaces, busiesPlaces) {
+                if (busiesPlaces.length != 0 && selectedPlaces.length != 0) {
+                    let flag = false;
+                    selectedPlaces.forEach(function (item_1, index_1) {
+                        busiesPlaces.forEach(function (item_2, index_2) {
+                            if (item_2.id == item_1.id)
+                                flag = true;
+                        });
+                    });
+                    return flag;
+                }
             }
 
-            function selectionPlaces(places, selectedPlaces) {
-
-            }
 
             $.ajaxSetup({ cache: false });
             $("#btn_" +@item.Id).click(function (e) {
@@ -73,7 +79,20 @@
                         $('#selected_places').hide();
 
                         var selectedPlaces = new Array();
+                        var bookingPlaces = new Array();
 
+                        var ticket_hub = $.connection.ticketHub;
+
+                        //get data others clients
+                        ticket_hub.client.addData = function (data) {
+
+                            //add to busies
+                            data.forEach(function (item, index) {
+                                bookingPlaces.push(item);
+                            });
+
+                            console.log(bookingPlaces);
+                        }
 
                         //set busies places
                         $.getJSON('@Url.Action("GetAll", "Ticket")', function (dataJson) {
@@ -147,67 +166,63 @@
                         });
 
 
+                        $.connection.hub.start().done(function () {
 
-                        $('#next_step').on('click', function () {
-                            var tickets = new Array();
+                            $('#next_step').on('click', function () {
 
-                            selectedPlaces.forEach(function (item, index) {
-                                var ticket = {
-                                    movie : '@item.Movie.Name',
-                                    cinema: '@item.Cinema.Name',
-                                    seanceId: '@item.Id',
-                                    hall: item.id,
-                                    row: item.row,
-                                    place: item.num,
-                                    tariff: item.tariff,
-                                    price: item.price,
-                                    state: 1
-                                };
-                                tickets.push(ticket);
-                            });
+                                    if (!isBusies(selectedPlaces, bookingPlaces)) {
 
-                            var purchase = {
-                                id: guid(),
-                                ticketViewModels: tickets
-                            };
+                                        var tickets = new Array();
+                                    selectedPlaces.forEach(function (item, index) {
+                                        var ticket = {
+                                            movie : '@item.Movie.Name',
+                                            cinema: '@item.Cinema.Name',
+                                            seanceId: '@item.Id',
+                                            hall: item.id,
+                                            row: item.row,
+                                            place: item.num,
+                                            tariff: item.tariff,
+                                            price: item.price,
+                                            state: 1
+                                        };
+                                        tickets.push(ticket);
+                                    });
 
-                            $.getJSON('@Url.Action("GetAllBooking", "Ticket")', function (dataJson) {
-                                var ticketsBooking = dataJson;
-                                var flag = false;
-                                
-                                tickets.forEach(function (item, index) {
-                                    if (item.row == ticketsBooking.row && item.num == ticketsBooking.place)
-                                        flag = true;
-                                });
-                                
-                                console.log(flag);
-                                console.log(tickets);
-                                if (!flag) {
-                                 $.ajax({
-                                    url: '@Url.Action("SaveInDb", "Ticket")',
-                                    method: "POST",
-                                    data: JSON.stringify(purchase),
-                                    contentType: "application/json; charset=utf-8",
-                                    success: function (data, textStatus, jqXHR) {
-                                        console.log("data: " + data);
-                                        console.log("textStatus: " + textStatus);
-                                        console.log("jqXHR: " + jqXHR.responseText);
-                                        },
-                                    error: function (jqXHR, textStatus, errorThrown) {
-                                        console.log("jqXHR: " + jqXHR.responseText);
-                                        console.log("textStatus: " + textStatus);
-                                        console.log("errorThrown: " + errorThrown);
-                                    }
-                                });
-                                setTimeout(function () {
+                                    var purchase = {
+                                        id: guid(),
+                                        ticketViewModels: tickets
+                                    };
+
+
+                                    $.ajax({
+                                        url: '@Url.Action("SaveInDb", "Ticket")',
+                                        method: "POST",
+                                        data: JSON.stringify(purchase),
+                                        contentType: "application/json; charset=utf-8",
+                                        success: function (data, textStatus, jqXHR) {
+                                            console.log("data: " + data);
+                                            console.log("textStatus: " + textStatus);
+                                            console.log("jqXHR: " + jqXHR.responseText);
+                                            },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            console.log("jqXHR: " + jqXHR.responseText);
+                                            console.log("textStatus: " + textStatus);
+                                            console.log("errorThrown: " + errorThrown);
+                                        }
+                                    });
+
+                                    setTimeout(function () {
                                         var url = '@Url.Action("NextStep", "Ticket", new { purchaseId = "_purchase_" })';
                                         window.location.href = url.replace("_purchase_", purchase.id);
-                                 }, 1000);
-                            } else
-                            {
-                                alert("Sorry places is busies");
-                                window.location.reload();
-                            }
+                                    }, 1000);
+
+                                    //send to server
+                                    ticket_hub.server.send(selectedPlaces);
+                                } else {
+                                        alert("sorry, places is busies ");
+                                        window.location.reload();
+                                }
+
 
 
                             });
