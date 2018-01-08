@@ -1,0 +1,86 @@
+<br/>
+<div class="container">
+  <div class="row">
+    <div class="card w-100">
+      <div class="card-block">        
+        <div class="container"> 
+
+            <br/>
+            <div class="container">               
+                <div class="row">
+                  <div class="col-12">
+                      <div class="container">
+                        <div class="row">
+                            <h4 class="card-title">{{_cinemaName}}</h4>
+                        </div>                     
+                      </div>
+                  </div>              
+                </div>
+            </div>
+
+
+          <!--Content-->
+          <div class="row">
+            
+              <!--left side-->
+              <div class="col-lg-4">
+                <div class="container">
+                  <br/>
+                  <div class="row">
+                      <div class="container">                    
+                          <div class="row">
+                              <img src="{{_cinemaImage}}" />        
+                          </div>                       
+                      </div>
+                  </div>
+                </div>        
+              </div>
+
+               <!--right side-->
+              <div class="col-lg-8">
+                  <div class="container">
+
+                      <br/>
+                      <div class="row">
+                          <div class="container">
+                              <div class=row>
+                                  <h6 class="card-text">Адрес:</h6>
+                              </div>
+                              <div class=row>
+                                  <p class="card-text">{{_cinemaAddress}}</p>
+                              </div>
+                            </div>
+                      </div>
+
+                      <br/>                      
+                      <div class="row">
+                          <div class="container">
+                              <div class=row>
+                                  <h6 class="card-text">На карте:</h6>
+                              </div>
+                              <br/>
+                              <div class=row>   
+                                <div class="col">
+                                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                                        <!-- <agm-marker                                          
+                                          [latitude]="cinema.lat"
+                                          [longitude]="cinema.lng"
+                                          [label]="cinema.label"
+                                          [markerDraggable]="cinema.draggable">
+                                      </agm-marker> -->
+                                    </agm-map>
+                               
+                                </div>                                                          
+                              </div>
+                            </div>
+                      </div>
+                  </div>        
+              </div>
+            </div>
+            <br/>
+        </div>
+      </div>
+    </div>   
+  </div>  
+</div>
+<br/>
