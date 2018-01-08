@@ -10,8 +10,7 @@ namespace COTS.BLL.DTO
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Address { get; set; }
-        public string ImagePath { get; set; }
+        public string Address { get; set; }     
         public string CityId { get; set; }
     }
 }
