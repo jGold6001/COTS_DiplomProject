@@ -8,6 +8,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { Cinema } from '../shared/models/cinema.model';
 import { City } from    '../shared/models/city.model';
 import { CityService } from '../shared/services/city.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cinemas-map',
@@ -27,7 +28,8 @@ export class CinemasMapComponent implements OnInit, OnChanges {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private geocodingAPIService: GeocodingApiService
+    private geocodingAPIService: GeocodingApiService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -73,7 +75,8 @@ export class CinemasMapComponent implements OnInit, OnChanges {
                     lat: _lat,
                     lng: _lng,
                     label: cinema.name,
-                    draggable: false
+                    draggable: false,
+                    cinemaId: cinema.id
                 };
                 this.markers.push(_marker);
                 
@@ -101,8 +104,8 @@ export class CinemasMapComponent implements OnInit, OnChanges {
         });
   }
 
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
+  clickedMarker(cinemaId: string) {
+    this.router.navigate([this.city.id, "cinema", cinemaId]);
   }
 
   private fixExceptionCityName(): string{
@@ -119,5 +122,6 @@ interface marker {
 	lat: number;
 	lng: number;
 	label?: string;
-	draggable: boolean;
+    draggable: boolean;
+    cinemaId: string;
 }

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CinemaService } from '../shared/services/cinema.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, UrlTree, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
 import { Cinema } from '../shared/models/cinema.model';
+import { GeocodingApiService } from '../shared/services/geocodingApi.service';
+import { City } from '../shared/models/city.model';
 
 @Component({
   selector: 'app-cinema-page',
@@ -20,6 +22,7 @@ export class CinemaPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private cinemaService: CinemaService,
+    private geocodingAPIService: GeocodingApiService,
     private router: Router
   ) { }
 
@@ -31,11 +34,24 @@ export class CinemaPageComponent implements OnInit {
     this.cinemaService.getOne(this.id)
     .subscribe(r =>{
       this.cinema = r;
+      this.updateLatLngFromAdress();
     } , () => console.error("Ошибка при получении данных с сервера"));
 
-    this.lat = 50.4244724;
-    this.lng = 30.4856598;
+  }
 
+  private updateLatLngFromAdress(){
+    this.geocodingAPIService
+    .findFromAddress(this.cinema.address, this.cityId)
+    .subscribe(response => {
+        if (response.status == 'OK') {
+            this.lat = response.results[0].geometry.location.lat;
+            this.lng = response.results[0].geometry.location.lng;
+        } else if (response.status == 'ZERO_RESULTS') {
+            console.log('geocodingAPIService', 'ZERO_RESULTS', response.status);
+        } else {
+            console.log('geocodingAPIService', 'Other error', response.status);
+        }
+    });
   }
 
   get _cinemaName(): string{
@@ -60,5 +76,12 @@ export class CinemaPageComponent implements OnInit {
       value = this.cinema.imagePath;
     } catch (ex) {}
     return value;
+  }
+
+  get cityId(): string{
+    const tree: UrlTree = this.router.parseUrl( this.router.url);
+    const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+    const s: UrlSegment[] = g.segments;
+    return s[0].path;
   }
 }

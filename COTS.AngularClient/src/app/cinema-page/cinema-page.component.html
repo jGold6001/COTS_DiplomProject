@@ -28,8 +28,8 @@
                   <br/>
                   <div class="row">
                       <div class="container">                    
-                          <div class="row">
-                              <img src="{{_cinemaImage}}" />        
+                          <div class="row">               
+                                <img src="{{_cinemaImage}}" />                                
                           </div>                       
                       </div>
                   </div>
@@ -39,7 +39,6 @@
                <!--right side-->
               <div class="col-lg-8">
                   <div class="container">
-
                       <br/>
                       <div class="row">
                           <div class="container">
@@ -59,19 +58,9 @@
                                   <h6 class="card-text">На карте:</h6>
                               </div>
                               <br/>
-                              <div class=row>   
-                                <div class="col">
-                                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-                                        <!-- <agm-marker                                          
-                                          [latitude]="cinema.lat"
-                                          [longitude]="cinema.lng"
-                                          [label]="cinema.label"
-                                          [markerDraggable]="cinema.draggable">
-                                      </agm-marker> -->
-                                    </agm-map>
-                               
-                                </div>                                                          
-                              </div>
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                </agm-map>                            
                             </div>
                       </div>
                   </div>        
