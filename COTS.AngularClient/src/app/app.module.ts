@@ -1,11 +1,13 @@
 //modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule, ApplicationRef, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+
+import { TabsModule } from 'ngx-bootstrap';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -56,6 +58,8 @@ import { GeocodingApiService } from './shared/services/geocodingApi.service';
 import { MovieService } from './shared/services/movie.service';
 import { CityService } from './shared/services/city.service';
 import { CinemaService } from './shared/services/cinema.service';
+import { SeancesByCinemasComponent } from './seances-by-cinemas/seances-by-cinemas.component';
+import { CinemasListComponent } from './cinemas-list/cinemas-list.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +69,9 @@ import { CinemaService } from './shared/services/cinema.service';
     CinemaPageComponent,
     MoviesCardsComponent,
     CinemasMapComponent,
-    CinemasCardsComponent
+    CinemasCardsComponent,
+    SeancesByCinemasComponent,
+    CinemasListComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +81,8 @@ import { CinemaService } from './shared/services/cinema.service';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     CommonModule,
+
+    TabsModule.forRoot(),
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDSg-Iu6aNGRmrVX6MMltecTCslVEDUqPo',
@@ -114,7 +122,12 @@ import { CinemaService } from './shared/services/cinema.service';
     MatTooltipModule,
     MatStepperModule,
   ],
-  providers: [GeocodingApiService, MovieService, CityService, CinemaService],
+  providers: [GeocodingApiService, 
+    MovieService, 
+    CityService, 
+    CinemaService,
+    { provide: LOCALE_ID, useValue: "ru" }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

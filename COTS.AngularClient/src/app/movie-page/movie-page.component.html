@@ -1,6 +1,7 @@
 <br/>
 <div class="container">
   <div class="row">
+
     <div class="card w-100">
       <div class="card-block">        
         <div class="container"> 
@@ -63,6 +64,7 @@
                 </div>
               </div>        
             </div>
+
              <!--right side-->
             <div class="col-lg-4">
                 <div class="container">
@@ -135,10 +137,101 @@
                 </div>        
             </div>
           </div>
+
+          <!--SEANCES-BY-CINEMAS-->
           <br/>
+          <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                      <tabset [justified]="true">
+                        
+                          <tab heading='{{dates[0] | date: "dd MMM" }}'>
+                                <div class="container">
+                                   <app-cinemas-list
+                                    *ngFor="let cinema of cinemas"
+                                    [cinema]= "cinema"
+                                   ></app-cinemas-list>
+                                </div>
+                          </tab>
+                
+                          <tab heading='{{dates[1] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>
+                          </tab>
+                
+                          <tab heading='{{dates[2] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>
+                          </tab>
+                
+                          <tab heading='{{dates[3] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>
+                          </tab>
+                
+                          <tab heading='{{dates[4] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>
+                          </tab>
+                
+                          <tab heading='{{dates[5] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>
+                          </tab>
+                
+                          <tab heading='{{dates[6] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>                 
+                          </tab>
+                          <tab heading='{{dates[7] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>                      
+                          </tab>
+                          <tab heading='{{dates[8] | date: "dd MMM" }}'>
+                                <div class="container">
+                                        <app-cinemas-list
+                                         *ngFor="let cinema of cinemas"
+                                         [cinema]= "cinema"
+                                        ></app-cinemas-list>
+                                     </div>
+                          </tab>
+                      </tabset>
+                  </div>
+                </div>
+              </div>
+              <br/>
+
         </div>
       </div>
-    </div>   
+    </div>
   </div>  
 </div>
 <br/>

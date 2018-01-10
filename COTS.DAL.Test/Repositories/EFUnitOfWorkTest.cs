@@ -278,7 +278,7 @@ namespace COTS.DAL.Test.Repositories
                 Trace.WriteLine($"Cinema: {item.CinemaId} Movie: {item.MovieId} and Date: {item.DateAndTime}");
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void DeleteTest()
         {
             foreach (var item in movieRepo.GetAll())

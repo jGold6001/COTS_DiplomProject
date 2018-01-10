@@ -1,7 +1,11 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy  } from '@angular/core';
 import { Movie } from '../shared/models/movie.model';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, UrlTree, UrlSegmentGroup, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
 import { MovieService } from '../shared/services/movie.service';
+import { Data } from '@agm/core/services/google-maps-types';
+import { CinemaService } from '../shared/services/cinema.service';
+import { Cinema } from '../shared/models/cinema.model';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-movie-page',
@@ -12,10 +16,14 @@ export class MoviePageComponent implements OnInit {
   
   id: number;
   movie: Movie;
+  cinemas: Cinema[] = [];
+
+  dates: Date[]=[];
 
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
+    private cinemaService: CinemaService,
     private router: Router
   ) { }
 
@@ -29,8 +37,31 @@ export class MoviePageComponent implements OnInit {
       this.movie = r;
     } , () => console.error("Ошибка при получении данных с сервера"));
 
+
+    this.cinemaService.getAllByCity(this.cityId)
+    .subscribe(r => {
+      this.cinemas = r;
+    },  () => console.error("Ошибка при получении данных с сервера"));
+
+    this.setDates();
   }
 
+  get cityId(): string{
+    const tree: UrlTree = this.router.parseUrl( this.router.url);
+    const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+    const s: UrlSegment[] = g.segments;
+    return s[0].path;
+  }
+
+  private setDates(){
+    for (let index = 0; index < 9; index++) {
+      var date: Date = new Date();
+      date.setDate(date.getDate()+index);
+      this.dates.push(date); 
+    }
+  }
+
+  //fixExceptionProperties
   get _movieName(): string{
     let value: string;
     try {
