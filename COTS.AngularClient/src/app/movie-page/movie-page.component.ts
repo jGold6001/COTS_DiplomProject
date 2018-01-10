@@ -141,4 +141,12 @@ export class MoviePageComponent implements OnInit {
     } catch (ex) {}
     return value;
   }
+
+  get _movieDateIssue(): string{
+    let value: string;
+    try {
+      value = this.movie.dateIssue;
+    } catch (ex) {}
+    return value;
+  }
 }

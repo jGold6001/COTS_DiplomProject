@@ -4,13 +4,17 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 var _serverHost = "http://localhost:59837";
+var _slash = "/";
 export const environment = {
   production: false,
-  APIURL_MOVIE :                     _serverHost +  "/api/movie/",
-  APIURL_MOVIES_PREMERIES_BYCITY :   _serverHost +  "/api/movie/premeries/",
-  APIURL_MOVIES_COMINGSOON_BYCITY :  _serverHost +  "/api/movie/comingsoon/",
-  APIURL_MOVIES_TOP10_BYCITY :       _serverHost +  "/api/movie/top10/",
-  APIURL_CINEMA :                    _serverHost +  "/api/cinema/",
-  APIURL_CINEMAS_BYCITY:             _serverHost +  "/api/cinema/getallbycity/",
-  APIURL_CITIES:                     _serverHost +  "/api/city/getall"
+
+  //webApi
+  APIURL_MOVIE :                        _serverHost +  "/api/movie/",
+  APIURL_MOVIES_PREMERIES_BYCITY :       _serverHost +  "/api/movie/premeries/",
+  APIURL_MOVIES_COMINGSOON_BYCITY :     _serverHost +  "/api/movie/comingsoon/",
+  APIURL_MOVIES_TOP10_BYCITY :          _serverHost +  "/api/movie/top10/",
+  APIURL_CINEMA :                       _serverHost +  "/api/cinema/",
+  APIURL_CINEMAS_BYCITY:                _serverHost +  "/api/cinema/getallbycity/",
+  APIURL_CITIES:                        _serverHost +  "/api/city/getall",
+  APIURL_SEANCES_BY_CINEMA_MOVIE_DATE:  _serverHost +  "/api/seance/getall/",
 };

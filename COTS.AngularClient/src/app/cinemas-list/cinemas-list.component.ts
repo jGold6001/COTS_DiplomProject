@@ -1,5 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges,} from '@angular/core';
 import { Cinema } from '../shared/models/cinema.model';
+import { Movie } from '../shared/models/movie.model';
+import { SeanceService } from '../shared/services/seance.service';
+import { Seance } from '../shared/models/seance.model';
+import { DatePipe } from '@angular/common'
+import { UrlTree, UrlSegmentGroup, UrlSegment, Router, PRIMARY_OUTLET } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-cinemas-list',
@@ -9,30 +15,32 @@ import { Cinema } from '../shared/models/cinema.model';
 export class CinemasListComponent implements OnInit {
 
   @Input() cinema: Cinema;
+  @Input() date: Date;
 
-  constructor(
-    
+  seances: Seance[] =[];
+
+  constructor( 
+    private seanceService: SeanceService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    
+    this.seanceService.getAllByCinemaMovieDate(this.cinema.id, this.movieId, this.date)
+        .subscribe(r =>{
+            this.seances = r; 
+        } , () => console.error("Ошибка при получении данных с сервера"));
+
   }
 
-  get _cinemaName(): string{
-    let value: string;
-    try {
-      value = this.cinema.name;
-    } catch (ex) {}
-    return value;
+  ngOnChanges(changes: SimpleChanges) {
+   
   }
 
-  get _cinemaAddress(): string{
-    let value: string;
-    try {
-      value = this.cinema.address;
-    } catch (ex) {}
-    return value;
+  get movieId(): number{
+    const tree: UrlTree = this.router.parseUrl( this.router.url);
+    const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+    const s: UrlSegment[] = g.segments;
+    return +s[2].path;
   }
-
 
 }

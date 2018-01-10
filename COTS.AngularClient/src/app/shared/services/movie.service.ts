@@ -43,25 +43,27 @@ export class MovieService {
     convertJsonToArray(data): Movie[]{
         let movies: Movie[] = [];
         for (let i = 0; i < data.length; i++) {
-            let movie: Movie = new Movie(
+            let movie: Movie = new Movie();
+            movie.init(
                 data[i].Id, data[i].Name, data[i].Genre, data[i].Destination,
                 data[i].Year, data[i].Duration, data[i].AgeCategory, data[i].Country,
                 data[i].Director, data[i].Actors, data[i].TrailerUrl, data[i].ImagePath, 
-                data[i].RankSales
-            );
-           
+                data[i].RankSales, data[i].DateIssue
+            );        
             movies.push(movie);
         }     
         return movies;
     }
 
-    convertJsonToObject(data): Movie{     
-        return new Movie(
+    convertJsonToObject(data): Movie{  
+        let movie: Movie = new Movie();
+        movie.init(
             data.Id, data.Name, data.Genre, data.Destination,
             data.Year, data.Duration, data.AgeCategory, data.Country,
             data.Director, data.Actors, data.TrailerUrl, data.ImagePath, 
-            data.RankSales
+            data.RankSales, data.DateIssue
         );
+        return movie;
     }
 
 }

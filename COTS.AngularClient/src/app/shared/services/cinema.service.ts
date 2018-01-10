@@ -26,13 +26,16 @@ export class CinemaService{
     private convertJsonToArray(data): Cinema[]{
         let cinemas: Cinema[] = [];
         for (let i = 0; i < data.length; i++){
-            let cinema: Cinema = new Cinema(data[i].Id, data[i].Name, data[i].Address, data[i].ImagePath, data[i].CityId); 
+            let cinema: Cinema = new Cinema();
+            cinema.init(data[i].Id, data[i].Name, data[i].Address, data[i].ImagePath, data[i].CityId);
             cinemas.push(cinema);
         }
         return cinemas;
     }
 
     private convertJsonToObject(data): Cinema{
-        return new Cinema(data.Id, data.Name, data.Address, data.ImagePath, data.CityId);
+        let cinema: Cinema = new Cinema();
+        cinema.init(data.Id, data.Name, data.Address, data.ImagePath, data.CityId);
+        return cinema;
     }
 }

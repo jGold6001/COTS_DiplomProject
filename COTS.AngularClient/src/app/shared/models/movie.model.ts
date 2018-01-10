@@ -1,7 +1,7 @@
 
 export class Movie {
-    constructor(id: number, name: string,  genre: string, destination: string, year: number, duration: number, ageCategory: string,
-        country: string,director: string,actors: string, trailerUrl: string,imagePath: string,rankSales: number){
+    init(id: number, name: string,  genre: string, destination: string, year: number, duration: number, ageCategory: string,
+        country: string,director: string,actors: string, trailerUrl: string,imagePath: string,rankSales: number, dateIssue: string){
         this.id = id;
         this.name = name;
         this.genre = genre;
@@ -15,6 +15,11 @@ export class Movie {
         this.trailerUrl = trailerUrl;
         this.imagePath = imagePath;
         this.rankSales = rankSales;
+        this.dateIssue = dateIssue;
+    }
+
+    constructor(){
+
     }
 
     id: number;
@@ -30,4 +35,5 @@ export class Movie {
     trailerUrl: string;
     imagePath: string;
     rankSales: number;
+    dateIssue: string;
 }

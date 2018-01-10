@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { TabsModule } from 'ngx-bootstrap';
 
@@ -60,6 +60,7 @@ import { CityService } from './shared/services/city.service';
 import { CinemaService } from './shared/services/cinema.service';
 import { SeancesByCinemasComponent } from './seances-by-cinemas/seances-by-cinemas.component';
 import { CinemasListComponent } from './cinemas-list/cinemas-list.component';
+import { SeanceService } from './shared/services/seance.service';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,8 @@ import { CinemasListComponent } from './cinemas-list/cinemas-list.component';
     MovieService, 
     CityService, 
     CinemaService,
+    SeanceService,
+    DatePipe,
     { provide: LOCALE_ID, useValue: "ru" }
   ],
   bootstrap: [AppComponent]
