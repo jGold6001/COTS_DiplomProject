@@ -25,7 +25,9 @@ namespace COTS.WEBAPI.Controllers
         public MovieController(IMovieService movieService)
         {
             this.movieService = movieService;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<MovieDTO, MovieViewModel>()));
+            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<MovieDTO, MovieViewModel>()
+               .ForMember("DateIssue", opt => opt.MapFrom(src => src.DateIssue.ToShortDateString()))
+            ));
         }
 
         [Route("{id}")]

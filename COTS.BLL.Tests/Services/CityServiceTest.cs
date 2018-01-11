@@ -6,7 +6,7 @@ using COTS.DAL.Repositories;
 using COTS.BLL.Services;
 using System.Diagnostics;
 
-namespace COTS.BLL.Tests.Services
+namespace COTS.BLL.Services.Tests
 {
     [TestClass]
     public class CityServiceTest

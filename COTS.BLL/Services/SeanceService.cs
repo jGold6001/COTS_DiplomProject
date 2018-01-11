@@ -82,8 +82,8 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'date' not set", "");
 
             IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId.Value, date);
-            if (seances.Count() == 0)
-                throw new ValidationException("Seances by movie not found", "");
+            //if (seances.Count() == 0)
+            //    throw new ValidationException("Seances by movie not found", "");
 
             IEnumerable<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, IEnumerable<SeanceDTO>>(seances);
             return seancesDTO;

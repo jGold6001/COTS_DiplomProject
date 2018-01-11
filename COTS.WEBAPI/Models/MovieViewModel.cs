@@ -20,5 +20,6 @@ namespace COTS.WEBAPI.Models
         public string TrailerUrl { get; set; }
         public string ImagePath {get;set;}
         public int RankSales { get; set; }
+        public string DateIssue { get; set; }
     }
 }
