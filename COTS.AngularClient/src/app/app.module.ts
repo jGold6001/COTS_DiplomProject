@@ -61,6 +61,12 @@ import { CinemaService } from './shared/services/cinema.service';
 import { SeancesByCinemasComponent } from './seances-by-cinemas/seances-by-cinemas.component';
 import { CinemasListComponent } from './cinemas-list/cinemas-list.component';
 import { SeanceService } from './shared/services/seance.service';
+import { HallDialogComponent } from './hall-dialog/hall-dialog.component';
+
+//halls
+import { Hall1Component } from './halls/kiev/mpx_skymall/hall-1/hall-1.component';
+
+import { DomService } from './shared/services/dom.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +78,9 @@ import { SeanceService } from './shared/services/seance.service';
     CinemasMapComponent,
     CinemasCardsComponent,
     SeancesByCinemasComponent,
-    CinemasListComponent
+    CinemasListComponent,
+    HallDialogComponent,
+    Hall1Component
   ],
   imports: [
     BrowserModule,
@@ -82,7 +90,6 @@ import { SeanceService } from './shared/services/seance.service';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     CommonModule,
-
     TabsModule.forRoot(),
 
     AgmCoreModule.forRoot({
@@ -123,12 +130,14 @@ import { SeanceService } from './shared/services/seance.service';
     MatTooltipModule,
     MatStepperModule,
   ],
-  providers: [GeocodingApiService, 
+  entryComponents: [SeancesByCinemasComponent, HallDialogComponent, Hall1Component],
+  providers: [GeocodingApiService,
     MovieService, 
     CityService, 
     CinemaService,
     SeanceService,
     DatePipe,
+    DomService,
     { provide: LOCALE_ID, useValue: "ru" }
   ],
   bootstrap: [AppComponent]

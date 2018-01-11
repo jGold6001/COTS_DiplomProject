@@ -6,6 +6,8 @@ import { Movie } from '../shared/models/movie.model';
 import { Cinema } from '../shared/models/cinema.model';
 import { BehaviorSubject } from 'rxjs';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { MatDialog } from '@angular/material';
+import { HallDialogComponent } from '../hall-dialog/hall-dialog.component';
 
 @Component({
   selector: 'app-seances-by-cinemas',
@@ -21,10 +23,11 @@ export class SeancesByCinemasComponent implements OnInit, OnChanges {
   movie: Movie;
   cinema: Cinema;
 
-
   constructor(
     private cinemaService: CinemaService,
-    private movieService: MovieService
+    private movieService: MovieService,
+
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -39,21 +42,33 @@ export class SeancesByCinemasComponent implements OnInit, OnChanges {
     if(changes['cinemaId']){
       this.loadCinema(this.cinemaId);
     }
-    
+   
   }
 
-  openModal(){
-    
+  openDialog(){
+    let dialogRef = this.dialog.open(HallDialogComponent, {
+      width: '400px',
+      data: { seance: this.seance }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //go to if dialog close
+    });
   }
+
 
   private loadMovie(movieId: number){
     this.movieService.getOne(movieId)
-        .subscribe( data => {this.movie = data; console.log(this.movie);});
+        .subscribe( data => {this.movie = data;
+          this.seance.movie = this.movie;
+        });
   }
 
   private loadCinema(cinemaId: string){
       this.cinemaService.getOne(cinemaId)
-          .subscribe(data => {this.cinema = data; console.log(this.cinema);});
+          .subscribe(data => {this.cinema = data;
+            this.seance.cinema = this.cinema;
+          });
   }
 
 }
