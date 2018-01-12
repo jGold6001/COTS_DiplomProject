@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject, Input, ElementRef, Renderer2, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Seance } from '../shared/models/seance.model';
-import { DOCUMENT } from '@angular/common';
 import { DomService } from '../shared/services/dom.service';
-import { Hall1Component } from '../halls/kiev/mpx_skymall/hall-1/hall-1.component';
+import { CitiesMappings } from '../mappings-consts/cities/cities.mappings';
+
+
 
 @Component({
   selector: 'app-hall-dialog',
@@ -14,54 +15,43 @@ import { Hall1Component } from '../halls/kiev/mpx_skymall/hall-1/hall-1.componen
 export class HallDialogComponent implements OnInit {
 
   @ViewChild('container', { read: ViewContainerRef })
-    container: ViewContainerRef;
-
-
-  seance: Seance;
-
+    
+  container: ViewContainerRef;
   type: string;
   context: any;
-  
-  private componentRef: ComponentRef<{}>;
+  componentRef: ComponentRef<{}>;
 
+  seance: Seance;
+  typeInfo: any;
 
-  private mappings = {
-    'hall_1': Hall1Component
-};
 
   constructor(
     public dialogRef: MatDialogRef<HallDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private domService: DomService,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private domService: DomService
   )
-    { }
+  { }
 
   ngOnInit() {
     this.seance = this.data.seance;
-    
-    this.type = "hall_1";
-    if (this.type) {
-      let componentType = this.getComponentType(this.type);
-      
-      var dom_ = this.domService.createDom(componentType);
 
-      // note: componentType must be declared within module.entryComponents
-      let factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-      this.componentRef = this.container.createComponent(factory);
+    let typeInfo = {
+      city:                  this.seance.cinema.cityId,
+      cinema:        this.seance.cinema.id,
+      hall:                     this.seance.hall
+    };
 
-  }
-
+    let componentType = this.getComponentType(typeInfo);
+    let factory = this.domService.createFactory(componentType);
+    this.componentRef = this.container.createComponent(factory);
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-
-  getComponentType(typeName: string) {
-    let type = this.mappings[typeName];
-    return type;
+  getComponentType(typeInfo: any) {
+    return CitiesMappings.city[typeInfo.city].cinema[typeInfo.cinema].hall[typeInfo.hall];
   }
 
 }

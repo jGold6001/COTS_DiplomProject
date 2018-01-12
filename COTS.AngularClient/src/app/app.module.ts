@@ -46,6 +46,14 @@ import {
   MatStepperModule,
 } from '@angular/material';
 
+//services
+import { GeocodingApiService } from './shared/services/geocodingApi.service';
+import { MovieService } from './shared/services/movie.service';
+import { CityService } from './shared/services/city.service';
+import { CinemaService } from './shared/services/cinema.service';
+import { SeanceService } from './shared/services/seance.service';
+import { DomService } from './shared/services/dom.service';
+
 //my components
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -54,19 +62,29 @@ import { CinemaPageComponent } from './cinema-page/cinema-page.component';
 import { MoviesCardsComponent } from './movies-cards/movies-cards.component';
 import { CinemasMapComponent } from './cinemas-map/cinemas-map.component';
 import { CinemasCardsComponent } from './cinemas-cards/cinemas-cards.component';
-import { GeocodingApiService } from './shared/services/geocodingApi.service';
-import { MovieService } from './shared/services/movie.service';
-import { CityService } from './shared/services/city.service';
-import { CinemaService } from './shared/services/cinema.service';
 import { SeancesByCinemasComponent } from './seances-by-cinemas/seances-by-cinemas.component';
 import { CinemasListComponent } from './cinemas-list/cinemas-list.component';
-import { SeanceService } from './shared/services/seance.service';
 import { HallDialogComponent } from './hall-dialog/hall-dialog.component';
+import { MpxSkymallHall1Component } from './halls-components/kiev/mpx_skymall/mpx-skymall-hall-1/mpx-skymall-hall-1.component';
+import { MpxSkymallHall2Component } from './halls-components/kiev/mpx_skymall/mpx-skymall-hall-2/mpx-skymall-hall-2.component';
+import { MpxSkymallHall3Component } from './halls-components/kiev/mpx_skymall/mpx-skymall-hall-3/mpx-skymall-hall-3.component';
+import { MpxSkymallHall4Component } from './halls-components/kiev/mpx_skymall/mpx-skymall-hall-4/mpx-skymall-hall-4.component';
+import { MpxProspectHall1Component } from './halls-components/kiev/mpx_prospect/mpx-prospect-hall-1/mpx-prospect-hall-1.component';
+import { MpxProspectHall2Component } from './halls-components/kiev/mpx_prospect/mpx-prospect-hall-2/mpx-prospect-hall-2.component';
+import { MpxProspectHall4Component } from './halls-components/kiev/mpx_prospect/mpx-prospect-hall-4/mpx-prospect-hall-4.component';
+import { MpxProspectHall5Component } from './halls-components/kiev/mpx_prospect/mpx-prospect-hall-5/mpx-prospect-hall-5.component';
+import { FlorenceHallBigComponent } from './halls-components/kiev/florence/florence-hall-big/florence-hall-big.component';
+import { FlorenceHallLittleComponent } from './halls-components/kiev/florence/florence-hall-little/florence-hall-little.component';
+import { FlorenceHallRedComponent } from './halls-components/kiev/florence/florence-hall-red/florence-hall-red.component';
+import { FlorenceHallBlueComponent } from './halls-components/kiev/florence/florence-hall-blue/florence-hall-blue.component';
+import { MpxDafiHall2Component } from './halls-components/harkov/mpx_dafi/mpx-dafi-hall-2/mpx-dafi-hall-2.component';
+import { MpxDafiHall3Component } from './halls-components/harkov/mpx_dafi/mpx-dafi-hall-3/mpx-dafi-hall-3.component';
+import { MpxDafiHall4Component } from './halls-components/harkov/mpx_dafi/mpx-dafi-hall-4/mpx-dafi-hall-4.component';
+import { MpxDafiHall6Component } from './halls-components/harkov/mpx_dafi/mpx-dafi-hall-6/mpx-dafi-hall-6.component';
+import { MpxDafiHall7Component } from './halls-components/harkov/mpx_dafi/mpx-dafi-hall-7/mpx-dafi-hall-7.component';
 
 //halls
-import { Hall1Component } from './halls/kiev/mpx_skymall/hall-1/hall-1.component';
 
-import { DomService } from './shared/services/dom.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +98,23 @@ import { DomService } from './shared/services/dom.service';
     SeancesByCinemasComponent,
     CinemasListComponent,
     HallDialogComponent,
-    Hall1Component
+    MpxSkymallHall1Component,
+    MpxSkymallHall2Component,
+    MpxSkymallHall3Component,
+    MpxSkymallHall4Component,
+    MpxProspectHall1Component,
+    MpxProspectHall2Component,
+    MpxProspectHall4Component,
+    MpxProspectHall5Component,
+    FlorenceHallBigComponent,
+    FlorenceHallLittleComponent,
+    FlorenceHallRedComponent,
+    FlorenceHallBlueComponent,
+    MpxDafiHall2Component,
+    MpxDafiHall3Component,
+    MpxDafiHall4Component,
+    MpxDafiHall6Component,
+    MpxDafiHall7Component
   ],
   imports: [
     BrowserModule,
@@ -130,7 +164,25 @@ import { DomService } from './shared/services/dom.service';
     MatTooltipModule,
     MatStepperModule,
   ],
-  entryComponents: [SeancesByCinemasComponent, HallDialogComponent, Hall1Component],
+  entryComponents: [SeancesByCinemasComponent, HallDialogComponent,
+    MpxSkymallHall1Component,
+    MpxSkymallHall2Component,
+    MpxSkymallHall3Component,
+    MpxSkymallHall4Component,
+    MpxProspectHall1Component,
+    MpxProspectHall2Component,
+    MpxProspectHall4Component,
+    MpxProspectHall5Component,
+    FlorenceHallBigComponent,
+    FlorenceHallLittleComponent,
+    FlorenceHallRedComponent,
+    FlorenceHallBlueComponent,
+    MpxDafiHall2Component,
+    MpxDafiHall3Component,
+    MpxDafiHall4Component,
+    MpxDafiHall6Component,
+    MpxDafiHall7Component
+  ],
   providers: [GeocodingApiService,
     MovieService, 
     CityService, 

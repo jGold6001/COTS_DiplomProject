@@ -17,7 +17,12 @@ export class DomService {
       private injector: Injector
   ) { }
   
-  createDom(component: any) {
+  createFactory(component: any) {
+    return  this.componentFactoryResolver
+      .resolveComponentFactory(component);
+  }
+
+  appendComponentToBody(component: any) {
     // Create a component reference from the component 
     const componentRef = this.componentFactoryResolver
       .resolveComponentFactory(component)
@@ -30,7 +35,8 @@ export class DomService {
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
       .rootNodes[0] as HTMLElement;
     
-    return domElem;
+    // Append DOM element to the body
+    document.body.appendChild(domElem); 
   }
     
     
