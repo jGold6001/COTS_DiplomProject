@@ -1,0 +1,69 @@
+
+<h1 mat-dialog-title>{{seance.movie.name}}</h1>
+
+<div mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <p><b>Кинотеатр:</b> {{seance.cinema.name}} ({{seance.cinema.address}})</p>
+        </div>
+        <div class="col-lg-2">
+            <p><b>Зал:</b>  {{seance.hall}}</p>
+        </div>
+        <div class="col-lg-3">
+          <p><b>Сеанс:</b> {{seance.dateStr}} {{seance.timeStr}} </p>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-6">
+            <div #container></div>
+          </div>
+          <div class="col-lg-6">
+
+            <div class="container">
+
+              <div class="row">
+                <div class="container" *ngFor="let place of places">
+                    <div class="row">
+                      <div class="col-6">
+                        <span>Место: {{place.num}}</span>
+                      </div>
+                      <div class="col-6">
+                        <span>Ряд: {{place.row}}</span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="container" *ngIf="show">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <button (click)="buy()">Купить</button>
+                    </div>
+                    <div class="col-lg-6">
+                      <div>
+                        Количество: {{places.length}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            
+            
+          </div>
+      </div>
+    </div>
+   
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</div>
