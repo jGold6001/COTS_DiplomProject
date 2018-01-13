@@ -8,7 +8,7 @@ import { PurchasePageComponent } from "./components/purchase-page.components/pur
 
 const routes: Routes = [
   { path: "", component: MainPageComponent },  
-  { path: "purchase", component: PurchasePageComponent},
+  { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},
   { path: ":cityId/cinema/:id", component: CinemaPageComponent}

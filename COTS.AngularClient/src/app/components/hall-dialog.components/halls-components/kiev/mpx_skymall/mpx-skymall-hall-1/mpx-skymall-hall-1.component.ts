@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DeliverService } from '../../../../../../shared/services/deliver.service';
+import { DataService } from '../../../../../../shared/services/data.service';
+import { Place } from '../../../../../../shared/models/place.model';
+
 
 @Component({
   selector: 'app-mpx-skymall-hall-1',
@@ -8,37 +10,35 @@ import { DeliverService } from '../../../../../../shared/services/deliver.servic
 })
 export class MpxSkymallHall1Component implements OnInit {
 
-  info: any;
+  place: Place;
+
+  tariff = "simple";
+  price = 100;
 
   constructor(
-    private deliverService: DeliverService
+    private dataService: DataService
   ) { }
 
   ngOnInit() {
   }
 
   myEvent_1(){
-    let place = {
-      num:1, row:1
-    }
-
-    this.deliverService.selectPlaces(place);
+    
+    this.place = new Place()
+    this.place.init(1, 1,this.tariff, this.price);
+    this.dataService.selectPlaces(this.place);
   }
 
   myEvent_2(){
-    let place = {
-      num:2, row:2
-    }
-
-    this.deliverService.selectPlaces(place);
+    this.place = new Place()
+    this.place.init(2, 2,this.tariff, this.price);
+    this.dataService.selectPlaces(this.place);
   }
 
   myEvent_3(){
-    let place = {
-      num:3, row:3
-    }
-
-    this.deliverService.selectPlaces(place);
+    this.place = new Place()
+    this.place.init(3, 3,this.tariff, this.price);
+    this.dataService.selectPlaces(this.place);
   }
 
 }

@@ -13,8 +13,15 @@ export const environment = {
   APIURL_MOVIES_PREMERIES_BYCITY :       _serverHost +  "/api/movie/premeries/",
   APIURL_MOVIES_COMINGSOON_BYCITY :     _serverHost +  "/api/movie/comingsoon/",
   APIURL_MOVIES_TOP10_BYCITY :          _serverHost +  "/api/movie/top10/",
+
   APIURL_CINEMA :                       _serverHost +  "/api/cinema/",
   APIURL_CINEMAS_BYCITY:                _serverHost +  "/api/cinema/getallbycity/",
+
   APIURL_CITIES:                        _serverHost +  "/api/city/getall",
+
   APIURL_SEANCES_BY_CINEMA_MOVIE_DATE:  _serverHost +  "/api/seance/getall/",
+
+  APIURL_TICKETS_SAVE_IN_DB:           _serverHost +  "/api/ticket/save_in_db",
+  APIURL_TICKETS_BY_PURCHASE:          _serverHost +  "/api/ticket/by_purchase/",
+  APIURL_TICKETS_GET_PURCHASE:         _serverHost +  "/api/ticket/get_purchase/"
 };

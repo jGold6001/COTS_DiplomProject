@@ -82,8 +82,10 @@ import { MpxDafiHall3Component } from './components/hall-dialog.components/halls
 import { MpxDafiHall4Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-4/mpx-dafi-hall-4.component';
 import { MpxDafiHall6Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-6/mpx-dafi-hall-6.component';
 import { MpxDafiHall7Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-7/mpx-dafi-hall-7.component';
-import { DeliverService } from './shared/services/deliver.service';
+import { DataService } from './shared/services/data.service';
 import { PurchasePageComponent } from './components/purchase-page.components/purchase-page/purchase-page.component';
+import { TicketService } from './shared/services/ticket.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -122,6 +124,7 @@ import { PurchasePageComponent } from './components/purchase-page.components/pur
     AppRoutingModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     CommonModule,
@@ -192,7 +195,8 @@ import { PurchasePageComponent } from './components/purchase-page.components/pur
     SeanceService,
     DatePipe,
     DomService,
-    DeliverService,
+    DataService,
+    TicketService,
     { provide: LOCALE_ID, useValue: "ru" }
   ],
   bootstrap: [AppComponent]
