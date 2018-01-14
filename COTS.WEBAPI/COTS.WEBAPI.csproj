@@ -152,10 +152,12 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Constants\TicketStates.cs" />
     <Compile Include="Controllers\WebApi\CinemaController.cs" />
     <Compile Include="Controllers\WebApi\CityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebApi\MovieController.cs" />
+    <Compile Include="Controllers\WebApi\TicketController.cs" />
     <Compile Include="Controllers\WebApi\SeanceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,7 +165,9 @@
     <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
+    <Compile Include="Models\PurchaseViewModel.cs" />
     <Compile Include="Models\SeanceViewModel.cs" />
+    <Compile Include="Models\TicketViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@ using COTS.DAL.Repositories;
 using COTS.DAL.Entities;
 using System.Linq;
 using COTS.BLL.DTO;
+using System.Diagnostics;
 
 namespace COTS.BLL.Services.Tests
 {
@@ -32,13 +33,18 @@ namespace COTS.BLL.Services.Tests
         [TestMethod()]
         public void GetOnePurchaseTest()
         {
-
+            PurchaseDTO purchaseDTO = purchaseService.GetAll().FirstOrDefault();
+            Trace.WriteLine($"{purchaseDTO.Tickets.Count}");
+            foreach (var item in purchaseDTO.Tickets)
+            {
+                Trace.WriteLine(item);
+            }
         }
 
         [TestMethod()]
         public void DeletePurchaseTest()
         {
-
+           
         }
     }
 }

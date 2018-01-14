@@ -7,6 +7,7 @@ using COTS.DAL.Repositories;
 using System.Linq;
 using COTS.BLL.DTO;
 using COTS.DAL.Entities;
+using System.Diagnostics;
 
 namespace COTS.BLL.Services.Tests
 {
@@ -21,6 +22,7 @@ namespace COTS.BLL.Services.Tests
         {
             unitOfWork = new EFUnitOfWork("CotsContext");
             ticketService = new TicketService(unitOfWork);
+
         }
 
         [TestMethod()]
@@ -44,6 +46,7 @@ namespace COTS.BLL.Services.Tests
 
             ticketService.Delete(ticket.Id);
         }
+
     }
 }
 

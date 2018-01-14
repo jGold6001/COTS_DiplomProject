@@ -130,6 +130,44 @@ namespace COTS.DAL.Test.Repositories
                 seanceRepo.AddOrUpdate(seancesMultDafi[i]);
             }
 
+            var purchase = new Purchase()
+            {
+                Id = "test231243",
+                ClientName = "test",
+                ClientEmail="test@milo.net"
+                
+            };
+            purchaseRepo.AddOrUpdate(purchase);
+            unitOfwork.Save();
+
+            var seance = seanceRepo.GetAll().FirstOrDefault();
+            var ticket_1 = new Ticket()
+            {
+                Id = "test001",
+                Seance = seance,
+                Hall = "1",
+                Place = 111,
+                Row = 111,
+                Price = 100,
+                Tariff = "simple",
+                Purchase = purchase
+            };
+
+            var ticket_2 = new Ticket()
+            {
+                Id = "test002",
+                Seance = seance,
+                Hall = "1",
+                Place = 111,
+                Row = 222,
+                Price = 200,
+                Tariff = "vip",
+                Purchase = purchase
+            };
+
+            ticketRepo.AddOrUpdate(ticket_1);
+            ticketRepo.AddOrUpdate(ticket_2);
+
             unitOfwork.Save();
         }
      
@@ -295,6 +333,13 @@ namespace COTS.DAL.Test.Repositories
 
             foreach (var item in ticketRepo.GetAll())
                 ticketRepo.Delete(item);
+
+            foreach (var item in ticketRepo.GetAll())
+                ticketRepo.Delete(item);
+
+
+            foreach (var item in purchaseRepo.GetAll())
+                purchaseRepo.Delete(item);
 
             unitOfwork.Save();
         }
