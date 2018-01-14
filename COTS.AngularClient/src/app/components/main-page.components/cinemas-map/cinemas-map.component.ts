@@ -16,7 +16,7 @@ import { GeocodingApiService } from '../../../shared/services/geocodingApi.servi
 })
 export class CinemasMapComponent implements OnInit, OnChanges {
 
-  @Input() city: City;
+  @Input() city: City= new City();
   @Input() cinemas: Cinema[]=[];
 
   lat: number;
@@ -90,7 +90,7 @@ export class CinemasMapComponent implements OnInit, OnChanges {
 
   updateLatLngFromAdress(cinema: Cinema) {
     this.geocodingAPIService
-        .findFromAddress(cinema.address, this.city.name)
+        .findFromAddress(cinema.address, this.fixExceptionCityName())
         .subscribe(response => {
             if (response.status == 'OK') {
                 this.lat = response.results[0].geometry.location.lat;

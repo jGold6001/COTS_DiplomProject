@@ -6,12 +6,10 @@ import { Movie } from "./movie.model";
 export class Ticket{
 
     init(
-        id: string, movie: Movie, cinema: Cinema, seanceId: number, hall: string, place: number, 
+        id: string, seanceId: number, hall: string, place: number, 
         row: number, tariff: string, price: number, purchaseId: string, state: number
     ){
         this.id = id;
-        this.movie = movie;
-        this.cinema = cinema;
         this.seanceId = seanceId;
         this.hall = hall;
         this.place = place;

@@ -19,8 +19,8 @@ export class PurchasePageComponent implements OnInit {
   purchase: Purchase;
   tickets: Ticket[] =[];
   movie: Movie = new Movie();
-  cinema: Cinema;
- 
+  cinema: Cinema= new Cinema();
+
   constructor(
    private route: ActivatedRoute,
    private ticketService: TicketService
@@ -35,7 +35,7 @@ export class PurchasePageComponent implements OnInit {
         this.tickets = this.purchase.tickets;
         this.movie = this.tickets[0].movie;
         this.cinema = this.tickets[0].cinema;
-      });
+      }, () => console.error("Ошибка при получении данных с сервера"));
   }
 
   get purchaseId(): string{ 

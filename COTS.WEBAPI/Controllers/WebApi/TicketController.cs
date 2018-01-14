@@ -48,10 +48,10 @@ namespace COTS.WEBAPI.Controllers.WebApi
             mapperMovie = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<MovieDTO, MovieViewModel>()));
             mapperCinema = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<CinemaDTO, CinemaViewModel>()));
             mapperTicket = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, TicketViewModel>()
-                .ForMember("Cinema", opt => opt.MapFrom(src =>
+                .ForMember("CinemaViewModel", opt => opt.MapFrom(src =>
                     mapperCinema.Map<CinemaDTO, CinemaViewModel>(cinemaService.GetOne(seanceService.GetOne(src.SeanceId).CinemaId)))
                 )
-                .ForMember("Movie", opt => opt.MapFrom(src =>
+                .ForMember("MovieViewModel", opt => opt.MapFrom(src =>
                     mapperMovie.Map<MovieDTO, MovieViewModel>(movieService.GetOne(seanceService.GetOne(src.SeanceId).MovieId)))
                 )
            ));

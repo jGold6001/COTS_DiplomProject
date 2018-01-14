@@ -6,6 +6,7 @@ import { Purchase } from "../models/purchase.model";
 import { HttpClient } from "@angular/common/http";
 import { Ticket } from "../models/ticket.model";
 import { Http } from "@angular/http";
+import { JsonConvertor } from "../utils/json.convertor";
 
 @Injectable()
 export class TicketService{
@@ -28,7 +29,17 @@ export class TicketService{
     getPurchase(purchaseId: string){
         return this.http.get(environment.APIURL_TICKETS_GET_PURCHASE + purchaseId)
             .map(responce => {
-                return this.convertJsonToArray(responce.json());
+                let data = responce.json();
+
+                let purchase = JsonConvertor.toPurchase(data);
+                let movie = JsonConvertor.toMovie(data.TicketViewModels[0].MovieViewModel);
+                let cinema = JsonConvertor.toCinema(data.TicketViewModels[0].CinemaViewModel);
+                let tickets = JsonConvertor.toTicketsArray(data.TicketViewModels, movie, cinema);
+                purchase.tickets = tickets;               
+                // console.log(tickets);
+                // console.log(movie);
+                // console.log(cinema);
+                return purchase;
             });
     }
 
@@ -43,29 +54,6 @@ export class TicketService{
 
     removePurchase(){
 
-    }
-
-    convertJsonToArray(data): Purchase {
-        let purchase: Purchase= new Purchase();
-        let tickets: Ticket[] = [];
-
-        purchase.id = data.Id;
-        let ticketsArray = data.TicketViewModels;
-        for (let i = 0; i < ticketsArray.length; i++) {
-            let ticket: Ticket = new Ticket();
-            ticket.init(
-                ticketsArray[i].Id,                
-                ticketsArray[i].Movie, 
-                ticketsArray[i].Cinema,
-                ticketsArray[i].SeanceId, 
-                ticketsArray[i].Hall, ticketsArray[i].Place,
-                ticketsArray[i].Row, ticketsArray[i].Tariff, ticketsArray[i].Price, 
-                ticketsArray[i].PurchaseId, ticketsArray[i].State
-            );   
-            tickets.push(ticket);
-        }
-        purchase.tickets = tickets;
-        return purchase;
     }
 
 }

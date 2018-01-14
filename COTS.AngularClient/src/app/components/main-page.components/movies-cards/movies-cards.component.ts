@@ -10,23 +10,15 @@ import { City } from '../../../shared/models/city.model';
 })
 export class MoviesCardsComponent implements OnInit {
 
-  @Input() movie: Movie;
-  @Input() city: City;
+  @Input() movie: Movie= new Movie();
+  @Input() city: City = new City();
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     
   }
-
-  private fixExceptionCityId(): string{
-    let cityId: string;
-    try {
-      cityId = this.city.id;
-    } catch (ex) {}
-    return cityId;
-  }
-
+  
   goToMovieUrl(){
     this.router.navigate([this.city.id, "movie", this.movie.id]);
   }

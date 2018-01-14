@@ -34,11 +34,7 @@ namespace COTS.BLL.Services.Tests
         public void GetOnePurchaseTest()
         {
             PurchaseDTO purchaseDTO = purchaseService.GetAll().FirstOrDefault();
-            Trace.WriteLine($"{purchaseDTO.Tickets.Count}");
-            foreach (var item in purchaseDTO.Tickets)
-            {
-                Trace.WriteLine(item);
-            }
+           
         }
 
         [TestMethod()]

@@ -48,19 +48,19 @@ export class JsonConvertor{
         return cinema;
     }
 
-    public static toTicketsArray(data): Ticket[]{
+    public static toTicketsArray(data, movie: Movie, cinema: Cinema): Ticket[]{
         let tickets: Ticket[] = [];
         for (let i = 0; i < data.length; i++) {
             let ticket: Ticket = new Ticket();
-            let movie = JsonConvertor.toMovie(ticket.movie);
-            let cinema = JsonConvertor.toCinema(ticket.cinema);
             ticket.init(
-                data[i].Id,                
-                movie, cinema, data[i].SeanceId, 
+                data[i].Id,
+                data[i].SeanceId, 
                 data[i].Hall, data[i].Place,
                 data[i].Row, data[i].Tariff, data[i].Price, 
                 data[i].PurchaseId, data[i].State
-            );   
+            );
+            ticket.cinema = cinema;
+            ticket.movie = movie;   
             tickets.push(ticket);
         }
         return tickets;
@@ -68,8 +68,7 @@ export class JsonConvertor{
 
     public static toPurchase(data): Purchase{
         let purchase: Purchase= new Purchase();
-        purchase.id = data.Id;
-        purchase.tickets = JsonConvertor.toTicketsArray(data.TicketViewModels);
+        purchase.id = data.Id;     
         return purchase;
     }
 
