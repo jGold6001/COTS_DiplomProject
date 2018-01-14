@@ -5,6 +5,8 @@ import { Ticket } from '../../../shared/models/ticket.model';
 import { Purchase } from '../../../shared/models/purchase.model';
 import { TicketService } from '../../../shared/services/ticket.service';
 import { Observable } from 'rxjs';
+import { Movie } from '../../../shared/models/movie.model';
+import { Cinema } from '../../../shared/models/cinema.model';
 
 
 @Component({
@@ -16,6 +18,8 @@ export class PurchasePageComponent implements OnInit {
 
   purchase: Purchase;
   tickets: Ticket[] =[];
+  movie: Movie = new Movie();
+  cinema: Cinema;
  
   constructor(
    private route: ActivatedRoute,
@@ -29,6 +33,8 @@ export class PurchasePageComponent implements OnInit {
       .subscribe(data => {
         this.purchase = data;
         this.tickets = this.purchase.tickets;
+        this.movie = this.tickets[0].movie;
+        this.cinema = this.tickets[0].cinema;
       });
   }
 

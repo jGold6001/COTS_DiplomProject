@@ -83,8 +83,8 @@ export class HallDialogComponent implements OnInit {
 
       let ticket: Ticket = new Ticket();
       ticket.init(_idTicket, 
-        this.seance.cinema.name, 
-        this.seance.movie.name, 
+        this.seance.movie, 
+        this.seance.cinema, 
         this.seance.id, 
         this.seance.hall, 
         place.num,

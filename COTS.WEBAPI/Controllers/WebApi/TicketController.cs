@@ -22,7 +22,13 @@ namespace COTS.WEBAPI.Controllers.WebApi
         IMovieService movieService;
         ICinemaService cinemaService;
 
-        IMapper mapperTicket, mapperTicketReverse, mapperPurchase, mapperPurchaseReverce;
+        IMapper mapperTicket, 
+                mapperTicketReverse, 
+                mapperPurchase, 
+                mapperPurchaseReverce,
+                mapperMovie,
+                mapperCinema;
+
 
         public TicketController()
         {
@@ -38,9 +44,16 @@ namespace COTS.WEBAPI.Controllers.WebApi
             this.movieService = movieService;
             this.cinemaService = cinemaService;
 
+
+            mapperMovie = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<MovieDTO, MovieViewModel>()));
+            mapperCinema = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<CinemaDTO, CinemaViewModel>()));
             mapperTicket = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, TicketViewModel>()
-                .ForMember("Cinema", opt => opt.MapFrom(src => cinemaService.GetOne(seanceService.GetOne(src.SeanceId).CinemaId).Name))
-                .ForMember("Movie", opt => opt.MapFrom(src => movieService.GetOne(seanceService.GetOne(src.SeanceId).MovieId).Name))
+                .ForMember("Cinema", opt => opt.MapFrom(src =>
+                    mapperCinema.Map<CinemaDTO, CinemaViewModel>(cinemaService.GetOne(seanceService.GetOne(src.SeanceId).CinemaId)))
+                )
+                .ForMember("Movie", opt => opt.MapFrom(src =>
+                    mapperMovie.Map<MovieDTO, MovieViewModel>(movieService.GetOne(seanceService.GetOne(src.SeanceId).MovieId)))
+                )
            ));
 
             mapperTicketReverse = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketViewModel, TicketDTO>()));

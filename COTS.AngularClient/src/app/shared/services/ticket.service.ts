@@ -12,7 +12,8 @@ export class TicketService{
 
     constructor(
         private httpClient: HttpClient,
-        private http: Http){}
+        private http: Http, 
+    ){}
 
     saveInDb(purchase: Purchase){
         this.httpClient.post(environment.APIURL_TICKETS_SAVE_IN_DB,
@@ -53,7 +54,10 @@ export class TicketService{
         for (let i = 0; i < ticketsArray.length; i++) {
             let ticket: Ticket = new Ticket();
             ticket.init(
-                ticketsArray[i].Id, ticketsArray[i].Movie, ticketsArray[i].Cinema, ticketsArray[i].SeanceId, 
+                ticketsArray[i].Id,                
+                ticketsArray[i].Movie, 
+                ticketsArray[i].Cinema,
+                ticketsArray[i].SeanceId, 
                 ticketsArray[i].Hall, ticketsArray[i].Place,
                 ticketsArray[i].Row, ticketsArray[i].Tariff, ticketsArray[i].Price, 
                 ticketsArray[i].PurchaseId, ticketsArray[i].State

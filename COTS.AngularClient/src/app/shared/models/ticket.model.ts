@@ -1,10 +1,12 @@
 import { stagger } from "@angular/animations/src/animation_metadata";
+import { Cinema } from "./cinema.model";
+import { Movie } from "./movie.model";
 
 
 export class Ticket{
 
     init(
-        id: string, movie: string, cinema: string, seanceId: number, hall: string, place: number, 
+        id: string, movie: Movie, cinema: Cinema, seanceId: number, hall: string, place: number, 
         row: number, tariff: string, price: number, purchaseId: string, state: number
     ){
         this.id = id;
@@ -25,8 +27,8 @@ export class Ticket{
     }
 
     id: string;
-    movie: string;
-    cinema: string;
+    movie: Movie;
+    cinema: Cinema;
     seanceId: number;
     hall: string;
     place: number;
