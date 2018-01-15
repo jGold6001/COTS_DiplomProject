@@ -86,6 +86,7 @@ import { DataService } from './shared/services/data.service';
 import { PurchasePageComponent } from './components/purchase-page.components/purchase-page/purchase-page.component';
 import { TicketService } from './shared/services/ticket.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TicketsDialogComponent } from './components/purchase-page.components/tickets-dialog/tickets-dialog.component';
 
 
 @NgModule({
@@ -118,6 +119,7 @@ import { HttpClientModule } from '@angular/common/http';
     MpxDafiHall6Component,
     MpxDafiHall7Component,
     PurchasePageComponent,
+    TicketsDialogComponent,
   ],
   imports: [
     BrowserModule,

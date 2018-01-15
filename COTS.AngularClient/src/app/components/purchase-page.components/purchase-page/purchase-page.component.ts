@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Ticket } from '../../../shared/models/ticket.model';
 import { Purchase } from '../../../shared/models/purchase.model';
 import { TicketService } from '../../../shared/services/ticket.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Movie } from '../../../shared/models/movie.model';
 import { Cinema } from '../../../shared/models/cinema.model';
 import { Seance } from '../../../shared/models/seance.model';
@@ -32,6 +32,8 @@ export class PurchasePageComponent implements OnInit {
   movie: Movie = new Movie();
   cinema: Cinema= new Cinema();
 
+
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -49,6 +51,7 @@ export class PurchasePageComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
 
+
   constructor(
    private route: ActivatedRoute,
    private ticketService: TicketService
@@ -56,7 +59,7 @@ export class PurchasePageComponent implements OnInit {
   {}
 
   ngOnInit() {
-
+    
     this.ticketService.getPurchase("test231243")
       .subscribe(data => {
         this.purchase = data;
@@ -74,5 +77,18 @@ export class PurchasePageComponent implements OnInit {
     });
     return id;
   }
+
+  paymentOrder(){
+    //save order in db
+    //display tickets in dialog
+
+  }
+
+  cancelOrder(){
+    //delete order in db
+    //go to Main-page
+
+  }
+
 
 }
