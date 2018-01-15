@@ -2,6 +2,7 @@ import { Movie } from "../models/movie.model";
 import { Cinema } from "../models/cinema.model";
 import { Ticket } from "../models/ticket.model";
 import { Purchase } from "../models/purchase.model";
+import { Seance } from "../models/seance.model";
 
 
 export class JsonConvertor{
@@ -48,7 +49,19 @@ export class JsonConvertor{
         return cinema;
     }
 
-    public static toTicketsArray(data, movie: Movie, cinema: Cinema): Ticket[]{
+    public static toSeanceArray(data): Seance[] {
+        let seances: Seance[] = [];  
+        for (let i = 0; i < data.length; i++) {
+            let seance: Seance = new Seance();
+            seance.init(
+                data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TypeD, data[i].Hall
+            );  
+            seances.push(seance);
+        }
+        return seances;
+    }
+
+    public static toTicketsArray(data, movie: Movie, cinema: Cinema, seance: Seance): Ticket[]{
         let tickets: Ticket[] = [];
         for (let i = 0; i < data.length; i++) {
             let ticket: Ticket = new Ticket();

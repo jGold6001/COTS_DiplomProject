@@ -34,11 +34,9 @@ export class TicketService{
                 let purchase = JsonConvertor.toPurchase(data);
                 let movie = JsonConvertor.toMovie(data.TicketViewModels[0].MovieViewModel);
                 let cinema = JsonConvertor.toCinema(data.TicketViewModels[0].CinemaViewModel);
-                let tickets = JsonConvertor.toTicketsArray(data.TicketViewModels, movie, cinema);
-                purchase.tickets = tickets;               
-                // console.log(tickets);
-                // console.log(movie);
-                // console.log(cinema);
+                let seance = null;
+                let tickets = JsonConvertor.toTicketsArray(data.TicketViewModels, movie, cinema, seance);
+                purchase.tickets = tickets;                              
                 return purchase;
             });
     }

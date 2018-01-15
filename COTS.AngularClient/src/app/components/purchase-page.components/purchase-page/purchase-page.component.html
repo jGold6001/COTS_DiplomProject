@@ -5,20 +5,71 @@
     
     <br/>
     <div id="seance_info" class="container">
+      
+      <!--header-->
       <div class="row">
         <div class="col-12">
           <h5>Билеты на фильм</h5>
         </div>
       </div>
-
+      
+      <!--movie content-->
+      <br/>
       <div class="row">
-        <div class="col-12">
-          <h6>{{movie.name}}</h6>
+
+        <div id="info_block" class="col-10">
+
+            <div class="row">
+                <div id="movie_name_block" class="col-12">
+                    <h6>{{movie.name}}</h6>
+                </div>
+              </div>
+    
+
+            <div class="row">
+
+                <div id="seance_info_block" class="col-12">
+                  
+                  <div class="row">
+                    <div class="col-lg-2">
+                        <b>Кинотеатр</b>
+                    </div>
+                    <div class="col-lg-10">
+                        <span>{{cinema.name}} ({{cinema.address}})</span>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                      <div class="col-lg-2">
+                          <b>Зал</b>
+                      </div>
+                      <div class="col-lg-10">
+                          <span>№</span>
+                      </div>
+                  </div>
+  
+                  <div class="row">
+                      <div class="col-lg-2">
+                
+                      </div>
+                      <div class="col-lg-10">
+      
+                      </div>
+                  </div>
+                
+                </div> 
+
+            </div>
+                 
+
+          
         </div>
-      </div>
 
-      <div class="row">
-       
+        
+        <div id="image_block" class="col-2">
+            <img src="{{movie.imagePath}}" />
+        </div>
+
       </div>
 
     </div>

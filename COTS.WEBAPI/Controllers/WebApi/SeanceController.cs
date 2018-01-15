@@ -15,28 +15,55 @@ namespace COTS.WEBAPI.Controllers.WebApi
     public class SeanceController : ApiController
     {
         ISeanceService seanceService;
-        IMapper mapper;
+        IMovieService movieService;
+        ICinemaService cinemaService;
+
+        IMapper mapperSeance,
+                mapperSeanceReverse,
+                mapperMovie,
+                mapperCinema;
 
         public SeanceController()
         {
 
         }
 
-        public SeanceController(ISeanceService seanceService)
+        public SeanceController(ISeanceService seanceService, IMovieService movieService, ICinemaService cinemaService)
         {
             this.seanceService = seanceService;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<SeanceDTO, SeanceViewModel>()
+            this.movieService = movieService;
+            this.cinemaService = cinemaService;
+
+            mapperSeance = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<SeanceDTO, SeanceViewModel>()
                         .ForMember("DateSeance", opt => opt.MapFrom(src => src.DateAndTime.ToShortDateString()))
                         .ForMember("TimeBegin", opt => opt.MapFrom(src => src.DateAndTime.ToString("HH:mm")))
+                        .ForMember("CinemaViewModel", opt => opt.MapFrom(src =>
+                            mapperCinema.Map<CinemaDTO, CinemaViewModel>(cinemaService.GetOne(src.CinemaId)))
+                        )
+                        .ForMember("MovieViewModel", opt => opt.MapFrom(src =>
+                            mapperMovie.Map<MovieDTO, MovieViewModel>(movieService.GetOne(src.MovieId)))
+                        )
             ));
         }
 
         [Route("getall/{cinemaId}/{movieId}/{date:datetime}")]
         public IEnumerable<SeanceViewModel> GetAllByCinemaMovieAndDate(string cinemaId, long movieId, DateTime date)
-        {
-            var seances = mapper.Map<IEnumerable<SeanceDTO>, IEnumerable<SeanceViewModel>>(
+        {  
+            var seances = mapperSeance.Map<IEnumerable<SeanceDTO>, IEnumerable<SeanceViewModel>>(
                 seanceService.FindAllByCinemaMovieAndDate(cinemaId, movieId, date)
                 );
+
+            var movie = mapperMovie.Map<MovieDTO, MovieViewModel>(movieService.GetOne(movieId));
+            var cinema = mapperCinema.Map<CinemaDTO, CinemaViewModel>(cinemaService.GetOne(cinemaId));
+
+            foreach (var item in seances)
+            {
+                item.MovieViewModel = movie;
+                item.CinemaViewModel = cinema;
+            }
+
+            //go to 
+
             return seances;
         }
 

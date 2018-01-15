@@ -9,6 +9,7 @@ import { Seance } from "../models/seance.model";
 import { DatePipe } from "@angular/common";
 import { Cinema } from "../models/cinema.model";
 import { Movie } from "../models/movie.model";
+import { JsonConvertor } from "../utils/json.convertor";
 
 @Injectable()
 export class SeanceService{
@@ -21,21 +22,9 @@ export class SeanceService{
         
         let dateFormated =this.datepipe.transform(date, 'yyyy-MM-dd');
         return this.http.get(environment.APIURL_SEANCES_BY_CINEMA_MOVIE_DATE + cinemaId +"/"+ movieId + "/" + dateFormated) 
-            .map(response => {
-                    return this.convertJsonToArray(response.json(), cinemaId, movieId);
+            .map(response => { 
+                    return JsonConvertor.toSeanceArray(response.json());
             });     
-    }
-
-    convertJsonToArray(data, cinemaId: string, movieId: number): Seance[] {
-        let seances: Seance[] = [];
-        
-        for (let i = 0; i < data.length; i++) {
-            let seance: Seance = new Seance(
-                data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TypeD, data[i].Hall
-            );   
-            seances.push(seance);
-        }
-        return seances;
     }
 
 }

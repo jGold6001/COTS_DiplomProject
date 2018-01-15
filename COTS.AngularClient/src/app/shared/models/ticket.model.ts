@@ -25,9 +25,11 @@ export class Ticket{
     }
 
     id: string;
+
     movie: Movie;
     cinema: Cinema;
     seanceId: number;
+    
     hall: string;
     place: number;
     row: number;

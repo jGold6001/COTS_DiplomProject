@@ -7,6 +7,7 @@ import { TicketService } from '../../../shared/services/ticket.service';
 import { Observable } from 'rxjs';
 import { Movie } from '../../../shared/models/movie.model';
 import { Cinema } from '../../../shared/models/cinema.model';
+import { Seance } from '../../../shared/models/seance.model';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class PurchasePageComponent implements OnInit {
 
   purchase: Purchase;
   tickets: Ticket[] =[];
+
+  seance: Seance = new Seance();
   movie: Movie = new Movie();
   cinema: Cinema= new Cinema();
 
@@ -33,8 +36,13 @@ export class PurchasePageComponent implements OnInit {
       .subscribe(data => {
         this.purchase = data;
         this.tickets = this.purchase.tickets;
-        this.movie = this.tickets[0].movie;
-        this.cinema = this.tickets[0].cinema;
+
+        let ticketObj = this.tickets[0];
+        this.movie = ticketObj.movie;
+        this.cinema = ticketObj.cinema;
+        
+        //this.seance.init(ticketObj .seanceId, ticketObj.);
+        
       }, () => console.error("Ошибка при получении данных с сервера"));
   }
 
