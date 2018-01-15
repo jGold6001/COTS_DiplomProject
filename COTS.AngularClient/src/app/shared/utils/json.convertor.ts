@@ -61,19 +61,24 @@ export class JsonConvertor{
         return seances;
     }
 
-    public static toTicketsArray(data, movie: Movie, cinema: Cinema, seance: Seance): Ticket[]{
+    public static toSeance(data, movie: Movie, cinema: Cinema): Seance{
+        let seance: Seance = new Seance();
+        seance.init(data.Id, data.TimeBegin, data.DateSeance, data.TypeD, data.Hall);
+        seance.movie = movie;
+        seance.cinema = cinema;
+        return seance;
+    }
+
+    public static toTicketsArray(data, seance: Seance): Ticket[]{
         let tickets: Ticket[] = [];
         for (let i = 0; i < data.length; i++) {
             let ticket: Ticket = new Ticket();
             ticket.init(
-                data[i].Id,
-                data[i].SeanceId, 
-                data[i].Hall, data[i].Place,
+                data[i].Id, data[i].Place,
                 data[i].Row, data[i].Tariff, data[i].Price, 
                 data[i].PurchaseId, data[i].State
             );
-            ticket.cinema = cinema;
-            ticket.movie = movie;   
+            ticket.seance = seance;   
             tickets.push(ticket);
         }
         return tickets;

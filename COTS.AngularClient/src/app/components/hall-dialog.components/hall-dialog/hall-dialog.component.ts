@@ -64,7 +64,6 @@ export class HallDialogComponent implements OnInit {
         this.show = true;
       }
     );
-
   }
 
 
@@ -83,8 +82,6 @@ export class HallDialogComponent implements OnInit {
 
       let ticket: Ticket = new Ticket();
       ticket.init(_idTicket, 
-        this.seance.id, 
-        this.seance.hall, 
         place.num,
         place.row,
         place.tariff,
@@ -92,11 +89,10 @@ export class HallDialogComponent implements OnInit {
         _idPurchase,
         bokingState);
       this.tickets.push(ticket);
-      ticket.cinema = this.seance.cinema;
-      ticket.movie = this.seance.movie;
+      ticket.seanceId = this.seance.id;
     } 
     this.purchase.tickets = this.tickets;
-
+    
     //post to server
     //this.ticketService.saveInDb(this.purchase);
 

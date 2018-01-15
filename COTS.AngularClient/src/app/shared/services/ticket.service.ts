@@ -30,12 +30,11 @@ export class TicketService{
         return this.http.get(environment.APIURL_TICKETS_GET_PURCHASE + purchaseId)
             .map(responce => {
                 let data = responce.json();
-
                 let purchase = JsonConvertor.toPurchase(data);
-                let movie = JsonConvertor.toMovie(data.TicketViewModels[0].MovieViewModel);
-                let cinema = JsonConvertor.toCinema(data.TicketViewModels[0].CinemaViewModel);
-                let seance = null;
-                let tickets = JsonConvertor.toTicketsArray(data.TicketViewModels, movie, cinema, seance);
+                let movie = JsonConvertor.toMovie(data.TicketViewModels[0].SeanceViewModel.MovieViewModel);
+                let cinema = JsonConvertor.toCinema(data.TicketViewModels[0].SeanceViewModel.CinemaViewModel);
+                let seance = JsonConvertor.toSeance(data.TicketViewModels[0].SeanceViewModel, movie, cinema);
+                let tickets = JsonConvertor.toTicketsArray(data.TicketViewModels, seance);
                 purchase.tickets = tickets;                              
                 return purchase;
             });

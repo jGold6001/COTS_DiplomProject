@@ -8,7 +8,15 @@ import { Observable } from 'rxjs';
 import { Movie } from '../../../shared/models/movie.model';
 import { Cinema } from '../../../shared/models/cinema.model';
 import { Seance } from '../../../shared/models/seance.model';
+import { ErrorStateMatcher } from '@angular/material';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-purchase-page',
@@ -24,6 +32,23 @@ export class PurchasePageComponent implements OnInit {
   movie: Movie = new Movie();
   cinema: Cinema= new Cinema();
 
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  nameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(40)
+  ]);
+
+  phoneFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  matcher = new MyErrorStateMatcher();
+
+
   constructor(
    private route: ActivatedRoute,
    private ticketService: TicketService
@@ -31,18 +56,14 @@ export class PurchasePageComponent implements OnInit {
   {}
 
   ngOnInit() {
-   
+
     this.ticketService.getPurchase("test231243")
       .subscribe(data => {
         this.purchase = data;
         this.tickets = this.purchase.tickets;
-
-        let ticketObj = this.tickets[0];
-        this.movie = ticketObj.movie;
-        this.cinema = ticketObj.cinema;
-        
-        //this.seance.init(ticketObj .seanceId, ticketObj.);
-        
+        this.seance = this.tickets[0].seance;
+        this.movie = this.seance.movie;
+        this.cinema = this.seance.cinema;    
       }, () => console.error("Ошибка при получении данных с сервера"));
   }
 

@@ -11,7 +11,6 @@ namespace COTS.BLL.DTO
     {
         public string Id { get; set; }
         public long SeanceId { get; set; }
-        public string Hall { get; set; }
         public int Row { get; set; }
         public int Place { get; set; }
         public string Tariff { get; set; }

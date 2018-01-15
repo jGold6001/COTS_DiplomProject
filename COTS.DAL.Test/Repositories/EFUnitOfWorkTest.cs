@@ -145,7 +145,6 @@ namespace COTS.DAL.Test.Repositories
             {
                 Id = "test001",
                 Seance = seance,
-                Hall = "1",
                 Place = 111,
                 Row = 111,
                 Price = 100,
@@ -157,7 +156,6 @@ namespace COTS.DAL.Test.Repositories
             {
                 Id = "test002",
                 Seance = seance,
-                Hall = "1",
                 Place = 111,
                 Row = 222,
                 Price = 200,
@@ -187,7 +185,6 @@ namespace COTS.DAL.Test.Repositories
             {
                 Id = "001",
                 Seance = seance,
-                Hall = "1",
                 Place = 1,
                 Row = 1,
                 Price = 100,
@@ -199,7 +196,6 @@ namespace COTS.DAL.Test.Repositories
             {
                 Id = "002",
                 Seance = seance,
-                Hall = "1",
                 Place = 1,
                 Row = 2,
                 Price = 200,

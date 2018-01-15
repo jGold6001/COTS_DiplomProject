@@ -34,6 +34,8 @@ namespace COTS.WEBAPI.Controllers.WebApi
             this.movieService = movieService;
             this.cinemaService = cinemaService;
 
+            mapperMovie = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<MovieDTO, MovieViewModel>()));
+            mapperCinema = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<CinemaDTO, CinemaViewModel>()));
             mapperSeance = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<SeanceDTO, SeanceViewModel>()
                         .ForMember("DateSeance", opt => opt.MapFrom(src => src.DateAndTime.ToShortDateString()))
                         .ForMember("TimeBegin", opt => opt.MapFrom(src => src.DateAndTime.ToString("HH:mm")))
@@ -61,8 +63,6 @@ namespace COTS.WEBAPI.Controllers.WebApi
                 item.MovieViewModel = movie;
                 item.CinemaViewModel = cinema;
             }
-
-            //go to 
 
             return seances;
         }

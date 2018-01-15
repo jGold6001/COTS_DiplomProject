@@ -8,10 +8,8 @@ namespace COTS.WEBAPI.Models
     public class TicketViewModel
     {
         public string Id { get; set; }
-        public MovieViewModel MovieViewModel { get; set; }
-        public CinemaViewModel CinemaViewModel { get; set; }
+        public SeanceViewModel SeanceViewModel { get; set; }
         public long SeanceId { get; set; }
-        public string Hall { get; set; }
         public int Row { get; set; }
         public int Place { get; set; }
         public string Tariff { get; set; }

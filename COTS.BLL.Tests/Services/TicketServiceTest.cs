@@ -32,7 +32,6 @@ namespace COTS.BLL.Services.Tests
             var ticketDTO = new TicketDTO()
             {
                 SeanceId = seance.Id,
-                Hall = "#1",
                 Row = 2,
                 Place = 1,
                 Price = 100,
@@ -42,7 +41,7 @@ namespace COTS.BLL.Services.Tests
             ticketService.AddOrUpdate(ticketDTO);
 
             var ticket = ticketService.GetAll().FirstOrDefault();
-            Assert.AreEqual("#1", ticket.Hall);
+            
 
             ticketService.Delete(ticket.Id);
         }

@@ -1,3 +1,5 @@
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\obj\Debug\COTS.BLL.Tests.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\obj\Debug\COTS.BLL.Tests.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -21,7 +23,5 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\bin\Debug\Microsoft.
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\bin\Debug\AutoMapper.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\bin\Debug\Ninject.xml
-F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\obj\Debug\COTS.BLL.Tests.csprojResolveAssemblyReference.cache
-F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\obj\Debug\COTS.BLL.Tests.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\obj\Debug\COTS.BLL.Tests.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.BLL.Tests\obj\Debug\COTS.BLL.Tests.pdb
