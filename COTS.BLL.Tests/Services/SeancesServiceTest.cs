@@ -25,32 +25,15 @@ namespace COTS.BLL.Services.Tests
         }
 
         [TestMethod()]
-        public void FindByCinemaAndDateTest()
+        public void FindAllSeancesByCinemaAndDateTest()
         {
             string cinemaId = "mpx_skymall";
-            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByCinemaAndDate(cinemaId, DateTime.Now.Date);
-
-            foreach (var item in seancesDTO)
-                Trace.WriteLine($"CinemaId: {item.CinemaId} and date {item.DateAndTime}");
-        }
-
-        [TestMethod()]
-        public void FindByMovieAndDateTest()
-        {
             long movieId = unitOfWork.Movies.GetAll().Select(m => m.Id).FirstOrDefault();
-            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindByMovieAndDate(movieId, DateTime.Now.Date);
+            IEnumerable<SeanceDTO> seancesDTO = seanceService.FindAllByCinemaMovieAndDate(cinemaId, movieId, DateTime.Now.Date);
 
             foreach (var item in seancesDTO)
-                Trace.WriteLine($"MovieId: {item.MovieId} and date {item.DateAndTime}");
+                Trace.WriteLine($"IDSeance: {item.Id}, Cinema: {item.CinemaDTO.Name}, Movie: {item.MovieDTO.Name} and date {item.DateAndTime}");
         }
-
-        [TestMethod()]
-        public void DateTest()
-        {
-            DateTime date = DateTime.Now;
-            Trace.WriteLine("date with time: "+date.Ticks);
-            Trace.WriteLine("date only: " + DateTime.Now.Date.Ticks);
-            Trace.WriteLine(date.ToString("HH:mm"));
-        }
+      
     }
 }

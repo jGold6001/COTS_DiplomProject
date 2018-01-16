@@ -5,8 +5,9 @@ using System.Web;
 
 namespace COTS.WEBAPI.Models
 {
-    public class ClientDataViewModel
+    public class ClientDetailsViewModel
     {
+        public string Id { get; set; }
         public string Email { get; set; }
         public string FullName { get; set; }
         public long Phone { get; set; }

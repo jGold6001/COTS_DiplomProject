@@ -19,11 +19,17 @@ namespace COTS.BLL.Services
         IMapper mapper;
         SeanceRepository seanceRepo;
 
+        IMovieService movieService;
+        ICinemaService cinemaService;
+
         public SeanceService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
             mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Seance, SeanceDTO>()));
             seanceRepo = UnitOfWork.Seances as SeanceRepository;
+
+            movieService = new MovieService(unitOfWork);
+            cinemaService = new CinemaService(unitOfWork);
         }
 
         public void AddOrUpdate(SeanceDTO seance)
@@ -33,36 +39,13 @@ namespace COTS.BLL.Services
 
         public IEnumerable<SeanceDTO> FindByCinemaAndDate(string cinemaId, DateTime date)
         {
-            if (cinemaId == null)
-                throw new ValidationException("'CinemaId' not set", "");
-
-            if (date == null)
-                throw new ValidationException("'date' not set", "");
-
-
-            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaAndDate(cinemaId, date);
-            if (seances.Count() == 0)
-                throw new ValidationException("Seances by cinema not found", "");
-
-            IEnumerable<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, IEnumerable<SeanceDTO>>(seances);
-            return seancesDTO;
+            throw new NotImplementedException();
         }
+
 
         public IEnumerable<SeanceDTO> FindByMovieAndDate(long? movieId, DateTime date)
         {
-            if (movieId == null)
-                throw new ValidationException("'MovieId' not set", "");
-
-            if (date == null)
-                throw new ValidationException("'date' not set", "");
-
-            IEnumerable<Seance> seances = seanceRepo.FindAllByMovieAndDate(movieId.Value, date);
-            if (seances.Count() == 0)
-                throw new ValidationException("Seances by movie not found", "");
-
-            IEnumerable<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, IEnumerable<SeanceDTO>>(seances);
-            return seancesDTO;
-            
+            throw new NotImplementedException();
         }
 
         public IEnumerable<SeanceDTO> FindByDate(DateTime date)
@@ -82,10 +65,7 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'date' not set", "");
 
             IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId.Value, date);
-            //if (seances.Count() == 0)
-            //    throw new ValidationException("Seances by movie not found", "");
-
-            IEnumerable<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, IEnumerable<SeanceDTO>>(seances);
+            IEnumerable<SeanceDTO> seancesDTO = AttachObjetcsToDTOList(seances);          
             return seancesDTO;
 
         }
@@ -105,7 +85,49 @@ namespace COTS.BLL.Services
             if(seance == null)
                 throw new ValidationException("seance not found", "");
 
-            return mapper.Map<Seance, SeanceDTO>(seance);
+
+            var seanceDTO = AttachObjetcsToDTO(seance);
+            return seanceDTO;
         }
+
+        public IEnumerable<SeanceDTO> GetAll()
+        {
+            var seances = seanceRepo.GetAll();
+            IEnumerable<SeanceDTO> seancesDTO = AttachObjetcsToDTOList(seances);
+            return seancesDTO;
+        }
+
+
+        private List<SeanceDTO> AttachObjetcsToDTOList(IEnumerable<Seance> seances)
+        {
+            var movieId = seances.FirstOrDefault().MovieId;
+            var cinemaId = seances.FirstOrDefault().CinemaId;
+            var movieDTO = movieService.GetOne(movieId);
+            var cinemaDTO = cinemaService.GetOne(cinemaId);
+
+            List<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, List<SeanceDTO>>(seances);
+
+            foreach (var item in seancesDTO)
+            {
+                item.MovieDTO = movieDTO;
+                item.CinemaDTO = cinemaDTO;
+            }               
+            return seancesDTO;
+        }
+
+
+        private SeanceDTO AttachObjetcsToDTO(Seance seance)
+        {
+            var movieDTO = movieService.GetOne(seance.MovieId);
+            var cinemaDTO = cinemaService.GetOne(seance.CinemaId);
+
+            SeanceDTO seanceDTO = mapper.Map<Seance, SeanceDTO>(seance);
+            seanceDTO.MovieDTO = movieDTO;
+            seanceDTO.CinemaDTO = cinemaDTO;
+            
+            return seanceDTO;
+        }
+
+
     }
 }

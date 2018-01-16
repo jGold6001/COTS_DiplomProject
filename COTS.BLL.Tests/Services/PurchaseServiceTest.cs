@@ -16,6 +16,7 @@ namespace COTS.BLL.Services.Tests
     {
         IPurchaseService purchaseService;
         ITicketService ticketService;
+        ISeanceService seanceService;
         IUnitOfWork unitOfWork;
 
         [TestInitialize()]
@@ -24,6 +25,7 @@ namespace COTS.BLL.Services.Tests
             unitOfWork = new EFUnitOfWork("CotsContext");
             purchaseService = new PurchaseService(unitOfWork);
             ticketService = new TicketService(unitOfWork);
+            seanceService = new SeanceService(unitOfWork);
         }
 
         [TestMethod()]
@@ -46,13 +48,13 @@ namespace COTS.BLL.Services.Tests
             purchaseDTO.PurchaseClientDetailsDTO = clientDetailsDTO;
             purchaseService.AddOrUpdate(purchaseDTO);
 
+        
+            var seanceDTO = seanceService.GetAll().FirstOrDefault();
 
-
-            var seance = unitOfWork.Seances.GetAll().FirstOrDefault();
             var ticketDTO = new TicketDTO()
             {
                 Id = "00001",
-                SeanceId = seance.Id,
+                SeanceDTO = seanceDTO,
                 State = 1,
                 PurchaseId = purchaseDTO.Id
             };
@@ -66,7 +68,7 @@ namespace COTS.BLL.Services.Tests
                 Price = 400
             };
 
-            ticketDTO.ticketPlaceDetailsDTO = placeDetailsDTO;
+            ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
             ticketService.AddOrUpdate(ticketDTO);
 
         }
@@ -76,7 +78,13 @@ namespace COTS.BLL.Services.Tests
         {
             var purchseDTO = purchaseService.GetOne("001");
             Trace.WriteLine($"id= {purchseDTO.Id}, clientName = {purchseDTO.PurchaseClientDetailsDTO.FullName}");
-           
+            Trace.WriteLine($"\n\ntickets:");
+            foreach (var item in purchseDTO.TicketsDTOs)
+            {
+                Trace.WriteLine(item.Id);
+                Trace.WriteLine(item.TicketPlaceDetailsDTO.Number);
+                Trace.WriteLine($"SeanceID - {item.SeanceDTO.Id}, SeanceDate -  {item.SeanceDTO.DateAndTime.Date}");
+            }
         }
 
         [TestMethod()]
@@ -84,7 +92,16 @@ namespace COTS.BLL.Services.Tests
         {
             var purchasesDTOs = purchaseService.GetAll();
             foreach (var item in purchasesDTOs)
+            {
                 Trace.WriteLine($"id= {item.Id}, clientName = {item.PurchaseClientDetailsDTO.FullName}");
+                foreach (var ticket in item.TicketsDTOs)
+                {
+                    Trace.WriteLine(ticket.Id);
+                    Trace.WriteLine(ticket.TicketPlaceDetailsDTO.Number);
+                    Trace.WriteLine($"SeanceID - {ticket.SeanceDTO.Id}, SeanceDate -  {ticket.SeanceDTO.DateAndTime.Date}");
+                }
+            }
+               
 
         }
 

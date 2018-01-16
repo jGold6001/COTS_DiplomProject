@@ -54,7 +54,7 @@ namespace COTS.BLL.Services
             if (purchases.Count() == 0)
                 throw new ValidationException("Purchases table is empty", "");
 
-            var purchasesDTOs = AddClientsDetailesFromDb(purchases);
+            var purchasesDTOs = AttachObjetcsToDTOList(purchases);
             return purchasesDTOs;
         }
 
@@ -63,9 +63,8 @@ namespace COTS.BLL.Services
             if (id == null)
                 throw new ValidationException("'id' not set", "");
 
-            var purchaseDTO = mapperPurchase.Map<Purchase, PurchaseDTO>(UnitOfWork.Purchases.Get(id));
-            var clientDTO = mapperClientDetails.Map<PurchaseClientDetails, PurchaseClientDetailsDTO>(UnitOfWork.PurchaseClientDetailses.Get(id));
-            purchaseDTO.PurchaseClientDetailsDTO = clientDTO;
+            var purchase = UnitOfWork.Purchases.Get(id);
+            var purchaseDTO = AttachObjetcsToDTO(purchase);
             return purchaseDTO;
         }
 
@@ -82,13 +81,29 @@ namespace COTS.BLL.Services
         }
 
 
-        private List<PurchaseDTO> AddClientsDetailesFromDb(IEnumerable<Purchase> purchases)
+        private List<PurchaseDTO> AttachObjetcsToDTOList(IEnumerable<Purchase> purchases)
         {
             var purchasesDTOs = mapperPurchase.Map<IEnumerable<Purchase>, IEnumerable<PurchaseDTO>>(purchases) as List<PurchaseDTO>;
             foreach (var item in purchasesDTOs)
+            {
                 item.PurchaseClientDetailsDTO = mapperClientDetails.Map<PurchaseClientDetails, PurchaseClientDetailsDTO>(UnitOfWork.PurchaseClientDetailses.Get(item.Id));
+                item.TicketsDTOs = ticketService.GetByPurchase(item.Id) as List<TicketDTO>;
+            }
+               
 
             return purchasesDTOs;
         }
+
+        private PurchaseDTO AttachObjetcsToDTO(Purchase purchase)
+        {
+            var purchaseDTO = mapperPurchase.Map<Purchase, PurchaseDTO>(purchase);
+            var clientDTO = mapperClientDetails.Map<PurchaseClientDetails, PurchaseClientDetailsDTO>(UnitOfWork.PurchaseClientDetailses.Get(purchase.Id));
+            var ticketsDTOs = ticketService.GetByPurchase(purchase.Id) as List<TicketDTO>;
+
+            purchaseDTO.PurchaseClientDetailsDTO = clientDTO;
+            purchaseDTO.TicketsDTOs = ticketsDTOs;
+            return purchaseDTO;
+        }
+
     }
 }

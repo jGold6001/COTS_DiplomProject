@@ -12,7 +12,7 @@ namespace COTS.BLL.DTO
         public DateTime DateAndTime { get; set; }
         public string TypeD { get; set; }
         public string Hall { get; set; }      
-        public string CinemaId { get; set; }
-        public long MovieId { get; set; }       
+        public CinemaDTO CinemaDTO { get; set; }
+        public MovieDTO MovieDTO { get; set; }       
     }
 }
