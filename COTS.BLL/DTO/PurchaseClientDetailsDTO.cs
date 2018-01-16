@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace COTS.BLL.DTO
 {
-    public class PurchaseDTO
+    public class PurchaseClientDetailsDTO
     {
         public string Id { get; set; }
-        public PurchaseClientDetailsDTO PurchaseClientDetailsDTO { get; set; }
+        public string Email { get; set; }
+        public string FullName { get; set; }
+        public long Phone { get; set; }
     }
 }

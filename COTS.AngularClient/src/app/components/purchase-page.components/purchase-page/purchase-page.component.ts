@@ -8,8 +8,9 @@ import { Observable, Subscription } from 'rxjs';
 import { Movie } from '../../../shared/models/movie.model';
 import { Cinema } from '../../../shared/models/cinema.model';
 import { Seance } from '../../../shared/models/seance.model';
-import { ErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher, MatDialog } from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { TicketsDialogComponent } from '../tickets-dialog/tickets-dialog.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -30,8 +31,7 @@ export class PurchasePageComponent implements OnInit {
 
   seance: Seance = new Seance();
   movie: Movie = new Movie();
-  cinema: Cinema= new Cinema();
-
+  cinema: Cinema= new Cinema(); 
 
 
   emailFormControl = new FormControl('', [
@@ -50,11 +50,12 @@ export class PurchasePageComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-
+  email: string;
 
   constructor(
    private route: ActivatedRoute,
-   private ticketService: TicketService
+   private ticketService: TicketService,
+   public dialog: MatDialog
   ) 
   {}
 
@@ -80,7 +81,13 @@ export class PurchasePageComponent implements OnInit {
 
   paymentOrder(){
     //save order in db
+    this.savePurchase();
+
     //display tickets in dialog
+    // let dialogRef = this.dialog.open(TicketsDialogComponent, {
+    //   width: '1000px',
+    //   data: { purchase: this.purchase }
+    // });
 
   }
 
@@ -88,6 +95,10 @@ export class PurchasePageComponent implements OnInit {
     //delete order in db
     //go to Main-page
 
+  }
+
+  savePurchase(){
+    //console.log(this.email);
   }
 
 

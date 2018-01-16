@@ -33,7 +33,9 @@ namespace COTS.DAL.Test.Repositories
         private CinemaRepository cinemaRepo;
         private CityRepository cityRepo;
         private TicketRepository ticketRepo;
+        private TicketPlaceDetailsRepository ticketPlaceDetailsRepository;
         private PurchaseRepository purchaseRepo;
+        private PurchaseClientDetailsRepository purchaseClientDetailsRepository;
 
 
         [TestInitialize]
@@ -45,7 +47,9 @@ namespace COTS.DAL.Test.Repositories
             cinemaRepo = unitOfwork.Cinemas as CinemaRepository;
             cityRepo = unitOfwork.Cities as CityRepository;
             ticketRepo = unitOfwork.Tickets as TicketRepository;
+            ticketPlaceDetailsRepository = unitOfwork.TicketPlaceDetails as TicketPlaceDetailsRepository;
             purchaseRepo = unitOfwork.Purchases as PurchaseRepository;
+            purchaseClientDetailsRepository = unitOfwork.PurchaseClientDetailses as PurchaseClientDetailsRepository;    
         }
 
         [TestMethod]
@@ -132,91 +136,61 @@ namespace COTS.DAL.Test.Repositories
 
             var purchase = new Purchase()
             {
-                Id = "test231243",
-                ClientName = "test",
-                ClientEmail="test@milo.net"
-                
+                Id = "test231243"               
             };
             purchaseRepo.AddOrUpdate(purchase);
+
+            var clientsDetails = new PurchaseClientDetails()
+            {
+                Id = purchase.Id,
+                Email = "test@milo.net",
+                FullName = "Testov Test",
+                Phone = 30665554433
+            };
+            purchaseClientDetailsRepository.AddOrUpdate(clientsDetails);
             unitOfwork.Save();
+
 
             var seance = seanceRepo.GetAll().FirstOrDefault();
             var ticket_1 = new Ticket()
             {
                 Id = "test001",
-                Seance = seance,
-                Place = 111,
-                Row = 111,
-                Price = 100,
-                Tariff = "simple",
+                Seance = seance,              
                 Purchase = purchase
             };
+            ticketRepo.AddOrUpdate(ticket_1);
 
             var ticket_2 = new Ticket()
             {
                 Id = "test002",
                 Seance = seance,
-                Place = 111,
-                Row = 222,
-                Price = 200,
-                Tariff = "vip",
                 Purchase = purchase
             };
-
-            ticketRepo.AddOrUpdate(ticket_1);
             ticketRepo.AddOrUpdate(ticket_2);
+
+            var place_1 = new TicketPlaceDetails()
+            {
+                Id = ticket_1.Id,
+                Number = 11,
+                Row = 11,
+                Price = 100,
+                Tariff = "simple"
+            };
+            ticketPlaceDetailsRepository.AddOrUpdate(place_1);
+           
+            var place_2 = new TicketPlaceDetails()
+            {
+                Id = ticket_2.Id,
+                Number = 22,
+                Row = 22,
+                Price = 200,
+                Tariff = "vip"
+            };
+            ticketPlaceDetailsRepository.AddOrUpdate(place_2);
 
             unitOfwork.Save();
         }
      
-
-        [TestMethod()]
-        public void AddOrUpdatePurchaseAndTicketsTest()
-        {
-            var purchase = new Purchase()
-            {
-                Id = "as231243"
-            };
-            purchaseRepo.AddOrUpdate(purchase);
-            unitOfwork.Save();
-
-            var seance = seanceRepo.GetAll().FirstOrDefault();
-            var ticket_1 = new Ticket()
-            {
-                Id = "001",
-                Seance = seance,
-                Place = 1,
-                Row = 1,
-                Price = 100,
-                Tariff = "simple",
-                Purchase = purchase
-            };
-
-            var ticket_2 = new Ticket()
-            {
-                Id = "002",
-                Seance = seance,
-                Place = 1,
-                Row = 2,
-                Price = 200,
-                Tariff = "vip",
-                Purchase = purchase
-            };
-
-            ticketRepo.AddOrUpdate(ticket_1);
-            ticketRepo.AddOrUpdate(ticket_1);
-            unitOfwork.Save();
-
-            foreach (var item in ticketRepo.GetAll())
-                ticketRepo.Delete(item);
-
-
-            foreach (var item in purchaseRepo.GetAll())
-                purchaseRepo.Delete(item);
-
-            unitOfwork.Save();
-        }
-
         [TestMethod]
         public void FindMoviesPremeriesTest()
         {
@@ -330,12 +304,14 @@ namespace COTS.DAL.Test.Repositories
             foreach (var item in ticketRepo.GetAll())
                 ticketRepo.Delete(item);
 
-            foreach (var item in ticketRepo.GetAll())
-                ticketRepo.Delete(item);
-
+            foreach (var item in ticketPlaceDetailsRepository.GetAll())
+                ticketPlaceDetailsRepository.Delete(item);
 
             foreach (var item in purchaseRepo.GetAll())
                 purchaseRepo.Delete(item);
+
+            foreach (var item in purchaseClientDetailsRepository.GetAll())
+                purchaseClientDetailsRepository.Delete(item);
 
             unitOfwork.Save();
         }

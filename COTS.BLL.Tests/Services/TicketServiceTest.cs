@@ -26,26 +26,70 @@ namespace COTS.BLL.Services.Tests
         }
 
         [TestMethod()]
-        public void AddOrUpdateTest()
+        public void AddOrUpdateTicketTest()
         {
             var seance = unitOfWork.Seances.GetAll().FirstOrDefault();
+
             var ticketDTO = new TicketDTO()
             {
+                Id = "00000",
                 SeanceId = seance.Id,
-                Row = 2,
-                Place = 1,
-                Price = 100,
-                Tariff = "Simple"
+                State = 1
             };
 
-            ticketService.AddOrUpdate(ticketDTO);
+            var placeDetailsDTO = new TicketPlaceDetailsDTO()
+            {
+                Id = ticketDTO.Id,
+                Number = 33,
+                Row = 33,
+                Tariff = "xz",
+                Price = 300          
+            };
+            ticketDTO.ticketPlaceDetailsDTO = placeDetailsDTO;
 
-            var ticket = ticketService.GetAll().FirstOrDefault();
-            
-
-            ticketService.Delete(ticket.Id);
+            ticketService.AddOrUpdate(ticketDTO);            
         }
 
+        [TestMethod()]
+        public void GetByPurchaseTest()
+        {
+            string purchaseId = "test231243";
+            var ticketsDTO = ticketService.GetByPurchase(purchaseId);
+            foreach (var item in ticketsDTO)
+            {
+                Trace.WriteLine(item.Id);
+                Trace.WriteLine(item.ticketPlaceDetailsDTO.Number);
+            }
+        }
+
+
+        [TestMethod()]
+        public void GetAllTicketsTest()
+        {
+            var ticketsDTO = ticketService.GetAll();
+            foreach (var item in ticketsDTO)
+            {
+                Trace.WriteLine(item.Id);
+                Trace.WriteLine(item.ticketPlaceDetailsDTO.Number);
+            }
+        }
+
+        [TestMethod()]
+        public void GetAllBookingTicketsTest()
+        {
+            var ticketsDTO = ticketService.GetByState(1);
+            foreach (var item in ticketsDTO)
+            {
+                Trace.WriteLine(item.Id);
+                Trace.WriteLine(item.ticketPlaceDetailsDTO.Number);
+            }
+        }
+
+        [TestMethod()]
+        public void DeleteTicketTest()
+        {
+            ticketService.Delete("00000");
+        }
     }
 }
 

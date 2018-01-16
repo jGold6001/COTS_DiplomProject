@@ -15,21 +15,26 @@ namespace COTS.BLL.Services
     public class TicketService : ITicketService
     {
         IUnitOfWork UnitOfWork { get; set; }
-        IMapper mapper;
-        IMapper mapperReverse;
+        IMapper mapperTicket, mapperPlaceDetails;
+        IMapper mapperTicketReverse, mapperPlaceDetailsReverse;
 
         public TicketService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            mapper = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<Ticket, TicketDTO>()));
-            mapperReverse = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, Ticket>()));
+            mapperTicket = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<Ticket, TicketDTO>()));
+            mapperTicketReverse = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, Ticket>()));
+
+            mapperPlaceDetails = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketPlaceDetails, TicketPlaceDetailsDTO>()));
+            mapperPlaceDetailsReverse = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketPlaceDetailsDTO, TicketPlaceDetails>()));
         }
         public void AddOrUpdate(TicketDTO ticketDTO)
         {
             if(ticketDTO == null)
                 throw new ValidationException("TicketsDTO not set", "");
 
-            var ticket = mapperReverse.Map<TicketDTO, Ticket>(ticketDTO);
+            var ticket = mapperTicketReverse.Map<TicketDTO, Ticket>(ticketDTO);
+            var placeDetails = mapperPlaceDetailsReverse.Map<TicketPlaceDetailsDTO, TicketPlaceDetails>(ticketDTO.ticketPlaceDetailsDTO);
+            UnitOfWork.TicketPlaceDetails.AddOrUpdate(placeDetails);
             UnitOfWork.Tickets.AddOrUpdate(ticket);
             UnitOfWork.Save();
         }
@@ -40,6 +45,8 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'id' not set", "");
 
             var ticket = UnitOfWork.Tickets.Get(id);
+            var placeDetails = UnitOfWork.TicketPlaceDetails.Get(id);
+            UnitOfWork.TicketPlaceDetails.Delete(placeDetails);
             UnitOfWork.Tickets.Delete(ticket);
             UnitOfWork.Save();
         }
@@ -50,7 +57,8 @@ namespace COTS.BLL.Services
             if (tickets.Count() == 0)
                 return null;
 
-            return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
+            var ticketsDTOs = AddPlacesDetailesFromDb(tickets);
+            return ticketsDTOs;
         }
        
 
@@ -59,7 +67,10 @@ namespace COTS.BLL.Services
             if(id == null)
                 throw new ValidationException("'id' not set", "");
 
-            return mapper.Map<Ticket, TicketDTO>(UnitOfWork.Tickets.Get(id));
+            var ticketDTO = mapperTicket.Map<Ticket, TicketDTO>(UnitOfWork.Tickets.Get(id));
+            var placeDetailsDTO = mapperPlaceDetails.Map<TicketPlaceDetails, TicketPlaceDetailsDTO>(UnitOfWork.TicketPlaceDetails.Get(ticketDTO.Id));
+            ticketDTO.ticketPlaceDetailsDTO = placeDetailsDTO;
+            return ticketDTO;
         }
 
         public IEnumerable<TicketDTO> GetByPurchase(string purchaseId)
@@ -68,13 +79,27 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'purchaseId' not set", "");
 
             var tickets = UnitOfWork.Tickets.FindBy(t => t.PurchaseId == purchaseId);
-            return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
-        }
+
+            var ticketsDTOs = AddPlacesDetailesFromDb(tickets);
+            return ticketsDTOs;
+        }    
 
         public IEnumerable<TicketDTO> GetByState(int state)
         {
             var tickets = UnitOfWork.Tickets.FindBy(t => t.State == state);
-            return mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets);
+
+            var ticketsDTOs = AddPlacesDetailesFromDb(tickets);
+            return ticketsDTOs;
+        }
+
+
+        private List<TicketDTO> AddPlacesDetailesFromDb(IEnumerable<Ticket> tickets)
+        {           
+            var ticketsDTOs = mapperTicket.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets) as List<TicketDTO>;
+            foreach (var item in ticketsDTOs)
+                item.ticketPlaceDetailsDTO = mapperPlaceDetails.Map<TicketPlaceDetails, TicketPlaceDetailsDTO>(UnitOfWork.TicketPlaceDetails.Get(item.Id));
+           
+            return ticketsDTOs;
         }
     }
 }

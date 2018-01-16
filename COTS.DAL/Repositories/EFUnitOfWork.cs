@@ -19,7 +19,9 @@ namespace COTS.DAL.Repositories
         private SeanceRepository seanceRepository;
         private CityRepository cityRepository;
         private TicketRepository ticketRepository;
+        private TicketPlaceDetailsRepository ticketPlaceDetailsRepository;
         private PurchaseRepository purchaseRepository;
+        private PurchaseClientDetailsRepository purchaseClientDetailsRepository;
 
         public EFUnitOfWork(string connectionString)
         {
@@ -74,6 +76,16 @@ namespace COTS.DAL.Repositories
             }
         }
 
+        public IRepository<TicketPlaceDetails> TicketPlaceDetails
+        {
+            get
+            {
+                if (ticketPlaceDetailsRepository == null)
+                    ticketPlaceDetailsRepository = new TicketPlaceDetailsRepository(db);
+                return ticketPlaceDetailsRepository;
+            }
+        }
+
         public IRepository<Purchase> Purchases
         {
             get
@@ -82,8 +94,17 @@ namespace COTS.DAL.Repositories
                     purchaseRepository = new PurchaseRepository(db);
                 return purchaseRepository;
             }
-        }
+        }   
 
+        public IRepository<PurchaseClientDetails> PurchaseClientDetailses
+        {
+            get
+            {
+                if (purchaseClientDetailsRepository == null)
+                    purchaseClientDetailsRepository = new PurchaseClientDetailsRepository(db);
+                return purchaseClientDetailsRepository;
+            }
+        }
 
         private bool disposed = false;
         public virtual void Dispose(bool disposing)

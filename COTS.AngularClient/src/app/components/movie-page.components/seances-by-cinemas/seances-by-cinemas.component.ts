@@ -51,10 +51,6 @@ export class SeancesByCinemasComponent implements OnInit, OnChanges {
       width: '1000px',
       data: { seance: this.seance }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      //go to if dialog close
-    });
   }
 
 

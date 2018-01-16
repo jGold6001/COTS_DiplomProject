@@ -9,8 +9,7 @@ namespace COTS.WEBAPI.Models
     {
         public string Id { get; set; }
         public List<TicketViewModel> TicketViewModels { get; set; }
-        public string ClientName { get; set; }
-        public string ClientEmail { get; set; }
+        public ClientDataViewModel ClientDataViewModel { get; set; }
 
     }
 }

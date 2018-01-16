@@ -164,8 +164,8 @@
     </Compile>
     <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
+    <Compile Include="Models\ClientDataViewModel.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
-    <Compile Include="Models\PurchasePostViewModel.cs" />
     <Compile Include="Models\PurchaseViewModel.cs" />
     <Compile Include="Models\SeanceViewModel.cs" />
     <Compile Include="Models\TicketViewModel.cs" />

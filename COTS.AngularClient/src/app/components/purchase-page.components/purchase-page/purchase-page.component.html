@@ -141,10 +141,15 @@
                                 <!--input_client_info-->
                                 <br/>
                                 <div class="row content-color padding-setter">
-                                        <div class="container">                                         
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="container">
+                                                    <h6>Контактные данные покупателя</h6>
+                                                </div>
+                                            </div>                                         
                                             <form class="row">
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Email" [formControl]="emailFormControl"
+                                                    <input matInput placeholder="Email" [(ngModel)]="email" [formControl]="emailFormControl"
                                                         [errorStateMatcher]="matcher">
                                                     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                                         Пожалуйста, введите корректный e-mail

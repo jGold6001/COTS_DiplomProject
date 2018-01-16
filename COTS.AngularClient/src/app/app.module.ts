@@ -170,7 +170,11 @@ import { TicketsDialogComponent } from './components/purchase-page.components/ti
     MatTooltipModule,
     MatStepperModule
   ],
-  entryComponents: [SeancesByCinemasComponent, HallDialogComponent,
+  entryComponents: [
+    SeancesByCinemasComponent, 
+    HallDialogComponent,
+    TicketsDialogComponent,
+
     MpxSkymallHall1Component,
     MpxSkymallHall2Component,
     MpxSkymallHall3Component,

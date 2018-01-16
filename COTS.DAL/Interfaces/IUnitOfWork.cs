@@ -14,7 +14,9 @@ namespace COTS.DAL.Interfaces
         IRepository<Cinema> Cinemas { get; }
         IRepository<City> Cities { get; }
         IRepository<Ticket> Tickets {get;}
+        IRepository<TicketPlaceDetails> TicketPlaceDetails { get; }
         IRepository<Purchase> Purchases { get; }
+        IRepository<PurchaseClientDetails> PurchaseClientDetailses { get; }
         void Save();
     }
 }

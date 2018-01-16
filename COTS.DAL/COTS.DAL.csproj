@@ -50,7 +50,9 @@
     <Compile Include="EF\CotsContext.cs" />
     <Compile Include="Entities\Cinema.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\PurchaseClientDetails.cs" />
     <Compile Include="Entities\Movie.cs" />
+    <Compile Include="Entities\TicketPlaceDetails.cs" />
     <Compile Include="Entities\Purchase.cs" />
     <Compile Include="Entities\Seance.cs" />
     <Compile Include="Entities\Ticket.cs" />
@@ -61,9 +63,11 @@
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
+    <Compile Include="Repositories\PurchaseClientDetailsRepository.cs" />
     <Compile Include="Repositories\PurchaseRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SeanceRepository.cs" />
+    <Compile Include="Repositories\TicketPlaceDetailsRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -50,9 +50,11 @@
     <Compile Include="DTO\CinemaDTO.cs" />
     <Compile Include="DTO\CityDTO.cs" />
     <Compile Include="DTO\MovieDTO.cs" />
+    <Compile Include="DTO\PurchaseClientDetailsDTO.cs" />
     <Compile Include="DTO\PurchaseDTO.cs" />
     <Compile Include="DTO\SeanceDTO.cs" />
     <Compile Include="DTO\TicketDTO.cs" />
+    <Compile Include="DTO\TicketPlaceDetailsDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\ICinemaService.cs" />

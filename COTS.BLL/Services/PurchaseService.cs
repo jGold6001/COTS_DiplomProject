@@ -15,13 +15,20 @@ namespace COTS.BLL.Services
     public class PurchaseService : IPurchaseService
     {
         public IUnitOfWork UnitOfWork { get; set; }
-        IMapper mapper, mapperReverse;
+        IMapper mapperPurchase, mapperPurchaseReverse;
+        IMapper mapperClientDetails, mapperClientDetailsReverse;
+        ITicketService ticketService;
 
         public PurchaseService(IUnitOfWork unitOfWork)
         {
-            UnitOfWork = unitOfWork;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Purchase, PurchaseDTO>()));
-            mapperReverse = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseDTO, Purchase>()));
+            UnitOfWork = unitOfWork;           
+            mapperPurchase = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Purchase, PurchaseDTO>()));
+            mapperPurchaseReverse = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseDTO, Purchase>()));
+
+            mapperClientDetails = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseClientDetails, PurchaseClientDetailsDTO>()));
+            mapperClientDetailsReverse = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseClientDetailsDTO, PurchaseClientDetails>()));
+
+            ticketService = new TicketService(unitOfWork);
         }
 
         public void Delete(string id)
@@ -30,7 +37,14 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'id' not set", "");
 
             var purchase = UnitOfWork.Purchases.Get(id);
+            var client = UnitOfWork.PurchaseClientDetailses.Get(id);
+
+            var tickets = ticketService.GetAll();
+            foreach (var item in tickets)
+                ticketService.Delete(item.Id);
+
             UnitOfWork.Purchases.Delete(purchase);
+            UnitOfWork.PurchaseClientDetailses.Delete(client);
             UnitOfWork.Save();
         }
 
@@ -40,7 +54,8 @@ namespace COTS.BLL.Services
             if (purchases.Count() == 0)
                 throw new ValidationException("Purchases table is empty", "");
 
-            return mapper.Map<IEnumerable<Purchase>, IEnumerable<PurchaseDTO>>(purchases);
+            var purchasesDTOs = AddClientsDetailesFromDb(purchases);
+            return purchasesDTOs;
         }
 
         public PurchaseDTO GetOne(string id)
@@ -48,7 +63,10 @@ namespace COTS.BLL.Services
             if (id == null)
                 throw new ValidationException("'id' not set", "");
 
-            return mapper.Map<Purchase, PurchaseDTO>(UnitOfWork.Purchases.Get(id));
+            var purchaseDTO = mapperPurchase.Map<Purchase, PurchaseDTO>(UnitOfWork.Purchases.Get(id));
+            var clientDTO = mapperClientDetails.Map<PurchaseClientDetails, PurchaseClientDetailsDTO>(UnitOfWork.PurchaseClientDetailses.Get(id));
+            purchaseDTO.PurchaseClientDetailsDTO = clientDTO;
+            return purchaseDTO;
         }
 
         public void AddOrUpdate(PurchaseDTO purchaseDTO)
@@ -56,9 +74,21 @@ namespace COTS.BLL.Services
             if (purchaseDTO == null)
                 throw new ValidationException("PurchaseDTO not set", "");
 
-            var purchase = mapperReverse.Map<PurchaseDTO, Purchase>(purchaseDTO);
+            var purchase = mapperPurchaseReverse.Map<PurchaseDTO, Purchase>(purchaseDTO);
+            var client = mapperClientDetailsReverse.Map<PurchaseClientDetailsDTO, PurchaseClientDetails>(purchaseDTO.PurchaseClientDetailsDTO);
+            UnitOfWork.PurchaseClientDetailses.AddOrUpdate(client);
             UnitOfWork.Purchases.AddOrUpdate(purchase);
             UnitOfWork.Save();
+        }
+
+
+        private List<PurchaseDTO> AddClientsDetailesFromDb(IEnumerable<Purchase> purchases)
+        {
+            var purchasesDTOs = mapperPurchase.Map<IEnumerable<Purchase>, IEnumerable<PurchaseDTO>>(purchases) as List<PurchaseDTO>;
+            foreach (var item in purchasesDTOs)
+                item.PurchaseClientDetailsDTO = mapperClientDetails.Map<PurchaseClientDetails, PurchaseClientDetailsDTO>(UnitOfWork.PurchaseClientDetailses.Get(item.Id));
+
+            return purchasesDTOs;
         }
     }
 }
