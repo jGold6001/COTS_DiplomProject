@@ -5,7 +5,6 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\bin\Debug\EntityFramework.
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\bin\Debug\EntityFramework.SqlServer.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\bin\Debug\EntityFramework.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\bin\Debug\EntityFramework.SqlServer.xml
-F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\obj\Debug\COTS.DAL.csprojResolveAssemblyReference.cache
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\obj\Debug\COTS.DAL.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\obj\Debug\COTS.DAL.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.DAL\obj\Debug\COTS.DAL.pdb

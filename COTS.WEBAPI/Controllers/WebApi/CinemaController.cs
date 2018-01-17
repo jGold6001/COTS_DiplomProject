@@ -2,6 +2,7 @@
 using COTS.BLL.DTO;
 using COTS.BLL.Interfaces;
 using COTS.WEBAPI.Models;
+using COTS.WEBAPI.Utils.MapperManeger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace COTS.WEBAPI.Controllers.WebApi
     public class CinemaController : ApiController
     {
         ICinemaService cinemaService;
-        IMapper mapper;
+
+        MapperUnitOfWork mapperUnitOfWork;
 
         public CinemaController()
         {
@@ -25,21 +27,19 @@ namespace COTS.WEBAPI.Controllers.WebApi
         public CinemaController(ICinemaService cinemaService)
         {
             this.cinemaService = cinemaService;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<CinemaDTO, CinemaViewModel>()));
+            mapperUnitOfWork = new MapperUnitOfWork();          
         }
 
         [Route("getallbycity/{cityId}")]
         public IEnumerable<CinemaViewModel> GetAllByCity(string cityId)
         {
-            IEnumerable<CinemaDTO> cinemasDTOs = cinemaService.FindAllByCity(cityId);
-            var cinemas = mapper.Map<IEnumerable<CinemaDTO>, List<CinemaViewModel>>(cinemasDTOs);
-            return cinemas;
+            return mapperUnitOfWork.CinemaViewModelMapper.MapToCollectionObjects(cinemaService.FindAllByCity(cityId));          
         }
 
         [Route("{id}")]
         public CinemaViewModel GetOne(string id)
         {
-            return mapper.Map<CinemaDTO, CinemaViewModel>(cinemaService.GetOne(id));
+            return mapperUnitOfWork.CinemaViewModelMapper.MapToObject(cinemaService.GetOne(id));
         }
     }
 }

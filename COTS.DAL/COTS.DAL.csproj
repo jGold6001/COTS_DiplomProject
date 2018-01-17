@@ -50,6 +50,7 @@
     <Compile Include="EF\CotsContext.cs" />
     <Compile Include="Entities\Cinema.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\MovieDetails.cs" />
     <Compile Include="Entities\PurchaseClientDetails.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\TicketPlaceDetails.cs" />

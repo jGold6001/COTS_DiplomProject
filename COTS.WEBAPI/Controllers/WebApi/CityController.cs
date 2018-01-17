@@ -2,6 +2,7 @@
 using COTS.BLL.DTO;
 using COTS.BLL.Interfaces;
 using COTS.WEBAPI.Models;
+using COTS.WEBAPI.Utils.MapperManeger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace COTS.WEBAPI.Controllers
     public class CityController : ApiController
     {
         ICityService cityService;
-        IMapper mapper;
+        MapperUnitOfWork mapperUnitOfWork;
 
         public CityController()
         {
@@ -25,14 +26,13 @@ namespace COTS.WEBAPI.Controllers
         public CityController(ICityService cityService)
         {
             this.cityService = cityService;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<CityDTO, CityViewModel>()));
+            mapperUnitOfWork = new MapperUnitOfWork();
         }
 
         [Route("getall")]
         public IEnumerable<CityViewModel> GetAll()
         {
-            IEnumerable<CityViewModel> cities = mapper.Map<IEnumerable<CityDTO>, List<CityViewModel>>(cityService.GetAll());
-            return cities;
+            return mapperUnitOfWork.CityViewModelMapper.MapToCollectionObjects(cityService.GetAll());           
         }
     }
 }

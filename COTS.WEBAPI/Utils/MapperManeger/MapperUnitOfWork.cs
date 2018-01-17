@@ -8,11 +8,45 @@ namespace COTS.WEBAPI.Utils.MapperManeger
 {
     public class MapperUnitOfWork
     {
+        MovieViewModelMapper movieViewModelMapper;
+        CinemaViewModelMapper cinemaViewModelMapper;
+        CityViewModelMapper cityViewModelMapper;
         PurchaseDTOMapper purchaseDTOMapper;
         PurchaseViewModelMapper purchaseViewModelMapper;
         SeanceViewModelMapper seanceViewModelMapper;
         TicketViewModelMapper ticketViewModelMapper;
         TicketDTOMapper ticketDTOMapper;
+
+
+        public MovieViewModelMapper MovieViewModelMapper
+        {
+            get
+            {
+                if (movieViewModelMapper == null)
+                    movieViewModelMapper = new MovieViewModelMapper();
+                return movieViewModelMapper;
+            }
+        }
+
+        public CinemaViewModelMapper CinemaViewModelMapper
+        {
+            get
+            {
+                if (cinemaViewModelMapper == null)
+                    cinemaViewModelMapper = new CinemaViewModelMapper();
+                return cinemaViewModelMapper;
+            }
+        }
+
+        public CityViewModelMapper CityViewModelMapper
+        {
+            get
+            {
+                if (cityViewModelMapper == null)
+                    cityViewModelMapper = new CityViewModelMapper();
+                return cityViewModelMapper;
+            }
+        }
 
         public SeanceViewModelMapper SeanceViewModelMapper
         {
@@ -29,7 +63,7 @@ namespace COTS.WEBAPI.Utils.MapperManeger
             get
             {
                 if (ticketViewModelMapper == null)
-                    ticketViewModelMapper = new TicketViewModelMapper(this.seanceViewModelMapper);
+                    ticketViewModelMapper = new TicketViewModelMapper(SeanceViewModelMapper);
                 return ticketViewModelMapper;
             }
         }
@@ -60,7 +94,7 @@ namespace COTS.WEBAPI.Utils.MapperManeger
             get
             {
                 if (purchaseViewModelMapper == null)
-                    purchaseViewModelMapper = new PurchaseViewModelMapper(ticketViewModelMapper);
+                    purchaseViewModelMapper = new PurchaseViewModelMapper(TicketViewModelMapper);
                 return purchaseViewModelMapper;
             }
         }

@@ -20,12 +20,6 @@ namespace COTS.WEBAPI.Controllers.WebApi
         ITicketService ticketService;
         IPurchaseService purchaseService;
 
-        SeanceViewModelMapper seanceViewModelMapper;
-        TicketViewModelMapper ticketViewModelMapper;
-        TicketDTOMapper ticketDTOMapper;
-        PurchaseViewModelMapper purchaseViewModelMapper;
-        PurchaseDTOMapper purchaseDTOMapper;
-
         MapperUnitOfWork mapperUnitOfWork;
 
         public TicketController()
@@ -40,38 +34,19 @@ namespace COTS.WEBAPI.Controllers.WebApi
 
             mapperUnitOfWork = new MapperUnitOfWork();
 
-            seanceViewModelMapper = new SeanceViewModelMapper();
-            ticketViewModelMapper = new TicketViewModelMapper(seanceViewModelMapper);
-            ticketDTOMapper = new TicketDTOMapper();
-            purchaseViewModelMapper = new PurchaseViewModelMapper(ticketViewModelMapper);
-            purchaseDTOMapper = new PurchaseDTOMapper();
         }
 
         [Route("all")]
         public IEnumerable<TicketViewModel> GetAllTickets()
         {
-            //return mapperUnitOfWork.TicketViewModelMapper.MapToCollectionObjects(ticketService.GetAll());
-            return ticketViewModelMapper.MapToCollectionObjects(ticketService.GetAll());
+            return mapperUnitOfWork.TicketViewModelMapper.MapToCollectionObjects(ticketService.GetAll());
         }
 
-        [Route("all_purchases")]
-        public IEnumerable<PurchaseViewModel> GetAll()
-        {
-            return purchaseViewModelMapper.MapToCollectionObjects(purchaseService.GetAll());
-        }
-
-        [HttpPost]
-        [Route("save_in_db")]
-        public void SaveInDb(PurchaseViewModel purchaseViewModel)
-        {        
-            purchaseService.AddOrUpdate(purchaseDTOMapper.MapToObject(purchaseViewModel)); 
-        }
-
-
+        
         [Route("all_booking")]
         public IEnumerable<TicketViewModel> GetAllBookingTickets()
         {
-            return ticketViewModelMapper.MapToCollectionObjects(ticketService.GetByState(TicketStates.BOOKING));         
+            return mapperUnitOfWork.TicketViewModelMapper.MapToCollectionObjects(ticketService.GetByState(TicketStates.BOOKING));
         }
 
         [Route("by_purchase")]
@@ -79,13 +54,6 @@ namespace COTS.WEBAPI.Controllers.WebApi
         {
             return null;
         }
-
-        [Route("get_purchase/{purchaseId}")]
-        public PurchaseViewModel GetPurchase(string purchaseId)
-        {
-            return purchaseViewModelMapper.MapToObject(purchaseService.GetOne(purchaseId));           
-        }
-
 
     }
 }
