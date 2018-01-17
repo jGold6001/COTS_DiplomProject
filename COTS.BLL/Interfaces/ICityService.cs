@@ -11,8 +11,8 @@ namespace COTS.BLL.Interfaces
     public interface ICityService
     {
         void AddOrUpdate(CityDTO city);
-        CityDTO GetOne(int? id);
+        CityDTO GetOne(string id);
         IEnumerable<CityDTO> GetAll();
-        void Delete(int? id);
+        void Delete(string id);
     }
 }

@@ -10,18 +10,19 @@ using COTS.DAL.Interfaces;
 using COTS.BLL.DTO;
 using COTS.DAL.Repositories;
 using COTS.BLL.Utils;
+using COTS.BLL.Utils.MapperManager;
 
 namespace COTS.BLL.Services
 {
     public class CinemaService : ICinemaService
     {
         IUnitOfWork UnitOfWork { get; set; }
-        IMapper mapper;
+        MapperUnitOfWork mapperUnitOfWork;
 
         public CinemaService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Cinema, CinemaDTO>()));          
+            mapperUnitOfWork = new MapperUnitOfWork();
         }
 
         public void AddOrUpdate(CinemaDTO cinemaDTO)
@@ -39,7 +40,7 @@ namespace COTS.BLL.Services
                 throw new ValidationException("Cinema not found", "");
 
 
-            return mapper.Map<Cinema, CinemaDTO>(cinema);
+            return mapperUnitOfWork.CinemaDTOMapper.MapToObject(cinema);
         }
 
         public void Delete(string id)
@@ -52,7 +53,7 @@ namespace COTS.BLL.Services
             if (cityId == null)
                 throw new ValidationException("City 'Id' not set", "");
 
-            IEnumerable<CinemaDTO> cinemas = mapper.Map<IEnumerable<Cinema>, IEnumerable<CinemaDTO>>(UnitOfWork.Cinemas.FindBy(c => c.CityId == cityId));
+            IEnumerable<CinemaDTO> cinemas = mapperUnitOfWork.CinemaDTOMapper.MapToCollectionObjects(UnitOfWork.Cinemas.FindBy(c => c.CityId == cityId));
             if(cinemas.Count() == 0)
                 throw new ValidationException("Cinemas by city not found", "");
 

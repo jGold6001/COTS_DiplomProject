@@ -9,36 +9,33 @@ using COTS.DAL.Interfaces;
 using AutoMapper;
 using COTS.BLL.Utils;
 using COTS.DAL.Entities;
+using COTS.BLL.Utils.MapperManager;
 
 namespace COTS.BLL.Services
 {
     public class TicketService : ITicketService
     {
         IUnitOfWork UnitOfWork { get; set; }
-        IMapper mapperTicket, mapperPlaceDetails;
-        IMapper mapperTicketReverse, mapperPlaceDetailsReverse;
-
+        
         ISeanceService seanceService;
+        ITicketPlaceDetailsService ticketPlaceDetailsService;
+        MapperUnitOfWork mapperUnitOfWork;
 
         public TicketService(IUnitOfWork unitOfWork)
         {
-            UnitOfWork = unitOfWork;
-            mapperTicket = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<Ticket, TicketDTO>()));
-            mapperTicketReverse = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, Ticket>()));
-
-            mapperPlaceDetails = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketPlaceDetails, TicketPlaceDetailsDTO>()));
-            mapperPlaceDetailsReverse = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketPlaceDetailsDTO, TicketPlaceDetails>()));
-
+            UnitOfWork = unitOfWork;          
             seanceService = new SeanceService(unitOfWork);
+            ticketPlaceDetailsService = new TicketPlaceDetailsService(unitOfWork);
+            mapperUnitOfWork = new MapperUnitOfWork();
         }
         public void AddOrUpdate(TicketDTO ticketDTO)
         {
             if(ticketDTO == null)
                 throw new ValidationException("TicketsDTO not set", "");
 
-            var ticket = mapperTicketReverse.Map<TicketDTO, Ticket>(ticketDTO);
+            var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
             ticket.SeanceId = ticketDTO.SeanceDTO.Id;
-            var placeDetails = mapperPlaceDetailsReverse.Map<TicketPlaceDetailsDTO, TicketPlaceDetails>(ticketDTO.TicketPlaceDetailsDTO);
+            var placeDetails = mapperUnitOfWork.TicketPlaceDetailsMapper.MapToObject(ticketDTO.TicketPlaceDetailsDTO);
             UnitOfWork.TicketPlaceDetails.AddOrUpdate(placeDetails);
             UnitOfWork.Tickets.AddOrUpdate(ticket);
             UnitOfWork.Save();
@@ -100,8 +97,8 @@ namespace COTS.BLL.Services
 
         private TicketDTO AttachObjetcsToDTO(Ticket ticket)
         {
-            var ticketDTO = mapperTicket.Map<Ticket, TicketDTO>(ticket);
-            var placeDetailsDTO = mapperPlaceDetails.Map<TicketPlaceDetails, TicketPlaceDetailsDTO>(UnitOfWork.TicketPlaceDetails.Get(ticketDTO.Id));
+            var ticketDTO = mapperUnitOfWork.TicketDTOMapper.MapToObject(ticket);
+            var placeDetailsDTO = mapperUnitOfWork.TicketPlaceDetailsDTOMapper.MapToObject(UnitOfWork.TicketPlaceDetails.Get(ticketDTO.Id));
             var seanceDTO = seanceService.GetOne(ticket.SeanceId);
 
             ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
@@ -109,16 +106,14 @@ namespace COTS.BLL.Services
             return ticketDTO;
         }
 
-        private List<TicketDTO> AttachObjetcsToDTOList(IEnumerable<Ticket> tickets)
+        private IEnumerable<TicketDTO> AttachObjetcsToDTOList(IEnumerable<Ticket> tickets)
         {
-            var ticketsDTOs = mapperTicket.Map<IEnumerable<Ticket>, IEnumerable<TicketDTO>>(tickets) as List<TicketDTO>;
-            var seanceId = tickets.FirstOrDefault().SeanceId;
-            var seanceDTO = seanceService.GetOne(seanceId);
+            var ticketsDTOs = mapperUnitOfWork.TicketDTOMapper.MapToCollectionObjects(tickets);           
 
             foreach (var item in ticketsDTOs)
             {
-                item.TicketPlaceDetailsDTO = mapperPlaceDetails.Map<TicketPlaceDetails, TicketPlaceDetailsDTO>(UnitOfWork.TicketPlaceDetails.Get(item.Id));
-                item.SeanceDTO = seanceDTO;
+                item.TicketPlaceDetailsDTO = ticketPlaceDetailsService.GetOne(item.Id);
+                item.SeanceDTO = seanceService.GetOne(item.SeanceId);
             }
                
             return ticketsDTOs;

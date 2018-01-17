@@ -28,5 +28,12 @@ namespace COTS.BLL.Services.Tests
             foreach (var item in cities)
                 Trace.WriteLine(item.Name);
         }
+
+        [TestMethod()]
+        public void GetOneCityTest()
+        {
+            var city = cityService.GetOne("harkov");
+            Trace.WriteLine(city.Name);
+        }
     }
 }

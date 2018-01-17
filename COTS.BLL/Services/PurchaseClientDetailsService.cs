@@ -4,27 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using COTS.DAL.Entities;
-using COTS.DAL.Interfaces;
-using AutoMapper;
 using COTS.BLL.DTO;
+using COTS.DAL.Interfaces;
 using COTS.BLL.Utils.MapperManager;
 
 namespace COTS.BLL.Services
 {
-    public class CityService : ICityService
+    public class PurchaseClientDetailsService : IPurchaseClientDetailsService
     {
         IUnitOfWork UnitOfWork { get; set; }
         MapperUnitOfWork mapperUnitOfWork;
 
-        public CityService(IUnitOfWork unitOfWork)
+        public PurchaseClientDetailsService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
             mapperUnitOfWork = new MapperUnitOfWork();
+
         }
 
-        public void AddOrUpdate(CityDTO city)
-        {          
+        public void AddOrUpdate(PurchaseClientDetailsDTO purchaseClientDetailsDTO)
+        {
             throw new NotImplementedException();
         }
 
@@ -33,14 +32,14 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CityDTO> GetAll()
+        public IEnumerable<PurchaseClientDetailsDTO> GetAll()
         {
-            return mapperUnitOfWork.CityDTOMapper.MapToCollectionObjects(UnitOfWork.Cities.GetAll());
+            return mapperUnitOfWork.PurchaseClientDetailsDTOMapper.MapToCollectionObjects(UnitOfWork.PurchaseClientDetailses.GetAll());
         }
 
-        public CityDTO GetOne(string id)
+        public PurchaseClientDetailsDTO GetOne(string id)
         {
-            return mapperUnitOfWork.CityDTOMapper.MapToObject(UnitOfWork.Cities.Get(id));
+            return mapperUnitOfWork.PurchaseClientDetailsDTOMapper.MapToObject(UnitOfWork.PurchaseClientDetailses.Get(id));
         }
     }
 }

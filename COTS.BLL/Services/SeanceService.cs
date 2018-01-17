@@ -10,26 +10,28 @@ using AutoMapper;
 using COTS.DAL.Interfaces;
 using COTS.DAL.Repositories;
 using COTS.BLL.DTO;
+using COTS.BLL.Utils.MapperManager;
 
 namespace COTS.BLL.Services
 {
     public class SeanceService : ISeanceService
     {
         IUnitOfWork UnitOfWork { get; set; }
-        IMapper mapper;
-        SeanceRepository seanceRepo;
-
         IMovieService movieService;
         ICinemaService cinemaService;
+
+        SeanceRepository seanceRepo;
+        MapperUnitOfWork mapperUnitOfWork;
+
 
         public SeanceService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Seance, SeanceDTO>()));
             seanceRepo = UnitOfWork.Seances as SeanceRepository;
 
             movieService = new MovieService(unitOfWork);
             cinemaService = new CinemaService(unitOfWork);
+            mapperUnitOfWork = new MapperUnitOfWork();
         }
 
         public void AddOrUpdate(SeanceDTO seance)
@@ -98,33 +100,31 @@ namespace COTS.BLL.Services
         }
 
 
-        private List<SeanceDTO> AttachObjetcsToDTOList(IEnumerable<Seance> seances)
-        {
-            var movieId = seances.FirstOrDefault().MovieId;
-            var cinemaId = seances.FirstOrDefault().CinemaId;
-            var movieDTO = movieService.GetOne(movieId);
-            var cinemaDTO = cinemaService.GetOne(cinemaId);
 
-            List<SeanceDTO> seancesDTO = mapper.Map<IEnumerable<Seance>, List<SeanceDTO>>(seances);
+
+        private IEnumerable<SeanceDTO> AttachObjetcsToDTOList(IEnumerable<Seance> seances)
+        {
+            
+            IEnumerable<SeanceDTO> seancesDTO = mapperUnitOfWork.SeanceDTOMapper.MapToCollectionObjects(seances);
 
             foreach (var item in seancesDTO)
             {
-                item.MovieDTO = movieDTO;
-                item.CinemaDTO = cinemaDTO;
-            }               
+                item.MovieDTO = movieService.GetOne(item.MovieId); ;
+                item.CinemaDTO = cinemaService.GetOne(item.CinemaId);
+            }   
+            
             return seancesDTO;
         }
-
 
         private SeanceDTO AttachObjetcsToDTO(Seance seance)
         {
             var movieDTO = movieService.GetOne(seance.MovieId);
             var cinemaDTO = cinemaService.GetOne(seance.CinemaId);
 
-            SeanceDTO seanceDTO = mapper.Map<Seance, SeanceDTO>(seance);
+            SeanceDTO seanceDTO = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
             seanceDTO.MovieDTO = movieDTO;
             seanceDTO.CinemaDTO = cinemaDTO;
-            
+
             return seanceDTO;
         }
 

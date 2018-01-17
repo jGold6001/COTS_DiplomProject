@@ -31,10 +31,11 @@ namespace COTS.BLL.Services.Tests
         {
             var seanceDTO = seanceService.GetAll().FirstOrDefault();
 
+
             var ticketDTO = new TicketDTO()
             {
                 Id = "00000",
-                SeanceDTO = seanceDTO,
+                SeanceDTO = seanceDTO,              
                 State = 1
             };
 
@@ -44,15 +45,15 @@ namespace COTS.BLL.Services.Tests
                 Number = 33,
                 Row = 33,
                 Tariff = "xz",
-                Price = 300          
+                Price = 300
             };
-            ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
 
-            ticketService.AddOrUpdate(ticketDTO);            
+            ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
+            ticketService.AddOrUpdate(ticketDTO);
         }
 
         [TestMethod()]
-        public void GetByPurchaseTest()
+        public void GetTicketsByPurchaseTest()
         {
             string purchaseId = "test231243";
             var ticketsDTO = ticketService.GetByPurchase(purchaseId);

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.BLL.Utils.MapperManager
+namespace COTS.BLL.Utils.MapperManager.DTOMappers
 {
     public class MovieDetailsDTOMapper : GeneralMapper<MovieDetails, MovieDetailsDTO>
     {

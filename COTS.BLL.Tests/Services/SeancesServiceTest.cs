@@ -34,6 +34,16 @@ namespace COTS.BLL.Services.Tests
             foreach (var item in seancesDTO)
                 Trace.WriteLine($"IDSeance: {item.Id}, Cinema: {item.CinemaDTO.Name}, Movie: {item.MovieDTO.Name} and date {item.DateAndTime}");
         }
-      
+
+        [TestMethod()]
+        public void GetAllSeancesTest()
+        {
+            var seancesDTO = seanceService.GetAll();
+            foreach (var item in seancesDTO)
+                Trace.WriteLine($"IDSeance: {item.Id}, Cinema: {item.CinemaDTO.Name}, Movie: {item.MovieDTO.Name} and date {item.DateAndTime}");
+
+        }
+
+
     }
 }

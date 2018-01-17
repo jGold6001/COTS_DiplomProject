@@ -10,6 +10,7 @@ using AutoMapper;
 using COTS.DAL.Entities;
 using COTS.DAL.Repositories;
 using COTS.BLL.Utils;
+using COTS.BLL.Utils.MapperManager;
 
 namespace COTS.BLL.Services
 {
@@ -17,13 +18,17 @@ namespace COTS.BLL.Services
     {
         IUnitOfWork UnitOfWork { get; set; }
         MovieRepository movieRepo;
-        IMapper mapper;
+        //IMapper mapper;
+        MapperUnitOfWork mapperUnitOfWork;
+
+        IMovieDetailsService movieDetailsService;
 
         public MovieService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
             movieRepo = unitOfWork.Movies as MovieRepository;
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Movie, MovieDTO>()));
+            mapperUnitOfWork = new MapperUnitOfWork();
+            movieDetailsService = new MovieDetailsService(unitOfWork);
         }
 
         public void AddOrUpdate(MovieDTO movieDTO)
@@ -31,24 +36,11 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
        
-        public IEnumerable<MovieDTO> GetTop10()
-        {
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetTop10ByRankOrder());
-        }
-
-        public IEnumerable<MovieDTO> FindAllComingSoon()
-        {            
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.FindAllComingSoon());
-        }
-
-        public IEnumerable<MovieDTO> FindAllPremeries()
-        {
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>> (movieRepo.FindAllPremeries());
-        }
-
+      
         public IEnumerable<MovieDTO> GetAll()
         {
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetAll());
+            var movies = AttachObjetcsToDTOList(movieRepo.GetAll());
+            return movies;
         }
 
         public MovieDTO GetOne(long? id)
@@ -60,7 +52,8 @@ namespace COTS.BLL.Services
             if (movie == null)
                 throw new ValidationException("Movie not found","");
 
-            return mapper.Map<Movie, MovieDTO>(movie);
+            var movieDTO =  AttachObjetcToDTO(movie);
+            return movieDTO;
         }
 
         public void Delete(long? id)
@@ -77,7 +70,8 @@ namespace COTS.BLL.Services
             if(movies.Count() == 0)
                 throw new ValidationException("Movies not found", "");
 
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movies);
+            var moviesDTOs = AttachObjetcsToDTOList(movies);
+            return moviesDTOs;
         }
 
         public IEnumerable<MovieDTO> FindAllPremeriesByCity(string cityId)
@@ -85,7 +79,9 @@ namespace COTS.BLL.Services
             if (cityId == null)
                 throw new ValidationException("'CityId' not set", "");
 
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.FindAllPremeriesByCity(cityId));
+            var movies = movieRepo.FindAllPremeriesByCity(cityId);
+            var moviesDTOs = AttachObjetcsToDTOList(movies);
+            return moviesDTOs;          
         }
 
         public IEnumerable<MovieDTO> FindAllComingSoonByCity(string cityId)
@@ -93,7 +89,10 @@ namespace COTS.BLL.Services
             if (cityId == null)
                 throw new ValidationException("'CityId' not set", "");
 
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.FindAllComingSoonByCity(cityId));
+
+            var movies = movieRepo.FindAllComingSoonByCity(cityId);
+            var moviesDTOs = AttachObjetcsToDTOList(movies);
+            return moviesDTOs;
         }
 
         public IEnumerable<MovieDTO> GetTop10ByRankOrderByCity(string cityId)
@@ -101,7 +100,27 @@ namespace COTS.BLL.Services
             if (cityId == null)
                 throw new ValidationException("'CityId' not set", "");
 
-            return mapper.Map<IEnumerable<Movie>, IEnumerable<MovieDTO>>(movieRepo.GetTop10ByRankOrderByCity(cityId));
+            var movies = movieRepo.GetTop10ByRankOrderByCity(cityId);
+            var moviesDTOs = AttachObjetcsToDTOList(movies);
+            return moviesDTOs;
+        }
+
+
+
+        private IEnumerable<MovieDTO> AttachObjetcsToDTOList(IEnumerable<Movie> movies)
+        {           
+            var moviesDTOs = mapperUnitOfWork.MovieDTOMapper.MapToCollectionObjects(movies);
+            foreach (var item in moviesDTOs)
+                item.MovieDetailsDTO = movieDetailsService.GetOne(item.Id);
+
+            return moviesDTOs;
+        }
+
+        private MovieDTO AttachObjetcToDTO(Movie movie)
+        {
+            var movieDTO = mapperUnitOfWork.MovieDTOMapper.MapToObject(movie);
+            movieDTO.MovieDetailsDTO = movieDetailsService.GetOne(movieDTO.Id);
+            return movieDTO;
         }
     }
 }
