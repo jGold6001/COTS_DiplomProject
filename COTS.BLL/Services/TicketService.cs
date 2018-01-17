@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using COTS.BLL.DTO;
 using COTS.DAL.Interfaces;
 using AutoMapper;
-using COTS.BLL.Infrastructure;
+using COTS.BLL.Utils;
 using COTS.DAL.Entities;
 
 namespace COTS.BLL.Services

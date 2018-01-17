@@ -8,7 +8,7 @@ using COTS.BLL.DTO;
 using AutoMapper;
 using COTS.DAL.Interfaces;
 using COTS.DAL.Entities;
-using COTS.BLL.Infrastructure;
+using COTS.BLL.Utils;
 
 namespace COTS.BLL.Services
 {

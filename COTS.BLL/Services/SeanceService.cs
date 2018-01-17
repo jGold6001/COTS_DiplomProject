@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using COTS.DAL.Entities;
-using COTS.BLL.Infrastructure;
+using COTS.BLL.Utils;
 using AutoMapper;
 using COTS.DAL.Interfaces;
 using COTS.DAL.Repositories;

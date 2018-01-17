@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.BLL.Infrastructure
+namespace COTS.BLL.Utils
 {
     public class ServiceModule : NinjectModule
     {

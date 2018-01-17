@@ -9,7 +9,7 @@ using COTS.DAL.Interfaces;
 using AutoMapper;
 using COTS.DAL.Entities;
 using COTS.DAL.Repositories;
-using COTS.BLL.Infrastructure;
+using COTS.BLL.Utils;
 
 namespace COTS.BLL.Services
 {
