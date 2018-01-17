@@ -15,6 +15,7 @@ namespace COTS.DAL.Repositories
         private DbContext db;
 
         private MovieRepository movieRepository;
+        private MovieDetailsRepository movieDetailsRepository;
         private CinemaRepository cinemaRepository;
         private SeanceRepository seanceRepository;
         private CityRepository cityRepository;
@@ -34,6 +35,16 @@ namespace COTS.DAL.Repositories
                 if (movieRepository == null)
                     movieRepository = new MovieRepository(db);
                 return movieRepository;
+            }
+        }
+
+        public IRepository<MovieDetails> MovieDetailses
+        {
+            get
+            {
+                if (movieDetailsRepository == null)
+                    movieDetailsRepository = new MovieDetailsRepository(db);
+                return movieDetailsRepository;
             }
         }
 

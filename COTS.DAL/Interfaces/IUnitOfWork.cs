@@ -10,6 +10,7 @@ namespace COTS.DAL.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IRepository<Movie> Movies { get; }
+        IRepository<MovieDetails> MovieDetailses { get; }
         IRepository<Seance> Seances { get; }
         IRepository<Cinema> Cinemas { get; }
         IRepository<City> Cities { get; }

@@ -63,6 +63,7 @@
     <Compile Include="Repositories\CinemaRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\MovieDetailsRepository.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
     <Compile Include="Repositories\PurchaseClientDetailsRepository.cs" />
     <Compile Include="Repositories\PurchaseRepository.cs" />

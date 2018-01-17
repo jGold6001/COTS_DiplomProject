@@ -21,5 +21,6 @@ namespace COTS.DAL.EF
         public virtual DbSet<Purchase> Purchases { get; set; }
         public virtual DbSet<PurchaseClientDetails> PurchaseClientDetailses { get; set; }
         public virtual DbSet<TicketPlaceDetails> TicketPlaceDetailses { get; set; }
+        public virtual DbSet<MovieDetails> MovieDetailses { get; set; }
     }
 }

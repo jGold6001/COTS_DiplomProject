@@ -29,6 +29,7 @@ namespace COTS.DAL.Test.Repositories
 
         //repositories
         private MovieRepository movieRepo;
+        private MovieDetailsRepository movieDetailsRepo;
         private SeanceRepository seanceRepo;
         private CinemaRepository cinemaRepo;
         private CityRepository cityRepo;
@@ -43,6 +44,7 @@ namespace COTS.DAL.Test.Repositories
         {
             unitOfwork = new EFUnitOfWork(connectionString);
             movieRepo = unitOfwork.Movies as MovieRepository;
+            movieDetailsRepo = unitOfwork.MovieDetailses as MovieDetailsRepository;
             seanceRepo = unitOfwork.Seances as SeanceRepository;
             cinemaRepo = unitOfwork.Cinemas as CinemaRepository;
             cityRepo = unitOfwork.Cities as CityRepository;
@@ -80,7 +82,12 @@ namespace COTS.DAL.Test.Repositories
             }    
 
             foreach (var item in movies)
+            {
                 movieRepo.AddOrUpdate(item);
+                movieDetailsRepo.AddOrUpdate(item.MovieDetails);
+            }
+              
+            
 
             for (int i = 0; i < seancesFlorence.Count; i++)
             {
@@ -203,7 +210,7 @@ namespace COTS.DAL.Test.Repositories
         {
             List<Movie> moviesPremeries = movieRepo.FindAllComingSoon() as List<Movie>;
             foreach (var item in moviesPremeries)
-                Trace.WriteLine(item.Name);
+                Trace.WriteLine($"name - {item.Name}");
         }
 
         [TestMethod]
@@ -211,7 +218,7 @@ namespace COTS.DAL.Test.Repositories
         {
             List<Movie> moviesTop10 = movieRepo.GetTop10ByRankOrder() as List<Movie>;
             foreach (var item in moviesTop10)
-                Trace.WriteLine(item.RankSales);
+                Trace.WriteLine($"name - {item.Name}");
         }
 
         [TestMethod]
@@ -291,6 +298,9 @@ namespace COTS.DAL.Test.Repositories
         {
             foreach (var item in movieRepo.GetAll())
                 movieRepo.Delete(item);
+
+            foreach (var item in movieDetailsRepo.GetAll())
+                movieDetailsRepo.Delete(item);
 
             foreach (var item in cityRepo.GetAll())
                 cityRepo.Delete(item);
