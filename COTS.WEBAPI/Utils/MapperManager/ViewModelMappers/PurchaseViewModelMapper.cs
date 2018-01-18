@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace COTS.WEBAPI.Utils.MapperManeger
+namespace COTS.WEBAPI.Utils.MapperManager.ViewModelMappers
 {
     public class PurchaseViewModelMapper : GeneralMapper<PurchaseDTO, PurchaseViewModel>
     {

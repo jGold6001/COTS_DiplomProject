@@ -21,7 +21,8 @@ export const environment = {
 
   APIURL_SEANCES_BY_CINEMA_MOVIE_DATE:  _serverHost +  "/api/seance/getall/",
 
-  APIURL_TICKETS_SAVE_IN_DB:           _serverHost +  "/api/ticket/save_in_db",
-  APIURL_TICKETS_BY_PURCHASE:          _serverHost +  "/api/ticket/by_purchase/",
-  APIURL_TICKETS_GET_PURCHASE:         _serverHost +  "/api/ticket/get_purchase/"
+  APIURL_TICKETS_BY_PURCHASE:           _serverHost +  "/api/ticket/by_purchase/",
+
+  APIURL_PURCHASE_SAVE_IN_DB:           _serverHost +  "/api/purchase/save_in_db",  
+  APIURL_PURCHASE:                      _serverHost +  "/api/purchase/"
 };

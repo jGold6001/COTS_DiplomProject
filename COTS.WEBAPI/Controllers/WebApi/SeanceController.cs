@@ -2,7 +2,7 @@
 using COTS.BLL.DTO;
 using COTS.BLL.Interfaces;
 using COTS.WEBAPI.Models;
-using COTS.WEBAPI.Utils.MapperManeger;
+using COTS.WEBAPI.Utils.MapperManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;

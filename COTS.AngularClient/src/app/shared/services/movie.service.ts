@@ -16,28 +16,28 @@ export class MovieService {
     getAllPremeriesByCity(cityId: string) : Observable<Movie[]>{
         return this.http.get(environment.APIURL_MOVIES_PREMERIES_BYCITY + cityId)
             .map(response => {
-                return JsonConvertor.toMoviesArray(response.json());
+                return JsonConvertor.toMoviesShortArray(response.json());
             });
     }
 
     getAllCommingSoonByCity(cityId: string) : Observable<Movie[]>{
         return this.http.get(environment.APIURL_MOVIES_COMINGSOON_BYCITY + cityId)
             .map(response => {
-                return JsonConvertor.toMoviesArray(response.json());
+                return JsonConvertor.toMoviesShortArray(response.json());
             });
     }
 
     getTop10ByCity(cityId: string) : Observable<Movie[]>{
         return this.http.get(environment.APIURL_MOVIES_TOP10_BYCITY + cityId)
         .map(response => {
-            return JsonConvertor.toMoviesArray(response.json());
+            return JsonConvertor.toMoviesShortArray(response.json());
         });
     }
 
     getOne(id: number) : Observable<Movie>{
         return this.http.get(environment.APIURL_MOVIE + id)
         .map(responce =>{
-           return JsonConvertor.toMovie(responce.json());
+           return JsonConvertor.toMovieFull(responce.json());
         });
     }
 }

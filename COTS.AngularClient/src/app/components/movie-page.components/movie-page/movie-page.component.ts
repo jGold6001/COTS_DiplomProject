@@ -73,7 +73,7 @@ export class MoviePageComponent implements OnInit {
   get _movieDescription(): string{
     let value: string;
     try {
-      value = this.movie.destination;
+      value = this.movie.description;
     } catch (ex) {}
     return value;
   }

@@ -10,7 +10,7 @@ namespace COTS.WEBAPI.Models
         public long Id { get; set; }
         public string Name { get; set; }
         public string Genre { get; set; }
-        public string Destination { get; set; }
+        public string Description { get; set; }
         public int Year { get; set; }
         public int Duration { get; set; }
         public string AgeCategory { get; set; }

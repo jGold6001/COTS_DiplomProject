@@ -4,7 +4,6 @@ using COTS.BLL.Interfaces;
 using COTS.WEBAPI.Constants;
 using COTS.WEBAPI.Models;
 using COTS.WEBAPI.Utils.MapperManager;
-using COTS.WEBAPI.Utils.MapperManeger;
 using System;
 using System.Collections.Generic;
 using System.Linq;

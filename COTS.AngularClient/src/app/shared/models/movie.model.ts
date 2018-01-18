@@ -1,11 +1,11 @@
 
 export class Movie {
-    init(id: number, name: string,  genre: string, destination: string, year: number, duration: number, ageCategory: string,
+    initFullModel(id: number, name: string,  genre: string, description: string, year: number, duration: number, ageCategory: string,
         country: string,director: string,actors: string, trailerUrl: string,imagePath: string,rankSales: number, dateIssue: string){
         this.id = id;
         this.name = name;
         this.genre = genre;
-        this.destination = destination;
+        this.description = description;
         this.year = year;
         this.duration = duration;
         this.ageCategory = ageCategory;
@@ -18,6 +18,14 @@ export class Movie {
         this.dateIssue = dateIssue;
     }
 
+    initShortModel(id: number, name: string, imagePath: string,rankSales: number, dateIssue: string){
+        this.id = id;
+        this.name = name;
+        this.imagePath = imagePath;
+        this.rankSales = rankSales;
+        this.dateIssue = dateIssue;
+    }
+
     constructor(){
 
     }
@@ -25,7 +33,7 @@ export class Movie {
     id: number;
     name: string;
     genre: string;
-    destination: string;
+    description: string;
     year: number;
     duration: number;
     ageCategory: string;

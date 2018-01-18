@@ -141,7 +141,7 @@ namespace COTS.DAL.Test.Repositories
                 seanceRepo.AddOrUpdate(seancesMultDafi[i]);
             }
 
-            var purchase = new PurchaseClientDetailsDTO()
+            var purchase = new Purchase()
             {
                 Id = "test231243"               
             };

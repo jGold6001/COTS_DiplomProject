@@ -7,25 +7,30 @@ import { Seance } from "../models/seance.model";
 
 export class JsonConvertor{
 
-    public static toMoviesArray(data): Movie[] {
+    public static toMoviesShortArray(data): Movie[] {
         let movies: Movie[] = [];
         for (let i = 0; i < data.length; i++) {
             let movie: Movie = new Movie();
-            movie.init(
-                data[i].Id, data[i].Name, data[i].Genre, data[i].Destination,
-                data[i].Year, data[i].Duration, data[i].AgeCategory, data[i].Country,
-                data[i].Director, data[i].Actors, data[i].TrailerUrl, data[i].ImagePath, 
-                data[i].RankSales, data[i].DateIssue
+            movie.initShortModel(
+                data[i].Id, data[i].Name, data[i].ImagePath,data[i].RankSales, data[i].DateIssue
             );        
             movies.push(movie);
         }     
         return movies;
     }
 
-    public static toMovie(data): Movie{
+    public static toMovieShort(data): Movie{
         let movie: Movie = new Movie();
-        movie.init(
-            data.Id, data.Name, data.Genre, data.Destination,
+        movie.initShortModel(
+            data.Id, data.Name, data.ImagePath,data.RankSales, data.DateIssue
+        );
+        return movie;
+    }
+
+    public static toMovieFull(data): Movie{
+        let movie: Movie = new Movie();
+        movie.initFullModel(
+            data.Id, data.Name, data.Genre, data.Description,
             data.Year, data.Duration, data.AgeCategory, data.Country,
             data.Director, data.Actors, data.TrailerUrl, data.ImagePath, 
             data.RankSales, data.DateIssue

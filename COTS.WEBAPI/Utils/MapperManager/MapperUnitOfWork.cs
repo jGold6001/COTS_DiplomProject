@@ -1,14 +1,17 @@
 ﻿using COTS.WEBAPI.Utils.MapperManager;
+using COTS.WEBAPI.Utils.MapperManager.DTOMappers;
+using COTS.WEBAPI.Utils.MapperManager.ViewModelMappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace COTS.WEBAPI.Utils.MapperManeger
+namespace COTS.WEBAPI.Utils.MapperManager
 {
     public class MapperUnitOfWork
     {
-        MovieViewModelMapper movieViewModelMapper;
+        MovieShortViewModelMapper movieShortViewModelMapper;
+        MovieFullViewModelMapper movieFullViewModelMapper;
         CinemaViewModelMapper cinemaViewModelMapper;
         CityViewModelMapper cityViewModelMapper;
         PurchaseDTOMapper purchaseDTOMapper;
@@ -18,13 +21,23 @@ namespace COTS.WEBAPI.Utils.MapperManeger
         TicketDTOMapper ticketDTOMapper;
 
 
-        public MovieViewModelMapper MovieViewModelMapper
+        public MovieShortViewModelMapper MovieShortViewModelMapper
         {
             get
             {
-                if (movieViewModelMapper == null)
-                    movieViewModelMapper = new MovieViewModelMapper();
-                return movieViewModelMapper;
+                if (movieShortViewModelMapper == null)
+                    movieShortViewModelMapper = new MovieShortViewModelMapper();
+                return movieShortViewModelMapper;
+            }
+        }
+
+        public MovieFullViewModelMapper MovieFullViewModelMapper
+        {
+            get
+            {
+                if (movieFullViewModelMapper == null)
+                    movieFullViewModelMapper = new MovieFullViewModelMapper();
+                return movieFullViewModelMapper;
             }
         }
 

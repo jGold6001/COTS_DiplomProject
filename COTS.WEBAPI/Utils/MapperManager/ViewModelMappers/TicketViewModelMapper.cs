@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using COTS.BLL.DTO;
 using COTS.WEBAPI.Models;
-using COTS.WEBAPI.Utils.MapperManeger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace COTS.WEBAPI.Utils.MapperManager
+namespace COTS.WEBAPI.Utils.MapperManager.ViewModelMappers
 {
     public class TicketViewModelMapper : GeneralMapper<TicketDTO, TicketViewModel>
     {

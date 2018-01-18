@@ -87,6 +87,7 @@ import { PurchasePageComponent } from './components/purchase-page.components/pur
 import { TicketService } from './shared/services/ticket.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TicketsDialogComponent } from './components/purchase-page.components/tickets-dialog/tickets-dialog.component';
+import { PurchaseService } from './shared/services/purchase.service';
 
 
 @NgModule({
@@ -203,6 +204,7 @@ import { TicketsDialogComponent } from './components/purchase-page.components/ti
     DomService,
     DataService,
     TicketService,
+    PurchaseService,
     { provide: LOCALE_ID, useValue: "ru" }
   ],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.WEBAPI.Utils.MapperManeger
+namespace COTS.WEBAPI.Utils.MapperManager.DTOMappers
 {
     public class TicketDTOMapper : GeneralMapper<TicketViewModel, TicketDTO>
     {

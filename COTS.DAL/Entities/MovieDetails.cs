@@ -14,7 +14,7 @@ namespace COTS.DAL.Entities
         [ForeignKey("Movie")]
         public long Id { get; set; }
         public string Genre { get; set; }
-        public string Destination { get; set; }
+        public string Description { get; set; }
         public int Year { get; set; }
         public int Duration { get; set; }
         public string AgeCategory { get; set; }
@@ -29,10 +29,10 @@ namespace COTS.DAL.Entities
 
         }
 
-        public MovieDetails(string genre, string destination,  int year, int duration, string ageCategory, string country, string director, string actors, string trailerUrl)
+        public MovieDetails(string genre, string description,  int year, int duration, string ageCategory, string country, string director, string actors, string trailerUrl)
         {
             Genre = genre;
-            Destination = destination;
+            Description = description;
             Year = year;
             Duration = duration;
             AgeCategory = ageCategory;

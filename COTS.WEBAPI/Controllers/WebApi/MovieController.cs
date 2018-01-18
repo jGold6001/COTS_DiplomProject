@@ -2,7 +2,7 @@
 using COTS.BLL.DTO;
 using COTS.BLL.Interfaces;
 using COTS.WEBAPI.Models;
-using COTS.WEBAPI.Utils.MapperManeger;
+using COTS.WEBAPI.Utils.MapperManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,6 @@ namespace COTS.WEBAPI.Controllers
 
         MapperUnitOfWork mapperUnitOfWork;
 
-
         public MovieController()
         {
 
@@ -34,32 +33,32 @@ namespace COTS.WEBAPI.Controllers
         [Route("{id}")]
         public MovieFullViewModel GetOne(long id)
         {
-            return mapperUnitOfWork.MovieViewModelMapper.MapToObject(movieService.GetOne(id));           
+            return mapperUnitOfWork.MovieFullViewModelMapper.MapToObject(movieService.GetOne(id));           
         }
 
         [Route("all")]
-        public IEnumerable<MovieFullViewModel> GetAll()
+        public IEnumerable<MovieShortViewModel> GetAll()
         {
-            return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.GetAll());
+            return mapperUnitOfWork.MovieShortViewModelMapper.MapToCollectionObjects(movieService.GetAll());
           
         }
 
         [Route("premeries/{cityId}")]
-        public IEnumerable<MovieFullViewModel> GetAllPremeriesByCity(string cityId)
+        public IEnumerable<MovieShortViewModel> GetAllPremeriesByCity(string cityId)
         {
-            return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.FindAllPremeriesByCity(cityId));          
+            return mapperUnitOfWork.MovieShortViewModelMapper.MapToCollectionObjects(movieService.FindAllPremeriesByCity(cityId));          
         }
 
         [Route("comingsoon/{cityId}")]
-        public IEnumerable<MovieFullViewModel> GetAllCommingSoonByCity(string cityId)
+        public IEnumerable<MovieShortViewModel> GetAllCommingSoonByCity(string cityId)
         {
-            return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.FindAllComingSoonByCity(cityId));          
+            return mapperUnitOfWork.MovieShortViewModelMapper.MapToCollectionObjects(movieService.FindAllComingSoonByCity(cityId));          
         }
 
         [Route("top10/{cityId}")]
-        public IEnumerable<MovieFullViewModel> GetTop10ByCity(string cityId)
+        public IEnumerable<MovieShortViewModel> GetTop10ByCity(string cityId)
         {
-            return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.GetTop10ByRankOrderByCity(cityId));
+            return mapperUnitOfWork.MovieShortViewModelMapper.MapToCollectionObjects(movieService.GetTop10ByRankOrderByCity(cityId));
         }
 
     }

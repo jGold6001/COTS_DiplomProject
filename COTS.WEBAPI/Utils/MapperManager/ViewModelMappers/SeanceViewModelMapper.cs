@@ -7,17 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace COTS.WEBAPI.Utils.MapperManeger
+namespace COTS.WEBAPI.Utils.MapperManager.ViewModelMappers
 {
     public class SeanceViewModelMapper : GeneralMapper<SeanceDTO, SeanceViewModel>
     {
         public SeanceViewModelMapper()
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<SeanceDTO, SeanceViewModel>()
-              .ForMember("DateSeance", opt => opt.MapFrom(src => src.DateAndTime.ToShortDateString()))
-              .ForMember("TimeBegin", opt => opt.MapFrom(src => src.DateAndTime.ToString("HH:mm")))
-              .ForMember("CinemaViewModel", opt => opt.MapFrom(src => src.CinemaDTO))
-              .ForMember("MovieViewModel", opt => opt.MapFrom(src => src.MovieDTO))
+              .ForMember(d => d.DateSeance, opt => opt.MapFrom(src => src.DateAndTime.ToShortDateString()))
+              .ForMember(d => d.TimeBegin, opt => opt.MapFrom(src => src.DateAndTime.ToString("HH:mm")))
+              .ForMember(d => d.CinemaViewModel, opt => opt.MapFrom(src => src.CinemaDTO))
+              .ForMember(d => d.MovieShortViewModel, opt => opt.MapFrom(src => src.MovieDTO))
             ));
         }
        
