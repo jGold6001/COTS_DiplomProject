@@ -21,6 +21,8 @@ namespace COTS.BLL.Utils.MapperManager
 
         TicketMapper ticketMapper;
         TicketPlaceDetailsMapper ticketPlaceDetailsMapper;
+        PurchaseMapper purchaseMapper;
+        PurchaseClientDetailsesMapper purchaseClientDetailsesMapper;
         
 
         public MovieDetailsDTOMapper MovieDetailsDTOMapper
@@ -68,7 +70,7 @@ namespace COTS.BLL.Utils.MapperManager
             get
             {
                 if (seanceDTOMapper == null)
-                    seanceDTOMapper = new SeanceDTOMapper();
+                    seanceDTOMapper = new SeanceDTOMapper(MovieDTOMapper);
                 return seanceDTOMapper;
             }
         }
@@ -132,6 +134,26 @@ namespace COTS.BLL.Utils.MapperManager
                 if (ticketPlaceDetailsMapper == null)
                     ticketPlaceDetailsMapper = new TicketPlaceDetailsMapper();
                 return ticketPlaceDetailsMapper;
+            }
+        }
+
+        public PurchaseMapper PurchaseMapper
+        {
+            get
+            {
+                if (purchaseMapper == null)
+                    purchaseMapper = new PurchaseMapper();
+                return purchaseMapper;
+            }
+        }
+
+        public PurchaseClientDetailsesMapper PurchaseClientDetailsesMapper
+        {
+            get
+            {
+                if (purchaseClientDetailsesMapper == null)
+                    purchaseClientDetailsesMapper = new PurchaseClientDetailsesMapper();
+                return purchaseClientDetailsesMapper;
             }
         }
 

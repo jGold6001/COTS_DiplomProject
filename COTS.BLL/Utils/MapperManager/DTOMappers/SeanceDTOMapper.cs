@@ -11,11 +11,11 @@ namespace COTS.BLL.Utils.MapperManager.DTOMappers
 {
     public class SeanceDTOMapper : GeneralMapper<Seance, SeanceDTO>
     {
-        public SeanceDTOMapper()
+        public SeanceDTOMapper(MovieDTOMapper movieDTOMapper)
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Seance, SeanceDTO>()
                 .ForMember(m => m.CinemaDTO, opt => opt.MapFrom(src => src.Cinema))
-                .ForMember(m => m.MovieDTO, opt => opt.MapFrom(src => src.Movie))
+                .ForMember(m => m.MovieDTO, opt => opt.MapFrom(src => movieDTOMapper.MapToObject(src.Movie)))
             ));
         }
         public override IEnumerable<SeanceDTO> MapToCollectionObjects(IEnumerable<Seance> collectValues)

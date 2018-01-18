@@ -118,13 +118,9 @@ namespace COTS.BLL.Services
 
         private SeanceDTO AttachObjetcsToDTO(Seance seance)
         {
-            var movieDTO = movieService.GetOne(seance.MovieId);
-            var cinemaDTO = cinemaService.GetOne(seance.CinemaId);
-
             SeanceDTO seanceDTO = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
-            seanceDTO.MovieDTO = movieDTO;
-            seanceDTO.CinemaDTO = cinemaDTO;
-
+            seanceDTO.MovieDTO = movieService.GetOne(seanceDTO.MovieId);
+            seanceDTO.CinemaDTO = cinemaService.GetOne(seanceDTO.CinemaId);
             return seanceDTO;
         }
 

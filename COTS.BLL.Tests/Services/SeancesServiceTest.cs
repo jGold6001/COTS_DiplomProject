@@ -44,6 +44,13 @@ namespace COTS.BLL.Services.Tests
 
         }
 
+        [TestMethod()]
+        public void GetOneSeanceTest()
+        {
+            var seanceId = unitOfWork.Seances.GetAll().FirstOrDefault().Id;
+            var seanceDTO = seanceService.GetOne(seanceId);
+            Trace.WriteLine($"IDSeance: {seanceDTO.Id}, Cinema: {seanceDTO.CinemaDTO.Name}, Movie: {seanceDTO.MovieDTO.Name} and date {seanceDTO.DateAndTime}");
+        }
 
     }
 }

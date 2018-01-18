@@ -62,6 +62,8 @@
     <Compile Include="Services\TicketPlaceDetailsService.cs" />
     <Compile Include="Utils\MapperManager\DTOMappers\CinemaDTOMapper.cs" />
     <Compile Include="Utils\MapperManager\DTOMappers\CityDTOMapper.cs" />
+    <Compile Include="Utils\MapperManager\EntityMappers\PurchaseClientDetailsesMapper.cs" />
+    <Compile Include="Utils\MapperManager\EntityMappers\PurchaseMapper.cs" />
     <Compile Include="Utils\MapperManager\EntityMappers\TicketMapper.cs" />
     <Compile Include="Utils\MapperManager\EntityMappers\TicketPlaceDetailsMapper.cs" />
     <Compile Include="Utils\MapperManager\GeneralMapper.cs" />

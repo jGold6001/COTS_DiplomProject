@@ -9,26 +9,26 @@ using AutoMapper;
 using COTS.DAL.Interfaces;
 using COTS.DAL.Entities;
 using COTS.BLL.Utils;
+using COTS.BLL.Utils.MapperManager;
 
 namespace COTS.BLL.Services
 {
     public class PurchaseService : IPurchaseService
     {
         public IUnitOfWork UnitOfWork { get; set; }
-        IMapper mapperPurchase, mapperPurchaseReverse;
-        IMapper mapperClientDetails, mapperClientDetailsReverse;
+        
         ITicketService ticketService;
+        IPurchaseClientDetailsService purchaseClientDetailsService;
+
+        MapperUnitOfWork mapperUnitOfWork;
 
         public PurchaseService(IUnitOfWork unitOfWork)
         {
-            UnitOfWork = unitOfWork;           
-            mapperPurchase = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Purchase, PurchaseDTO>()));
-            mapperPurchaseReverse = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseDTO, Purchase>()));
-
-            mapperClientDetails = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseClientDetails, PurchaseClientDetailsDTO>()));
-            mapperClientDetailsReverse = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseClientDetailsDTO, PurchaseClientDetails>()));
-
+            UnitOfWork = unitOfWork;
+            mapperUnitOfWork = new MapperUnitOfWork();
+          
             ticketService = new TicketService(unitOfWork);
+            purchaseClientDetailsService = new PurchaseClientDetailsService(unitOfWork);
         }
 
         public void Delete(string id)
@@ -73,32 +73,31 @@ namespace COTS.BLL.Services
             if (purchaseDTO == null)
                 throw new ValidationException("PurchaseDTO not set", "");
 
-            var purchase = mapperPurchaseReverse.Map<PurchaseDTO, Purchase>(purchaseDTO);
-            var client = mapperClientDetailsReverse.Map<PurchaseClientDetailsDTO, PurchaseClientDetails>(purchaseDTO.PurchaseClientDetailsDTO);
+            var purchase = mapperUnitOfWork.PurchaseMapper.MapToObject(purchaseDTO);
+            var client = mapperUnitOfWork.PurchaseClientDetailsesMapper.MapToObject(purchaseDTO.PurchaseClientDetailsDTO);
             UnitOfWork.PurchaseClientDetailses.AddOrUpdate(client);
             UnitOfWork.Purchases.AddOrUpdate(purchase);
             UnitOfWork.Save();
         }
 
 
-        private List<PurchaseDTO> AttachObjetcsToDTOList(IEnumerable<Purchase> purchases)
+        private IEnumerable<PurchaseDTO> AttachObjetcsToDTOList(IEnumerable<Purchase> purchases)
         {
-            var purchasesDTOs = mapperPurchase.Map<IEnumerable<Purchase>, IEnumerable<PurchaseDTO>>(purchases) as List<PurchaseDTO>;
+            var purchasesDTOs = mapperUnitOfWork.PurchaseDTOMapper.MapToCollectionObjects(purchases);
             foreach (var item in purchasesDTOs)
             {
-                item.PurchaseClientDetailsDTO = mapperClientDetails.Map<PurchaseClientDetails, PurchaseClientDetailsDTO>(UnitOfWork.PurchaseClientDetailses.Get(item.Id));
-                item.TicketsDTOs = ticketService.GetByPurchase(item.Id) as List<TicketDTO>;
+                item.PurchaseClientDetailsDTO = purchaseClientDetailsService.GetOne(item.Id);
+                item.TicketsDTOs = ticketService.GetByPurchase(item.Id);
             }
                
-
             return purchasesDTOs;
         }
 
         private PurchaseDTO AttachObjetcsToDTO(Purchase purchase)
         {
-            var purchaseDTO = mapperPurchase.Map<Purchase, PurchaseDTO>(purchase);
-            var clientDTO = mapperClientDetails.Map<PurchaseClientDetails, PurchaseClientDetailsDTO>(UnitOfWork.PurchaseClientDetailses.Get(purchase.Id));
-            var ticketsDTOs = ticketService.GetByPurchase(purchase.Id) as List<TicketDTO>;
+            var purchaseDTO = mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchase);
+            var clientDTO = purchaseClientDetailsService.GetOne(purchaseDTO.Id);
+            var ticketsDTOs = ticketService.GetByPurchase(purchaseDTO.Id);
 
             purchaseDTO.PurchaseClientDetailsDTO = clientDTO;
             purchaseDTO.TicketsDTOs = ticketsDTOs;

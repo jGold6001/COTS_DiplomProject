@@ -37,7 +37,7 @@ namespace COTS.BLL.Services.Tests
                 Id = "001",
             };
 
-            var clientDetailsDTO = new PurchaseClientDetailsDTO()
+            var clientDetailsDTO = new DTO.PurchaseClientDetailsDTO()
             {
                 Id = purchaseDTO.Id,
                 Email = "hello@milo.net",
@@ -100,8 +100,7 @@ namespace COTS.BLL.Services.Tests
                     Trace.WriteLine(ticket.TicketPlaceDetailsDTO.Number);
                     Trace.WriteLine($"SeanceID - {ticket.SeanceDTO.Id}, SeanceDate -  {ticket.SeanceDTO.DateAndTime.Date}");
                 }
-            }
-               
+            }              
 
         }
 
