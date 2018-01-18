@@ -3,6 +3,9 @@ import { Cinema } from "../models/cinema.model";
 import { Ticket } from "../models/ticket.model";
 import { Purchase } from "../models/purchase.model";
 import { Seance } from "../models/seance.model";
+import { Place } from "../models/place.model";
+import { Client } from "../models/client.model";
+import { forEach } from "@angular/router/src/utils/collection";
 
 
 export class JsonConvertor{
@@ -66,33 +69,46 @@ export class JsonConvertor{
         return seances;
     }
 
-    public static toSeance(data, movie: Movie, cinema: Cinema): Seance{
+    public static toSeance(data): Seance{
         let seance: Seance = new Seance();
         seance.init(data.Id, data.TimeBegin, data.DateSeance, data.TypeD, data.Hall);
-        seance.movie = movie;
-        seance.cinema = cinema;
+        seance.movie = this.toMovieShort(data.MovieShortViewModel);
+        seance.cinema = this.toCinema(data.CinemaViewModel);
         return seance;
     }
 
-    public static toTicketsArray(data, seance: Seance): Ticket[]{
+    public static toTicketsArray(data): Ticket[]{
         let tickets: Ticket[] = [];
         for (let i = 0; i < data.length; i++) {
-            let ticket: Ticket = new Ticket();
+            let ticket: Ticket = new Ticket();           
             ticket.init(
-                data[i].Id, data[i].Place,
-                data[i].Row, data[i].Tariff, data[i].Price, 
-                data[i].PurchaseId, data[i].State
+                data[i].Id, data[i].PurchaseId, data[i].State
             );
-            ticket.seance = seance;   
+            ticket.place = this.toPlace(data[i].PlaceDetailsViewModel);
+            ticket.seance = this.toSeance(data[i].SeanceViewModel);   
             tickets.push(ticket);
         }
         return tickets;
     }
 
+    public static toPlace(data): Place{
+        let place = new Place();
+        place.init(data.Number, data.Row, data.Tariff, data.Price);
+        return place;
+    }
+
     public static toPurchase(data): Purchase{
         let purchase: Purchase= new Purchase();
-        purchase.id = data.Id;     
+        purchase.id = data.Id;  
+        purchase.client = this.toClient(data.ClientDetailsViewModel);        
+        purchase.tickets = this.toTicketsArray(data.TicketViewModels); 
         return purchase;
+    }
+
+    public static toClient(data): Client{
+        let client: Client = new Client();
+        client.init(data.Email, data.FullName, data.Phone);
+        return client;
     }
 
 }

@@ -9,10 +9,11 @@ import { Place } from '../../../shared/models/place.model';
 import { Ticket } from '../../../shared/models/ticket.model';
 import { Purchase } from '../../../shared/models/purchase.model';
 import { PurchasePageComponent } from '../../purchase-page.components/purchase-page/purchase-page.component';
-import { TicketService } from '../../../shared/services/ticket.service';
 import { setTimeout } from 'timers';
+import { PurchaseService } from '../../../shared/services/purchase.service';
+import { City } from '../../../shared/models/city.model';
 
-
+import {serialize} from 'json-typescript-mapper';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class HallDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private domService: DomService,
     private dataService: DataService,
-    private ticketService: TicketService,
+    private purchaseService: PurchaseService,
     private router: Router
   )
   { }
@@ -56,7 +57,6 @@ export class HallDialogComponent implements OnInit {
     let componentType = this.getComponentType(typeInfo);
     let factory = this.domService.createFactory(componentType);
     this.componentRef = this.container.createComponent(factory);
-
 
     this.dataService.placesSelected$.subscribe( place =>
       {
@@ -79,28 +79,25 @@ export class HallDialogComponent implements OnInit {
 
       let bokingState: number = 1;
       let _idTicket: string = this.zeroPad(this.getRandomInt(1,100000),6); 
-
+      
       let ticket: Ticket = new Ticket();
-      ticket.init(_idTicket, 
-        place.num,
-        place.row,
-        place.tariff,
-        place.price, 
-        _idPurchase,
-        bokingState);
-      this.tickets.push(ticket);
+      ticket.init(_idTicket,  _idPurchase, bokingState);
+      ticket.place = place;
       ticket.seanceId = this.seance.id;
+
+      this.tickets.push(ticket);     
     } 
     this.purchase.tickets = this.tickets;
     
     //post to server
-    //this.ticketService.saveInDb(this.purchase);
+    this.purchaseService.saveInDb(this.purchase);
+
 
     //go to purchase
-    setTimeout(() => {
-      this.router.navigate(["purchase", _idPurchase]);
-      this.dialogRef.close();
-    }, 2000)
+    // setTimeout(() => {
+    //   this.router.navigate(["purchase", _idPurchase]);
+    //   this.dialogRef.close();
+    // }, 2000)
   
   }
 

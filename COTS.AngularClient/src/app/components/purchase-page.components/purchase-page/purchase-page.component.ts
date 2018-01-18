@@ -65,7 +65,8 @@ export class PurchasePageComponent implements OnInit {
     this.purchaseService.getPurchase("test231243")
       .subscribe(data => {
         this.purchase = data;
-        this.tickets = this.purchase.tickets;
+        console.log(data);
+        this.tickets = this.purchase.tickets;    
         this.seance = this.tickets[0].seance;
         this.movie = this.seance.movie;
         this.cinema = this.seance.cinema;    

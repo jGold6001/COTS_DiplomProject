@@ -1,18 +1,14 @@
 import { stagger } from "@angular/animations/src/animation_metadata";
 import { Seance } from "./seance.model";
+import { Place } from "./place.model";
 
 
 export class Ticket{
 
     init(
-        id: string, place: number, row: number, tariff: string, 
-        price: number, purchaseId: string, state: number
+        id: string, purchaseId: string, state: number
     ){
-        this.id = id;
-        this.place = place;
-        this.row = row;
-        this.tariff = tariff;
-        this.price = price;
+        this.id = id;    
         this.purchaseId = purchaseId;
         this.state = state;
     }
@@ -24,10 +20,7 @@ export class Ticket{
     id: string;
     seanceId: number;
     seance: Seance;
-    place: number;
-    row: number;
-    tariff: string;
-    price: number;
+    place: Place;
     purchaseId: string;
     state: number;
 }

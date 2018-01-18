@@ -1,6 +1,7 @@
 ﻿using COTS.BLL.Interfaces;
 using COTS.WEBAPI.Models;
 using COTS.WEBAPI.Utils.MapperManager;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,10 +36,19 @@ namespace COTS.WEBAPI.Controllers.WebApi
 
         [HttpPost]
         [Route("save_in_db")]
-        public void SaveInDb(PurchaseViewModel purchaseViewModel)
+        public void SaveInDb(JObject purchaseViewModel)
         {
-            purchaseService.AddOrUpdate(mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchaseViewModel));
+            var value = purchaseViewModel;
+            //purchaseService.AddOrUpdate(mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchaseViewModel));
         }
+
+        //[HttpPost]
+        //[Route("save_in_db")]
+        //public void SaveInDb(CityViewModel cityViewModel)
+        //{
+        //    var value = cityViewModel;
+        //    //purchaseService.AddOrUpdate(mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchaseViewModel));
+        //}
 
         [Route("{Id}")]
         public PurchaseViewModel GetPurchase(string id)
