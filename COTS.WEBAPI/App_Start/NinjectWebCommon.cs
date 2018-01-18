@@ -9,7 +9,7 @@ using COTS.WEBAPI.App_Start;
 using Ninject.Web.Common.WebHost;
 using COTS.BLL.Interfaces;
 using COTS.BLL.Services;
-using COTS.BLL.Infrastructure;
+using COTS.BLL.Utils;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]

@@ -32,32 +32,32 @@ namespace COTS.WEBAPI.Controllers
         }
 
         [Route("{id}")]
-        public MovieViewModel GetOne(long id)
+        public MovieFullViewModel GetOne(long id)
         {
             return mapperUnitOfWork.MovieViewModelMapper.MapToObject(movieService.GetOne(id));           
         }
 
         [Route("all")]
-        public IEnumerable<MovieViewModel> GetAll()
+        public IEnumerable<MovieFullViewModel> GetAll()
         {
             return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.GetAll());
           
         }
 
         [Route("premeries/{cityId}")]
-        public IEnumerable<MovieViewModel> GetAllPremeriesByCity(string cityId)
+        public IEnumerable<MovieFullViewModel> GetAllPremeriesByCity(string cityId)
         {
             return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.FindAllPremeriesByCity(cityId));          
         }
 
         [Route("comingsoon/{cityId}")]
-        public IEnumerable<MovieViewModel> GetAllCommingSoonByCity(string cityId)
+        public IEnumerable<MovieFullViewModel> GetAllCommingSoonByCity(string cityId)
         {
             return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.FindAllComingSoonByCity(cityId));          
         }
 
         [Route("top10/{cityId}")]
-        public IEnumerable<MovieViewModel> GetTop10ByCity(string cityId)
+        public IEnumerable<MovieFullViewModel> GetTop10ByCity(string cityId)
         {
             return mapperUnitOfWork.MovieViewModelMapper.MapToCollectionObjects(movieService.GetTop10ByRankOrderByCity(cityId));
         }

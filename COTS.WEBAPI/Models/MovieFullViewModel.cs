@@ -5,7 +5,7 @@ using System.Web;
 
 namespace COTS.WEBAPI.Models
 {
-    public class MovieViewModel
+    public class MovieFullViewModel
     {
         public long Id { get; set; }
         public string Name { get; set; }

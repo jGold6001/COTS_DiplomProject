@@ -9,23 +9,23 @@ using System.Web;
 
 namespace COTS.WEBAPI.Utils.MapperManeger
 {
-    public class MovieViewModelMapper : GeneralMapper<MovieDTO, MovieViewModel>
+    public class MovieViewModelMapper : GeneralMapper<MovieDTO, MovieFullViewModel>
     {
         public MovieViewModelMapper()
         {
-            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<MovieDTO, MovieViewModel>()
+            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<MovieDTO, MovieFullViewModel>()
                .ForMember("DateIssue", opt => opt.MapFrom(src => src.DateIssue.ToShortDateString()))
             ));
         }
 
-        public override IEnumerable<MovieViewModel> MapToCollectionObjects(IEnumerable<MovieDTO> collectValues)
+        public override IEnumerable<MovieFullViewModel> MapToCollectionObjects(IEnumerable<MovieDTO> collectValues)
         {
-            return Mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieViewModel>>(collectValues);
+            return Mapper.Map<IEnumerable<MovieDTO>, IEnumerable<MovieFullViewModel>>(collectValues);
         }
 
-        public override MovieViewModel MapToObject(MovieDTO value)
+        public override MovieFullViewModel MapToObject(MovieDTO value)
         {
-            return Mapper.Map<MovieDTO, MovieViewModel>(value);
+            return Mapper.Map<MovieDTO, MovieFullViewModel>(value);
         }
     }
 }

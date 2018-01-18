@@ -1,3 +1,5 @@
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\obj\Debug\COTS.WEBAPI.csprojResolveAssemblyReference.cache
+F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\obj\Debug\COTS.WEBAPI.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\bin\COTS.WEBAPI.dll.config
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\bin\COTS.WEBAPI.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\bin\COTS.WEBAPI.pdb
@@ -47,7 +49,5 @@ F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\bin\System.Web.Http.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\bin\System.Web.Http.WebHost.xml
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\bin\COTS.DAL.pdb
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\bin\COTS.DAL.dll.config
-F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\obj\Debug\COTS.WEBAPI.csprojResolveAssemblyReference.cache
-F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\obj\Debug\COTS.WEBAPI.csproj.CoreCompileInputs.cache
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\obj\Debug\COTS.WEBAPI.dll
 F:\ITstep\Subjects\Diplom\COTS_DiplomProject\COTS.WEBAPI\obj\Debug\COTS.WEBAPI.pdb

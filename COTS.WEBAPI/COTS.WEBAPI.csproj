@@ -166,7 +166,8 @@
     <Compile Include="Models\CinemaViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
     <Compile Include="Models\ClientDetailsViewModel.cs" />
-    <Compile Include="Models\MovieViewModel.cs" />
+    <Compile Include="Models\MovieShortViewModel.cs" />
+    <Compile Include="Models\MovieFullViewModel.cs" />
     <Compile Include="Models\PlaceDetailsViewModel.cs" />
     <Compile Include="Models\PurchaseViewModel.cs" />
     <Compile Include="Models\SeanceViewModel.cs" />
