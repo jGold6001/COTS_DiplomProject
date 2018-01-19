@@ -99,8 +99,10 @@ export class JsonConvertor{
 
     public static toPurchase(data): Purchase{
         let purchase: Purchase= new Purchase();
-        purchase.id = data.Id;  
-        purchase.client = this.toClient(data.ClientDetailsViewModel);        
+        purchase.id = data.Id;
+        if(purchase.client != null)  
+            purchase.client = this.toClient(data.ClientDetailsViewModel);  
+                  
         purchase.tickets = this.toTicketsArray(data.TicketViewModels); 
         return purchase;
     }

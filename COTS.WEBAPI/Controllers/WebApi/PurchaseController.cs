@@ -40,7 +40,23 @@ namespace COTS.WEBAPI.Controllers.WebApi
         {
             var purchaseDTO = mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchaseViewModel);
             purchaseService.AddOrUpdate(purchaseDTO);
-        }     
+        }  
+        
+        [HttpPost]
+        [Route("update")]
+        public void UpdateInDb(ClientDetailsViewModel client)
+        {
+            var purchaseDTO = purchaseService.GetOne(client.Id);
+            purchaseDTO.PurchaseClientDetailsDTO = mapperUnitOfWork.PurchaseClientDetailsDTOMapper.MapToObject(client);
+            purchaseService.AddOrUpdate(purchaseDTO);
+        }
+
+        [HttpPost]
+        [Route("remove")]
+        public void RemoveFromDb(string purchaseId)
+        {
+            purchaseService.Delete(purchaseId);
+        }
 
         [Route("{Id}")]
         public PurchaseViewModel GetPurchase(string id)

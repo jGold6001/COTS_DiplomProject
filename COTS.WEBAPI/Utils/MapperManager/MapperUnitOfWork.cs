@@ -16,6 +16,8 @@ namespace COTS.WEBAPI.Utils.MapperManager
         CityViewModelMapper cityViewModelMapper;
         PurchaseDTOMapper purchaseDTOMapper;
         PurchaseViewModelMapper purchaseViewModelMapper;
+        ClientDetailsViewModelMapper clientDetailsViewModelMapper;
+        PurchaseClientDetailsDTOMapper purchaseClientDetailsDTOMapper;
         SeanceViewModelMapper seanceViewModelMapper;
         TicketViewModelMapper ticketViewModelMapper;
         TicketDTOMapper ticketDTOMapper;
@@ -91,7 +93,6 @@ namespace COTS.WEBAPI.Utils.MapperManager
             }
         }
 
-
         public PurchaseDTOMapper PurchaseDTOMapper
         {
             get
@@ -112,7 +113,25 @@ namespace COTS.WEBAPI.Utils.MapperManager
             }
         }
 
+        public ClientDetailsViewModelMapper ClientDetailsViewModelMapper
+        {
+            get
+            {
+                if (clientDetailsViewModelMapper == null)
+                    clientDetailsViewModelMapper = new ClientDetailsViewModelMapper();
+                return clientDetailsViewModelMapper;
+            }
+        }
 
+        public PurchaseClientDetailsDTOMapper PurchaseClientDetailsDTOMapper
+        {
+            get
+            {
+                if (purchaseClientDetailsDTOMapper == null)
+                    purchaseClientDetailsDTOMapper = new PurchaseClientDetailsDTOMapper();
+                return purchaseClientDetailsDTOMapper;
+            }
+        }
 
     }
 }

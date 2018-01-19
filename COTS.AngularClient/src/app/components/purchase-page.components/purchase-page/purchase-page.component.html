@@ -149,33 +149,23 @@
                                             </div>                                         
                                             <form class="row">
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Email" [(ngModel)]="email" [formControl]="emailFormControl"
+                                                    <input matInput placeholder="Email" [(ngModel)]="client.email" [formControl]="emailFormControl"
                                                         [errorStateMatcher]="matcher">
                                                     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                                         Пожалуйста, введите корректный e-mail
-                                                    </mat-error>
-                                                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                                                      Поле <strong>обязательное</strong>
-                                                    </mat-error>
+                                                    </mat-error>                                                 
                                                 </mat-form-field>
 
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Фамилия Имя" type="text" [formControl]="nameFormControl"
+                                                    <input matInput placeholder="Фамилия Имя" [(ngModel)]="client.fullName"   [formControl]="nameFormControl"
                                                         [errorStateMatcher]="matcher">
-                                                    <mat-error *ngIf="nameFormControl.hasError('maxlength') && !nameFormControl.hasError('required')">
-                                                        Имя слишком длинное
-                                                    </mat-error>
                                                     <mat-error *ngIf="nameFormControl.hasError('required')">
                                                         Поле <strong>обязательное</strong>
                                                     </mat-error>
                                                 </mat-form-field>
 
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Номер Телефона" type="number" [formControl]="phoneFormControl"
-                                                        [errorStateMatcher]="matcher">  
-                                                    <mat-error *ngIf="phoneFormControl.hasError('required')">
-                                                        Поле <strong>обязательное</strong>
-                                                    </mat-error>
+                                                    <input matInput placeholder="Номер Телефона" [(ngModel)]="phone" >                     
                                                 </mat-form-field>
                                             </form>
                                             <div class="row">

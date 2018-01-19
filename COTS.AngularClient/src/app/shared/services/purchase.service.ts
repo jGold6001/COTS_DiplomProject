@@ -22,21 +22,22 @@ export class PurchaseService{
         this.httpClient.post(environment.APIURL_PURCHASE_SAVE_IN_DB, purchase) 
             .subscribe(null,err => console.log("Error occured"));
     }
+
+    updateInDb(client: any){
+        this.httpClient.post(environment.APIURL_PURCHASE_UPDATE, client) 
+            .subscribe(null,err => console.log("Error occured"));
+    }
     
+    removePurchase(purchaseId: string){
+        this.httpClient.post(environment.APIURL_PURCHASE_REMOVE, purchaseId) 
+            .subscribe(null,err => console.log("Error occured"));
+    }
+
     getPurchase(purchaseId: string){
         return this.http.get(environment.APIURL_PURCHASE + purchaseId)
             .map(responce => {                          
                 return JsonConvertor.toPurchase(responce.json());
             });
-    }
-
-
-    payment(){
-
-    }
-
-    removePurchase(){
-
     }
 
 }

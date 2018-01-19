@@ -30,7 +30,8 @@ namespace COTS.BLL.Services
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            var client = UnitOfWork.PurchaseClientDetailses.Get(id);
+            UnitOfWork.PurchaseClientDetailses.Delete(client);
         }
 
         public IEnumerable<PurchaseClientDetailsDTO> GetAll()

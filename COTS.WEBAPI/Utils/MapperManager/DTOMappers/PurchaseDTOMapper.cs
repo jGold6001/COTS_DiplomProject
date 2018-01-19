@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using COTS.BLL.DTO;
 using COTS.WEBAPI.Models;
-using COTS.WEBAPI.Utils.MapperManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
