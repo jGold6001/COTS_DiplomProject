@@ -32,12 +32,10 @@ namespace COTS.BLL.Services
         {
             if(ticketDTO == null)
                 throw new ValidationException("TicketsDTO not set", "");
-
+         
             var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
-            ticket.SeanceId = ticketDTO.SeanceDTO.Id;
-            var placeDetails = mapperUnitOfWork.TicketPlaceDetailsMapper.MapToObject(ticketDTO.TicketPlaceDetailsDTO);
-            UnitOfWork.TicketPlaceDetails.AddOrUpdate(placeDetails);
             UnitOfWork.Tickets.AddOrUpdate(ticket);
+            ticketPlaceDetailsService.AddOrUpdate(ticketDTO.TicketPlaceDetailsDTO);
             UnitOfWork.Save();
         }
 

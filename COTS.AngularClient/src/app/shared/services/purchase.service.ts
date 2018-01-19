@@ -18,7 +18,7 @@ export class PurchaseService{
         private http: Http, 
     ){}
 
-    saveInDb(purchase: Purchase){
+    saveInDb(purchase: any){
         this.httpClient.post(environment.APIURL_PURCHASE_SAVE_IN_DB, purchase) 
             .subscribe(null,err => console.log("Error occured"));
     }

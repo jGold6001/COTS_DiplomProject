@@ -73,11 +73,15 @@ namespace COTS.BLL.Services
             if (purchaseDTO == null)
                 throw new ValidationException("PurchaseDTO not set", "");
 
-            var purchase = mapperUnitOfWork.PurchaseMapper.MapToObject(purchaseDTO);
-            var client = mapperUnitOfWork.PurchaseClientDetailsesMapper.MapToObject(purchaseDTO.PurchaseClientDetailsDTO);
-            UnitOfWork.PurchaseClientDetailses.AddOrUpdate(client);
+            if (purchaseDTO.PurchaseClientDetailsDTO != null)
+                purchaseClientDetailsService.AddOrUpdate(purchaseDTO.PurchaseClientDetailsDTO);
+                     
+            var purchase = mapperUnitOfWork.PurchaseMapper.MapToObject(purchaseDTO);        
             UnitOfWork.Purchases.AddOrUpdate(purchase);
-            UnitOfWork.Save();
+
+            foreach (var item in purchaseDTO.TicketsDTOs)
+                ticketService.AddOrUpdate(item);
+           
         }
 
 

@@ -97,7 +97,7 @@ namespace COTS.WEBAPI.Utils.MapperManager
             get
             {
                 if (purchaseDTOMapper == null)
-                    purchaseDTOMapper = new PurchaseDTOMapper();
+                    purchaseDTOMapper = new PurchaseDTOMapper(TicketDTOMapper);
                 return purchaseDTOMapper;
             }
         }

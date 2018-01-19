@@ -24,7 +24,8 @@ namespace COTS.BLL.Services
 
         public void AddOrUpdate(TicketPlaceDetailsDTO ticketPlaceDetailsDTO)
         {
-            throw new NotImplementedException();
+            var ticketPlaceDetails = mapperUnitOfWork.TicketPlaceDetailsMapper.MapToObject(ticketPlaceDetailsDTO);
+            UnitOfWork.TicketPlaceDetails.AddOrUpdate(ticketPlaceDetails);
         }
 
         public void Delete(string id)

@@ -11,9 +11,12 @@ namespace COTS.WEBAPI.Utils.MapperManager.DTOMappers
 {
     public class PurchaseDTOMapper : GeneralMapper<PurchaseViewModel, PurchaseDTO>
     {
-        public PurchaseDTOMapper()
+        public PurchaseDTOMapper(TicketDTOMapper ticketDTOMapper)
         {
-            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseViewModel, PurchaseDTO>()));
+            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseViewModel, PurchaseDTO>()
+                .ForMember(d => d.PurchaseClientDetailsDTO, opt => opt.MapFrom(src => src.ClientDetailsViewModel))
+                .ForMember(d => d.TicketsDTOs, opt => opt.MapFrom(src => ticketDTOMapper.MapToCollectionObjects(src.TicketViewModels)))
+            ));
         }
 
         public override IEnumerable<PurchaseDTO> MapToCollectionObjects(IEnumerable<PurchaseViewModel> collectValues)

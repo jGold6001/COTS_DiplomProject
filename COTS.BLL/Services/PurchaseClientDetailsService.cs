@@ -24,7 +24,8 @@ namespace COTS.BLL.Services
 
         public void AddOrUpdate(PurchaseClientDetailsDTO purchaseClientDetailsDTO)
         {
-            throw new NotImplementedException();
+            var purchaseClientDetails = mapperUnitOfWork.PurchaseClientDetailsesMapper.MapToObject(purchaseClientDetailsDTO);
+            UnitOfWork.PurchaseClientDetailses.AddOrUpdate(purchaseClientDetails);
         }
 
         public void Delete(string id)

@@ -62,7 +62,7 @@ export class PurchasePageComponent implements OnInit {
 
   ngOnInit() {
     
-    this.purchaseService.getPurchase("test231243")
+    this.purchaseService.getPurchase(this.purchaseId)
       .subscribe(data => {
         this.purchase = data;
         console.log(data);

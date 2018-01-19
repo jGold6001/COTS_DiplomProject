@@ -36,19 +36,11 @@ namespace COTS.WEBAPI.Controllers.WebApi
 
         [HttpPost]
         [Route("save_in_db")]
-        public void SaveInDb(JObject purchaseViewModel)
+        public void SaveInDb(PurchaseViewModel purchaseViewModel)
         {
-            var value = purchaseViewModel;
-            //purchaseService.AddOrUpdate(mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchaseViewModel));
-        }
-
-        //[HttpPost]
-        //[Route("save_in_db")]
-        //public void SaveInDb(CityViewModel cityViewModel)
-        //{
-        //    var value = cityViewModel;
-        //    //purchaseService.AddOrUpdate(mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchaseViewModel));
-        //}
+            var purchaseDTO = mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchaseViewModel);
+            purchaseService.AddOrUpdate(purchaseDTO);
+        }     
 
         [Route("{Id}")]
         public PurchaseViewModel GetPurchase(string id)

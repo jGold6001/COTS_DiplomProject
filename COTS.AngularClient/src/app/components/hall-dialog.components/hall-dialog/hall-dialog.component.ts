@@ -70,38 +70,46 @@ export class HallDialogComponent implements OnInit {
   goToPayment(){
 
     //create purchase
-    this.purchase = new Purchase();
     let _idPurchase: string = this.zeroPad(this.getRandomInt(1,10000),5);  
-    this.purchase.id = _idPurchase;
+    let purchase = {
+      Id: _idPurchase,
+      TicketViewModels: []
+    };
 
     //create tickets
     for(let place of this.places){ 
-
-      let bokingState: number = 1;
       let _idTicket: string = this.zeroPad(this.getRandomInt(1,100000),6); 
       
-      let ticket: Ticket = new Ticket();
-      ticket.init(_idTicket,  _idPurchase, bokingState);
-      ticket.place = place;
-      ticket.seanceId = this.seance.id;
+      let PlaceDetailsViewModel = {
+          Id: _idTicket,
+          Number: place.num,
+          Row: place.row,
+          Tariff: place.tariff,
+          Price: place.price
+      }
 
-      this.tickets.push(ticket);     
+      let TicketViewModel = {
+        Id: _idTicket,
+        PurchaseId: _idPurchase,
+        State: 1,
+        SeanceId: this.seance.id,
+        PlaceDetailsViewModel: PlaceDetailsViewModel        
+      }; 
+      
+      purchase.TicketViewModels.push(TicketViewModel);
     } 
-    this.purchase.tickets = this.tickets;
     
     //post to server
-    this.purchaseService.saveInDb(this.purchase);
-
+    this.purchaseService.saveInDb(purchase);
 
     //go to purchase
-    // setTimeout(() => {
-    //   this.router.navigate(["purchase", _idPurchase]);
-    //   this.dialogRef.close();
-    // }, 2000)
+    setTimeout(() => {
+      this.router.navigate(["purchase", _idPurchase]);
+      this.dialogRef.close();
+    }, 2000)
   
   }
 
- 
 
   onNoClick(): void {
     this.dialogRef.close();

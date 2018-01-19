@@ -14,7 +14,9 @@ namespace COTS.WEBAPI.Utils.MapperManager.DTOMappers
     {
         public TicketDTOMapper()
         {
-            Mapper = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketViewModel, TicketDTO>()));
+            Mapper = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketViewModel, TicketDTO>()
+                .ForMember(d => d.TicketPlaceDetailsDTO, opt => opt.MapFrom(src => src.PlaceDetailsViewModel))
+            ));
         }
         public override IEnumerable<TicketDTO> MapToCollectionObjects(IEnumerable<TicketViewModel> collectValues)
         {
