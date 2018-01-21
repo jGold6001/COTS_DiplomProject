@@ -26,5 +26,5 @@ export const environment = {
   APIURL_PURCHASE_SAVE_IN_DB:           _serverHost +  "/api/purchase/save_in_db",  
   APIURL_PURCHASE:                      _serverHost +  "/api/purchase/",
   APIURL_PURCHASE_UPDATE:               _serverHost +  "/api/purchase/update",
-  APIURL_PURCHASE_REMOVE:               _serverHost +  "/api/purchase/remove"
+  APIURL_PURCHASE_REMOVE:               _serverHost +  "/api/purchase/remove/"
 };

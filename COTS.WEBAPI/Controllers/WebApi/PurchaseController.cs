@@ -51,11 +51,11 @@ namespace COTS.WEBAPI.Controllers.WebApi
             purchaseService.AddOrUpdate(purchaseDTO);
         }
 
-        [HttpPost]
-        [Route("remove")]
-        public void RemoveFromDb(string purchaseId)
+        [HttpDelete]
+        [Route("remove/{id}")]
+        public void RemoveFromDb(string id)
         {
-            purchaseService.Delete(purchaseId);
+            purchaseService.Delete(id);
         }
 
         [Route("{Id}")]

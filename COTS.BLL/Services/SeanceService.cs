@@ -39,22 +39,7 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<SeanceDTO> FindByCinemaAndDate(string cinemaId, DateTime date)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public IEnumerable<SeanceDTO> FindByMovieAndDate(long? movieId, DateTime date)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<SeanceDTO> FindByDate(DateTime date)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public IEnumerable<SeanceDTO> FindAllByCinemaMovieAndDate(string cinemaId, long? movieId, DateTime date)
         {
             if (cinemaId == null)

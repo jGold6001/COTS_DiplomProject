@@ -29,7 +29,7 @@ export class PurchaseService{
     }
     
     removePurchase(purchaseId: string){
-        this.httpClient.post(environment.APIURL_PURCHASE_REMOVE, purchaseId) 
+        this.httpClient.delete(environment.APIURL_PURCHASE_REMOVE + purchaseId) 
             .subscribe(null,err => console.log("Error occured"));
     }
 

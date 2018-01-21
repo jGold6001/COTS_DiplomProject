@@ -24,7 +24,7 @@ import {serialize} from 'json-typescript-mapper';
 
 export class HallDialogComponent implements OnInit {
 
-  @ViewChild('container', { read: ViewContainerRef })
+  @ViewChild('hallcomponent', { read: ViewContainerRef })
     
   container: ViewContainerRef;
   componentRef: ComponentRef<{}>;

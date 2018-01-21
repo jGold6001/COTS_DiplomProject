@@ -11,7 +11,6 @@ import { Place } from '../../../../../../shared/models/place.model';
 export class MpxSkymallHall1Component implements OnInit {
 
   place: Place;
-
   tariff = "simple";
   price = 100;
 
@@ -22,8 +21,7 @@ export class MpxSkymallHall1Component implements OnInit {
   ngOnInit() {
   }
 
-  myEvent_1(){
-    
+  myEvent_1(){ 
     this.place = new Place()
     this.place.init(1, 1,this.tariff, this.price);
     this.dataService.selectPlaces(this.place);

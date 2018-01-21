@@ -35,15 +35,17 @@ namespace COTS.BLL.Services
         {
             if (id == null)
                 throw new ValidationException("'id' not set", "");
-
-            var purchase = UnitOfWork.Purchases.Get(id);
-
-            var tickets = ticketService.GetAll();
-            foreach (var item in tickets)
+          
+            //delete tickets by purchase
+            foreach (var item in ticketService.GetByPurchase(id))
                 ticketService.Delete(item.Id);
 
-            UnitOfWork.Purchases.Delete(purchase);
-            purchaseClientDetailsService.Delete(id);
+            //delete clientInfo
+            if(purchaseClientDetailsService.GetOne(id) != null)
+                purchaseClientDetailsService.Delete(id);
+
+            //delete purchase
+            UnitOfWork.Purchases.Delete(UnitOfWork.Purchases.Get(id));            
             UnitOfWork.Save();
         }
 

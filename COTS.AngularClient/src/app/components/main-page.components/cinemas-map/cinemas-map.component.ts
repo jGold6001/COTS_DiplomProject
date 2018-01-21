@@ -32,12 +32,12 @@ export class CinemasMapComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    this.updateLatLngFromCity();
-    this.createMarkers(); 
+     this.updateLatLngFromCity();
+     this.createMarkers(); 
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['city']) {
+    if (changes['city']) {       
         this.updateLatLngFromCity();
     }
     if(changes['cinemas']){
@@ -46,13 +46,14 @@ export class CinemasMapComponent implements OnInit, OnChanges {
     
   }
 
-  updateLatLngFromCity() {  
-    this.geocodingAPIService
+  updateLatLngFromCity() { 
+      
+        this.geocodingAPIService
         .findFromCity(this.fixExceptionCityName())
         .subscribe(response => {
-            if (response.status == 'OK') {
+            if (response.status == 'OK') {                
                 this.lat = response.results[0].geometry.location.lat;
-                this.lng = response.results[0].geometry.location.lng;
+                this.lng = response.results[0].geometry.location.lng;                         
             } else if (response.status == 'ZERO_RESULTS') {
                 console.log('geocodingAPIService', 'ZERO_RESULTS', response.status);
             } else {

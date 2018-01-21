@@ -54,7 +54,7 @@ namespace COTS.DAL.Test.Repositories
             purchaseClientDetailsRepository = unitOfwork.PurchaseClientDetailses as PurchaseClientDetailsRepository;    
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void AddOrUpdateTest()
         {
             City cityKiev = cities[0];

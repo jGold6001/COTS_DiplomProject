@@ -38,5 +38,11 @@ namespace COTS.WEBAPI.Controllers.WebApi
             );          
         }
 
+        [Route("{id}")]
+        public SeanceViewModel GetOne(long id)
+        {
+            return mapperUnitOfWork.SeanceViewModelMapper.MapToObject(seanceService.GetOne(id));
+        }
+
     }
 }

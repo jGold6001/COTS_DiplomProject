@@ -149,23 +149,15 @@
                                             </div>                                         
                                             <form class="row">
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Email" [(ngModel)]="client.email" [formControl]="emailFormControl"
-                                                        [errorStateMatcher]="matcher">
-                                                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                                                        Пожалуйста, введите корректный e-mail
-                                                    </mat-error>                                                 
+                                                    <input matInput placeholder="Email" [(ngModel)] ="client.email" name="email">                     
                                                 </mat-form-field>
 
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Фамилия Имя" [(ngModel)]="client.fullName"   [formControl]="nameFormControl"
-                                                        [errorStateMatcher]="matcher">
-                                                    <mat-error *ngIf="nameFormControl.hasError('required')">
-                                                        Поле <strong>обязательное</strong>
-                                                    </mat-error>
+                                                    <input matInput placeholder="Фамилия Имя" [(ngModel)] ="client.fullName" name="fullName">                         
                                                 </mat-form-field>
 
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Номер Телефона" [(ngModel)]="phone" >                     
+                                                    <input matInput placeholder="Номер Телефона" [(ngModel)]="client.phone" name="phone">                     
                                                 </mat-form-field>
                                             </form>
                                             <div class="row">

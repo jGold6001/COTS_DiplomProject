@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { DataService } from '../../../shared/services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ticket } from '../../../shared/models/ticket.model';
 import { Purchase } from '../../../shared/models/purchase.model';
 import { Observable, Subscription } from 'rxjs';
@@ -36,26 +36,12 @@ export class PurchasePageComponent implements OnInit {
   cinema: Cinema= new Cinema(); 
   client: Client = new Client();
 
-  email: string;
-  name: string;
-  phone: string;
-
-
-  emailFormControl = new FormControl('', [
-    Validators.email,
-  ]);
-
-  nameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.maxLength(40)
-  ]);
-
-  matcher = new MyErrorStateMatcher();
 
   constructor(
    private route: ActivatedRoute,
    private purchaseService: PurchaseService,
-   public dialog: MatDialog
+   public dialog: MatDialog,
+   private router: Router
   ) 
   {}
 
@@ -68,7 +54,6 @@ export class PurchasePageComponent implements OnInit {
         this.movie = this.seance.movie;
         this.cinema = this.seance.cinema;    
       }, () => console.error("Ошибка при получении данных с сервера"));
-
   }
 
   private get purchaseId(): string{ 
@@ -83,7 +68,6 @@ export class PurchasePageComponent implements OnInit {
     this.updatePurchase();
     this.purchase.client = this.client;
     
-    console.log(this.purchase);
 
     // let dialogRef = this.dialog.open(TicketsDialogComponent, {
     //   width: '1000px',
@@ -93,12 +77,17 @@ export class PurchasePageComponent implements OnInit {
   }
 
   cancelOrder(){
-    console.log(this.phone);
+    this.removePurchase();
+    this.goToMain();
   }
 
   private updatePurchase(){
-    if(this.client.fullName != null)
+    if(this.client.fullName != null){
       this.purchaseService.updateInDb(this.createClientViewModel); 
+    }else{
+      alert("not name");
+    }
+      
   }
 
   private get createClientViewModel(): any{
@@ -114,4 +103,8 @@ export class PurchasePageComponent implements OnInit {
   private removePurchase(){
     this.purchaseService.removePurchase(this.purchaseId);
   } 
+
+  private goToMain(){
+    this.router.navigate([""]);
+  }
 }
