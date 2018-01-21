@@ -9,7 +9,6 @@ import { HallDialogComponent } from "./components/hall-dialog.components/hall-di
 
 const routes: Routes = [
   { path: "", component: MainPageComponent },  
-  { path: "devhall", component: HallDialogComponent},
   { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},

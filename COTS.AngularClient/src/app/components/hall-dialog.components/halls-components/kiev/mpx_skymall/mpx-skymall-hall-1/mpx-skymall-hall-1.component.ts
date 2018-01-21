@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../../../../../../shared/services/data.service';
 import { Place } from '../../../../../../shared/models/place.model';
-
+import {ElementRef,Renderer2} from '@angular/core';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-mpx-skymall-hall-1',
@@ -10,33 +11,37 @@ import { Place } from '../../../../../../shared/models/place.model';
 })
 export class MpxSkymallHall1Component implements OnInit {
 
-  place: Place;
-  tariff = "simple";
-  price = 100;
+  buttons: any = [];
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private rd: Renderer2,
+    private elRef:ElementRef
   ) { }
 
   ngOnInit() {
+
   }
 
-  myEvent_1(){ 
-    this.place = new Place()
-    this.place.init(1, 1,this.tariff, this.price);
-    this.dataService.selectPlaces(this.place);
+  ngAfterViewInit() {
+    this.createButtonsId(); 
+    this.clickEvents(); 
   }
 
-  myEvent_2(){
-    this.place = new Place()
-    this.place.init(2, 2,this.tariff, this.price);
-    this.dataService.selectPlaces(this.place);
+  createButtonsId(){
+    this.buttons = this.elRef.nativeElement.getElementsByClassName("btn");
+    for(let i=0; i<this.buttons.length; i++){
+      this.rd.setAttribute(this.buttons[i], 'div', `btn_${i}`);
+    }
   }
 
-  myEvent_3(){
-    this.place = new Place()
-    this.place.init(3, 3,this.tariff, this.price);
-    this.dataService.selectPlaces(this.place);
-  }
+   clickEvents(){
+      for(let item in this.buttons){
+        let button = this.elRef.nativeElement.querySelector(`#btn_${item}`);
+        this.rd.listen(button, 'click', (event)=>{
+          console.log("event");
+        });
+      }
+   }
 
 }

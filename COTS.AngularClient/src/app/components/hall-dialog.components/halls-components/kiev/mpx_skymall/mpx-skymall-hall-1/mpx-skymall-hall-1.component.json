@@ -1,0 +1,151 @@
+[
+  {
+    "num": 1,
+    "row": 1,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 2,
+    "row": 1,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 3,
+    "row": 1,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 4,
+    "row": 1,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 5,
+    "row": 1,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 6,
+    "row": 1,
+    "tariff": "simple"
+  },
+
+
+  {
+    "num": 1,
+    "row": 2,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 2,
+    "row": 2,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 3,
+    "row": 2,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 4,
+    "row": 2,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 5,
+    "row": 2,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 6,
+    "row": 2,
+    "tariff": "simple"
+  },
+
+
+
+  {
+    "num": 1,
+    "row": 3,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 2,
+    "row": 3,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 3,
+    "row": 3,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 4,
+    "row": 3,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 5,
+    "row": 3,
+    "tariff": "simple"
+  },
+
+  {
+    "num": 6,
+    "row": 3,
+    "tariff": "simple"
+  },
+
+
+
+
+  {
+    "num": 1,
+    "row": 4,
+    "tariff": "vip"
+  },
+
+  {
+    "num": 2,
+    "row": 4,
+    "tariff": "vip"
+  },
+
+  {
+    "num": 3,
+    "row": 4,
+    "tariff": "vip"
+  },
+
+  {
+    "num": 4,
+    "row": 4,
+    "tariff": "vip"
+  },
+
+  {
+    "num": 5,
+    "row": 4,
+    "tariff": "vip"
+  },
+
+  {
+    "num": 6,
+    "row": 4,
+    "tariff": "vip"
+  }
+]

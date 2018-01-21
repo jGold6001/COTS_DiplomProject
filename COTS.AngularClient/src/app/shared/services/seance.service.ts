@@ -23,10 +23,16 @@ export class SeanceService{
         let dateFormated =this.datepipe.transform(date, 'yyyy-MM-dd');
         return this.http.get(environment.APIURL_SEANCES_BY_CINEMA_MOVIE_DATE + cinemaId +"/"+ movieId + "/" + dateFormated) 
             .map(response => { 
-                    return JsonConvertor.toSeanceArray(response.json());
+                return JsonConvertor.toSeanceArray(response.json());
             });     
     }
 
     //go to 
+    getOne(id: number){
+        return this.http.get(environment.APIURL_SEANCE + id)
+            .map(response => {
+                return JsonConvertor.toSeance(response.json());
+            });
+    }
 
 }

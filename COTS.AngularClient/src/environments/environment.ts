@@ -20,6 +20,7 @@ export const environment = {
   APIURL_CITIES:                        _serverHost +  "/api/city/getall",
 
   APIURL_SEANCES_BY_CINEMA_MOVIE_DATE:  _serverHost +  "/api/seance/getall/",
+  APIURL_SEANCE:                        _serverHost + "/api/seance/",
 
   APIURL_TICKETS_BY_PURCHASE:           _serverHost +  "/api/ticket/by_purchase/",
 

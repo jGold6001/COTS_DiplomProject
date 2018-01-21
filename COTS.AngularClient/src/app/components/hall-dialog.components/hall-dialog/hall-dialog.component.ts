@@ -14,6 +14,7 @@ import { PurchaseService } from '../../../shared/services/purchase.service';
 import { City } from '../../../shared/models/city.model';
 
 import {serialize} from 'json-typescript-mapper';
+import { SeanceService } from '../../../shared/services/seance.service';
 
 
 @Component({
@@ -41,11 +42,13 @@ export class HallDialogComponent implements OnInit {
     private domService: DomService,
     private dataService: DataService,
     private purchaseService: PurchaseService,
+    private seanceService: SeanceService,
     private router: Router
   )
   { }
 
   ngOnInit() {
+
     this.seance = this.data.seance;
 
     let typeInfo = {
