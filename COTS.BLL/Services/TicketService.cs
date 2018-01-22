@@ -45,8 +45,7 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'id' not set", "");
 
             var ticket = UnitOfWork.Tickets.Get(id);
-            var placeDetails = UnitOfWork.TicketPlaceDetails.Get(id);
-            UnitOfWork.TicketPlaceDetails.Delete(placeDetails);
+            ticketPlaceDetailsService.Delete(id);      
             UnitOfWork.Tickets.Delete(ticket);
             UnitOfWork.Save();
         }

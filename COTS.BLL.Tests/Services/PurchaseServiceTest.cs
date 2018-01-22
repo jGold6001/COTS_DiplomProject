@@ -8,6 +8,7 @@ using COTS.DAL.Entities;
 using System.Linq;
 using COTS.BLL.DTO;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace COTS.BLL.Services.Tests
 {
@@ -45,31 +46,30 @@ namespace COTS.BLL.Services.Tests
                 Phone = 380567779988
             };
 
-            purchaseDTO.PurchaseClientDetailsDTO = clientDetailsDTO;
-            purchaseService.AddOrUpdate(purchaseDTO);
-
         
             var seanceDTO = seanceService.GetAll().FirstOrDefault();
-
             var ticketDTO = new TicketDTO()
             {
                 Id = "00001",
                 SeanceDTO = seanceDTO,
+                SeanceId = seanceDTO.Id,
                 State = 1,
                 PurchaseId = purchaseDTO.Id
             };
 
             var placeDetailsDTO = new TicketPlaceDetailsDTO()
             {
-                Id = ticketDTO.Id,
-                Number = 44,
-                Row = 44,
-                Tariff = "xz2",
-                Price = 400
+                TicketId = ticketDTO.Id,
+                Id = 4,
+                Number = 4,
+                Row = 1,
+                Tariff = "xz",
+                Price = 300
             };
-
             ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
-            ticketService.AddOrUpdate(ticketDTO);
+            purchaseDTO.PurchaseClientDetailsDTO = clientDetailsDTO;
+            purchaseDTO.TicketsDTOs = new List<TicketDTO>(){ ticketDTO };
+            purchaseService.AddOrUpdate(purchaseDTO);
 
         }
 

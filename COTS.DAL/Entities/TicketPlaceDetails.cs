@@ -12,7 +12,8 @@ namespace COTS.DAL.Entities
     {
         [Key]
         [ForeignKey("Ticket")]
-        public string Id { get; set; }
+        public string TicketId { get; set; }
+        public int Id { get; set; }
         public int Row { get; set; }
         public int Number { get; set; }
         public string Tariff { get; set; }

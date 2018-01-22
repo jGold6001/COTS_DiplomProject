@@ -14,5 +14,10 @@ namespace COTS.DAL.Repositories
         {
 
         }
+
+        public TicketPlaceDetails GetOneByTicketId(string TicketId)
+        {
+            return FindBy(p => p.TicketId == TicketId).FirstOrDefault();
+        }
     }
 }

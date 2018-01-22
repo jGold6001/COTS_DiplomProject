@@ -13,6 +13,7 @@ namespace COTS.BLL.Interfaces
         void AddOrUpdate(SeanceDTO seance);
         SeanceDTO GetOne(long? id);
         IEnumerable<SeanceDTO> FindAllByCinemaMovieAndDate(string cinemaId, long? movieId, DateTime date);
+        IEnumerable<SeanceDTO> GetAll();
         void Delete(long? id);
     }
 }

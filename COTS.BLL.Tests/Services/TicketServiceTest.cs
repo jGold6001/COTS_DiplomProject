@@ -35,15 +35,17 @@ namespace COTS.BLL.Services.Tests
             var ticketDTO = new TicketDTO()
             {
                 Id = "00000",
-                SeanceDTO = seanceDTO,              
+                SeanceDTO = seanceDTO,     
+                SeanceId =  seanceDTO.Id,
                 State = 1
             };
 
             var placeDetailsDTO = new TicketPlaceDetailsDTO()
             {
-                Id = ticketDTO.Id,
-                Number = 33,
-                Row = 33,
+                TicketId = ticketDTO.Id,
+                Id = 3,
+                Number = 3,
+                Row = 1,
                 Tariff = "xz",
                 Price = 300
             };

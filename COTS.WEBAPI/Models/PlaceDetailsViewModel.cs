@@ -7,7 +7,8 @@ namespace COTS.WEBAPI.Models
 {
     public class PlaceDetailsViewModel
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
+        public string TicketId { get; set; }
         public int Row { get; set; }
         public int Number { get; set; }
         public string Tariff { get; set; }

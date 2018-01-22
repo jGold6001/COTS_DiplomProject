@@ -7,18 +7,20 @@ using COTS.BLL.DTO;
 using COTS.BLL.Interfaces;
 using COTS.BLL.Utils.MapperManager;
 using COTS.DAL.Interfaces;
+using COTS.DAL.Repositories;
 
 namespace COTS.BLL.Services
 {
     public class TicketPlaceDetailsService : ITicketPlaceDetailsService
     {
         IUnitOfWork UnitOfWork { get; set; }
-
+        TicketPlaceDetailsRepository ticketPlaceDetailsRepo;
         MapperUnitOfWork mapperUnitOfWork;
 
         public TicketPlaceDetailsService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
+            ticketPlaceDetailsRepo = UnitOfWork.TicketPlaceDetails as TicketPlaceDetailsRepository;
             mapperUnitOfWork = new MapperUnitOfWork();
         }
 
@@ -30,7 +32,8 @@ namespace COTS.BLL.Services
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            var ticketPlaceDetails = ticketPlaceDetailsRepo.GetOneByTicketId(id);
+            ticketPlaceDetailsRepo.Delete(ticketPlaceDetails);
         }
 
         public IEnumerable<TicketPlaceDetailsDTO> GetAll()
@@ -40,7 +43,7 @@ namespace COTS.BLL.Services
 
         public TicketPlaceDetailsDTO GetOne(string id)
         {
-            return mapperUnitOfWork.TicketPlaceDetailsDTOMapper.MapToObject(UnitOfWork.TicketPlaceDetails.Get(id));
+            return mapperUnitOfWork.TicketPlaceDetailsDTOMapper.MapToObject(ticketPlaceDetailsRepo.GetOneByTicketId(id));
         }
     }
 }

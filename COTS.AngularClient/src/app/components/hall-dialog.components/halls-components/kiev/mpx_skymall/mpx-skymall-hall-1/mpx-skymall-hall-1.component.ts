@@ -30,17 +30,20 @@ export class MpxSkymallHall1Component implements OnInit {
 
   createButtonsId(){
     this.buttons = this.elRef.nativeElement.getElementsByClassName("btn");
+    
     for(let i=0; i<this.buttons.length; i++){
-      this.rd.setAttribute(this.buttons[i], 'div', `btn_${i}`);
+      this.rd.setAttribute(this.buttons[i], 'id', `btn_${i}`);
     }
   }
 
-   clickEvents(){
+   clickEvents(){      
       for(let item in this.buttons){
         let button = this.elRef.nativeElement.querySelector(`#btn_${item}`);
-        this.rd.listen(button, 'click', (event)=>{
-          console.log("event");
-        });
+        if(button){
+            this.rd.listen(button, 'click', (event)=>{
+              console.log(event.currentTarget.id);
+            });
+        }        
       }
    }
 

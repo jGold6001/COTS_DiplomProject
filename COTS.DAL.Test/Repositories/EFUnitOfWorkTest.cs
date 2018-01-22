@@ -163,7 +163,8 @@ namespace COTS.DAL.Test.Repositories
             {
                 Id = "test001",
                 Seance = seance,              
-                Purchase = purchase
+                Purchase = purchase,
+
             };
             ticketRepo.AddOrUpdate(ticket_1);
 
@@ -177,9 +178,10 @@ namespace COTS.DAL.Test.Repositories
 
             var place_1 = new TicketPlaceDetails()
             {
-                Id = ticket_1.Id,
-                Number = 11,
-                Row = 11,
+                TicketId = ticket_1.Id,
+                Id = 7,
+                Number = 1,
+                Row = 2,
                 Price = 100,
                 Tariff = "simple"
             };
@@ -187,9 +189,10 @@ namespace COTS.DAL.Test.Repositories
            
             var place_2 = new TicketPlaceDetails()
             {
-                Id = ticket_2.Id,
-                Number = 22,
-                Row = 22,
+                TicketId = ticket_2.Id,
+                Id = 20,
+                Number = 2,
+                Row = 4,
                 Price = 200,
                 Tariff = "vip"
             };

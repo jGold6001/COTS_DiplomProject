@@ -86,7 +86,6 @@ namespace COTS.BLL.Services
 
 
 
-
         private IEnumerable<SeanceDTO> AttachObjetcsToDTOList(IEnumerable<Seance> seances)
         {
             
