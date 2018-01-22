@@ -43,7 +43,9 @@ export class HallDialogComponent implements OnInit {
     private dataService: DataService,
     private purchaseService: PurchaseService,
     private seanceService: SeanceService,
-    private router: Router
+    private router: Router,
+    private rd: Renderer2,
+    private elRef:ElementRef,
   )
   { }
 
@@ -64,14 +66,15 @@ export class HallDialogComponent implements OnInit {
     this.dataService.placesSelected$.subscribe( place =>
       {
         this.places.push(place);
+        //this.addPlaceTag();
         this.show = true;
       }
     );
 
     this.dataService.placesCanceles$.subscribe(id =>
-        {
-          delete this.places[id];
-        }
+      {
+        delete this.places[id];
+      }
     );
   }
 
@@ -138,5 +141,27 @@ export class HallDialogComponent implements OnInit {
     return Array(+(zero > 0 && zero)).join("0") + num;
   }
 
+  private addPlaceRow(){
+    let placeContainer = this.elRef.nativeElement.querySelector('#selected_places');
+
+    let divPlace = this.rd.createElement('div');
+    this.rd.addClass(divPlace, 'place');
+
+    
+    this.rd.appendChild(placeContainer, divPlace);
+    // this.rd.addClass(placeContainer, "row");
+    // this.rd.addClass(placeContainer, "col-lg-6");
+
+  }
+
+  private removePlaceRow(){
+
+  }
+
+  private createDivClass(className: string){
+    let div = this.rd.createElement('div');
+    this.rd.addClass(div, className);
+    return div;
+  }
 
 }
