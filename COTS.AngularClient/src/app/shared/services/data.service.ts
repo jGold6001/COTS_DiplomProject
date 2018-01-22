@@ -6,11 +6,17 @@ import { Place } from '../models/place.model';
 export class DataService{
     
     private placesSelectedSource = new Subject<Place>();
+    private placesCanceledSource = new Subject<number>();
     
-    placesSelected$ = this.placesSelectedSource.asObservable();
-   
-    selectPlaces(place: Place){
+    placesSelected$ = this.placesSelectedSource.asObservable();  
+    placesCanceles$ = this.placesCanceledSource.asObservable();
+
+    selectPlace(place: Place){
         this.placesSelectedSource.next(place);
+    }
+
+    cancelPlace(placeId: number){
+        this.placesCanceledSource.next(placeId);
     }
 
 }

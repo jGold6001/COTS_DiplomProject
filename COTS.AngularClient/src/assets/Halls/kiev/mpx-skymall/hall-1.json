@@ -1,0 +1,151 @@
+[
+  {
+    "Number": 1,
+    "Row": 1,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 2,
+    "Row": 1,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 3,
+    "Row": 1,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 4,
+    "Row": 1,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 5,
+    "Row": 1,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 6,
+    "Row": 1,
+    "Tariff": "simple"
+  },
+
+
+  {
+    "Number": 1,
+    "Row": 2,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 2,
+    "Row": 2,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 3,
+    "Row": 2,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 4,
+    "Row": 2,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 5,
+    "Row": 2,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 6,
+    "Row": 2,
+    "Tariff": "simple"
+  },
+
+
+
+  {
+    "Number": 1,
+    "Row": 3,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 2,
+    "Row": 3,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 3,
+    "Row": 3,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 4,
+    "Row": 3,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 5,
+    "Row": 3,
+    "Tariff": "simple"
+  },
+
+  {
+    "Number": 6,
+    "Row": 3,
+    "Tariff": "simple"
+  },
+
+
+
+
+  {
+    "Number": 1,
+    "Row": 4,
+    "Tariff": "vip"
+  },
+
+  {
+    "Number": 2,
+    "Row": 4,
+    "Tariff": "vip"
+  },
+
+  {
+    "Number": 3,
+    "Row": 4,
+    "Tariff": "vip"
+  },
+
+  {
+    "Number": 4,
+    "Row": 4,
+    "Tariff": "vip"
+  },
+
+  {
+    "Number": 5,
+    "Row": 4,
+    "Tariff": "vip"
+  },
+
+  {
+    "Number": 6,
+    "Row": 4,
+    "Tariff": "vip"
+  }
+]

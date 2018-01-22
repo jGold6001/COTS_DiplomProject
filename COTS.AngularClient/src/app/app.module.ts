@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpModule } from "@angular/http";
+import { HttpModule, JsonpModule} from "@angular/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -88,6 +88,7 @@ import { TicketService } from './shared/services/ticket.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TicketsDialogComponent } from './components/purchase-page.components/tickets-dialog/tickets-dialog.component';
 import { PurchaseService } from './shared/services/purchase.service';
+import { PlaceService } from './shared/services/place.service';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { PurchaseService } from './shared/services/purchase.service';
     AppRoutingModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -204,6 +206,7 @@ import { PurchaseService } from './shared/services/purchase.service';
     DomService,
     DataService,
     TicketService,
+    PlaceService,
     PurchaseService,
     { provide: LOCALE_ID, useValue: "ru" }
   ],

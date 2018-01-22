@@ -67,6 +67,12 @@ export class HallDialogComponent implements OnInit {
         this.show = true;
       }
     );
+
+    this.dataService.placesCanceles$.subscribe(id =>
+        {
+          delete this.places[id];
+        }
+    );
   }
 
 

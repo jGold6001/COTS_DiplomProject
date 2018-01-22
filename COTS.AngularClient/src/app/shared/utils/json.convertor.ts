@@ -93,8 +93,20 @@ export class JsonConvertor{
 
     public static toPlace(data): Place{
         let place = new Place();
-        place.init(data.Number, data.Row, data.Tariff, data.Price);
+        place.init(data.Id, data.Number, data.Row, data.Tariff, data.Price);
         return place;
+    }
+
+    public static toPlaces(data): Place[]{
+        let places: Place[]=[];
+        for(let item of data){
+            let place: Place = new Place();
+            place.num = item.Number;
+            place.row = item.Row;
+            place.tariff = item.Tariff;
+            places.push(place);
+        }
+        return places;
     }
 
     public static toPurchase(data): Purchase{

@@ -1,6 +1,7 @@
 export class Place{
 
-    init(num: number, row: number, tariff: string, price: number){
+    init(id: number, num: number, row: number, tariff: string, price: number){
+        this.id = id;
         this.num = num;
         this.row = row;
         this.tariff = tariff;
@@ -11,6 +12,7 @@ export class Place{
 
     }
 
+    id: number;
     num: number;
     row: number;
     tariff: string;
