@@ -157,8 +157,7 @@ namespace COTS.DAL.Test.Repositories
             purchaseClientDetailsRepository.AddOrUpdate(clientsDetails);
             unitOfwork.Save();
 
-
-            var seance = seanceRepo.GetAll().FirstOrDefault();
+            var seance = this.GetSeanceForTickets();
             var ticket_1 = new Ticket()
             {
                 Id = "test001",
@@ -200,7 +199,23 @@ namespace COTS.DAL.Test.Repositories
 
             unitOfwork.Save();
         }
-     
+
+        public Seance GetSeanceForTickets()
+        {
+            foreach (var item in seanceRepo.GetAll())
+            {
+                if (item.Hall == "Синий"
+                    && item.CinemaId == "florence"
+                    && item.DateAndTime.Date == DateTime.Now.Date
+                )
+                {
+                    return item;
+                }
+
+            }
+            return null;
+        }
+
         [TestMethod]
         public void FindMoviesPremeriesTest()
         {

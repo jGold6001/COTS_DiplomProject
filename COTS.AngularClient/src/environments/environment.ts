@@ -23,6 +23,7 @@ export const environment = {
   APIURL_SEANCE:                        _serverHost + "/api/seance/",
 
   APIURL_TICKETS_BY_PURCHASE:           _serverHost +  "/api/ticket/by_purchase/",
+  APIURL_TICKETS_GETALL:                _serverHost + "/api/ticket/getall",
 
   APIURL_PURCHASE_SAVE_IN_DB:           _serverHost +  "/api/purchase/save_in_db",  
   APIURL_PURCHASE:                      _serverHost +  "/api/purchase/",

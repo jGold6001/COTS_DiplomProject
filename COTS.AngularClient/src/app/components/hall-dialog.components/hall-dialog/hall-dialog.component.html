@@ -28,16 +28,17 @@
               <div id="selected_places"></div>              
               
               <div class="row">
-                <div class="container" *ngIf="show">
+                <div class="container" *ngIf="show" id="payButton">
                   <div class="row">
-                    <div class="col-lg-6">
-                      <button (click)="goToPayment()">Перейти к оплате</button>
+                    <div class="col-lg-4">
+                      <button (click)="goToPayment()">Оплатить</button>
                     </div>
-                    <div class="col-lg-6">
-                      <div>
-                        Количество: {{places.length}}
-                      </div>
+                    <div class="col-lg-4">
+                      Количество: {{places.length}}                      
                     </div>
+                    <div class="col-lg-4">
+                      Сумма {{sum}}грн.
+                   </div>
                   </div>
                 </div>
               </div>

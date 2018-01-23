@@ -16,6 +16,7 @@ import { City } from '../../../shared/models/city.model';
 import {serialize} from 'json-typescript-mapper';
 import { SeanceService } from '../../../shared/services/seance.service';
 import { loadavg } from 'os';
+import { TicketService } from '../../../shared/services/ticket.service';
 
 
 @Component({
@@ -34,8 +35,10 @@ export class HallDialogComponent implements OnInit {
   seance: Seance;
   places: Place[] = [];
   tickets: Ticket[] =[];
+  ticketsBusy: Ticket[] =[];
   purchase: Purchase;
   show: boolean = false;
+  sum: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<HallDialogComponent>,
@@ -43,6 +46,7 @@ export class HallDialogComponent implements OnInit {
     private domService: DomService,
     private dataService: DataService,
     private purchaseService: PurchaseService,
+    private ticketServicve: TicketService,
     private seanceService: SeanceService,
     private router: Router,
     private rd: Renderer2,
@@ -53,7 +57,7 @@ export class HallDialogComponent implements OnInit {
   ngOnInit() {
 
     this.seance = this.data.seance;
-
+    console.log(this.seance.id);
     let typeInfo = {
       city:    "kiev",              //this.seance.cinema.cityId,
       cinema:   "mpx_skymall",      //this.seance.cinema.id,
@@ -64,21 +68,29 @@ export class HallDialogComponent implements OnInit {
     let factory = this.domService.createFactory(componentType);
     this.componentRef = this.container.createComponent(factory);
 
+    this.ticketServicve.getAll()
+      .subscribe( r =>{
+        this.tickets = r;
+        console.log(this.tickets);
+      });
+    
+
     this.dataService.placesSelected$.subscribe( place =>
       {
         place.price = 100;
         this.places.push(place);
         this.addPlaceRow(place);
-        this.show = true;
+        this.enablePayButton();
+        this.sum +=place.price;
       }
     );
 
-    this.dataService.placesCanceles$.subscribe(id =>
+    this.dataService.placesCanceles$.subscribe(place =>
       {
-        this.removePlaceRow(id);
-        this.places.splice(id, 1);
-        // if(this.places.length == 0)
-        //   this.show = false;
+        this.removePlaceRow(place.id);
+        this.deleteObjectFromArray(place.id);
+        this.disablePayButton();
+        this.sum -=place.price;
       }
     );
   }
@@ -143,6 +155,7 @@ export class HallDialogComponent implements OnInit {
     let placeContainer = this.elRef.nativeElement.querySelector('#selected_places');
     let placeIdDiv = this.elRef.nativeElement.querySelector(`#place_${placeId}`);
     this.rd.removeChild(placeContainer, placeIdDiv);
+    
   }
 
   private getComponentType(typeInfo: any) {
@@ -196,6 +209,23 @@ export class HallDialogComponent implements OnInit {
     let _text = this.rd.createText(text);
     this.rd.appendChild(span, _text);
     return span;
+  }
+
+  private deleteObjectFromArray(id){
+    for(let place of this.places){
+      if(place.id == id)
+        this.places.splice(this.places.indexOf(place),1);
+    }
+  }
+
+  private enablePayButton(){
+    if(this.places.length > 0)
+          this.show = true;
+  }
+
+  private disablePayButton(){
+    if(this.places.length == 0)
+        this.show = false
   }
 
 }

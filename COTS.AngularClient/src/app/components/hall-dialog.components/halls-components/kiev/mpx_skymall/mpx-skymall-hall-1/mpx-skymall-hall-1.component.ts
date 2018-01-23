@@ -32,6 +32,8 @@ export class MpxSkymallHall1Component implements OnInit {
         this.places = res;
         this.setIdPlaces();
       }, err => console.log("File not reading!!!"));
+
+
   }
 
   ngAfterViewInit() {
@@ -93,10 +95,17 @@ export class MpxSkymallHall1Component implements OnInit {
         this.placesSelected.push(_place);
         this.dataService.selectPlace(_place);
       }else{        
-        this.dataService.cancelPlace(_place.id);
-        this.placesSelected.splice(_place.id, 1);
+        this.dataService.cancelPlace(_place);
+        this.deleteObjectFromArray(_place.id);
       }
        
    }
+
+   private deleteObjectFromArray(id){
+    for(let place of this.placesSelected){
+      if(place.id == id)
+        this.placesSelected.splice(this.placesSelected.indexOf(place),1);
+    }
+  }
 
 }

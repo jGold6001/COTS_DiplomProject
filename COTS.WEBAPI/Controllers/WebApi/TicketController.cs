@@ -35,7 +35,7 @@ namespace COTS.WEBAPI.Controllers.WebApi
 
         }
 
-        [Route("all")]
+        [Route("getall")]
         public IEnumerable<TicketViewModel> GetAllTickets()
         {
             return mapperUnitOfWork.TicketViewModelMapper.MapToCollectionObjects(ticketService.GetAll());

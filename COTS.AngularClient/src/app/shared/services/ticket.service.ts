@@ -16,11 +16,11 @@ export class TicketService{
         private http: Http, 
     ){}
 
-
-    getAllBookingTickets(){
-
+    getAll(){
+        return this.http.get(environment.APIURL_TICKETS_GETALL)
+            .map(response =>{
+                return JsonConvertor.toTicketsArray(response.json());
+            });
     }
-
-    
 
 }
