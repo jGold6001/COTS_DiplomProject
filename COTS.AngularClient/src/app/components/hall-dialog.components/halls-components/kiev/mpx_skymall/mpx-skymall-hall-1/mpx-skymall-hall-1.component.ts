@@ -94,7 +94,7 @@ export class MpxSkymallHall1Component implements OnInit {
         this.dataService.selectPlace(_place);
       }else{        
         this.dataService.cancelPlace(_place.id);
-        delete this.placesSelected[_place.id];
+        this.placesSelected.splice(_place.id, 1);
       }
        
    }

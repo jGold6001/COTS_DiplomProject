@@ -15,6 +15,7 @@ import { City } from '../../../shared/models/city.model';
 
 import {serialize} from 'json-typescript-mapper';
 import { SeanceService } from '../../../shared/services/seance.service';
+import { loadavg } from 'os';
 
 
 @Component({
@@ -65,15 +66,19 @@ export class HallDialogComponent implements OnInit {
 
     this.dataService.placesSelected$.subscribe( place =>
       {
+        place.price = 100;
         this.places.push(place);
-        //this.addPlaceTag();
+        this.addPlaceRow(place);
         this.show = true;
       }
     );
 
     this.dataService.placesCanceles$.subscribe(id =>
       {
-        delete this.places[id];
+        this.removePlaceRow(id);
+        this.places.splice(id, 1);
+        // if(this.places.length == 0)
+        //   this.show = false;
       }
     );
   }
@@ -127,6 +132,19 @@ export class HallDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  private addPlaceRow(place: Place){
+    let container = this.createRowContainerRow(place.id);
+    this.setText(container,`Ряд: ${place.row}`);
+    this.setText(container,`Место: ${place.num}`);   
+    this.setText(container,`Цена: ${place.price}`);
+  }
+
+  private removePlaceRow(placeId : number){
+    let placeContainer = this.elRef.nativeElement.querySelector('#selected_places');
+    let placeIdDiv = this.elRef.nativeElement.querySelector(`#place_${placeId}`);
+    this.rd.removeChild(placeContainer, placeIdDiv);
+  }
+
   private getComponentType(typeInfo: any) {
     return CitiesMappings.city[typeInfo.city].cinema[typeInfo.cinema].hall[typeInfo.hall];
   }
@@ -141,27 +159,43 @@ export class HallDialogComponent implements OnInit {
     return Array(+(zero > 0 && zero)).join("0") + num;
   }
 
-  private addPlaceRow(){
+  private createRowContainerRow(placeId: number){
     let placeContainer = this.elRef.nativeElement.querySelector('#selected_places');
-
-    let divPlace = this.rd.createElement('div');
-    this.rd.addClass(divPlace, 'place');
-
-    
+    let divPlace = this.createDivId(`place_${placeId}`);
+    let divContainer = this.createDivClass('container');
+    let divRowOuter = this.createDivClass('row');
+    let divRowInner = this.createDivClass('row');
+    this.rd.appendChild(divContainer, divRowInner);
+    this.rd.appendChild(divRowOuter, divContainer)
+    this.rd.appendChild(divPlace, divRowOuter);
     this.rd.appendChild(placeContainer, divPlace);
-    // this.rd.addClass(placeContainer, "row");
-    // this.rd.addClass(placeContainer, "col-lg-6");
-
+    return divRowInner;
   }
 
-  private removePlaceRow(){
-
+  private setText(divContainer, text: string){
+    let divCol = this.createDivClass('col-4');
+    let span = this.createSpanText(text);
+    this.rd.appendChild(divCol, span);
+    this.rd.appendChild(divContainer, divCol)
   }
 
   private createDivClass(className: string){
     let div = this.rd.createElement('div');
     this.rd.addClass(div, className);
     return div;
+  }
+
+  private createDivId(idName: string){
+    let div = this.rd.createElement('div');
+    this.rd.setAttribute(div, 'id', idName);
+    return div;
+  }
+
+  private createSpanText(text: string){
+    let span = this.rd.createElement('span');
+    let _text = this.rd.createText(text);
+    this.rd.appendChild(span, _text);
+    return span;
   }
 
 }
