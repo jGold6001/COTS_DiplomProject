@@ -64,18 +64,17 @@ export class HallDialogComponent implements OnInit {
       hall:     "1"                //this.seance.hall
     };
 
-    let componentType = this.getComponentType(typeInfo);
-    let factory = this.domService.createFactory(componentType);
-    this.componentRef = this.container.createComponent(factory);
-
-    this.ticketServicve.getAll()
-      .subscribe( r =>{
-        this.tickets = r;
-        let busiesTickets = this.getBusiesPlaces();
-        if(busiesTickets != null)
-          this.dataService.busyPlace(busiesTickets);
-      });
     
+    let componentType = this.getComponentType(typeInfo);
+    let factory = this.domService.createFactory(componentType); 
+    this.componentRef = this.container.createComponent(factory);      
+
+    
+    this.ticketServicve.getAll()
+    .subscribe( r =>{
+      this.tickets = r;
+      let busiesPlaces = this.getBusiesPlaces();
+    });
 
     this.dataService.placesSelected$.subscribe( place =>
       {
@@ -95,6 +94,7 @@ export class HallDialogComponent implements OnInit {
         this.sum -=place.price;
       }
     );
+
   }
 
 
@@ -112,7 +112,8 @@ export class HallDialogComponent implements OnInit {
       let _idTicket: string = this.zeroPad(this.getRandomInt(1,100000),6); 
       
       let PlaceDetailsViewModel = {
-          Id: _idTicket,
+          Id: place.id,
+          TicketId: _idTicket,
           Number: place.num,
           Row: place.row,
           Tariff: place.tariff,

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { DataService } from '../../../../../../shared/services/data.service';
 import { Place } from '../../../../../../shared/models/place.model';
 import {ElementRef,Renderer2} from '@angular/core';
@@ -7,6 +7,8 @@ import { PlaceService } from '../../../../../../shared/services/place.service';
 import { last } from 'rxjs/operator/last';
 import { loadavg } from 'os';
 import { element } from 'protractor';
+import { TicketService } from '../../../../../../shared/services/ticket.service';
+import { Ticket } from '../../../../../../shared/models/ticket.model';
 
 @Component({
   selector: 'app-mpx-skymall-hall-1',
@@ -17,28 +19,27 @@ export class MpxSkymallHall1Component implements OnInit {
 
   buttons: any = [];
   places: Place[] = [];
+
   placesSelected: Place[] = [];
-  placesBusies: Place[] = [];
+  @Input() placesBusies: Place[] = [];
+
 
   constructor(
     private dataService: DataService,
     private rd: Renderer2,
     private elRef:ElementRef,
+    private ticketServicve: TicketService,
     private placeService: PlaceService
   ) { }
 
 
   ngOnInit() {
-   
     this.placeService.getDataFromJsonFile('kiev', 'mpx-skymall', '1')
       .subscribe( res =>{
         this.places = res;
-        this.setIdPlaces();
-        this.dataService.placesBusy$.subscribe( busyPlaces =>{
-          this.placesBusies = busyPlaces;
-          this.createButtons(); 
-          this.clickEvents(); 
-        }); 
+        this.setIdPlaces();       
+        this.createButtons(); 
+        this.clickEvents(); 
       }, err => console.log("File not reading!!!"));
   }
 
@@ -62,6 +63,7 @@ export class MpxSkymallHall1Component implements OnInit {
 
     for(let i=0; i<this.buttons.length; i++){
       this.rd.addClass(this.buttons[i], "btn");  
+
       if(this.placesBusies.find(p => p.id == i)){
          this.rd.setAttribute(this.buttons[i], "disabled", 'true');
       }else{
@@ -112,6 +114,7 @@ export class MpxSkymallHall1Component implements OnInit {
         this.placesSelected.splice(this.placesSelected.indexOf(place),1);
     }
   }
+
 
 
 }

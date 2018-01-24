@@ -102,6 +102,7 @@ namespace COTS.BLL.Services
         {
             var purchaseDTO = mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchase);
             var clientDTO = purchaseClientDetailsService.GetOne(purchaseDTO.Id);
+
             var ticketsDTOs = ticketService.GetByPurchase(purchaseDTO.Id);
 
             purchaseDTO.PurchaseClientDetailsDTO = clientDTO;
