@@ -11,7 +11,8 @@ namespace COTS.DAL.Entities
         public string Id { get; set; }
         public Seance Seance { get; set; }
         public long? SeanceId { get; set; }
-        public TicketPlaceDetails TicketPlaceDetails { get; set; }
+        public Place Place { get; set; }
+        public long? PlaceId { get; set; }
         public Purchase Purchase { get; set; }
         public string PurchaseId { get; set; }
         public int State { get; set; }

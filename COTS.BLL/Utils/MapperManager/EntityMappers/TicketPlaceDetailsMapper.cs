@@ -9,20 +9,20 @@ using COTS.DAL.Entities;
 
 namespace COTS.BLL.Utils.MapperManager.EntityMappers
 {
-    public class TicketPlaceDetailsMapper : GeneralMapper<TicketPlaceDetailsDTO, TicketPlaceDetails>
+    public class TicketPlaceDetailsMapper : GeneralMapper<TicketPlaceDetailsDTO, Place>
     {
         public TicketPlaceDetailsMapper()
         {
-            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<TicketPlaceDetailsDTO, TicketPlaceDetails>()));
+            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<TicketPlaceDetailsDTO, Place>()));
         }
-        public override IEnumerable<TicketPlaceDetails> MapToCollectionObjects(IEnumerable<TicketPlaceDetailsDTO> collectValues)
+        public override IEnumerable<Place> MapToCollectionObjects(IEnumerable<TicketPlaceDetailsDTO> collectValues)
         {
-            return Mapper.Map<IEnumerable<TicketPlaceDetailsDTO>, IEnumerable<TicketPlaceDetails>>(collectValues);
+            return Mapper.Map<IEnumerable<TicketPlaceDetailsDTO>, IEnumerable<Place>>(collectValues);
         }
 
-        public override TicketPlaceDetails MapToObject(TicketPlaceDetailsDTO value)
+        public override Place MapToObject(TicketPlaceDetailsDTO value)
         {
-            return Mapper.Map<TicketPlaceDetailsDTO, TicketPlaceDetails>(value);
+            return Mapper.Map<TicketPlaceDetailsDTO, Place>(value);
         }
     }
 }

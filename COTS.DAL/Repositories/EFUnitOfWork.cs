@@ -16,13 +16,22 @@ namespace COTS.DAL.Repositories
 
         private MovieRepository movieRepository;
         private MovieDetailsRepository movieDetailsRepository;
+
         private CinemaRepository cinemaRepository;
+        private PlaceRepository placeRepository;
+        private HallRepository hallRepository;
+
+        private TariffRepository tariffRepository;
+
         private SeanceRepository seanceRepository;
+
         private CityRepository cityRepository;
+
         private TicketRepository ticketRepository;
-        private TicketPlaceDetailsRepository ticketPlaceDetailsRepository;
+      
         private PurchaseRepository purchaseRepository;
-        private PurchaseClientDetailsRepository purchaseClientDetailsRepository;
+        private CustomerRepository customerRepository;
+
 
         public EFUnitOfWork(string connectionString)
         {
@@ -67,6 +76,37 @@ namespace COTS.DAL.Repositories
                 return cinemaRepository;
             }
         }
+
+        public IRepository<Hall> Halls
+        {
+            get
+            {
+                if (hallRepository == null)
+                    hallRepository = new HallRepository(db);
+                return hallRepository;
+            }
+        }
+
+        public IRepository<Place> Places
+        {
+            get
+            {
+                if (placeRepository == null)
+                    placeRepository = new PlaceRepository(db);
+                return placeRepository;
+            }
+        }
+
+        public IRepository<Tariff> Tariffs
+        {
+            get
+            {
+                if (tariffRepository == null)
+                    tariffRepository = new TariffRepository(db);
+                return tariffRepository;
+            }
+        }
+
         public IRepository<City> Cities
         {
             get
@@ -87,15 +127,7 @@ namespace COTS.DAL.Repositories
             }
         }
 
-        public IRepository<TicketPlaceDetails> TicketPlaceDetails
-        {
-            get
-            {
-                if (ticketPlaceDetailsRepository == null)
-                    ticketPlaceDetailsRepository = new TicketPlaceDetailsRepository(db);
-                return ticketPlaceDetailsRepository;
-            }
-        }
+        
 
         public IRepository<Purchase> Purchases
         {
@@ -107,13 +139,13 @@ namespace COTS.DAL.Repositories
             }
         }   
 
-        public IRepository<PurchaseClientDetails> PurchaseClientDetailses
+        public IRepository<Customer> Customers
         {
             get
             {
-                if (purchaseClientDetailsRepository == null)
-                    purchaseClientDetailsRepository = new PurchaseClientDetailsRepository(db);
-                return purchaseClientDetailsRepository;
+                if (customerRepository == null)
+                    customerRepository = new CustomerRepository(db);
+                return customerRepository;
             }
         }
 
@@ -139,6 +171,16 @@ namespace COTS.DAL.Repositories
         public void Save()
         {
             db.SaveChanges();
+        }
+
+        void IUnitOfWork.Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDisposable.Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

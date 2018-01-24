@@ -8,14 +8,17 @@ using System.Threading.Tasks;
 
 namespace COTS.DAL.Entities
 {
-    public class PurchaseClientDetails
-    {
-        [Key]
-        [ForeignKey("Purchase")]
-        public string Id { get; set; }
+    public class Customer
+    {     
+        public long Id { get; set; }
         public string Email { get; set; }
         public string FullName { get; set; }
-        public long Phone { get; set; }
-        public Purchase Purchase { get; set; }
+        public long Phone { get; set; } 
+        public ICollection<Purchase> Purchases { get; set; }
+
+        public Customer()
+        {
+            Purchases = new List<Purchase>();
+        }
     }
 }

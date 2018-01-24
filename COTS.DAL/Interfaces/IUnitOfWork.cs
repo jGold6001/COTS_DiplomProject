@@ -11,13 +11,20 @@ namespace COTS.DAL.Interfaces
     {
         IRepository<Movie> Movies { get; }
         IRepository<MovieDetails> MovieDetailses { get; }
+
         IRepository<Seance> Seances { get; }
+
         IRepository<Cinema> Cinemas { get; }
+        IRepository<Hall> Halls { get; }
+        IRepository<Place> Places { get; }
+
+        IRepository<Tariff> Tariffs { get; }
+
         IRepository<City> Cities { get; }
-        IRepository<Ticket> Tickets {get;}
-        IRepository<TicketPlaceDetails> TicketPlaceDetails { get; }
+
+        IRepository<Ticket> Tickets {get;}    
         IRepository<Purchase> Purchases { get; }
-        IRepository<PurchaseClientDetails> PurchaseClientDetailses { get; }
+        IRepository<Customer> Customers { get; }
         void Save();
     }
 }

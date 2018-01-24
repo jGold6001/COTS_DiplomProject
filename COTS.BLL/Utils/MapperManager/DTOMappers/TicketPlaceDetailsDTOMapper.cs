@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace COTS.BLL.Utils.MapperManager.DTOMappers
 {
-    public class TicketPlaceDetailsDTOMapper : GeneralMapper<TicketPlaceDetails, TicketPlaceDetailsDTO>
+    public class TicketPlaceDetailsDTOMapper : GeneralMapper<Place, TicketPlaceDetailsDTO>
     {
         public TicketPlaceDetailsDTOMapper()
         {
-            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<TicketPlaceDetails, TicketPlaceDetailsDTO>()));
+            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Place, TicketPlaceDetailsDTO>()));
         }
 
-        public override IEnumerable<TicketPlaceDetailsDTO> MapToCollectionObjects(IEnumerable<TicketPlaceDetails> collectValues)
+        public override IEnumerable<TicketPlaceDetailsDTO> MapToCollectionObjects(IEnumerable<Place> collectValues)
         {
-            return Mapper.Map<IEnumerable<TicketPlaceDetails>, IEnumerable<TicketPlaceDetailsDTO>>(collectValues);
+            return Mapper.Map<IEnumerable<Place>, IEnumerable<TicketPlaceDetailsDTO>>(collectValues);
         }
 
-        public override TicketPlaceDetailsDTO MapToObject(TicketPlaceDetails value)
+        public override TicketPlaceDetailsDTO MapToObject(Place value)
         {
-            return Mapper.Map<TicketPlaceDetails, TicketPlaceDetailsDTO>(value);
+            return Mapper.Map<Place, TicketPlaceDetailsDTO>(value);
         }
     }
 }

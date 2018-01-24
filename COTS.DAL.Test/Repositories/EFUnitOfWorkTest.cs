@@ -34,9 +34,9 @@ namespace COTS.DAL.Test.Repositories
         private CinemaRepository cinemaRepo;
         private CityRepository cityRepo;
         private TicketRepository ticketRepo;
-        private TicketPlaceDetailsRepository ticketPlaceDetailsRepository;
+        private PlaceRepository ticketPlaceDetailsRepository;
         private PurchaseRepository purchaseRepo;
-        private PurchaseClientDetailsRepository purchaseClientDetailsRepository;
+        private CustomerRepository purchaseClientDetailsRepository;
 
 
         [TestInitialize]
@@ -49,9 +49,9 @@ namespace COTS.DAL.Test.Repositories
             cinemaRepo = unitOfwork.Cinemas as CinemaRepository;
             cityRepo = unitOfwork.Cities as CityRepository;
             ticketRepo = unitOfwork.Tickets as TicketRepository;
-            ticketPlaceDetailsRepository = unitOfwork.TicketPlaceDetails as TicketPlaceDetailsRepository;
+            ticketPlaceDetailsRepository = unitOfwork.TicketPlaceDetails as PlaceRepository;
             purchaseRepo = unitOfwork.Purchases as PurchaseRepository;
-            purchaseClientDetailsRepository = unitOfwork.PurchaseClientDetailses as PurchaseClientDetailsRepository;    
+            purchaseClientDetailsRepository = unitOfwork.PurchaseClientDetailses as CustomerRepository;    
         }
 
         [TestMethod()]
@@ -175,7 +175,7 @@ namespace COTS.DAL.Test.Repositories
             };
             ticketRepo.AddOrUpdate(ticket_2);
 
-            var place_1 = new TicketPlaceDetails()
+            var place_1 = new Place()
             {
                 TicketId = ticket_1.Id,
                 Id = 7,
@@ -186,7 +186,7 @@ namespace COTS.DAL.Test.Repositories
             };
             ticketPlaceDetailsRepository.AddOrUpdate(place_1);
            
-            var place_2 = new TicketPlaceDetails()
+            var place_2 = new Place()
             {
                 TicketId = ticket_2.Id,
                 Id = 20,

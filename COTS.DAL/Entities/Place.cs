@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace COTS.DAL.Entities
 {
-    public class TicketPlaceDetails
+    public class Place
     {
-        [Key]
-        [ForeignKey("Ticket")]
-        public string TicketId { get; set; }
-        public int Id { get; set; }
+        public long Id { get; set; }
         public int Row { get; set; }
         public int Number { get; set; }
-        public string Tariff { get; set; }
-        public decimal Price { get; set; }
-        public Ticket Ticket { get; set; }
+        public bool IsBusy { get; set; }
+        public long HallId { get; set; }
+        public Hall Hall { get; set; }
+        public ICollection<Tariff> Tariffs { get; set; }
+        public Place()
+        {
+            Tariffs = new List<Tariff>();
+        }
     }
 }

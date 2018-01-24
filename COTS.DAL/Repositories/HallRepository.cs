@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace COTS.DAL.Repositories
 {
-    public class PurchaseClientDetailsRepository : Repository<PurchaseClientDetails>
+    public class HallRepository : Repository<Hall>
     {
-        public PurchaseClientDetailsRepository(DbContext context) : base(context)
+        public HallRepository(DbContext context) : base(context) 
         {
 
         }

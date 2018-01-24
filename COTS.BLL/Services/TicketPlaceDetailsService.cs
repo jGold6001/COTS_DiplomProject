@@ -14,13 +14,13 @@ namespace COTS.BLL.Services
     public class TicketPlaceDetailsService : ITicketPlaceDetailsService
     {
         IUnitOfWork UnitOfWork { get; set; }
-        TicketPlaceDetailsRepository ticketPlaceDetailsRepo;
+        PlaceRepository ticketPlaceDetailsRepo;
         MapperUnitOfWork mapperUnitOfWork;
 
         public TicketPlaceDetailsService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            ticketPlaceDetailsRepo = UnitOfWork.TicketPlaceDetails as TicketPlaceDetailsRepository;
+            ticketPlaceDetailsRepo = UnitOfWork.TicketPlaceDetails as PlaceRepository;
             mapperUnitOfWork = new MapperUnitOfWork();
         }
 

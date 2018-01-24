@@ -50,10 +50,12 @@
     <Compile Include="EF\CotsContext.cs" />
     <Compile Include="Entities\Cinema.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Hall.cs" />
     <Compile Include="Entities\MovieDetails.cs" />
-    <Compile Include="Entities\PurchaseClientDetails.cs" />
+    <Compile Include="Entities\Сustomer.cs" />
     <Compile Include="Entities\Movie.cs" />
-    <Compile Include="Entities\TicketPlaceDetails.cs" />
+    <Compile Include="Entities\Tariff.cs" />
+    <Compile Include="Entities\Place.cs" />
     <Compile Include="Entities\Purchase.cs" />
     <Compile Include="Entities\Seance.cs" />
     <Compile Include="Entities\Ticket.cs" />
@@ -63,13 +65,15 @@
     <Compile Include="Repositories\CinemaRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\HallRepository.cs" />
     <Compile Include="Repositories\MovieDetailsRepository.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
-    <Compile Include="Repositories\PurchaseClientDetailsRepository.cs" />
+    <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\PurchaseRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SeanceRepository.cs" />
-    <Compile Include="Repositories\TicketPlaceDetailsRepository.cs" />
+    <Compile Include="Repositories\PlaceRepository.cs" />
+    <Compile Include="Repositories\TariffRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
   </ItemGroup>
   <ItemGroup>

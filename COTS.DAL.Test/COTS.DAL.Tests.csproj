@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionForData\Cinemas\CinemasCollection.cs" />
+    <Compile Include="CollectionForData\Cinemas\HallsColletion.cs" />
+    <Compile Include="CollectionForData\Cinemas\PlacesCollection.cs" />
     <Compile Include="CollectionForData\Cities\CitiesCollection.cs" />
     <Compile Include="CollectionForData\Movies\MoviesCollection.cs" />
     <Compile Include="CollectionForData\Seances\FlorenceSeancesCollection.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="CollectionForData\Seances\MultiplexProspectSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\MultiplexSkyMallSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\TypeD.cs" />
+    <Compile Include="CollectionForData\Tariffs\TariffsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFUnitOfWorkTest.cs" />
   </ItemGroup>

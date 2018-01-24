@@ -10,7 +10,8 @@ namespace COTS.DAL.Entities
     {
         public string Id { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
-        public PurchaseClientDetails PurchaseClientDetails { get; set; }
+        public Customer Сustomer { get; set; }
+        public long? СustomerId { get; set; }
         public Purchase()
         {
             Tickets = new List<Ticket>();
