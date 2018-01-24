@@ -17,6 +17,7 @@ import {serialize} from 'json-typescript-mapper';
 import { SeanceService } from '../../../shared/services/seance.service';
 import { loadavg } from 'os';
 import { TicketService } from '../../../shared/services/ticket.service';
+import { element } from 'protractor';
 
 
 @Component({
@@ -35,7 +36,6 @@ export class HallDialogComponent implements OnInit {
   seance: Seance;
   places: Place[] = [];
   tickets: Ticket[] =[];
-  ticketsBusy: Ticket[] =[];
   purchase: Purchase;
   show: boolean = false;
   sum: number = 0;
@@ -57,7 +57,7 @@ export class HallDialogComponent implements OnInit {
   ngOnInit() {
 
     this.seance = this.data.seance;
-    console.log(this.seance.id);
+
     let typeInfo = {
       city:    "kiev",              //this.seance.cinema.cityId,
       cinema:   "mpx_skymall",      //this.seance.cinema.id,
@@ -71,7 +71,9 @@ export class HallDialogComponent implements OnInit {
     this.ticketServicve.getAll()
       .subscribe( r =>{
         this.tickets = r;
-        console.log(this.tickets);
+        let busiesTickets = this.getBusiesPlaces();
+        if(busiesTickets != null)
+          this.dataService.busyPlace(busiesTickets);
       });
     
 
@@ -227,5 +229,18 @@ export class HallDialogComponent implements OnInit {
     if(this.places.length == 0)
         this.show = false
   }
+
+  private getBusiesPlaces(): Place[]{
+    let ticketsWithSeance = this.tickets.filter( (element, index, array) =>{
+        if(element.seance.id  == this.seance.id)
+          return element.seance;
+    });
+    let places = ticketsWithSeance.map( ticket =>{
+        return ticket.place;
+    });
+    return places;
+  }
+
+ 
 
 }

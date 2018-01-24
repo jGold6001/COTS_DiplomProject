@@ -213,7 +213,7 @@ namespace COTS.DAL.Test.Repositories
                 }
 
             }
-            return null;
+            return seanceRepo.GetAll().FirstOrDefault();
         }
 
         [TestMethod]

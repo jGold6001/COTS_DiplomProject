@@ -6,6 +6,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { PlaceService } from '../../../../../../shared/services/place.service';
 import { last } from 'rxjs/operator/last';
 import { loadavg } from 'os';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-mpx-skymall-hall-1',
@@ -17,6 +18,7 @@ export class MpxSkymallHall1Component implements OnInit {
   buttons: any = [];
   places: Place[] = [];
   placesSelected: Place[] = [];
+  placesBusies: Place[] = [];
 
   constructor(
     private dataService: DataService,
@@ -27,22 +29,20 @@ export class MpxSkymallHall1Component implements OnInit {
 
 
   ngOnInit() {
+   
     this.placeService.getDataFromJsonFile('kiev', 'mpx-skymall', '1')
       .subscribe( res =>{
         this.places = res;
         this.setIdPlaces();
+        this.dataService.placesBusy$.subscribe( busyPlaces =>{
+          this.placesBusies = busyPlaces;
+          this.createButtons(); 
+          this.clickEvents(); 
+        }); 
       }, err => console.log("File not reading!!!"));
-
-
   }
 
-  ngAfterViewInit() {
-    this.createButtons(); 
-    this.clickEvents(); 
-  }
-
-  
-   clickEvents(){      
+  clickEvents(){      
       for(let item in this.buttons){
         let button = this.elRef.nativeElement.querySelector(`#btn_${item}`);
         if(button){
@@ -57,13 +57,18 @@ export class MpxSkymallHall1Component implements OnInit {
 
 
 
-   createButtons(){
+  createButtons(){
     this.buttons = this.elRef.nativeElement.getElementsByTagName("button");
-    
+
     for(let i=0; i<this.buttons.length; i++){
-      this.rd.addClass(this.buttons[i], "btn");
-      this.rd.addClass(this.buttons[i], "btn-primary");
-      this.rd.setAttribute(this.buttons[i], 'id', `btn_${i}`);
+      this.rd.addClass(this.buttons[i], "btn");  
+      if(this.placesBusies.find(p => p.id == i)){
+         this.rd.setAttribute(this.buttons[i], "disabled", 'true');
+      }else{
+         this.rd.addClass(this.buttons[i], "btn-primary");
+      }
+             
+      this.rd.setAttribute(this.buttons[i], 'id', `btn_${i}`);  
     }
   }
 
@@ -107,5 +112,6 @@ export class MpxSkymallHall1Component implements OnInit {
         this.placesSelected.splice(this.placesSelected.indexOf(place),1);
     }
   }
+
 
 }

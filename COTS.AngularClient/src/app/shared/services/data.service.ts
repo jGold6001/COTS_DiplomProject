@@ -7,9 +7,11 @@ export class DataService{
     
     private placesSelectedSource = new Subject<Place>();
     private placesCanceledSource = new Subject<Place>();
+    private placesBusySource = new Subject<Place[]>();
     
     placesSelected$ = this.placesSelectedSource.asObservable();  
     placesCanceles$ = this.placesCanceledSource.asObservable();
+    placesBusy$ = this.placesBusySource.asObservable();
 
     selectPlace(place: Place){
         this.placesSelectedSource.next(place);
@@ -17,6 +19,10 @@ export class DataService{
 
     cancelPlace(place: Place){
         this.placesCanceledSource.next(place);
+    }
+
+    busyPlace(places: Place[]){
+        this.placesBusySource.next(places);
     }
 
 }
