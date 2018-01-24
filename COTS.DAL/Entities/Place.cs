@@ -14,11 +14,21 @@ namespace COTS.DAL.Entities
         public int Row { get; set; }
         public int Number { get; set; }
         public bool IsBusy { get; set; }
-        public long HallId { get; set; }
+        public long? HallId { get; set; }
         public Hall Hall { get; set; }
         public ICollection<Tariff> Tariffs { get; set; }
+
         public Place()
         {
+            Tariffs = new List<Tariff>();
+        }
+
+        public Place(int row, int number, bool isBusy, long hallId)
+        {
+            this.Row = row;
+            this.Number = number;
+            this.IsBusy = isBusy;
+            this.HallId = hallId;
             Tariffs = new List<Tariff>();
         }
     }

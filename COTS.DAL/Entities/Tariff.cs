@@ -12,9 +12,17 @@ namespace COTS.DAL.Entities
         public string Name { get; set; }
         public decimal Price { get; set; }
         public ICollection<Place> Places { get; set; }
+
         public Tariff()
         {
             Places = new List<Place>();
+        }
+
+        public Tariff(string name, decimal price)
+        {
+            this.Name = name;
+            this.Price = price;
+            Tariffs = new List<Tariff>();
         }
 
     }
