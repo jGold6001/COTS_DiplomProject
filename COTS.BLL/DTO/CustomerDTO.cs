@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COTS.BLL.DTO
 {
-    public class PurchaseClientDetailsDTO
+    public class CustomerDTO
     {
         public string Id { get; set; }
         public string Email { get; set; }

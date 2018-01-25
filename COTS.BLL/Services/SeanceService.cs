@@ -18,7 +18,7 @@ namespace COTS.BLL.Services
     {
         IUnitOfWork UnitOfWork { get; set; }
         IMovieService movieService;
-        ICinemaService cinemaService;
+        IHallService hallService;
 
         SeanceRepository seanceRepo;
         MapperUnitOfWork mapperUnitOfWork;
@@ -30,7 +30,7 @@ namespace COTS.BLL.Services
             seanceRepo = UnitOfWork.Seances as SeanceRepository;
 
             movieService = new MovieService(unitOfWork);
-            cinemaService = new CinemaService(unitOfWork);
+            hallService = new HallService(unitOfWork);
             mapperUnitOfWork = new MapperUnitOfWork();
         }
 
@@ -94,7 +94,7 @@ namespace COTS.BLL.Services
             foreach (var item in seancesDTO)
             {
                 item.MovieDTO = movieService.GetOne(item.MovieId); ;
-                item.CinemaDTO = cinemaService.GetOne(item.CinemaId);
+                item.HallDTO = hallService.GetOne(item.HallId);
             }   
             
             return seancesDTO;
@@ -104,7 +104,7 @@ namespace COTS.BLL.Services
         {
             SeanceDTO seanceDTO = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
             seanceDTO.MovieDTO = movieService.GetOne(seanceDTO.MovieId);
-            seanceDTO.CinemaDTO = cinemaService.GetOne(seanceDTO.CinemaId);
+            seanceDTO.HallDTO = hallService.GetOne(seanceDTO.HallId);
             return seanceDTO;
         }
 

@@ -12,7 +12,8 @@ namespace COTS.BLL.DTO
         public string Id { get; set; }
         public SeanceDTO SeanceDTO { get; set; } 
         public long? SeanceId { get; set; }
-        public TicketPlaceDetailsDTO TicketPlaceDetailsDTO { get; set; }
+        public PlaceDTO PlaceDTO { get; set; }
+        public long? PlaceId { get; set; }
         public string PurchaseId { get; set; }
         public int State { get; set; }
     }

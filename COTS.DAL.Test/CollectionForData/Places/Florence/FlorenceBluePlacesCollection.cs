@@ -12,13 +12,16 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
     {
         public static List<Place> Get()
         {
+            int counter = 1;
             var places = new List<Place>();
             for (int r = 0; r < 4; r++)
             {
                 for (int n = 0; n < 6; n++)
-                {
-                    long id = (r + 1) * (n+1);
-                    var place = new Place(id, r, n, false, FlorenceHallsCollection.Get()[0].Id);
+                {                    
+                    int row = (r + 1);
+                    int num = (n + 1);
+                    long id = counter++;
+                    var place = new Place(id, row, num, false, FlorenceHallsCollection.Get()[0].Id);
                     places.Add(place);
                 }
             }

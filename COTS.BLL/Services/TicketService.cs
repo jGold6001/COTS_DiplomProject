@@ -18,14 +18,14 @@ namespace COTS.BLL.Services
         IUnitOfWork UnitOfWork { get; set; }
         
         ISeanceService seanceService;
-        ITicketPlaceDetailsService ticketPlaceDetailsService;
+        IPlaceService placeService;
         MapperUnitOfWork mapperUnitOfWork;
 
         public TicketService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;          
             seanceService = new SeanceService(unitOfWork);
-            ticketPlaceDetailsService = new TicketPlaceDetailsService(unitOfWork);
+            placeService = new PlaceService(unitOfWork);
             mapperUnitOfWork = new MapperUnitOfWork();
         }
         public void AddOrUpdate(TicketDTO ticketDTO)
@@ -35,7 +35,7 @@ namespace COTS.BLL.Services
          
             var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
             UnitOfWork.Tickets.AddOrUpdate(ticket);
-            ticketPlaceDetailsService.AddOrUpdate(ticketDTO.TicketPlaceDetailsDTO);
+            placeService.AddOrUpdate(ticketDTO.PlaceDTO);
             UnitOfWork.Save();
         }
 
@@ -44,8 +44,7 @@ namespace COTS.BLL.Services
             if (id == null)
                 throw new ValidationException("'id' not set", "");
 
-            var ticket = UnitOfWork.Tickets.Get(id);
-            ticketPlaceDetailsService.Delete(id);      
+            var ticket = UnitOfWork.Tickets.Get(id);    
             UnitOfWork.Tickets.Delete(ticket);
             UnitOfWork.Save();
         }
@@ -95,10 +94,10 @@ namespace COTS.BLL.Services
         private TicketDTO AttachObjetcsToDTO(Ticket ticket)
         {
             var ticketDTO = mapperUnitOfWork.TicketDTOMapper.MapToObject(ticket);
-            var placeDetailsDTO = mapperUnitOfWork.TicketPlaceDetailsDTOMapper.MapToObject(UnitOfWork.TicketPlaceDetails.Get(ticketDTO.Id));
+            var placeDTO = mapperUnitOfWork.PlaceDTOMapper.MapToObject(UnitOfWork.Places.Get(ticketDTO.Id));
             var seanceDTO = seanceService.GetOne(ticket.SeanceId);
 
-            ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
+            ticketDTO.PlaceDTO = placeDTO;
             ticketDTO.SeanceDTO = seanceDTO; 
             return ticketDTO;
         }
@@ -109,7 +108,7 @@ namespace COTS.BLL.Services
 
             foreach (var item in ticketsDTOs)
             {
-                item.TicketPlaceDetailsDTO = ticketPlaceDetailsService.GetOne(item.Id);
+                item.PlaceDTO = placeService.GetOne(item.PlaceId);
                 item.SeanceDTO = seanceService.GetOne(item.SeanceId);
             }
                

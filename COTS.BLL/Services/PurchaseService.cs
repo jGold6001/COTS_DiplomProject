@@ -18,7 +18,7 @@ namespace COTS.BLL.Services
         public IUnitOfWork UnitOfWork { get; set; }
         
         ITicketService ticketService;
-        IPurchaseClientDetailsService purchaseClientDetailsService;
+        ICustomerService customerService;
 
         MapperUnitOfWork mapperUnitOfWork;
 
@@ -28,7 +28,7 @@ namespace COTS.BLL.Services
             mapperUnitOfWork = new MapperUnitOfWork();
           
             ticketService = new TicketService(unitOfWork);
-            purchaseClientDetailsService = new PurchaseClientDetailsService(unitOfWork);
+            customerService = new CustomerService(unitOfWork);
         }
 
         public void Delete(string id)
@@ -39,10 +39,6 @@ namespace COTS.BLL.Services
             //delete tickets by purchase
             foreach (var item in ticketService.GetByPurchase(id))
                 ticketService.Delete(item.Id);
-
-            //delete clientInfo
-            if(purchaseClientDetailsService.GetOne(id) != null)
-                purchaseClientDetailsService.Delete(id);
 
             //delete purchase
             UnitOfWork.Purchases.Delete(UnitOfWork.Purchases.Get(id));            
@@ -74,8 +70,8 @@ namespace COTS.BLL.Services
             if (purchaseDTO == null)
                 throw new ValidationException("PurchaseDTO not set", "");
 
-            if (purchaseDTO.PurchaseClientDetailsDTO != null)
-                purchaseClientDetailsService.AddOrUpdate(purchaseDTO.PurchaseClientDetailsDTO);
+            if (purchaseDTO.CustomerDTO != null)
+                customerService.AddOrUpdate(purchaseDTO.CustomerDTO);
                      
             var purchase = mapperUnitOfWork.PurchaseMapper.MapToObject(purchaseDTO);        
             UnitOfWork.Purchases.AddOrUpdate(purchase);
@@ -91,7 +87,7 @@ namespace COTS.BLL.Services
             var purchasesDTOs = mapperUnitOfWork.PurchaseDTOMapper.MapToCollectionObjects(purchases);
             foreach (var item in purchasesDTOs)
             {
-                item.PurchaseClientDetailsDTO = purchaseClientDetailsService.GetOne(item.Id);
+                item.CustomerDTO = customerService.GetOne(item.Id);
                 item.TicketsDTOs = ticketService.GetByPurchase(item.Id);
             }
                
@@ -101,11 +97,11 @@ namespace COTS.BLL.Services
         private PurchaseDTO AttachObjetcsToDTO(Purchase purchase)
         {
             var purchaseDTO = mapperUnitOfWork.PurchaseDTOMapper.MapToObject(purchase);
-            var clientDTO = purchaseClientDetailsService.GetOne(purchaseDTO.Id);
+            var customerDTO = customerService.GetOne(purchaseDTO.Id);
 
             var ticketsDTOs = ticketService.GetByPurchase(purchaseDTO.Id);
 
-            purchaseDTO.PurchaseClientDetailsDTO = clientDTO;
+            purchaseDTO.CustomerDTO = customerDTO;
             purchaseDTO.TicketsDTOs = ticketsDTOs;
             return purchaseDTO;
         }

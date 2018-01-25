@@ -73,6 +73,15 @@ namespace COTS.DAL.Test.Repositories
             tariffRepository = unitOfwork.Tariffs as TariffRepository;
         }
 
+        [TestMethod]
+        public void PlacesTest()
+        {
+            foreach (var item in placesFlorence)
+            {
+                Trace.WriteLine($"id: {item.Id}, row: {item.Row}, number: {item.Number} ");
+            }
+        }
+
         [TestMethod()]
         public void AddOrUpdateTest()
         {
@@ -107,15 +116,17 @@ namespace COTS.DAL.Test.Repositories
             halls.AddRange(hallsMpxProspect);
             halls.AddRange(hallsMpxSkyMall);
 
-            foreach (var item in halls)
-            {
-                hallRepository.AddOrUpdate(item);
-            }
-
             foreach (var item in placesFlorence)
-            {
+            {                
                 placeRepository.AddOrUpdate(item);
             }
+
+            foreach (var item in halls)
+            {               
+                hallRepository.AddOrUpdate(item);           
+            }
+
+           
 
             foreach (var item in movies)
             {
@@ -189,15 +200,15 @@ namespace COTS.DAL.Test.Repositories
 
             };
             purchaseRepo.AddOrUpdate(purchase);
-
+            unitOfwork.Save();
 
 
             var seance = this.GetSeanceForTickets();
             var ticket_1 = new Ticket()
             {
                 Id = "test001",
-                Seance = seance,
-                Purchase = purchase,
+                SeanceId = seance.Id,
+                PurchaseId = purchase.Id,
                 PlaceId = placesFlorence[0].Id,
                 State = 2
 
@@ -207,8 +218,8 @@ namespace COTS.DAL.Test.Repositories
             var ticket_2 = new Ticket()
             {
                 Id = "test002",
-                Seance = seance,
-                Purchase = purchase,
+                SeanceId = seance.Id,
+                PurchaseId = purchase.Id,
                 PlaceId = placesFlorence[19].Id,
                 State = 2
 
@@ -249,13 +260,6 @@ namespace COTS.DAL.Test.Repositories
                 Trace.WriteLine($"name - {item.Name}");
         }
 
-        [TestMethod]
-        public void GetMoviesTop10ByRankOrderTest()
-        {
-            List<Movie> moviesTop10 = movieRepo.GetTop10ByRankOrder() as List<Movie>;
-            foreach (var item in moviesTop10)
-                Trace.WriteLine($"name - {item.Name}");
-        }
 
         [TestMethod]
         public void FindMoviesByCityTest()
@@ -266,7 +270,11 @@ namespace COTS.DAL.Test.Repositories
         [TestMethod]
         public void FindMoviesPremeriesByCityTest()
         {
-            List<Movie> moviesByCity = movieRepo.FindAllPremeriesByCity("harkov") as List<Movie>;          
+            List<Movie> moviesByCity = movieRepo.FindAllPremeriesByCity("harkov") as List<Movie>;
+            foreach (var item in moviesByCity)
+            {
+                Trace.WriteLine(item.Name);
+            }
         }
 
         [TestMethod]
@@ -283,17 +291,15 @@ namespace COTS.DAL.Test.Repositories
                 Trace.WriteLine(item.RankSales);
         }
 
-
-      
         [TestMethod]
-        public void FindAllByHallMovieAndDateTest()
+        public void FindAllByCinemaMovieAndDateTest()
         {
             long movieId = movieRepo.GetAll().Select(m => m.Id).FirstOrDefault();
-            long hallId = hallsMpxSkyMall[0].Id;
+            string cinemaId = cinemas[0].Id;
             DateTime date = DateTime.Now.Date;
-            IEnumerable<Seance> seances = seanceRepo.FindAllByHallMovieAndDate(hallId, movieId, date);
+            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId, date);
             foreach (var item in seances)
-                Trace.WriteLine($"Cinema: {item.Hall.CinemaId} Hall: {item.HallId} Movie: {item.MovieId} and Date: {item.DateAndTime}");
+                Trace.WriteLine($"Hall: {item.HallId} Movie: {item.MovieId} and Date: {item.DateAndTime}");
         }
 
         [TestMethod()]
@@ -307,6 +313,9 @@ namespace COTS.DAL.Test.Repositories
 
             foreach (var item in cityRepo.GetAll())
                 cityRepo.Delete(item);
+
+            foreach (var item in hallRepository.GetAll())
+                hallRepository.Delete(item);
 
             foreach (var item in cinemaRepo.GetAll())
                 cinemaRepo.Delete(item);

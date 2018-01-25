@@ -14,7 +14,7 @@ namespace COTS.BLL.Utils.MapperManager.DTOMappers
         public SeanceDTOMapper(MovieDTOMapper movieDTOMapper)
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Seance, SeanceDTO>()
-                .ForMember(m => m.CinemaDTO, opt => opt.MapFrom(src => src.Cinema))
+                .ForMember(m => m.HallDTO, opt => opt.MapFrom(src => src.Hall))
                 .ForMember(m => m.MovieDTO, opt => opt.MapFrom(src => movieDTOMapper.MapToObject(src.Movie)))
             ));
         }

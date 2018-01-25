@@ -10,6 +10,6 @@ namespace COTS.BLL.DTO
     {
         public string Id { get; set; }
         public IEnumerable<TicketDTO> TicketsDTOs { get; set; }
-        public PurchaseClientDetailsDTO PurchaseClientDetailsDTO { get; set; }
+        public CustomerDTO CustomerDTO { get; set; }
     }
 }

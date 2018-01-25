@@ -15,7 +15,7 @@ namespace COTS.BLL.Utils.MapperManager.DTOMappers
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Ticket, TicketDTO>()
                 .ForMember(m => m.SeanceDTO, opt => opt.MapFrom(src => seanceDTOMapper.MapToObject(src.Seance)))
-                .ForMember(m => m.TicketPlaceDetailsDTO, opt => opt.MapFrom(src => src.TicketPlaceDetails))
+                .ForMember(m => m.PlaceDTO, opt => opt.MapFrom(src => src.Place))
             ));
         }
 

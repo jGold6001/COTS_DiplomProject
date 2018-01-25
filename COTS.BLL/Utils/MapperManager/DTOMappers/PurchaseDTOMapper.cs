@@ -14,7 +14,7 @@ namespace COTS.BLL.Utils.MapperManager.DTOMappers
         public PurchaseDTOMapper()
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Purchase, PurchaseDTO>()
-                .ForMember(m => m.PurchaseClientDetailsDTO, opt => opt.MapFrom(src => src.PurchaseClientDetails))
+                .ForMember(m => m.CustomerDTO, opt => opt.MapFrom(src => src.Сustomer))
             ));
         }
 

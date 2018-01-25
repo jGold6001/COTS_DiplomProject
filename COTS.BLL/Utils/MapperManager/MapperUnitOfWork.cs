@@ -15,14 +15,18 @@ namespace COTS.BLL.Utils.MapperManager
         CityDTOMapper cityDTOMapper;
         SeanceDTOMapper seanceDTOMapper;
         TicketDTOMapper ticketDTOMapper;
-        TicketPlaceDetailsDTOMapper ticketPlaceDetailsDTOMapper;
+        PlaceDTOMapper placeDTOMapper;
         PurchaseDTOMapper purchaseDTOMapper;
-        PurchaseClientDetailsDTOMapper purchaseClientDetailsDTOMapper;
+        CustomerDTOMapper customerDTOMapper;
+        TariffDTOMapper tariffDTOMapper;
+        HallDTOMapper hallDTOMapper;
 
         TicketMapper ticketMapper;
-        TicketPlaceDetailsMapper ticketPlaceDetailsMapper;
+        PlaceMapper placeMapper;
         PurchaseMapper purchaseMapper;
-        PurchaseClientDetailsesMapper purchaseClientDetailsesMapper;
+        CustomerMapper customerMapper;
+
+        
         
 
         public MovieDetailsDTOMapper MovieDetailsDTOMapper
@@ -86,13 +90,13 @@ namespace COTS.BLL.Utils.MapperManager
             }
         }
 
-        public TicketPlaceDetailsDTOMapper TicketPlaceDetailsDTOMapper
+        public PlaceDTOMapper PlaceDTOMapper
         {
             get
             {
-                if (ticketPlaceDetailsDTOMapper == null)
-                    ticketPlaceDetailsDTOMapper = new TicketPlaceDetailsDTOMapper();
-                return ticketPlaceDetailsDTOMapper;
+                if (placeDTOMapper == null)
+                    placeDTOMapper = new PlaceDTOMapper();
+                return placeDTOMapper;
             }
         }
 
@@ -106,13 +110,13 @@ namespace COTS.BLL.Utils.MapperManager
             }
         }
 
-        public PurchaseClientDetailsDTOMapper PurchaseClientDetailsDTOMapper
+        public CustomerDTOMapper CustomerDTOMapper
         {
             get
             {
-                if (purchaseClientDetailsDTOMapper == null)
-                    purchaseClientDetailsDTOMapper = new PurchaseClientDetailsDTOMapper();
-                return purchaseClientDetailsDTOMapper;
+                if (customerDTOMapper == null)
+                    customerDTOMapper = new CustomerDTOMapper();
+                return customerDTOMapper;
             }
         }
 
@@ -127,13 +131,13 @@ namespace COTS.BLL.Utils.MapperManager
             }
         }
 
-        public TicketPlaceDetailsMapper TicketPlaceDetailsMapper
+        public PlaceMapper PlaceMapper
         {
             get
             {
-                if (ticketPlaceDetailsMapper == null)
-                    ticketPlaceDetailsMapper = new TicketPlaceDetailsMapper();
-                return ticketPlaceDetailsMapper;
+                if (placeMapper == null)
+                    placeMapper = new PlaceMapper();
+                return placeMapper;
             }
         }
 
@@ -147,13 +151,33 @@ namespace COTS.BLL.Utils.MapperManager
             }
         }
 
-        public PurchaseClientDetailsesMapper PurchaseClientDetailsesMapper
+        public CustomerMapper CustomerMapper
         {
             get
             {
-                if (purchaseClientDetailsesMapper == null)
-                    purchaseClientDetailsesMapper = new PurchaseClientDetailsesMapper();
-                return purchaseClientDetailsesMapper;
+                if (customerMapper == null)
+                    customerMapper = new CustomerMapper();
+                return customerMapper;
+            }
+        }
+
+        public TariffDTOMapper TariffDTOMapper
+        {
+            get
+            {
+                if (tariffDTOMapper == null)
+                    tariffDTOMapper = new TariffDTOMapper();
+                return tariffDTOMapper;
+            }
+        }
+
+        public HallDTOMapper HallDTOMapper
+        {
+            get
+            {
+                if (hallDTOMapper == null)
+                    hallDTOMapper = new HallDTOMapper();
+                return hallDTOMapper;
             }
         }
 

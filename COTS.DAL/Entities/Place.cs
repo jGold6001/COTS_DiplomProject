@@ -10,6 +10,7 @@ namespace COTS.DAL.Entities
 {
     public class Place
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
         public int Row { get; set; }
         public int Number { get; set; }
