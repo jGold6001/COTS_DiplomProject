@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.DAL.Test.CollectionForData.Cinemas
+namespace COTS.DAL.Test.CollectionForData.Places.MpxDafi
 {
-    public static class PlacesCollection
+    public static class MpxDafiFourPlacesCollection
     {
         public static List<Place> Get()
         {

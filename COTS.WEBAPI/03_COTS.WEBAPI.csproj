@@ -220,9 +220,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\COTS.BLL\COTS.BLL.csproj">
+    <ProjectReference Include="..\COTS.BLL\02_COTS.BLL.csproj">
       <Project>{f9da4526-4717-4293-9ae9-b1f0f9632054}</Project>
-      <Name>COTS.BLL</Name>
+      <Name>02_COTS.BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

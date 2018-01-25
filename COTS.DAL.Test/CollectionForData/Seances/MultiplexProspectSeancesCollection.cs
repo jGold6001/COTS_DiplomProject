@@ -1,4 +1,5 @@
 ﻿using COTS.DAL.Entities;
+using COTS.DAL.Test.CollectionForData.Halls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,24 +19,24 @@ namespace COTS.DAL.Test.CollectionForData.Seances
             return new List<Seance>()
             {
                 //---Бегущий по лезвию
-				new Seance(dateCurrent.AddHours(11), TypeD.twoD, "2"),
-                new Seance(dateCurrent.AddHours(16), TypeD.twoD, "2"),
-                new Seance(datePlusOne.AddHours(11), TypeD.twoD, "2"),
-                new Seance(datePlusOne.AddHours(16).AddMinutes(40), TypeD.twoD, "2"),
-                new Seance(datePlusTwo.AddHours(10), TypeD.twoD, "2"),
+				new Seance(dateCurrent.AddHours(11), TypeD.twoD, MpxProspectHallsCollection.Get()[1].Id),
+                new Seance(dateCurrent.AddHours(16), TypeD.twoD, MpxProspectHallsCollection.Get()[1].Id),
+                new Seance(datePlusOne.AddHours(11), TypeD.twoD, MpxProspectHallsCollection.Get()[1].Id),
+                new Seance(datePlusOne.AddHours(16).AddMinutes(40), TypeD.twoD, MpxProspectHallsCollection.Get()[1].Id),
+                new Seance(datePlusTwo.AddHours(10), TypeD.twoD, MpxProspectHallsCollection.Get()[1].Id),
 				
 				//---My Little Pony в кино
-				new Seance(datePlusTwo.AddHours(11), TypeD.threeD, "1"),
-                new Seance(datePlusTwo.AddHours(12).AddMinutes(10), TypeD.threeD, "1"),
-                new Seance(datePlusTwo.AddHours(11.50), TypeD.twoD, "5"),
-                new Seance(datePlusTwo.AddHours(13).AddMinutes(10), TypeD.twoD, "5"),
+				new Seance(datePlusTwo.AddHours(11), TypeD.threeD, MpxProspectHallsCollection.Get()[0].Id),
+                new Seance(datePlusTwo.AddHours(12).AddMinutes(10), TypeD.threeD, MpxProspectHallsCollection.Get()[0].Id),
+                new Seance(datePlusTwo.AddHours(11.50), TypeD.twoD, MpxProspectHallsCollection.Get()[2].Id),
+                new Seance(datePlusTwo.AddHours(13).AddMinutes(10), TypeD.twoD, MpxProspectHallsCollection.Get()[2].Id),
 				
 				//---Салют-7	
-				new Seance(dateCurrent.AddHours(11), TypeD.twoD, "4"),
-                new Seance(datePlusOne.AddHours(11), TypeD.twoD, "4"),
-                new Seance(datePlusOne.AddHours(16).AddMinutes(40), TypeD.twoD, "4"),
-                new Seance(datePlusTwo.AddHours(11), TypeD.twoD, "4"),
-                new Seance(datePlusTwo.AddHours(11), TypeD.twoD, "4")
+				new Seance(dateCurrent.AddHours(11), TypeD.twoD, MpxProspectHallsCollection.Get()[3].Id),
+                new Seance(datePlusOne.AddHours(11), TypeD.twoD, MpxProspectHallsCollection.Get()[3].Id),
+                new Seance(datePlusOne.AddHours(16).AddMinutes(40), TypeD.twoD, MpxProspectHallsCollection.Get()[3].Id),
+                new Seance(datePlusTwo.AddHours(11), TypeD.twoD, MpxProspectHallsCollection.Get()[3].Id),
+                new Seance(datePlusTwo.AddHours(11), TypeD.twoD, MpxProspectHallsCollection.Get()[3].Id)
             };
         }
     }

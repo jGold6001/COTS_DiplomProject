@@ -68,13 +68,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\COTS.BLL\COTS.BLL.csproj">
+    <ProjectReference Include="..\COTS.BLL\02_COTS.BLL.csproj">
       <Project>{f9da4526-4717-4293-9ae9-b1f0f9632054}</Project>
-      <Name>COTS.BLL</Name>
+      <Name>02_COTS.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\COTS.DAL\COTS.DAL.csproj">
+    <ProjectReference Include="..\COTS.DAL\01_COTS.DAL.csproj">
       <Project>{e008668a-a01d-4c38-b2ed-4dfd79a6e380}</Project>
-      <Name>COTS.DAL</Name>
+      <Name>01_COTS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

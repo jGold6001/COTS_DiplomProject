@@ -7,8 +7,11 @@ using System.Collections.Generic;
 using COTS.DAL.Test.CollectionForData.Seances;
 using COTS.DAL.Test.CollectionForData.Cities;
 using COTS.DAL.Test.CollectionForData.Cinemas;
+using COTS.DAL.Test.CollectionForData.Halls;
+using COTS.DAL.Test.CollectionForData.Places.Florence;
 using System.Diagnostics;
 using System.Linq;
+
 
 namespace COTS.DAL.Test.Repositories
 {
@@ -26,6 +29,12 @@ namespace COTS.DAL.Test.Repositories
         private List<Seance> seancesMultDafi = MultiplexDafiSeancesCollection.Get();
         private List<Cinema> cinemas = CinemasCollection.Get();
         private List<City> cities = CitiesCollection.Get();
+        private List<Hall> hallsMpxSkyMall = MpxSkyMallHallsCollection.Get();
+        private List<Hall> hallsMpxProspect = MpxProspectHallsCollection.Get();
+        private List<Hall> hallsMpxDafi = MpxDafiHallsCollection.Get();
+        private List<Hall> hallsFlorence = FlorenceHallsCollection.Get();
+        private List<Place> placesFlorence = FlorenceBluePlacesCollection.Get();
+
 
         //repositories
         private MovieRepository movieRepo;
@@ -34,24 +43,34 @@ namespace COTS.DAL.Test.Repositories
         private CinemaRepository cinemaRepo;
         private CityRepository cityRepo;
         private TicketRepository ticketRepo;
-        private PlaceRepository ticketPlaceDetailsRepository;
+        private PlaceRepository placeRepository;
         private PurchaseRepository purchaseRepo;
-        private CustomerRepository purchaseClientDetailsRepository;
+        private CustomerRepository customerRepository;
+        private HallRepository hallRepository;
+        private TariffRepository tariffRepository;
 
 
         [TestInitialize]
         public void Init()
         {
             unitOfwork = new EFUnitOfWork(connectionString);
+
             movieRepo = unitOfwork.Movies as MovieRepository;
             movieDetailsRepo = unitOfwork.MovieDetailses as MovieDetailsRepository;
+
             seanceRepo = unitOfwork.Seances as SeanceRepository;
+
             cinemaRepo = unitOfwork.Cinemas as CinemaRepository;
+            placeRepository = unitOfwork.Places as PlaceRepository;
+            hallRepository = unitOfwork.Halls as HallRepository;
+
             cityRepo = unitOfwork.Cities as CityRepository;
-            ticketRepo = unitOfwork.Tickets as TicketRepository;
-            ticketPlaceDetailsRepository = unitOfwork.TicketPlaceDetails as PlaceRepository;
+
+            ticketRepo = unitOfwork.Tickets as TicketRepository;         
             purchaseRepo = unitOfwork.Purchases as PurchaseRepository;
-            purchaseClientDetailsRepository = unitOfwork.PurchaseClientDetailses as CustomerRepository;    
+            customerRepository = unitOfwork.Customers as CustomerRepository;
+
+            tariffRepository = unitOfwork.Tariffs as TariffRepository;
         }
 
         [TestMethod()]
@@ -70,6 +89,7 @@ namespace COTS.DAL.Test.Repositories
             Cinema mDafi = cinemas[2];
             Cinema florence = cinemas[3];
 
+
             cityRepo.AddOrUpdate(cityKiev);
             foreach (var item in cinemas)
             {
@@ -79,15 +99,29 @@ namespace COTS.DAL.Test.Repositories
                     item.City = cityKiev;
 
                 cinemaRepo.AddOrUpdate(item);
-            }    
+            }
+
+            var halls = new List<Hall>();
+            halls.AddRange(hallsFlorence);
+            halls.AddRange(hallsMpxDafi);
+            halls.AddRange(hallsMpxProspect);
+            halls.AddRange(hallsMpxSkyMall);
+
+            foreach (var item in halls)
+            {
+                hallRepository.AddOrUpdate(item);
+            }
+
+            foreach (var item in placesFlorence)
+            {
+                placeRepository.AddOrUpdate(item);
+            }
 
             foreach (var item in movies)
             {
                 movieRepo.AddOrUpdate(item);
                 movieDetailsRepo.AddOrUpdate(item.MovieDetails);
-            }
-              
-            
+            }                        
 
             for (int i = 0; i < seancesFlorence.Count; i++)
             {
@@ -97,8 +131,7 @@ namespace COTS.DAL.Test.Repositories
                     seancesFlorence[i].Movie = pony;
                 else
                     seancesFlorence[i].Movie = salut;
-
-                seancesFlorence[i].Cinema = florence;
+                
                 seanceRepo.AddOrUpdate(seancesFlorence[i]);
             }
 
@@ -111,7 +144,6 @@ namespace COTS.DAL.Test.Repositories
                 else
                     seancesMultProspect[i].Movie = salut;
 
-                seancesMultProspect[i].Cinema = mProspect;
                 seanceRepo.AddOrUpdate(seancesMultProspect[i]);
             }
 
@@ -124,7 +156,6 @@ namespace COTS.DAL.Test.Repositories
                 else
                     seancesMultSkyMall[i].Movie = salut;
 
-                seancesMultSkyMall[i].Cinema = mSkymall;
                 seanceRepo.AddOrUpdate(seancesMultSkyMall[i]);
             }
 
@@ -137,32 +168,38 @@ namespace COTS.DAL.Test.Repositories
                 else
                     seancesMultDafi[i].Movie = comatose;
 
-                seancesMultDafi[i].Cinema = mDafi;
                 seanceRepo.AddOrUpdate(seancesMultDafi[i]);
             }
 
-            var purchase = new Purchase()
-            {
-                Id = "test231243"               
-            };
-            purchaseRepo.AddOrUpdate(purchase);
 
-            var clientsDetails = new PurchaseClientDetails()
+            //purchase
+
+            var customer = new Customer()
             {
-                Id = purchase.Id,
                 Email = "test@milo.net",
                 FullName = "Testov Test",
                 Phone = 30665554433
             };
-            purchaseClientDetailsRepository.AddOrUpdate(clientsDetails);
-            unitOfwork.Save();
+            customerRepository.AddOrUpdate(customer);
+
+            var purchase = new Purchase()
+            {
+                Id = "test231243",
+                СustomerId = customer.Id
+
+            };
+            purchaseRepo.AddOrUpdate(purchase);
+
+
 
             var seance = this.GetSeanceForTickets();
             var ticket_1 = new Ticket()
             {
                 Id = "test001",
-                Seance = seance,              
+                Seance = seance,
                 Purchase = purchase,
+                PlaceId = placesFlorence[0].Id,
+                State = 2
 
             };
             ticketRepo.AddOrUpdate(ticket_1);
@@ -171,41 +208,22 @@ namespace COTS.DAL.Test.Repositories
             {
                 Id = "test002",
                 Seance = seance,
-                Purchase = purchase
+                Purchase = purchase,
+                PlaceId = placesFlorence[19].Id,
+                State = 2
+
             };
             ticketRepo.AddOrUpdate(ticket_2);
-
-            var place_1 = new Place()
-            {
-                TicketId = ticket_1.Id,
-                Id = 7,
-                Number = 1,
-                Row = 2,
-                Price = 100,
-                Tariff = "simple"
-            };
-            ticketPlaceDetailsRepository.AddOrUpdate(place_1);
-           
-            var place_2 = new Place()
-            {
-                TicketId = ticket_2.Id,
-                Id = 20,
-                Number = 2,
-                Row = 4,
-                Price = 200,
-                Tariff = "vip"
-            };
-            ticketPlaceDetailsRepository.AddOrUpdate(place_2);
-
             unitOfwork.Save();
         }
+
+       
 
         public Seance GetSeanceForTickets()
         {
             foreach (var item in seanceRepo.GetAll())
             {
-                if (item.Hall == "Синий"
-                    && item.CinemaId == "florence"
+                if (item.HallId == FlorenceHallsCollection.Get()[0].Id
                     && item.DateAndTime.Date == DateTime.Now.Date
                 )
                 {
@@ -266,49 +284,16 @@ namespace COTS.DAL.Test.Repositories
         }
 
 
-       [TestMethod]
-        public void FindSeancesByDateTest()
-        {
-            List<Seance> seancesByDate = seanceRepo.FindByDate(DateTime.Now.Date)as List<Seance>;
-            foreach (var item in seancesByDate)
-              Trace.WriteLine(item.DateAndTime);
-        }
-
-
+      
         [TestMethod]
-        public void FindSeancesByCinemaTest()
-        {
-            List<Seance> seancesByCinema = seanceRepo.FindAllByCinema(cinemas[0].Id) as List<Seance>;
-            foreach (var item in seancesByCinema)
-                Trace.WriteLine(item.CinemaId);
-        }
-
-        [TestMethod]
-        public void FindSeancesByCinemaAndDateTest()
-        {
-            IEnumerable<Seance> seancesByCinema = seanceRepo.FindAllByCinemaAndDate(cinemas[0].Id, seancesFlorence[1].DateAndTime.Date);
-            foreach (var item in seancesByCinema)
-                Trace.WriteLine(item.CinemaId + " "+ item.DateAndTime);
-        }
-
-        [TestMethod]
-        public void FindSeancesByMovieAndDateTest()
+        public void FindAllByHallMovieAndDateTest()
         {
             long movieId = movieRepo.GetAll().Select(m => m.Id).FirstOrDefault();
-            IEnumerable<Seance> seancesByMovies = seanceRepo.FindAllByMovieAndDate(movieId, DateTime.Now.Date);
-            foreach (var item in seancesByMovies)
-                Trace.WriteLine($"Movie: {item.MovieId} and Date: {item.DateAndTime}");
-        }
-
-        [TestMethod]
-        public void FindAllByCinemaMovieAndDateTest()
-        {
-            long movieId = movieRepo.GetAll().Select(m => m.Id).FirstOrDefault();
-            string cinemaId = cinemas[0].Id;
+            long hallId = hallsMpxSkyMall[0].Id;
             DateTime date = DateTime.Now.Date;
-            IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId, date);
+            IEnumerable<Seance> seances = seanceRepo.FindAllByHallMovieAndDate(hallId, movieId, date);
             foreach (var item in seances)
-                Trace.WriteLine($"Cinema: {item.CinemaId} Movie: {item.MovieId} and Date: {item.DateAndTime}");
+                Trace.WriteLine($"Cinema: {item.Hall.CinemaId} Hall: {item.HallId} Movie: {item.MovieId} and Date: {item.DateAndTime}");
         }
 
         [TestMethod()]
@@ -332,14 +317,14 @@ namespace COTS.DAL.Test.Repositories
             foreach (var item in ticketRepo.GetAll())
                 ticketRepo.Delete(item);
 
-            foreach (var item in ticketPlaceDetailsRepository.GetAll())
-                ticketPlaceDetailsRepository.Delete(item);
+            foreach (var item in placeRepository.GetAll())
+                placeRepository.Delete(item);
 
             foreach (var item in purchaseRepo.GetAll())
                 purchaseRepo.Delete(item);
 
-            foreach (var item in purchaseClientDetailsRepository.GetAll())
-                purchaseClientDetailsRepository.Delete(item);
+            foreach (var item in customerRepository.GetAll())
+                customerRepository.Delete(item);
 
             unitOfwork.Save();
         }

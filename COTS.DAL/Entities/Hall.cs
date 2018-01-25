@@ -19,8 +19,9 @@ namespace COTS.DAL.Entities
             Places = new List<Place>();
         }
 
-        public Hall(string name, string cinemaId)
+        public Hall(long id, string name, string cinemaId)
         {
+            this.Id = id;
             this.Name = name;
             this.CinemaId = cinemaId;
             Places = new List<Place>();

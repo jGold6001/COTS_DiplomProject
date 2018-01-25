@@ -23,8 +23,9 @@ namespace COTS.DAL.Entities
             Tariffs = new List<Tariff>();
         }
 
-        public Place(int row, int number, bool isBusy, long hallId)
+        public Place(long id, int row, int number, bool isBusy, long hallId)
         {
+            this.Id = id;
             this.Row = row;
             this.Number = number;
             this.IsBusy = isBusy;

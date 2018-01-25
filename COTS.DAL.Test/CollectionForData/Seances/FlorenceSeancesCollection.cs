@@ -1,4 +1,5 @@
 ﻿using COTS.DAL.Entities;
+using COTS.DAL.Test.CollectionForData.Halls;
 using COTS.DAL.Test.CollectionForData.Seances;
 using System;
 using System.Collections.Generic;
@@ -16,26 +17,22 @@ namespace COTS.DAL.Test.CollectionForData.Seances
             DateTime dateCurrent = DateTime.Now.Date;
             DateTime datePlusOne = DateTime.Now.AddDays(1).Date;
             DateTime datePlusTwo = DateTime.Now.AddDays(2).Date;
-
-            String bigHall = "Большой";
-            String littleHall = "Малый";
-            String redHall = "Крастный";
-            String blueHall = "Синий";
+          
             return new List<Seance>()
             {
                 //---Бегущий по лезвию
-				new Seance(dateCurrent.AddHours(11), TypeD.twoD, bigHall),
-                new Seance(datePlusOne.AddHours(11), TypeD.twoD, bigHall),
-                new Seance(datePlusTwo.AddHours(10), TypeD.twoD, bigHall),
+				new Seance(dateCurrent.AddHours(11), TypeD.twoD, FlorenceHallsCollection.Get()[3].Id),
+                new Seance(datePlusOne.AddHours(11), TypeD.twoD, FlorenceHallsCollection.Get()[3].Id),
+                new Seance(datePlusTwo.AddHours(10), TypeD.twoD, FlorenceHallsCollection.Get()[3].Id),
 				
 				//---My Little Pony в кино
-				new Seance(datePlusTwo.AddHours(11), TypeD.threeD, redHall),
-                new Seance(datePlusTwo.AddHours(11.50), TypeD.twoD, littleHall),
+				new Seance(datePlusTwo.AddHours(11), TypeD.threeD, FlorenceHallsCollection.Get()[1].Id),
+                new Seance(datePlusTwo.AddHours(11.50), TypeD.twoD, FlorenceHallsCollection.Get()[2].Id),
 				
 				//---Салют-7	
-				new Seance(dateCurrent.AddHours(11), TypeD.twoD, blueHall),
-                new Seance(datePlusOne.AddHours(11), TypeD.twoD, blueHall),
-                new Seance(datePlusTwo.AddHours(11), TypeD.twoD, blueHall)
+				new Seance(dateCurrent.AddHours(11), TypeD.twoD, FlorenceHallsCollection.Get()[0].Id),
+                new Seance(datePlusOne.AddHours(11), TypeD.twoD, FlorenceHallsCollection.Get()[0].Id),
+                new Seance(datePlusTwo.AddHours(11), TypeD.twoD, FlorenceHallsCollection.Get()[0].Id)
             };
         }
     }

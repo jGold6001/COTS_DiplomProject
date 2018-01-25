@@ -100,9 +100,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\COTS.DAL\COTS.DAL.csproj">
+    <ProjectReference Include="..\COTS.DAL\01_COTS.DAL.csproj">
       <Project>{e008668a-a01d-4c38-b2ed-4dfd79a6e380}</Project>
-      <Name>COTS.DAL</Name>
+      <Name>01_COTS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

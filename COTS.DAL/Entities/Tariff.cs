@@ -22,7 +22,7 @@ namespace COTS.DAL.Entities
         {
             this.Name = name;
             this.Price = price;
-            Tariffs = new List<Tariff>();
+            Places = new List<Place>();
         }
 
     }
