@@ -35,7 +35,6 @@ namespace COTS.BLL.Services
          
             var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
             UnitOfWork.Tickets.AddOrUpdate(ticket);
-            placeService.AddOrUpdate(ticketDTO.PlaceDTO);
             UnitOfWork.Save();
         }
 

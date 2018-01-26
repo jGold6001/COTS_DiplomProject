@@ -17,6 +17,7 @@ namespace COTS.BLL.Services.Tests
     {
         IPurchaseService purchaseService;
         ITicketService ticketService;
+        ICustomerService customerService;
         ISeanceService seanceService;
         IUnitOfWork unitOfWork;
 
@@ -25,6 +26,7 @@ namespace COTS.BLL.Services.Tests
         {
             unitOfWork = new EFUnitOfWork("CotsContext");
             purchaseService = new PurchaseService(unitOfWork);
+            customerService = new CustomerService(unitOfWork);
             ticketService = new TicketService(unitOfWork);
             seanceService = new SeanceService(unitOfWork);
         }
@@ -38,7 +40,7 @@ namespace COTS.BLL.Services.Tests
                 Id = "001",
             };
 
-            var clientDetailsDTO = new DTO.PurchaseClientDetailsDTO()
+            var customerDTO = new CustomerDTO()
             {
                 Id = purchaseDTO.Id,
                 Email = "hello@milo.net",
@@ -46,28 +48,18 @@ namespace COTS.BLL.Services.Tests
                 Phone = 380567779988
             };
 
-        
+
             var seanceDTO = seanceService.GetAll().FirstOrDefault();
             var ticketDTO = new TicketDTO()
             {
                 Id = "00001",
-                SeanceDTO = seanceDTO,
                 SeanceId = seanceDTO.Id,
+                PlaceId = 8,
                 State = 1,
-                PurchaseId = purchaseDTO.Id
+                PurchaseId = purchaseDTO.Id               
             };
 
-            var placeDetailsDTO = new TicketPlaceDetailsDTO()
-            {
-                TicketId = ticketDTO.Id,
-                Id = 4,
-                Number = 4,
-                Row = 1,
-                Tariff = "xz",
-                Price = 300
-            };
-            ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
-            purchaseDTO.PurchaseClientDetailsDTO = clientDetailsDTO;
+            purchaseDTO.CustomerDTO = customerDTO;          
             purchaseDTO.TicketsDTOs = new List<TicketDTO>(){ ticketDTO };
             purchaseService.AddOrUpdate(purchaseDTO);
 
@@ -77,12 +69,11 @@ namespace COTS.BLL.Services.Tests
         public void GetOnePurchaseTest()
         {
             var purchseDTO = purchaseService.GetOne("001");
-            Trace.WriteLine($"id= {purchseDTO.Id}, clientName = {purchseDTO.PurchaseClientDetailsDTO.FullName}");
+            Trace.WriteLine($"id= {purchseDTO.Id}, clientName = {purchseDTO.CustomerDTO.FullName}");
             Trace.WriteLine($"\n\ntickets:");
             foreach (var item in purchseDTO.TicketsDTOs)
             {
                 Trace.WriteLine(item.Id);
-                Trace.WriteLine(item.TicketPlaceDetailsDTO.Number);
                 Trace.WriteLine($"SeanceID - {item.SeanceDTO.Id}, SeanceDate -  {item.SeanceDTO.DateAndTime.Date}");
             }
         }
@@ -93,11 +84,10 @@ namespace COTS.BLL.Services.Tests
             var purchasesDTOs = purchaseService.GetAll();
             foreach (var item in purchasesDTOs)
             {
-                Trace.WriteLine($"id= {item.Id}, clientName = {item.PurchaseClientDetailsDTO.FullName}");
+                Trace.WriteLine($"id= {item.Id}, clientName = {item.CustomerDTO.FullName}");
                 foreach (var ticket in item.TicketsDTOs)
                 {
                     Trace.WriteLine(ticket.Id);
-                    Trace.WriteLine(ticket.TicketPlaceDetailsDTO.Number);
                     Trace.WriteLine($"SeanceID - {ticket.SeanceDTO.Id}, SeanceDate -  {ticket.SeanceDTO.DateAndTime.Date}");
                 }
             }              

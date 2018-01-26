@@ -31,26 +31,14 @@ namespace COTS.BLL.Services.Tests
         {
             var seanceDTO = seanceService.GetAll().FirstOrDefault();
 
-
             var ticketDTO = new TicketDTO()
             {
-                Id = "00000",
-                SeanceDTO = seanceDTO,     
+                Id = "00000",     
                 SeanceId =  seanceDTO.Id,
-                State = 1
+                State = 1,
+                PlaceId = 9
             };
-
-            var placeDetailsDTO = new TicketPlaceDetailsDTO()
-            {
-                TicketId = ticketDTO.Id,
-                Id = 3,
-                Number = 3,
-                Row = 1,
-                Tariff = "xz",
-                Price = 300
-            };
-
-            ticketDTO.TicketPlaceDetailsDTO = placeDetailsDTO;
+         
             ticketService.AddOrUpdate(ticketDTO);
         }
 
@@ -62,7 +50,6 @@ namespace COTS.BLL.Services.Tests
             foreach (var item in ticketsDTO)
             {
                 Trace.WriteLine(item.Id);
-                Trace.WriteLine(item.TicketPlaceDetailsDTO.Number);
                 Trace.WriteLine($"SeanceID - {item.SeanceDTO.Id}, SeanceDate -  {item.SeanceDTO.DateAndTime.Date}");
             }
         }
@@ -75,7 +62,6 @@ namespace COTS.BLL.Services.Tests
             foreach (var item in ticketsDTO)
             {
                 Trace.WriteLine(item.Id);
-                Trace.WriteLine(item.TicketPlaceDetailsDTO.Number);
                 Trace.WriteLine($"SeanceID - {item.SeanceDTO.Id}, SeanceDate -  {item.SeanceDTO.DateAndTime.Date}");
             }
         }
@@ -87,7 +73,6 @@ namespace COTS.BLL.Services.Tests
             foreach (var item in ticketsDTO)
             {
                 Trace.WriteLine(item.Id);
-                Trace.WriteLine(item.TicketPlaceDetailsDTO.Number);
                 Trace.WriteLine($"SeanceID - {item.SeanceDTO.Id}, SeanceDate -  {item.SeanceDTO.DateAndTime.Date}");
             }
         }

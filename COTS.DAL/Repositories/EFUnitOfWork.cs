@@ -172,15 +172,5 @@ namespace COTS.DAL.Repositories
         {
             db.SaveChanges();
         }
-
-        void IUnitOfWork.Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDisposable.Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

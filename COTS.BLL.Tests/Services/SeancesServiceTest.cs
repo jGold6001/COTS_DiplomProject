@@ -32,7 +32,7 @@ namespace COTS.BLL.Services.Tests
             IEnumerable<SeanceDTO> seancesDTO = seanceService.FindAllByCinemaMovieAndDate(cinemaId, movieId, DateTime.Now.Date);
 
             foreach (var item in seancesDTO)
-                Trace.WriteLine($"IDSeance: {item.Id}, Cinema: {item.CinemaDTO.Name}, Movie: {item.MovieDTO.Name} and date {item.DateAndTime}");
+                Trace.WriteLine($"IDSeance: {item.Id}, Cinema: {item.HallDTO.CinemaId}, Movie: {item.MovieDTO.Name} and date {item.DateAndTime}");
         }
 
         [TestMethod()]
@@ -40,7 +40,7 @@ namespace COTS.BLL.Services.Tests
         {
             var seancesDTO = seanceService.GetAll();
             foreach (var item in seancesDTO)
-                Trace.WriteLine($"IDSeance: {item.Id}, Cinema: {item.CinemaDTO.Name}, Movie: {item.MovieDTO.Name} and date {item.DateAndTime}");
+                Trace.WriteLine($"IDSeance: {item.Id}, Cinema: {item.HallDTO.CinemaId}, Movie: {item.MovieDTO.Name} and date {item.DateAndTime}");
 
         }
 
@@ -49,7 +49,7 @@ namespace COTS.BLL.Services.Tests
         {
             var seanceId = unitOfWork.Seances.GetAll().FirstOrDefault().Id;
             var seanceDTO = seanceService.GetOne(seanceId);
-            Trace.WriteLine($"IDSeance: {seanceDTO.Id}, Cinema: {seanceDTO.CinemaDTO.Name}, Movie: {seanceDTO.MovieDTO.Name} and date {seanceDTO.DateAndTime}");
+            Trace.WriteLine($"IDSeance: {seanceDTO.Id}, Cinema: {seanceDTO.HallDTO.CinemaId}, Movie: {seanceDTO.MovieDTO.Name} and date {seanceDTO.DateAndTime}");
         }
 
     }

@@ -185,21 +185,22 @@ namespace COTS.DAL.Test.Repositories
 
             //purchase
 
+            
+
+            var purchase = new Purchase()
+            {
+                Id = "test231243"
+            };
+            purchaseRepo.AddOrUpdate(purchase);
+
             var customer = new Customer()
             {
+                Id = purchase.Id,
                 Email = "test@milo.net",
                 FullName = "Testov Test",
                 Phone = 30665554433
             };
             customerRepository.AddOrUpdate(customer);
-
-            var purchase = new Purchase()
-            {
-                Id = "test231243",
-                СustomerId = customer.Id
-
-            };
-            purchaseRepo.AddOrUpdate(purchase);
             unitOfwork.Save();
 
 

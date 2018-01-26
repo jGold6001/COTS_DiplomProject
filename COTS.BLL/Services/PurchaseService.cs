@@ -40,6 +40,9 @@ namespace COTS.BLL.Services
             foreach (var item in ticketService.GetByPurchase(id))
                 ticketService.Delete(item.Id);
 
+            //delete customer
+            customerService.Delete(id);
+
             //delete purchase
             UnitOfWork.Purchases.Delete(UnitOfWork.Purchases.Get(id));            
             UnitOfWork.Save();
@@ -73,7 +76,7 @@ namespace COTS.BLL.Services
             if (purchaseDTO.CustomerDTO != null)
                 customerService.AddOrUpdate(purchaseDTO.CustomerDTO);
                      
-            var purchase = mapperUnitOfWork.PurchaseMapper.MapToObject(purchaseDTO);        
+            var purchase = mapperUnitOfWork.PurchaseMapper.MapToObject(purchaseDTO);
             UnitOfWork.Purchases.AddOrUpdate(purchase);
 
             foreach (var item in purchaseDTO.TicketsDTOs)
