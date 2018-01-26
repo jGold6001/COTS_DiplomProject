@@ -11,5 +11,6 @@ namespace COTS.BLL.DTO
         public long Id { get; set; }
         public string Name { get; set; }
         public string CinemaId { get; set; }
+        public CinemaDTO CinemaDTO { get; set; }
     }
 }

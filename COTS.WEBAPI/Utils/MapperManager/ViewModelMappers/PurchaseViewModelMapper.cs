@@ -14,7 +14,7 @@ namespace COTS.WEBAPI.Utils.MapperManager.ViewModelMappers
         public PurchaseViewModelMapper(TicketViewModelMapper ticketViewModelMapper)
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<PurchaseDTO, PurchaseViewModel>()
-                .ForMember("ClientDetailsViewModel", opt => opt.MapFrom(src => src.PurchaseClientDetailsDTO))
+                .ForMember("CustomerViewModel", opt => opt.MapFrom(src => src.CustomerDTO))
                 .ForMember("TicketViewModels", opt => opt.MapFrom(src => ticketViewModelMapper.MapToCollectionObjects(src.TicketsDTOs)))
             ));
         }

@@ -11,12 +11,12 @@ namespace COTS.WEBAPI.Utils.MapperManager.ViewModelMappers
 {
     public class SeanceViewModelMapper : GeneralMapper<SeanceDTO, SeanceViewModel>
     {
-        public SeanceViewModelMapper()
+        public SeanceViewModelMapper(HallViewModelMapper hallViewModelMapper)
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<SeanceDTO, SeanceViewModel>()
               .ForMember(d => d.DateSeance, opt => opt.MapFrom(src => src.DateAndTime.ToShortDateString()))
               .ForMember(d => d.TimeBegin, opt => opt.MapFrom(src => src.DateAndTime.ToString("HH:mm")))
-              .ForMember(d => d.CinemaViewModel, opt => opt.MapFrom(src => src.CinemaDTO))
+              .ForMember(d => d.HallViewModel, opt => opt.MapFrom(src => hallViewModelMapper.MapToObject(src.HallDTO)))
               .ForMember(d => d.MovieShortViewModel, opt => opt.MapFrom(src => src.MovieDTO))
             ));
         }

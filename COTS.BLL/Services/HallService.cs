@@ -15,17 +15,28 @@ namespace COTS.BLL.Services
     public class HallService : IHallService
     {
         IUnitOfWork UnitOfWork { get; set; }
+        ICinemaService cinemaService;
         MapperUnitOfWork mapperUnitOfWork;
 
         public HallService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
+            cinemaService = new CinemaService(UnitOfWork);
             mapperUnitOfWork = new MapperUnitOfWork();
         }
 
         public HallDTO GetOne(long? id)
         {
-            return mapperUnitOfWork.HallDTOMapper.MapToObject(UnitOfWork.Halls.Get(id));
+            var hallDTO = AttachObjetcToDTO(UnitOfWork.Halls.Get(id));
+            return hallDTO;
+        }
+
+        private HallDTO AttachObjetcToDTO(Hall hall)
+        {
+            var hallDTO = mapperUnitOfWork.HallDTOMapper.MapToObject(hall);
+            var cinemaDTO = cinemaService.GetOne(hall.CinemaId);
+            hallDTO.CinemaDTO = cinemaDTO;
+            return hallDTO;
         }
     }
 }

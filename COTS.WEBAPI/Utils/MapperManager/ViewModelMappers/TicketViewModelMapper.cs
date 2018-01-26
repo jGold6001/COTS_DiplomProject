@@ -14,7 +14,6 @@ namespace COTS.WEBAPI.Utils.MapperManager.ViewModelMappers
         {
             Mapper = new Mapper(new MapperConfiguration(cnf => cnf.CreateMap<TicketDTO, TicketViewModel>()
                 .ForMember("SeanceViewModel", opt => opt.MapFrom(src => seanceViewModelMapper.MapToObject(src.SeanceDTO)))
-                .ForMember("PlaceDetailsViewModel", opt => opt.MapFrom(src => src.TicketPlaceDetailsDTO))
            ));
         }
 

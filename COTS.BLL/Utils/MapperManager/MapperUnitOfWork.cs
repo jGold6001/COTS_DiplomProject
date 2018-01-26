@@ -74,7 +74,7 @@ namespace COTS.BLL.Utils.MapperManager
             get
             {
                 if (seanceDTOMapper == null)
-                    seanceDTOMapper = new SeanceDTOMapper(MovieDTOMapper);
+                    seanceDTOMapper = new SeanceDTOMapper(MovieDTOMapper, HallDTOMapper);
                 return seanceDTOMapper;
             }
         }

@@ -13,7 +13,9 @@ namespace COTS.BLL.Utils.MapperManager.DTOMappers
     {
         public HallDTOMapper()
         {
-            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Hall, HallDTO>()));
+            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Hall, HallDTO>()
+                .ForMember(d => d.CinemaDTO, opt => opt.MapFrom(src => src.Cinema))
+            ));
         }
         public override IEnumerable<HallDTO> MapToCollectionObjects(IEnumerable<Hall> collectValues)
         {

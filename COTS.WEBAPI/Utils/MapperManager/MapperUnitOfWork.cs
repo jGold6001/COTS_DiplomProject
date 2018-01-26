@@ -16,10 +16,13 @@ namespace COTS.WEBAPI.Utils.MapperManager
         CityViewModelMapper cityViewModelMapper;
         PurchaseDTOMapper purchaseDTOMapper;
         PurchaseViewModelMapper purchaseViewModelMapper;
-        ClientDetailsViewModelMapper clientDetailsViewModelMapper;
-        PurchaseClientDetailsDTOMapper purchaseClientDetailsDTOMapper;
+        CustomerViewModelMapper clientDetailsViewModelMapper;
+        CustomerDTOMapper  customerDTOMapper;
         SeanceViewModelMapper seanceViewModelMapper;
         TicketViewModelMapper ticketViewModelMapper;
+        TariffViewModelMapper tariffViewModelMapper;
+        HallViewModelMapper hallViewModelMapper;
+
         TicketDTOMapper ticketDTOMapper;
 
 
@@ -68,7 +71,7 @@ namespace COTS.WEBAPI.Utils.MapperManager
             get
             {
                 if (seanceViewModelMapper == null)
-                    seanceViewModelMapper = new SeanceViewModelMapper();
+                    seanceViewModelMapper = new SeanceViewModelMapper(HallViewModelMapper);
                 return seanceViewModelMapper;
             }
         }
@@ -103,6 +106,16 @@ namespace COTS.WEBAPI.Utils.MapperManager
             }
         }
 
+        public TariffViewModelMapper TariffViewModelMapper
+        {
+            get
+            {
+                if (tariffViewModelMapper == null)
+                    tariffViewModelMapper = new TariffViewModelMapper();
+                return tariffViewModelMapper;
+            }
+        }
+
         public PurchaseViewModelMapper PurchaseViewModelMapper
         {
             get
@@ -113,23 +126,33 @@ namespace COTS.WEBAPI.Utils.MapperManager
             }
         }
 
-        public ClientDetailsViewModelMapper ClientDetailsViewModelMapper
+        public CustomerViewModelMapper ClientDetailsViewModelMapper
         {
             get
             {
                 if (clientDetailsViewModelMapper == null)
-                    clientDetailsViewModelMapper = new ClientDetailsViewModelMapper();
+                    clientDetailsViewModelMapper = new CustomerViewModelMapper();
                 return clientDetailsViewModelMapper;
             }
         }
 
-        public PurchaseClientDetailsDTOMapper PurchaseClientDetailsDTOMapper
+        public CustomerDTOMapper  CustomerDTOMapper
         {
             get
             {
-                if (purchaseClientDetailsDTOMapper == null)
-                    purchaseClientDetailsDTOMapper = new PurchaseClientDetailsDTOMapper();
-                return purchaseClientDetailsDTOMapper;
+                if ( customerDTOMapper == null)
+                     customerDTOMapper = new CustomerDTOMapper();
+                return  customerDTOMapper;
+            }
+        }
+
+        public HallViewModelMapper HallViewModelMapper
+        {
+            get
+            {
+                if (hallViewModelMapper == null)
+                    hallViewModelMapper = new HallViewModelMapper();
+                return hallViewModelMapper;
             }
         }
 

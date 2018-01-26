@@ -11,8 +11,7 @@ namespace COTS.WEBAPI.Models
         public string DateSeance { get; set; }
         public string TimeBegin { get; set; }
         public string TypeD { get; set; }
-        public string Hall { get; set; }
         public MovieShortViewModel MovieShortViewModel { get; set; }
-        public CinemaViewModel CinemaViewModel { get; set; }
+        public HallViewModel HallViewModel { get; set; }
     }
 }
