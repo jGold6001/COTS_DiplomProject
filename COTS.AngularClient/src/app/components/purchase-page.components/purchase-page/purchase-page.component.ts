@@ -11,7 +11,9 @@ import { ErrorStateMatcher, MatDialog } from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { TicketsDialogComponent } from '../tickets-dialog/tickets-dialog.component';
 import { PurchaseService } from '../../../shared/services/purchase.service';
-import { Client } from '../../../shared/models/client.model';
+import { Customer } from '../../../shared/models/customer.model';
+import { Hall } from '../../../shared/models/hall.model';
+
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -30,11 +32,11 @@ export class PurchasePageComponent implements OnInit {
 
   purchase: Purchase;
   tickets: Ticket[] =[];
-
+ 
   seance: Seance = new Seance();
   movie: Movie = new Movie();
   cinema: Cinema= new Cinema(); 
-  client: Client = new Client();
+  customer: Customer = new Customer();
 
 
   constructor(
@@ -52,7 +54,7 @@ export class PurchasePageComponent implements OnInit {
         this.tickets = this.purchase.tickets;    
         this.seance = this.tickets[0].seance;
         this.movie = this.seance.movie;
-        this.cinema = this.seance.cinema;    
+        this.cinema = this.seance.hall.cinema;    
       }, () => console.error("Ошибка при получении данных с сервера"));
   }
 
@@ -66,7 +68,7 @@ export class PurchasePageComponent implements OnInit {
 
   paymentOrder(){
     this.updatePurchase();
-    this.purchase.client = this.client;
+    this.purchase.customer = this.customer;
     
 
     // let dialogRef = this.dialog.open(TicketsDialogComponent, {
@@ -82,22 +84,22 @@ export class PurchasePageComponent implements OnInit {
   }
 
   private updatePurchase(){
-    if(this.client.fullName != null){
-      this.purchaseService.updateInDb(this.createClientViewModel); 
+    if(this.customer.fullName != null){
+      this.purchaseService.updateInDb(this.createCustomerViewModel); 
     }else{
       alert("not name");
     }
       
   }
 
-  private get createClientViewModel(): any{
-    let _client ={
+  private get createCustomerViewModel(): any{
+    let _customer ={
       Id: this.purchaseId,
-      Email: this.client.email,
-      FullName: this.client.fullName,
-      Phone:  this.client.phone
+      Email: this.customer.email,
+      FullName: this.customer.fullName,
+      Phone:  this.customer.phone
     }
-    return _client;
+    return _customer;
 }
 
   private removePurchase(){

@@ -34,5 +34,10 @@ namespace COTS.BLL.Services
         {
             return mapperUnitOfWork.PlaceDTOMapper.MapToObject(placeRepo.Get(id));
         }
+
+        public IEnumerable<PlaceDTO> GetAllByCityCinemaAndHall(string cityId, string cinemaId, string hallName)
+        {
+            return mapperUnitOfWork.PlaceDTOMapper.MapToCollectionObjects(placeRepo.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
+        }
     }
 }

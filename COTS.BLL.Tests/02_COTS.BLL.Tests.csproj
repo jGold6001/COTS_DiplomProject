@@ -59,6 +59,7 @@
     <Compile Include="Services\CinemaServiceTest.cs" />
     <Compile Include="Services\CityServiceTest.cs" />
     <Compile Include="Services\MovieServiceTest.cs" />
+    <Compile Include="Services\PlaceServiceTest.cs" />
     <Compile Include="Services\PurchaseServiceTest.cs" />
     <Compile Include="Services\SeancesServiceTest.cs" />
     <Compile Include="Services\TicketServiceTest.cs" />

@@ -57,11 +57,11 @@ export class HallDialogComponent implements OnInit {
   ngOnInit() {
 
     this.seance = this.data.seance;
-
+ 
     let typeInfo = {
-      city:    "kiev",              //this.seance.cinema.cityId,
-      cinema:   "mpx_skymall",      //this.seance.cinema.id,
-      hall:     "1"                //this.seance.hall
+      city:     "kiev",              //this.seance.cinema.cityId,
+      cinema:   "florence",      //this.seance.cinema.id,
+      hall:     "Синий"                //this.seance.hall
     };
 
     
@@ -78,11 +78,11 @@ export class HallDialogComponent implements OnInit {
 
     this.dataService.placesSelected$.subscribe( place =>
       {
-        place.price = 100;
+        //place.price = 100;
         this.places.push(place);
         this.addPlaceRow(place);
         this.enablePayButton();
-        this.sum +=place.price;
+        //this.sum +=place.price;
       }
     );
 
@@ -91,7 +91,7 @@ export class HallDialogComponent implements OnInit {
         this.removePlaceRow(place.id);
         this.deleteObjectFromArray(place.id);
         this.disablePayButton();
-        this.sum -=place.price;
+        //this.sum -=place.price;
       }
     );
 
@@ -106,28 +106,16 @@ export class HallDialogComponent implements OnInit {
       Id: _idPurchase,
       TicketViewModels: []
     };
-
+   
     //create tickets
     for(let place of this.places){ 
-      let _idTicket: string = this.zeroPad(this.getRandomInt(1,100000),6); 
-      
-      let PlaceDetailsViewModel = {
-          Id: place.id,
-          TicketId: _idTicket,
-          Number: place.num,
-          Row: place.row,
-          Tariff: place.tariff,
-          Price: place.price
-      }
-
       let TicketViewModel = {
-        Id: _idTicket,
+        Id: this.zeroPad(this.getRandomInt(1,100000),6),
         PurchaseId: _idPurchase,
         State: 1,
         SeanceId: this.seance.id,
-        PlaceDetailsViewModel: PlaceDetailsViewModel        
-      }; 
-      
+        PlaceId: place.id,     
+      };     
       purchase.TicketViewModels.push(TicketViewModel);
     } 
     
@@ -135,10 +123,10 @@ export class HallDialogComponent implements OnInit {
     this.purchaseService.saveInDb(purchase);
 
     //go to purchase
-    setTimeout(() => {
-      this.router.navigate(["purchase", _idPurchase]);
-      this.dialogRef.close();
-    }, 2000)
+    // setTimeout(() => {
+    //   this.router.navigate(["purchase", _idPurchase]);
+    //   this.dialogRef.close();
+    // }, 2000)
   
   }
 
@@ -151,7 +139,7 @@ export class HallDialogComponent implements OnInit {
     let container = this.createRowContainerRow(place.id);
     this.setText(container,`Ряд: ${place.row}`);
     this.setText(container,`Место: ${place.num}`);   
-    this.setText(container,`Цена: ${place.price}`);
+    this.setText(container,`Цена: `);
   }
 
   private removePlaceRow(placeId : number){

@@ -1,5 +1,6 @@
 import { Movie } from "./movie.model";
 import { Cinema } from "./cinema.model";
+import { Hall } from "./hall.model";
 
 export class Seance{
 
@@ -7,19 +8,17 @@ export class Seance{
     
     }
 
-    init( id: number, timeStr: string, dateStr: string, typeD: string, hall: string){
+    init( id: number, timeStr: string, dateStr: string, typeD: string){
         this.id = id;
         this.dateStr = dateStr;
         this.timeStr = timeStr;
         this.typeD = typeD;
-        this.hall = hall;
     }
 
     id: number;
     timeStr: string;
     dateStr: string
     typeD: string;
-    hall: string;
-    cinema: Cinema;
+    hall: Hall;
     movie: Movie;
 }

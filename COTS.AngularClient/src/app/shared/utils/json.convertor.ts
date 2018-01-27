@@ -4,8 +4,9 @@ import { Ticket } from "../models/ticket.model";
 import { Purchase } from "../models/purchase.model";
 import { Seance } from "../models/seance.model";
 import { Place } from "../models/place.model";
-import { Client } from "../models/client.model";
+import { Customer } from "../models/customer.model";
 import { forEach } from "@angular/router/src/utils/collection";
+import { Hall } from "../models/hall.model";
 
 
 export class JsonConvertor{
@@ -61,9 +62,9 @@ export class JsonConvertor{
         let seances: Seance[] = [];  
         for (let i = 0; i < data.length; i++) {
             let seance: Seance = new Seance();
-            seance.init(
-                data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TypeD, data[i].Hall
-            );  
+            seance.init(data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TypeD); 
+            seance.movie = this.toMovieShort(data[i].MovieShortViewModel);
+            seance.hall = this.toHall(data[i].HallViewModel);            
             seances.push(seance);
         }
         return seances;
@@ -71,10 +72,17 @@ export class JsonConvertor{
 
     public static toSeance(data): Seance{
         let seance: Seance = new Seance();
-        seance.init(data.Id, data.TimeBegin, data.DateSeance, data.TypeD, data.Hall);
+        seance.init(data.Id, data.TimeBegin, data.DateSeance, data.TypeD);
         seance.movie = this.toMovieShort(data.MovieShortViewModel);
-        seance.cinema = this.toCinema(data.CinemaViewModel);
+        seance.hall = this.toHall(data.HallViewModel);
         return seance;
+    }
+
+    public static toHall(data): Hall{
+        let hall: Hall = new Hall();
+        hall.init(data.Id, data.Name);
+        hall.cinema = this.toCinema(data.CinemaViewModel);
+        return hall;
     }
 
     public static toTicketsArray(data): Ticket[]{
@@ -82,9 +90,9 @@ export class JsonConvertor{
         for (let i = 0; i < data.length; i++) {
             let ticket: Ticket = new Ticket();           
             ticket.init(
-                data[i].Id, data[i].PurchaseId, data[i].State
+                data[i].Id, data[i].PurchaseId, data[i].PlaceId, data[i].State
             );
-            ticket.place = this.toPlace(data[i].PlaceDetailsViewModel);
+            ticket.place = this.toPlace(data[i].PlaceViewModel);
             ticket.seance = this.toSeance(data[i].SeanceViewModel);   
             tickets.push(ticket);
         }
@@ -93,7 +101,7 @@ export class JsonConvertor{
 
     public static toPlace(data): Place{
         let place = new Place();
-        place.init(data.Id, data.Number, data.Row, data.Tariff, data.Price);
+        place.init(data.Id, data.Number, data.Row, data.IsBusy, data.HallId);
         return place;
     }
 
@@ -101,9 +109,7 @@ export class JsonConvertor{
         let places: Place[]=[];
         for(let item of data){
             let place: Place = new Place();
-            place.num = item.Number;
-            place.row = item.Row;
-            place.tariff = item.Tariff;
+            place.init(item.Id, item.Number, item.Row, item.IsBusy, item.HallId);        
             places.push(place);
         }
         return places;
@@ -112,17 +118,17 @@ export class JsonConvertor{
     public static toPurchase(data): Purchase{
         let purchase: Purchase= new Purchase();
         purchase.id = data.Id;
-        if(purchase.client != null)  
-            purchase.client = this.toClient(data.ClientDetailsViewModel);  
+        if(purchase.customer != null)  
+            purchase.customer = this.toCustomer(data.CustomerViewModel);  
                   
         purchase.tickets = this.toTicketsArray(data.TicketViewModels); 
         return purchase;
     }
 
-    public static toClient(data): Client{
-        let client: Client = new Client();
-        client.init(data.Email, data.FullName, data.Phone);
-        return client;
+    public static toCustomer(data): Customer{
+        let customer: Customer = new Customer();
+        customer.init(data.Email, data.FullName, data.Phone);
+        return customer;
     }
 
 }

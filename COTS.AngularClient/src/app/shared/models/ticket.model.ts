@@ -6,10 +6,11 @@ import { Place } from "./place.model";
 export class Ticket{
 
     init(
-        id: string, purchaseId: string, state: number
+        id: string, purchaseId: string, placeId: number, state: number
     ){
         this.id = id;    
         this.purchaseId = purchaseId;
+        this.placeId = placeId;
         this.state = state;
     }
 
@@ -21,6 +22,7 @@ export class Ticket{
     seanceId: number;
     seance: Seance;
     place: Place;
+    placeId: number;
     purchaseId: string;
     state: number;
 }

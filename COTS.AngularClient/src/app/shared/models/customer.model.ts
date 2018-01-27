@@ -1,5 +1,5 @@
 
-export class Client{
+export class Customer{
     init( email: string, fullName: string, phone: number){
         this.email = email;
         this.fullName = fullName;
@@ -8,8 +8,7 @@ export class Client{
 
     constructor(){
 
-    }
-    
+    } 
     email: string;
     fullName: string;
     phone: number;

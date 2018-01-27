@@ -1,8 +1,8 @@
 import { Ticket } from "./ticket.model";
-import { Client } from "./client.model";
+import { Customer } from "./customer.model";
 
 export class Purchase{
     id: string;
     tickets: Ticket[];
-    client: Client;   
+    customer: Customer;   
 }

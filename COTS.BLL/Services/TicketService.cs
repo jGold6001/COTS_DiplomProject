@@ -34,6 +34,11 @@ namespace COTS.BLL.Services
                 throw new ValidationException("TicketsDTO not set", "");
          
             var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
+
+            var placeDTO = placeService.GetOne(ticket.PlaceId);
+            placeDTO.IsBusy = true;
+            placeService.AddOrUpdate(placeDTO);
+
             UnitOfWork.Tickets.AddOrUpdate(ticket);
             UnitOfWork.Save();
         }
@@ -93,7 +98,7 @@ namespace COTS.BLL.Services
         private TicketDTO AttachObjetcsToDTO(Ticket ticket)
         {
             var ticketDTO = mapperUnitOfWork.TicketDTOMapper.MapToObject(ticket);
-            var placeDTO = mapperUnitOfWork.PlaceDTOMapper.MapToObject(UnitOfWork.Places.Get(ticketDTO.Id));
+            var placeDTO = placeService.GetOne(ticket.PlaceId);
             var seanceDTO = seanceService.GetOne(ticket.SeanceId);
 
             ticketDTO.PlaceDTO = placeDTO;

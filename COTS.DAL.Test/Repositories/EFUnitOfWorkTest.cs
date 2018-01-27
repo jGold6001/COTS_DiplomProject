@@ -254,6 +254,17 @@ namespace COTS.DAL.Test.Repositories
         }
 
         [TestMethod]
+        public void GetAllPlacesByCityCinemaAndHallTest()
+        {
+            List<Place> places = placeRepository.GetAllByCityCinemaAndHall("kiev", "florence", "Синий") as List<Place>;
+            foreach (var item in places)
+            {
+                Trace.WriteLine($"Place id: {item.Id} - row: {item.Row} - num: {item.Number}");
+            }
+
+        }
+
+        [TestMethod]
         public void FindMoviesComingSoonTest()
         {
             List<Movie> moviesPremeries = movieRepo.FindAllComingSoon() as List<Movie>;

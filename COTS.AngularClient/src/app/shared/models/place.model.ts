@@ -1,11 +1,11 @@
 export class Place{
 
-    init(id: number, num: number, row: number, tariff: string, price: number){
+    init(id: number, num: number, row: number, isBusy: boolean, hallId: number){
         this.id = id;
         this.num = num;
         this.row = row;
-        this.tariff = tariff;
-        this.price = price;
+        this.isBusy = isBusy;
+        this.hallId = hallId;
     }
 
     constructor(){
@@ -15,6 +15,6 @@ export class Place{
     id: number;
     num: number;
     row: number;
-    tariff: string;
-    price: number;
+    isBusy: boolean;
+    hallId: number;
 }

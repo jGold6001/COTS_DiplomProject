@@ -4,6 +4,7 @@ import "rxjs/add/operator/map";
 import { Http, Response,Headers } from "@angular/http";
 import { Place } from "../models/place.model";
 import { JsonConvertor } from "../utils/json.convertor";
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class PlaceService{
@@ -12,9 +13,8 @@ export class PlaceService{
 
     }
 
-    getDataFromJsonFile(cityId, cinemaId, hall) : Observable<Place[]>{
-        let path = `./assets/Halls/${cityId}/${cinemaId}/hall-${hall}.json`;
-        return this.http.get(path)
+    getDataFromJsonFile(cityId, cinemaId, hallName) : Observable<Place[]>{        
+        return this.http.get(`${environment.APIURL_PLACES_BY_CITY_CINEMA_HALL}/${cityId}/${cinemaId}/${hallName}`)
             .map(res =>{
                 return JsonConvertor.toPlaces(res.json());
             });

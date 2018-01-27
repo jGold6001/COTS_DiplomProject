@@ -17,6 +17,8 @@ export const environment = {
   APIURL_CINEMA :                       _serverHost +  "/api/cinema/",
   APIURL_CINEMAS_BYCITY:                _serverHost +  "/api/cinema/getallbycity/",
 
+  APIURL_PLACES_BY_CITY_CINEMA_HALL:    _serverHost + "/api/place/getall/",
+
   APIURL_CITIES:                        _serverHost +  "/api/city/getall",
 
   APIURL_SEANCES_BY_CINEMA_MOVIE_DATE:  _serverHost +  "/api/seance/getall/",

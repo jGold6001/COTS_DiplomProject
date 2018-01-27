@@ -10,6 +10,7 @@ namespace COTS.BLL.Interfaces
     public interface IPlaceService
     {      
         PlaceDTO GetOne(long? id);
+        IEnumerable<PlaceDTO> GetAllByCityCinemaAndHall(string cityId, string cinemaId, string hallName);
         void AddOrUpdate(PlaceDTO placeDTO);
     }
 }

@@ -75,6 +75,8 @@ namespace COTS.WEBAPI.App_Start
             kernel.Bind<ISeanceService>().To<SeanceService>();
             kernel.Bind<ITicketService>().To<TicketService>();
             kernel.Bind<IPurchaseService>().To<PurchaseService>();
+            kernel.Bind<IPlaceService>().To<PlaceService>();
+            kernel.Bind<ITariffService>().To<TariffService>();
         }
     }
 }

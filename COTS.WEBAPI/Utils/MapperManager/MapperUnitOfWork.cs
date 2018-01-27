@@ -22,9 +22,10 @@ namespace COTS.WEBAPI.Utils.MapperManager
         TicketViewModelMapper ticketViewModelMapper;
         TariffViewModelMapper tariffViewModelMapper;
         HallViewModelMapper hallViewModelMapper;
+        PlaceViewModelMapper placeViewModelMapper;
 
         TicketDTOMapper ticketDTOMapper;
-
+        PlaceDTOMapper placeDTOMapper;
 
         public MovieShortViewModelMapper MovieShortViewModelMapper
         {
@@ -123,6 +124,26 @@ namespace COTS.WEBAPI.Utils.MapperManager
                 if (purchaseViewModelMapper == null)
                     purchaseViewModelMapper = new PurchaseViewModelMapper(TicketViewModelMapper);
                 return purchaseViewModelMapper;
+            }
+        }
+
+        public PlaceViewModelMapper PlaceViewModelMapper
+        {
+            get
+            {
+                if (placeViewModelMapper == null)
+                    placeViewModelMapper = new PlaceViewModelMapper();
+                return placeViewModelMapper;
+            }
+        }
+
+        public PlaceDTOMapper PlaceDTOMapper
+        {
+            get
+            {
+                if (placeDTOMapper == null)
+                    placeDTOMapper = new PlaceDTOMapper();
+                return placeDTOMapper;
             }
         }
 

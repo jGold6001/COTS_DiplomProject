@@ -55,7 +55,7 @@
                                                         <b>Зал</b>
                                                     </div>
                                                     <div class="col-lg-10 col-md-10">
-                                                        <span>{{seance.hall}} ({{seance.typeD}})</span>
+                                                        <span>{{seance.hall.name}} ({{seance.typeD}})</span>
                                                     </div>
                                                 </div>
                                 
@@ -149,15 +149,15 @@
                                             </div>                                         
                                             <form class="row">
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Email" [(ngModel)] ="client.email" name="email">                     
+                                                    <input matInput placeholder="Email" [(ngModel)] ="customer.email" name="email">                     
                                                 </mat-form-field>
 
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Фамилия Имя" [(ngModel)] ="client.fullName" name="fullName">                         
+                                                    <input matInput placeholder="Фамилия Имя" [(ngModel)] ="customer.fullName" name="fullName">                         
                                                 </mat-form-field>
 
                                                 <mat-form-field class="col-lg-4 col-md-4">
-                                                    <input matInput placeholder="Номер Телефона" [(ngModel)]="client.phone" name="phone">                     
+                                                    <input matInput placeholder="Номер Телефона" [(ngModel)]="customer.phone" name="phone">                     
                                                 </mat-form-field>
                                             </form>
                                             <div class="row">
