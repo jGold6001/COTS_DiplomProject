@@ -16,7 +16,6 @@ import { City } from '../../../shared/models/city.model';
 import {serialize} from 'json-typescript-mapper';
 import { SeanceService } from '../../../shared/services/seance.service';
 import { loadavg } from 'os';
-import { TicketService } from '../../../shared/services/ticket.service';
 import { element } from 'protractor';
 
 
@@ -46,7 +45,6 @@ export class HallDialogComponent implements OnInit {
     private domService: DomService,
     private dataService: DataService,
     private purchaseService: PurchaseService,
-    private ticketServicve: TicketService,
     private seanceService: SeanceService,
     private router: Router,
     private rd: Renderer2,
@@ -70,11 +68,7 @@ export class HallDialogComponent implements OnInit {
     this.componentRef = this.container.createComponent(factory);      
 
     
-    this.ticketServicve.getAll()
-    .subscribe( r =>{
-      this.tickets = r;
-      let busiesPlaces = this.getBusiesPlaces();
-    });
+    
 
     this.dataService.placesSelected$.subscribe( place =>
       {
@@ -123,10 +117,10 @@ export class HallDialogComponent implements OnInit {
     this.purchaseService.saveInDb(purchase);
 
     //go to purchase
-    // setTimeout(() => {
-    //   this.router.navigate(["purchase", _idPurchase]);
-    //   this.dialogRef.close();
-    // }, 2000)
+    setTimeout(() => {
+      this.router.navigate(["purchase", _idPurchase]);
+      this.dialogRef.close();
+    }, 2000)
   
   }
 

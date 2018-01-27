@@ -13,8 +13,6 @@ export class FlorenceHallBlueComponent implements OnInit {
   buttons: any = [];
   places: Place[] = [];
   placesSelected: Place[] = [];
-  @Input() placesBusies: Place[] = [];
-
 
   constructor(
     private dataService: DataService,
@@ -46,8 +44,6 @@ export class FlorenceHallBlueComponent implements OnInit {
       }
    }
 
-
-
   createButtons(){
     this.buttons = this.elRef.nativeElement.getElementsByTagName("button");
 
@@ -56,7 +52,7 @@ export class FlorenceHallBlueComponent implements OnInit {
       for(let i=0; i<this.places.length; i++){
         this.rd.addClass(this.buttons[i], "btn");  
   
-        if(this.placesBusies.find(p => p.id == i)){
+        if(this.places[i].isBusy){
            this.rd.setAttribute(this.buttons[i], "disabled", 'true');
         }else{
            this.rd.addClass(this.buttons[i], "btn-primary");
@@ -103,7 +99,5 @@ export class FlorenceHallBlueComponent implements OnInit {
         this.placesSelected.splice(this.placesSelected.indexOf(place),1);
     }
   }
-
-
 
 }

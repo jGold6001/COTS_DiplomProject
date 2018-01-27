@@ -44,10 +44,10 @@ namespace COTS.WEBAPI.Controllers.WebApi
         
         [HttpPost]
         [Route("update")]
-        public void UpdateInDb(CustomerViewModel client)
+        public void UpdateInDb(CustomerViewModel customer)
         {
-            var purchaseDTO = purchaseService.GetOne(client.Id);
-            purchaseDTO.CustomerDTO = mapperUnitOfWork.CustomerDTOMapper.MapToObject(client);
+            var purchaseDTO = purchaseService.GetOne(customer.Id);
+            purchaseDTO.CustomerDTO = mapperUnitOfWork.CustomerDTOMapper.MapToObject(customer);
             purchaseService.AddOrUpdate(purchaseDTO);
         }
 

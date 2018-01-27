@@ -36,6 +36,7 @@ export class PurchasePageComponent implements OnInit {
   seance: Seance = new Seance();
   movie: Movie = new Movie();
   cinema: Cinema= new Cinema(); 
+  hall: Hall = new Hall();
   customer: Customer = new Customer();
 
 
@@ -54,7 +55,8 @@ export class PurchasePageComponent implements OnInit {
         this.tickets = this.purchase.tickets;    
         this.seance = this.tickets[0].seance;
         this.movie = this.seance.movie;
-        this.cinema = this.seance.hall.cinema;    
+        this.cinema = this.seance.hall.cinema;
+        this.hall = this.seance.hall;    
       }, () => console.error("Ошибка при получении данных с сервера"));
   }
 
@@ -66,15 +68,14 @@ export class PurchasePageComponent implements OnInit {
     return id;
   }
 
-  paymentOrder(){
+  paymentOrder(){   
     this.updatePurchase();
-    this.purchase.customer = this.customer;
-    
+    this.purchase.customer = this.customer; 
 
-    // let dialogRef = this.dialog.open(TicketsDialogComponent, {
-    //   width: '1000px',
-    //   data: { purchase: this.purchase }
-    // });
+    let dialogRef = this.dialog.open(TicketsDialogComponent, {
+      width: '1000px',
+      data: { purchase: this.purchase }
+    });
 
   }
 

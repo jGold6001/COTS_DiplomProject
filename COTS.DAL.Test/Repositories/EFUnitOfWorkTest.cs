@@ -83,7 +83,7 @@ namespace COTS.DAL.Test.Repositories
         }
 
         [TestMethod()]
-        public void AddOrUpdateTest()
+        public void AddDataTest()
         {
             City cityKiev = cities[0];
             City cityHarkov = cities[1];
@@ -181,51 +181,8 @@ namespace COTS.DAL.Test.Repositories
 
                 seanceRepo.AddOrUpdate(seancesMultDafi[i]);
             }
-
-
-            //purchase
-
             
-
-            var purchase = new Purchase()
-            {
-                Id = "test231243"
-            };
-            purchaseRepo.AddOrUpdate(purchase);
-
-            var customer = new Customer()
-            {
-                Id = purchase.Id,
-                Email = "test@milo.net",
-                FullName = "Testov Test",
-                Phone = 30665554433
-            };
-            customerRepository.AddOrUpdate(customer);
-            unitOfwork.Save();
-
-
-            var seance = this.GetSeanceForTickets();
-            var ticket_1 = new Ticket()
-            {
-                Id = "test001",
-                SeanceId = seance.Id,
-                PurchaseId = purchase.Id,
-                PlaceId = placesFlorence[0].Id,
-                State = 2
-
-            };
-            ticketRepo.AddOrUpdate(ticket_1);
-
-            var ticket_2 = new Ticket()
-            {
-                Id = "test002",
-                SeanceId = seance.Id,
-                PurchaseId = purchase.Id,
-                PlaceId = placesFlorence[19].Id,
-                State = 2
-
-            };
-            ticketRepo.AddOrUpdate(ticket_2);
+           
             unitOfwork.Save();
         }
 
@@ -244,6 +201,69 @@ namespace COTS.DAL.Test.Repositories
 
             }
             return seanceRepo.GetAll().FirstOrDefault();
+        }
+
+        public List<Place> GetPlaces()
+        {
+            var place_1 = placeRepository.Get(placesFlorence[0].Id);
+            var place_2 = placeRepository.Get(placesFlorence[19].Id);
+            place_1.IsBusy = true;
+            place_2.IsBusy = true;
+            placeRepository.AddOrUpdate(place_1);
+            placeRepository.AddOrUpdate(place_2);
+            unitOfwork.Save();
+
+            return new List<Place>(){
+                placeRepository.Get(placesFlorence[0].Id),
+                placeRepository.Get(placesFlorence[19].Id)
+            };
+        }
+
+        [TestMethod]
+        public void AddPurchaseTest()
+        {
+            var purchase = new Purchase()
+            {
+                Id = "test231243"
+            };
+            purchaseRepo.AddOrUpdate(purchase);
+
+            var customer = new Customer()
+            {
+                Id = purchase.Id,
+                Email = "test@milo.net",
+                FullName = "Testov Test",
+                Phone = 30665554433
+            };
+            customerRepository.AddOrUpdate(customer);
+            unitOfwork.Save();
+
+
+            var seance = this.GetSeanceForTickets();
+            var places = this.GetPlaces();
+
+            var ticket_1 = new Ticket()
+            {
+                Id = "test001",
+                SeanceId = seance.Id,
+                PurchaseId = purchase.Id,
+                PlaceId = places[0].Id,
+                State = 2
+
+            };
+            ticketRepo.AddOrUpdate(ticket_1);
+
+            var ticket_2 = new Ticket()
+            {
+                Id = "test002",
+                SeanceId = seance.Id,
+                PurchaseId = purchase.Id,
+                PlaceId = places[1].Id,
+                State = 2
+
+            };
+            ticketRepo.AddOrUpdate(ticket_2);
+            unitOfwork.Save();
         }
 
         [TestMethod]

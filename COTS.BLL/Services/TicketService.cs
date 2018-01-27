@@ -48,7 +48,12 @@ namespace COTS.BLL.Services
             if (id == null)
                 throw new ValidationException("'id' not set", "");
 
-            var ticket = UnitOfWork.Tickets.Get(id);    
+            var ticket = UnitOfWork.Tickets.Get(id);
+
+            var placeDTO = placeService.GetOne(ticket.PlaceId);
+            placeDTO.IsBusy = false;
+            placeService.AddOrUpdate(placeDTO);
+
             UnitOfWork.Tickets.Delete(ticket);
             UnitOfWork.Save();
         }

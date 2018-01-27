@@ -23,8 +23,8 @@ export class PurchaseService{
             .subscribe(null,err => console.log("Error occured"));
     }
 
-    updateInDb(client: any){
-        this.httpClient.post(environment.APIURL_PURCHASE_UPDATE, client) 
+    updateInDb(customer: any){
+        this.httpClient.post(environment.APIURL_PURCHASE_UPDATE, customer) 
             .subscribe(null,err => console.log("Error occured"));
     }
     
