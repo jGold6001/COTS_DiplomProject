@@ -28,8 +28,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './purchase-page.component.html',
   styleUrls: ['./purchase-page.component.css']
 })
+
 export class PurchasePageComponent implements OnInit {
 
+  
   purchase: Purchase;
   tickets: Ticket[] =[];
  
@@ -58,6 +60,8 @@ export class PurchasePageComponent implements OnInit {
         this.cinema = this.seance.hall.cinema;
         this.hall = this.seance.hall;    
       }, () => console.error("Ошибка при получении данных с сервера"));
+
+      this.startTimer(420);
   }
 
   private get purchaseId(): string{ 
@@ -73,8 +77,13 @@ export class PurchasePageComponent implements OnInit {
     this.purchase.customer = this.customer; 
 
     let dialogRef = this.dialog.open(TicketsDialogComponent, {
-      width: '1000px',
+      width: '900px',
+      height: '600px',
       data: { purchase: this.purchase }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.goToMain();
     });
 
   }
@@ -88,7 +97,7 @@ export class PurchasePageComponent implements OnInit {
     if(this.customer.fullName != null){
       this.purchaseService.updateInDb(this.createCustomerViewModel); 
     }else{
-      alert("not name");
+      alert("Введите пожалуйста ваше имя");
     }
       
   }
@@ -110,4 +119,41 @@ export class PurchasePageComponent implements OnInit {
   private goToMain(){
     this.router.navigate([""]);
   }
+
+  ticks = 0;
+    
+  minutesDisplay: number = 0;
+  secondsDisplay: number = 0;
+  sub: Subscription;
+
+  private startTimer(counter) {
+
+    let timer = Observable.timer(1, 1000)
+      .take(counter)
+      .map(() => --counter);
+    this.sub = timer.subscribe(
+        t => {
+            this.ticks = t; 
+            if(this.ticks == 0){
+              this.removePurchase();
+              this.goToMain();
+            }    
+            this.secondsDisplay = this.getSeconds(this.ticks);
+            this.minutesDisplay = this.getMinutes(this.ticks);
+        }
+    );
+  }
+
+  private getSeconds(ticks: number) {
+      return this.pad(ticks % 60);
+  }
+
+  private getMinutes(ticks: number) {
+      return this.pad((Math.floor(ticks / 60)) % 60);
+  }
+
+  private pad(digit: any) { 
+      return digit <= 9 ? '0' + digit : digit;
+  }
+
 }

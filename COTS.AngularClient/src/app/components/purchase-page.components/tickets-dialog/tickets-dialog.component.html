@@ -1,22 +1,60 @@
 <div class="container">
   <div class="row">
-    <h6>Номер заказа: №{{purchase.id}}</h6>
+    <div class="container">
+        <div class="row">
+            <h2>Оплата пройшла успешно</h2>
+        </div>
+        <div class="row">
+            <h4>Номер вашего заказа: №{{purchase.id}}</h4>
+        </div>
+    </div>
   </div>
   <div class="row">
       <div class="container">
           <div class="row">
-              
-              <!-- <div class="card">
-                  <div class="card-block">
-                    <h4 class="card-title">Билет №{{}}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                   
-                  </div>
-              </div> -->
-
-
+            <div class="card-columns">
+                <div *ngFor="let ticket of tickets">                  
+                    <br>                             
+                    <div class="card" >
+                        <div class="card-decks">                          
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" style="background-color:black; color:white;">
+                                    <h6>Билет #{{purchase.id}}/{{ticket.id}}</h6>                                       
+                                    <div class="container">
+                                        <div class="row">
+                                            <span style="font-size: 12pt;">{{cinema.name}}</span>
+                                        </div>
+                                        <div class="row">
+                                            <span style="font-size: 10pt;">{{cinema.address}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Фильм:</b> {{movie.name}}
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Сеанс:</b> {{seance.timeStr}} ({{seance.dateStr}} )
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Зал:</b> {{hall.name}}, <b>Ряд:</b>{{ticket.place.row}}, <b>Место:</b> {{ticket.place.num}}
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Тариф:</b> {{tariff.name}}
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Цена:</b> {{tariff.price}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                                               
+                </div>
+            </div>  
           </div>
       </div>
+  </div>
+  <div class="row">
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close class="button_style">Перейти на главную страницу</button>
+    </div>
   </div>
 </div>

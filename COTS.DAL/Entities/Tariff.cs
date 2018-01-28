@@ -10,7 +10,8 @@ namespace COTS.DAL.Entities
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
+        public decimal Price { get; set; }         
+
         public ICollection<Place> Places { get; set; }
 
         public Tariff()

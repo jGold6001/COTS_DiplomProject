@@ -7,6 +7,7 @@ import { Cinema } from '../../../shared/models/cinema.model';
 import { Seance } from '../../../shared/models/seance.model';
 import { Hall } from '../../../shared/models/hall.model';
 import { Tariff } from '../../../shared/models/tariff.model';
+import { Customer } from '../../../shared/models/customer.model';
 
 @Component({
   selector: 'app-tickets-dialog',
@@ -27,11 +28,19 @@ export class TicketsDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    this.purchase = this.data.purchase;
-    this.tickets = this.purchase.tickets;
+    this.purchase = this.data.purchase;  
+    this.tickets = this.purchase.tickets;   
     this.seance = this.tickets[0].seance;
     this.movie = this.seance.movie;
-    
+    this.hall =  this.seance.hall;
+    this.cinema = this.hall.cinema;
+   
+
+    this.tariff = new Tariff();
+    this.tariff.name = "None";
+    this.tariff.price = 0;
   }
+
+  
 
 }

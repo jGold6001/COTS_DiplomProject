@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.DAL.Test.CollectionForData.Tariffs
+namespace COTS.DAL.Test.CollectionForData.Tariffs.Workdays
 {
-    public static class TariffsCollection
+    public static class EveningWorkdayTariffsCollection
     {
         public static List<Tariff> Get()
         {
