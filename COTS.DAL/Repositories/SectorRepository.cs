@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
-namespace COTS.DAL.Test.CollectionForData.Tariffs.Holidays
+namespace COTS.DAL.Repositories
 {
-    public static class EveningHolidayTariffsCollection
+    public class SectorRepository : Repository<Sector>
     {
-        public static List<Tariff> Get()
+        public SectorRepository(DbContext context) : base(context)
         {
-            return null;
+
         }
     }
 }

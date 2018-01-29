@@ -9,6 +9,8 @@ using COTS.DAL.Test.CollectionForData.Cities;
 using COTS.DAL.Test.CollectionForData.Cinemas;
 using COTS.DAL.Test.CollectionForData.Halls;
 using COTS.DAL.Test.CollectionForData.Places.Florence;
+using COTS.DAL.Test.CollectionForData.Sectors;
+using COTS.DAL.Test.CollectionForData.Tariffs.Florence;
 using System.Diagnostics;
 using System.Linq;
 
@@ -21,18 +23,36 @@ namespace COTS.DAL.Test.Repositories
         private string connectionString = "name=CotsContext";
         private EFUnitOfWork unitOfwork;
 
-        //data
+        //movies
         private List<Movie> movies = MoviesCollection.Get();
+
+        //seances
         private List<Seance> seancesFlorence = FlorenceSeancesCollection.Get();
         private List<Seance> seancesMultProspect = MultiplexProspectSeancesCollection.Get();
         private List<Seance> seancesMultSkyMall = MultiplexSkyMallSeancesCollection.Get();
         private List<Seance> seancesMultDafi = MultiplexDafiSeancesCollection.Get();
+
+        //cinemas
         private List<Cinema> cinemas = CinemasCollection.Get();
+
+        //cities
         private List<City> cities = CitiesCollection.Get();
+
+        //halls
         private List<Hall> hallsMpxSkyMall = MpxSkyMallHallsCollection.Get();
         private List<Hall> hallsMpxProspect = MpxProspectHallsCollection.Get();
         private List<Hall> hallsMpxDafi = MpxDafiHallsCollection.Get();
         private List<Hall> hallsFlorence = FlorenceHallsCollection.Get();
+
+        //sectors
+        private List<Sector> sectorsMpx = MpxSectorsCollections.Get();
+        private List<Sector> sectorFlorence = FlorenceSectorsCollection.Get();
+
+        //tariffs
+        private List<Tariff> tariffsFlorenceDayWorking = FlorenceDayWorkdayTariffsCollection.Get();
+        private List<Tariff> tariffsFlorenceDayHoliday = FlorenceDayHolidayTariffsCollection.Get();
+
+        //places
         private List<Place> placesFlorence = FlorenceBluePlacesCollection.Get();
 
 
@@ -47,6 +67,7 @@ namespace COTS.DAL.Test.Repositories
         private PurchaseRepository purchaseRepo;
         private CustomerRepository customerRepository;
         private HallRepository hallRepository;
+        private SectorRepository sectorRepository;
         private TariffRepository tariffRepository;
 
 
@@ -121,12 +142,30 @@ namespace COTS.DAL.Test.Repositories
                 placeRepository.AddOrUpdate(item);
             }
 
+            var sectors = new List<Sector>();
+            sectors.AddRange(sectorFlorence);
+            sectors.AddRange(sectorsMpx);
+
+            foreach (var item in sectors)
+            {
+                sectorRepository.AddOrUpdate(item);
+            }
+
             foreach (var item in halls)
             {               
                 hallRepository.AddOrUpdate(item);           
             }
 
-           
+
+            var tariffs = new List<Tariff>();
+            tariffs.AddRange(tariffsFlorenceDayHoliday);
+            tariffs.AddRange(tariffsFlorenceDayWorking);
+
+            foreach (var item in tariffs)
+            {
+                tariffRepository.AddOrUpdate(item);
+            }
+
 
             foreach (var item in movies)
             {

@@ -16,22 +16,22 @@ namespace COTS.DAL.Entities
         public int Number { get; set; }
         public bool IsBusy { get; set; }
         public long? HallId { get; set; }
-        public Hall Hall { get; set; }
-        public ICollection<Tariff> Tariffs { get; set; }
-
+        public Hall Hall { get; set; }      
+        public long? SectorId { get; set; }
+        public Sector Sector { get; set; }
         public Place()
         {
-            Tariffs = new List<Tariff>();
+            
         }
 
-        public Place(long id, int row, int number, bool isBusy, long hallId)
+        public Place(long id, int row, int number, bool isBusy, long hallId, long sectorId)
         {
             this.Id = id;
             this.Row = row;
             this.Number = number;
             this.IsBusy = isBusy;
             this.HallId = hallId;
-            Tariffs = new List<Tariff>();
+            this.SectorId = sectorId;
         }
     }
 }

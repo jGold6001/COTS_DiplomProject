@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 namespace COTS.DAL.Entities
 {
-    public class Hall
+    public class Sector
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
         public string Name { get; set; }
-        public string CinemaId { get; set; }
-        public Cinema Cinema { get; set; }        
+        public ICollection<Place> Places { get; set; }
 
-        public Hall()
+        public Sector()
         {
-            
+            Places = new List<Place>();
         }
 
-        public Hall(long id, string name, string cinemaId)
+        public Sector(long id, string name)
         {
             this.Id = id;
             this.Name = name;
-            this.CinemaId = cinemaId;          
+            Places = new List<Place>();
         }
     }
 }

@@ -12,7 +12,6 @@ namespace COTS.BLL.BusinessModels
     {
         public static List<TariffDTO> GenerateTariffs(SeanceDTO seanceDTO)
         {
-
             return null;
         }
     }

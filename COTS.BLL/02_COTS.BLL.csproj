@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessModels\Constants\CinemaSectors\FlorenceSectors.cs" />
+    <Compile Include="BusinessModels\Constants\CinemaSectors\MpxSectors.cs" />
+    <Compile Include="BusinessModels\Constants\TimePeriod.cs" />
+    <Compile Include="BusinessModels\Constants\TypeD.cs" />
+    <Compile Include="BusinessModels\Constants\WeekDays.cs" />
     <Compile Include="BusinessModels\TariffManager.cs" />
     <Compile Include="DTO\CinemaDTO.cs" />
     <Compile Include="DTO\CityDTO.cs" />

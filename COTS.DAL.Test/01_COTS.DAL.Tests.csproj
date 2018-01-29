@@ -83,10 +83,12 @@
     <Compile Include="CollectionForData\Seances\MultiplexProspectSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\MultiplexSkyMallSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\TypeD.cs" />
-    <Compile Include="CollectionForData\Tariffs\Holidays\DayHolidayTariffsCollection.cs" />
-    <Compile Include="CollectionForData\Tariffs\Holidays\EveningHolidayTariffsCollection.cs" />
-    <Compile Include="CollectionForData\Tariffs\Workdays\DayWorkdayTariffsCollection.cs" />
-    <Compile Include="CollectionForData\Tariffs\Workdays\EveningWorkdayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Sectors\FlorenceSectorsCollection.cs" />
+    <Compile Include="CollectionForData\Sectors\MpxSectorsCollections.cs" />
+    <Compile Include="CollectionForData\Tariffs\Florence\FlorenceDayHolidayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Tariffs\Florence\FlorenceEveningHolidayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Tariffs\Florence\FlorenceDayWorkdayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Tariffs\Florence\FlorenceEveningWorkdayTariffsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFUnitOfWorkTest.cs" />
   </ItemGroup>
@@ -100,7 +102,9 @@
       <Name>01_COTS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CollectionForData\Tariffs\Mpx\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

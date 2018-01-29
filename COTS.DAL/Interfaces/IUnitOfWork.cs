@@ -16,6 +16,7 @@ namespace COTS.DAL.Interfaces
 
         IRepository<Cinema> Cinemas { get; }
         IRepository<Hall> Halls { get; }
+        IRepository<Sector> Sectors { get; }
         IRepository<Place> Places { get; }
 
         IRepository<Tariff> Tariffs { get; }

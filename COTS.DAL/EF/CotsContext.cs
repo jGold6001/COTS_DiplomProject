@@ -20,6 +20,7 @@ namespace COTS.DAL.EF
 
         public virtual DbSet<Cinema> Cinemas { get; set; }
         public virtual DbSet<Hall> Halls { get; set; }
+        public virtual DbSet<Sector> Sectors { get; set; }
         public virtual DbSet<Place> Places { get; set; }
 
         public virtual DbSet<Tariff> Tariffs { get; set; }

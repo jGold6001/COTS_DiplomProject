@@ -1,5 +1,6 @@
 ﻿using COTS.DAL.Entities;
 using COTS.DAL.Test.CollectionForData.Halls;
+using COTS.DAL.Test.CollectionForData.Sectors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,13 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
                     int row = (r + 1);
                     int num = (n + 1);
                     long id = counter++;
-                    var place = new Place(id, row, num, false, FlorenceHallsCollection.Get()[0].Id);
+
+                    Place place = null;
+                    if(row == 4)
+                        place = new Place(id, row, num, false, FlorenceHallsCollection.Get()[0].Id, FlorenceSectorsCollection.Get()[1].Id);
+                    else
+                        place = new Place(id, row, num, false, FlorenceHallsCollection.Get()[0].Id, FlorenceSectorsCollection.Get()[0].Id);
+
                     places.Add(place);
                 }
             }

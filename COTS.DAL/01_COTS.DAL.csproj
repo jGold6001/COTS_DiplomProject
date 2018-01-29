@@ -52,6 +52,7 @@
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Hall.cs" />
     <Compile Include="Entities\MovieDetails.cs" />
+    <Compile Include="Entities\Sector.cs" />
     <Compile Include="Entities\Сustomer.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Tariff.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SeanceRepository.cs" />
     <Compile Include="Repositories\PlaceRepository.cs" />
+    <Compile Include="Repositories\SectorRepository.cs" />
     <Compile Include="Repositories\TariffRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
   </ItemGroup>

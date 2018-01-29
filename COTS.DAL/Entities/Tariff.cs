@@ -8,22 +8,23 @@ namespace COTS.DAL.Entities
 {
     public class Tariff
     {
-        public long Id { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }         
-
-        public ICollection<Place> Places { get; set; }
+        public decimal Price { get; set; } 
+        public long? SectorId { get; set; }
+        public Sector Sector { get; set; }
+        public ICollection<Seance> Seances { get; set; }
 
         public Tariff()
         {
-            Places = new List<Place>();
+            Seances = new List<Seance>();
         }
 
-        public Tariff(string name, decimal price)
+        public Tariff(string name, decimal price, long sectorId)
         {
             this.Name = name;
             this.Price = price;
-            Places = new List<Place>();
+            this.SectorId = sectorId;
+            Seances = new List<Seance>();
         }
 
     }

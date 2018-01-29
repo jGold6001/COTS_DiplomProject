@@ -19,6 +19,7 @@ namespace COTS.DAL.Repositories
 
         private CinemaRepository cinemaRepository;
         private PlaceRepository placeRepository;
+        private SectorRepository sectorRepository;
         private HallRepository hallRepository;
 
         private TariffRepository tariffRepository;
@@ -84,6 +85,16 @@ namespace COTS.DAL.Repositories
                 if (hallRepository == null)
                     hallRepository = new HallRepository(db);
                 return hallRepository;
+            }
+        }
+
+        public IRepository<Sector> Sectors
+        {
+            get
+            {
+                if (sectorRepository == null)
+                    sectorRepository = new SectorRepository(db);
+                return sectorRepository;
             }
         }
 
