@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace COTS.BLL.DTO
 {
-    public class TariffDTO
+    public class SectorDTO
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
-        public long? SectorId { get; set; }
-        public SectorDTO SectorDTO { get; set; }
     }
 }

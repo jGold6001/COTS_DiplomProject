@@ -105,6 +105,7 @@ namespace COTS.BLL.Services
             var ticketDTO = mapperUnitOfWork.TicketDTOMapper.MapToObject(ticket);
             var placeDTO = placeService.GetOne(ticket.PlaceId);
             var seanceDTO = seanceService.GetOne(ticket.SeanceId);
+            
 
             ticketDTO.PlaceDTO = placeDTO;
             ticketDTO.SeanceDTO = seanceDTO; 

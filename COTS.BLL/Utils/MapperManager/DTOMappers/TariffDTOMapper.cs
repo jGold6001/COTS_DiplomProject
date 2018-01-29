@@ -13,7 +13,9 @@ namespace COTS.BLL.Utils.MapperManager.DTOMappers
     {
         public TariffDTOMapper()
         {
-            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Tariff, TariffDTO>()));
+            Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Tariff, TariffDTO>()
+                .ForMember(d => d.SectorDTO, opt => opt.MapFrom(src => src.Sector))
+            ));
         }
 
         public override IEnumerable<TariffDTO> MapToCollectionObjects(IEnumerable<Tariff> collectValues)

@@ -8,7 +8,7 @@ namespace COTS.BLL.BusinessModels.Constants
 {
     public static class TypeD
     {
-        public const int TwoD = 2;
-        public const int TreeD = 3;
+        public const string TwoD = "2D";
+        public const string TreeD = "3D";
     }
 }

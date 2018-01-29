@@ -83,6 +83,7 @@ namespace COTS.DAL.Test.Repositories
 
             cinemaRepo = unitOfwork.Cinemas as CinemaRepository;
             placeRepository = unitOfwork.Places as PlaceRepository;
+            sectorRepository = unitOfwork.Sectors as SectorRepository;
             hallRepository = unitOfwork.Halls as HallRepository;
 
             cityRepo = unitOfwork.Cities as CityRepository;
@@ -258,12 +259,22 @@ namespace COTS.DAL.Test.Repositories
             };
         }
 
+        public Tariff GetTariff()
+        {
+            return tariffRepository.Get(tariffsFlorenceDayWorking[0].Id);
+        }
+
         [TestMethod]
         public void AddPurchaseTest()
         {
+            var seance = this.GetSeanceForTickets();
+            var places = this.GetPlaces();
+            var tariff = tariffRepository.FindBy(t => t.Name == "day_holiday_green").FirstOrDefault();
+
             var purchase = new Purchase()
             {
-                Id = "test231243"
+                Id = "test231243",
+                Sum = tariff.Price * 2
             };
             purchaseRepo.AddOrUpdate(purchase);
 
@@ -277,17 +288,15 @@ namespace COTS.DAL.Test.Repositories
             customerRepository.AddOrUpdate(customer);
             unitOfwork.Save();
 
-
-            var seance = this.GetSeanceForTickets();
-            var places = this.GetPlaces();
-
+                  
             var ticket_1 = new Ticket()
             {
                 Id = "test001",
                 SeanceId = seance.Id,
                 PurchaseId = purchase.Id,
                 PlaceId = places[0].Id,
-                State = 2
+                State = 2,
+                TariffId = tariff.Id
 
             };
             ticketRepo.AddOrUpdate(ticket_1);
@@ -298,10 +307,10 @@ namespace COTS.DAL.Test.Repositories
                 SeanceId = seance.Id,
                 PurchaseId = purchase.Id,
                 PlaceId = places[1].Id,
-                State = 2
-
+                State = 2,
+                TariffId = tariff.Id
             };
-            ticketRepo.AddOrUpdate(ticket_2);
+            ticketRepo.AddOrUpdate(ticket_2);          
             unitOfwork.Save();
         }
 
@@ -371,6 +380,15 @@ namespace COTS.DAL.Test.Repositories
             IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId, date);
             foreach (var item in seances)
                 Trace.WriteLine($"Hall: {item.HallId} Movie: {item.MovieId} and Date: {item.DateAndTime}");
+        }
+
+        [TestMethod]
+        public void FindSectorsBySeanceTest()
+        {
+            var seance = this.GetSeanceForTickets();
+            var sectors = sectorRepository.FindAllBySeance(seance.Id);
+            foreach (var item in sectors)
+                Trace.WriteLine($"{item.Id} {item.Name}");
         }
 
         [TestMethod()]

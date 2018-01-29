@@ -19,6 +19,7 @@ namespace COTS.BLL.Services.Tests
         ITicketService ticketService;
         ICustomerService customerService;
         ISeanceService seanceService;
+        ITariffService tariffService;
         IUnitOfWork unitOfWork;
 
         [TestInitialize()]
@@ -29,15 +30,19 @@ namespace COTS.BLL.Services.Tests
             customerService = new CustomerService(unitOfWork);
             ticketService = new TicketService(unitOfWork);
             seanceService = new SeanceService(unitOfWork);
+            tariffService = new TariffService(unitOfWork);
         }
 
         [TestMethod()]
         public void AddOrUpdatePurchaseTest()
         {
+            var seanceDTO = seanceService.GetAll().FirstOrDefault();
+            var tariffDTO = tariffService.GetOne(unitOfWork.Tariffs.FindBy(t => t.Name == "day_holiday_green").FirstOrDefault().Id);
 
             var purchaseDTO = new PurchaseDTO()
             {
                 Id = "001",
+                Sum = tariffDTO.Price * 2
             };
 
             var customerDTO = new CustomerDTO()
@@ -49,14 +54,15 @@ namespace COTS.BLL.Services.Tests
             };
 
 
-            var seanceDTO = seanceService.GetAll().FirstOrDefault();
+            
             var ticketDTO = new TicketDTO()
             {
                 Id = "00001",
                 SeanceId = seanceDTO.Id,
                 PlaceId = 8,
                 State = 1,
-                PurchaseId = purchaseDTO.Id               
+                PurchaseId = purchaseDTO.Id,
+                TariffId = tariffDTO.Id
             };
 
             purchaseDTO.CustomerDTO = customerDTO;          
@@ -74,7 +80,7 @@ namespace COTS.BLL.Services.Tests
             foreach (var item in purchseDTO.TicketsDTOs)
             {
                 Trace.WriteLine(item.Id);
-                Trace.WriteLine($"SeanceID - {item.SeanceDTO.Id}, SeanceDate -  {item.SeanceDTO.DateAndTime.Date}");
+                Trace.WriteLine($"SeanceID - {item.SeanceDTO.Id}, SeanceDate -  {item.SeanceDTO.DateAndTime.Date}, TarriffName -  ");
             }
         }
 

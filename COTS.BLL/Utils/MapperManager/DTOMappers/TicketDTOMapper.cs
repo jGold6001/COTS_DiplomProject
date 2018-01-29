@@ -11,11 +11,12 @@ namespace COTS.BLL.Utils.MapperManager.DTOMappers
 {
     public class TicketDTOMapper : GeneralMapper<Ticket, TicketDTO>
     {
-        public TicketDTOMapper(SeanceDTOMapper seanceDTOMapper)
+        public TicketDTOMapper(SeanceDTOMapper seanceDTOMapper, TariffDTOMapper tariffDTOMapper)
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Ticket, TicketDTO>()
-                .ForMember(m => m.SeanceDTO, opt => opt.MapFrom(src => seanceDTOMapper.MapToObject(src.Seance)))
-                .ForMember(m => m.PlaceDTO, opt => opt.MapFrom(src => src.Place))
+                .ForMember(d => d.SeanceDTO, opt => opt.MapFrom(src => seanceDTOMapper.MapToObject(src.Seance)))
+                .ForMember(d => d.PlaceDTO, opt => opt.MapFrom(src => src.Place))
+                .ForMember(d => d.TariffDTO, opt => opt.MapFrom(src => tariffDTOMapper.MapToObject(src.Tariff)))
             ));
         }
 

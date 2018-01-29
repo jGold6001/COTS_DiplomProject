@@ -8,6 +8,7 @@ namespace COTS.DAL.Entities
 {
     public class Tariff
     {
+        public long Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; } 
         public long? SectorId { get; set; }

@@ -20,6 +20,7 @@ namespace COTS.BLL.Utils.MapperManager
         CustomerDTOMapper customerDTOMapper;
         TariffDTOMapper tariffDTOMapper;
         HallDTOMapper hallDTOMapper;
+        SectorDTOMapper sectorDTOMapper;
 
         TicketMapper ticketMapper;
         PlaceMapper placeMapper;
@@ -84,9 +85,19 @@ namespace COTS.BLL.Utils.MapperManager
             get
             {
                 if (ticketDTOMapper == null)
-                    ticketDTOMapper = new TicketDTOMapper(SeanceDTOMapper);
+                    ticketDTOMapper = new TicketDTOMapper(SeanceDTOMapper, TariffDTOMapper);
                 return ticketDTOMapper;
                         
+            }
+        }
+
+        public SectorDTOMapper SectorDTOMapper
+        {
+            get
+            {
+                if (sectorDTOMapper == null)
+                    sectorDTOMapper = new SectorDTOMapper();
+                return sectorDTOMapper;
             }
         }
 

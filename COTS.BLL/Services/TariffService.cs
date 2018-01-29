@@ -41,7 +41,7 @@ namespace COTS.BLL.Services
 
         public TariffDTO GetOne(long id)
         {
-            throw new NotImplementedException();
+            return mapperUnitOfWork.TariffDTOMapper.MapToObject(UnitOfWork.Tariffs.Get(id));
         }
     }
 }

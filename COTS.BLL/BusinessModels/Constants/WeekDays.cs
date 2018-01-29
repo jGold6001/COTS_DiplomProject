@@ -8,7 +8,7 @@ namespace COTS.BLL.BusinessModels.Constants
 {
     public static class WeekDays
     {
-        public const int WORKING = 1;
-        public const int HOLIDAY = 2;
+        public const string WORKING = "working";
+        public const string HOLIDAY = "holiday";
     }
 }
