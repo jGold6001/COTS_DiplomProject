@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessModels\TariffManager.cs" />
     <Compile Include="DTO\CinemaDTO.cs" />
     <Compile Include="DTO\CityDTO.cs" />
     <Compile Include="DTO\HallDTO.cs" />
@@ -101,9 +102,7 @@
     <Compile Include="Services\SeanceService.cs" />
     <Compile Include="Services\TicketService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinessModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

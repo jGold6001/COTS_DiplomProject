@@ -17,6 +17,7 @@ import {serialize} from 'json-typescript-mapper';
 import { SeanceService } from '../../../shared/services/seance.service';
 import { loadavg } from 'os';
 import { element } from 'protractor';
+import { Tariff } from '../../../shared/models/tariff.model';
 
 
 @Component({
@@ -38,6 +39,8 @@ export class HallDialogComponent implements OnInit {
   purchase: Purchase;
   show: boolean = false;
   sum: number = 0;
+  tariffs: Tariff[] = [];
+
 
   constructor(
     public dialogRef: MatDialogRef<HallDialogComponent>,
@@ -58,7 +61,7 @@ export class HallDialogComponent implements OnInit {
  
     let typeInfo = {
       city:     "kiev",              //this.seance.cinema.cityId,
-      cinema:   "florence",      //this.seance.cinema.id,
+      cinema:   "florence",      //this.seance.hall.cinema.id,
       hall:     "Синий"                //this.seance.hall
     };
 
@@ -71,12 +74,14 @@ export class HallDialogComponent implements OnInit {
     
 
     this.dataService.placesSelected$.subscribe( place =>
-      {
-        //place.price = 100;
+      {       
+        //this.tariffs = this.seance.tariffs ;          
+        //let tariff = this.tariffs.find(t => t.sector == place.sector);
+
         this.places.push(place);
-        this.addPlaceRow(place);
+        this.addPlaceRow(place);  //this.addPlaceRow(place, tarrif);
         this.enablePayButton();
-        //this.sum +=place.price;
+        //this.sum +=tarrif.price;
       }
     );
 
@@ -85,7 +90,7 @@ export class HallDialogComponent implements OnInit {
         this.removePlaceRow(place.id);
         this.deleteObjectFromArray(place.id);
         this.disablePayButton();
-        //this.sum -=place.price;
+        //this.sum -=tarrif.price;
       }
     );
 
@@ -103,14 +108,17 @@ export class HallDialogComponent implements OnInit {
    
     //create tickets
     for(let place of this.places){ 
+       //let tariff = this.tariffs.find(t => t.sector == place.sector);
       let TicketViewModel = {
         Id: this.zeroPad(this.getRandomInt(1,100000),6),
         PurchaseId: _idPurchase,
         State: 1,
         SeanceId: this.seance.id,
-        PlaceId: place.id,     
+        PlaceId: place.id, 
+        //TariffId:  tariff.id;   
       };     
       purchase.TicketViewModels.push(TicketViewModel);
+      //purchase.sum = this.sum;
     } 
     
     //post to server
@@ -129,11 +137,11 @@ export class HallDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  private addPlaceRow(place: Place){
+  private addPlaceRow(place: Place){  //private addPlaceRow(place: Place, tariff: Tariff){ 
     let container = this.createRowContainerRow(place.id);
     this.setText(container,`Ряд: ${place.row}`);
     this.setText(container,`Место: ${place.num}`);   
-    this.setText(container,`Цена: `);
+    this.setText(container,`Цена: `); //this.setText(container,`Цена: ${tariff.price}`);
   }
 
   private removePlaceRow(placeId : number){

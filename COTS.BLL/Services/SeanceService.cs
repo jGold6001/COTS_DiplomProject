@@ -52,15 +52,11 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'date' not set", "");
 
             IEnumerable<Seance> seances = seanceRepo.FindAllByCinemaMovieAndDate(cinemaId, movieId.Value, date);
-            IEnumerable<SeanceDTO> seancesDTO = AttachObjetcsToDTOList(seances);          
-            return seancesDTO;
+            IEnumerable<SeanceDTO> seancesDTOs = AttachObjetcsToDTOList(seances);          
+            return seancesDTOs;
 
         }
-
-        public void Delete(long? id)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public SeanceDTO GetOne(long? id)
         {
@@ -84,7 +80,10 @@ namespace COTS.BLL.Services
             return seancesDTO;
         }
 
-
+        public void Delete(long? id)
+        {
+            throw new NotImplementedException();
+        }
 
         private IEnumerable<SeanceDTO> AttachObjetcsToDTOList(IEnumerable<Seance> seances)
         {
@@ -103,6 +102,7 @@ namespace COTS.BLL.Services
         private SeanceDTO AttachObjetcsToDTO(Seance seance)
         {
             SeanceDTO seanceDTO = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
+            //seanceDTO.Tariffs = generateTarrifs(seanceDTO);
             seanceDTO.MovieDTO = movieService.GetOne(seanceDTO.MovieId);
             seanceDTO.HallDTO = hallService.GetOne(seanceDTO.HallId);
             return seanceDTO;
