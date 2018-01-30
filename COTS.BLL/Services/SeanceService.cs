@@ -102,7 +102,7 @@ namespace COTS.BLL.Services
         private SeanceDTO AttachObjetcsToDTO(Seance seance)
         {
             SeanceDTO seanceDTO = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
-            //seanceDTO.Tariffs = InstallTarrifs(seanceDTO);
+            //seanceDTO.Tariffs = AssignTariffs(seanceDTO);
             seanceDTO.MovieDTO = movieService.GetOne(seanceDTO.MovieId);
             seanceDTO.HallDTO = hallService.GetOne(seanceDTO.HallId);
             return seanceDTO;

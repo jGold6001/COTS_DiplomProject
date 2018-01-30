@@ -18,6 +18,8 @@ namespace COTS.DAL.EF
 
         public virtual DbSet<Seance> Seances { get; set; }
 
+        public virtual DbSet<Technology> Technologies { get; set; }
+        public virtual DbSet<Enterprise> Enterprises { get; set; }
         public virtual DbSet<Cinema> Cinemas { get; set; }
         public virtual DbSet<Hall> Halls { get; set; }
         public virtual DbSet<Sector> Sectors { get; set; }

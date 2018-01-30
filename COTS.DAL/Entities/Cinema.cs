@@ -14,16 +14,19 @@ namespace COTS.DAL.Entities
         public string ImagePath { get; set; }
         public City City { get; set; }
         public string CityId { get; set; }
+        public Enterprise Enterprise { get; set; }
+        public string EnterpriseId { get; set; }
         public ICollection<Hall> Halls { get; set; }
         public Cinema()
         {
             Halls = new List<Hall>();
         }
 
-        public Cinema(string id, string name, string address, string imagePath)
+        public Cinema(string id, string name, string enterpriseId, string address, string imagePath)
         {
             Id = id;
             Name = name;
+            EnterpriseId = enterpriseId;
             Address = address;
             ImagePath = imagePath;
             Halls = new List<Hall>();

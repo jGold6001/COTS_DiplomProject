@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="CollectionForData\Cinemas\CinemasCollection.cs" />
     <Compile Include="CollectionForData\Cities\CitiesCollection.cs" />
+    <Compile Include="CollectionForData\Enterprises\EnterprisesCollection.cs" />
     <Compile Include="CollectionForData\Halls\FlorenceHallsCollection.cs" />
     <Compile Include="CollectionForData\Halls\MpxDafiHallsCollection.cs" />
     <Compile Include="CollectionForData\Halls\MpxProspectHallsCollection.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="CollectionForData\Tariffs\Florence\FlorenceEveningHolidayTariffsCollection.cs" />
     <Compile Include="CollectionForData\Tariffs\Florence\FlorenceDayWorkdayTariffsCollection.cs" />
     <Compile Include="CollectionForData\Tariffs\Florence\FlorenceEveningWorkdayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Technologies\TechnologiesCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFUnitOfWorkTest.cs" />
   </ItemGroup>

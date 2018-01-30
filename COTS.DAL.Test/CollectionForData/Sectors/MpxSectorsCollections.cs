@@ -1,4 +1,5 @@
 ﻿using COTS.DAL.Entities;
+using COTS.DAL.Test.CollectionForData.Enterprises;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace COTS.DAL.Test.CollectionForData.Sectors
         {
             return new List<Sector>()
             {
-                new Sector(5, "Good"),
-                new Sector(6, "Super Lux")
+                new Sector(5, "Good", EnterprisesCollection.Get()[0].Id),
+                new Sector(6, "Super Lux", EnterprisesCollection.Get()[0].Id)
             };
         }
     }

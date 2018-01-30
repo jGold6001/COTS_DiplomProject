@@ -13,7 +13,7 @@ using COTS.DAL.Test.CollectionForData.Sectors;
 using COTS.DAL.Test.CollectionForData.Tariffs.Florence;
 using System.Diagnostics;
 using System.Linq;
-
+using COTS.DAL.Test.CollectionForData.Enterprises;
 
 namespace COTS.DAL.Test.Repositories
 {
@@ -31,6 +31,9 @@ namespace COTS.DAL.Test.Repositories
         private List<Seance> seancesMultProspect = MultiplexProspectSeancesCollection.Get();
         private List<Seance> seancesMultSkyMall = MultiplexSkyMallSeancesCollection.Get();
         private List<Seance> seancesMultDafi = MultiplexDafiSeancesCollection.Get();
+
+        //enterprises
+        private List<Enterprise> enterprises = EnterprisesCollection.Get();
 
         //cinemas
         private List<Cinema> cinemas = CinemasCollection.Get();
@@ -69,6 +72,7 @@ namespace COTS.DAL.Test.Repositories
         private HallRepository hallRepository;
         private SectorRepository sectorRepository;
         private TariffRepository tariffRepository;
+        private EnterpriseRepository enterpriseRepository;
 
 
         [TestInitialize]
@@ -86,6 +90,7 @@ namespace COTS.DAL.Test.Repositories
             sectorRepository = unitOfwork.Sectors as SectorRepository;
             hallRepository = unitOfwork.Halls as HallRepository;
 
+            enterpriseRepository = unitOfwork.Enterprises as EnterpriseRepository;
             cityRepo = unitOfwork.Cities as CityRepository;
 
             ticketRepo = unitOfwork.Tickets as TicketRepository;         
@@ -120,6 +125,11 @@ namespace COTS.DAL.Test.Repositories
             Cinema mDafi = cinemas[2];
             Cinema florence = cinemas[3];
 
+
+            foreach (var item in enterprises)
+            {
+                enterpriseRepository.AddOrUpdate(item);
+            }
 
             cityRepo.AddOrUpdate(cityKiev);
             foreach (var item in cinemas)
@@ -402,6 +412,9 @@ namespace COTS.DAL.Test.Repositories
 
             foreach (var item in cityRepo.GetAll())
                 cityRepo.Delete(item);
+
+            foreach (var item in enterpriseRepository.GetAll())
+                enterpriseRepository.Delete(item);
 
             foreach (var item in hallRepository.GetAll())
                 hallRepository.Delete(item);

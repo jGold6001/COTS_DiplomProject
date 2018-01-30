@@ -11,25 +11,28 @@ using System.Threading.Tasks;
 namespace COTS.BLL.BusinessModels
 {
     public class TariffManager
+    {     
+        public static List<TariffDTO> AssignTariffsTo(SeanceDTO seanceDTO, ISectorService sectorService, ITariffService tariffService)
+        {
+            Assigner assigner = new Assigner(seanceDTO);
+
+            var dayWeek = assigner.ByDate();
+            var timePeriod = assigner.ByTime();
+            var typeD = seanceDTO.TypeD;
+            var sectors = sectorService.FindAllBySeance(seanceDTO.Id);
+
+            List<TariffDTO> tariffs = new List<TariffDTO>();
+          
+            return tariffs;
+        }
+    }
+
+    public class Assigner
     {
         SeanceDTO seanceDTO;
-        public TariffManager(SeanceDTO seanceDTO)
+        public Assigner(SeanceDTO seanceDTO)
         {
             this.seanceDTO = seanceDTO;
-        }
-
-        public List<TariffDTO> AssignTariffs()
-        {
-
-            var dayWeek = ByDate();
-            var timePeriod = ByTime();
-            var typeD = ByTypeD();
-            var sectors = GetSectors();
-
-            List<Tariff> tariffs = new List<Tariff>();
-
-
-            return null;
         }
 
         public string ByDate()
@@ -54,17 +57,6 @@ namespace COTS.BLL.BusinessModels
                 return TimePeriod.Day;
             else
                 return TimePeriod.Evening;
-        }
-
-        public string ByTypeD()
-        {
-            return seanceDTO.TypeD;
-        }
-
-        public List<SectorDTO> GetSectors()
-        {
-            //var sectors = sectorService
-            return null;
         }
 
     }

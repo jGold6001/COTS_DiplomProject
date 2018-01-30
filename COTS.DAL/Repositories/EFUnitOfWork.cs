@@ -17,6 +17,7 @@ namespace COTS.DAL.Repositories
         private MovieRepository movieRepository;
         private MovieDetailsRepository movieDetailsRepository;
 
+        private EnterpriseRepository enterpriseRepository;
         private CinemaRepository cinemaRepository;
         private PlaceRepository placeRepository;
         private SectorRepository sectorRepository;
@@ -24,6 +25,7 @@ namespace COTS.DAL.Repositories
 
         private TariffRepository tariffRepository;
 
+        private TechnologyRepository technologyRepository;
         private SeanceRepository seanceRepository;
 
         private CityRepository cityRepository;
@@ -58,6 +60,17 @@ namespace COTS.DAL.Repositories
             }
         }
 
+
+        public IRepository<Technology> Technologies
+        {
+            get
+            {
+                if (technologyRepository == null)
+                    technologyRepository = new TechnologyRepository(db);
+                return technologyRepository;
+            }
+        }
+
         public IRepository<Seance> Seances
         {
             get
@@ -65,6 +78,16 @@ namespace COTS.DAL.Repositories
                 if (seanceRepository == null)
                     seanceRepository = new SeanceRepository(db);
                 return seanceRepository;
+            }
+        }
+
+        public IRepository<Enterprise> Enterprises
+        {
+            get
+            {
+                if (enterpriseRepository == null)
+                    enterpriseRepository = new EnterpriseRepository(db);
+                return enterpriseRepository;
             }
         }
 

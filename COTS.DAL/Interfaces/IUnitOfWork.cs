@@ -13,7 +13,9 @@ namespace COTS.DAL.Interfaces
         IRepository<MovieDetails> MovieDetailses { get; }
 
         IRepository<Seance> Seances { get; }
+        IRepository<Technology> Technologies { get; }
 
+        IRepository<Enterprise> Enterprises { get; }
         IRepository<Cinema> Cinemas { get; }
         IRepository<Hall> Halls { get; }
         IRepository<Sector> Sectors { get; }
