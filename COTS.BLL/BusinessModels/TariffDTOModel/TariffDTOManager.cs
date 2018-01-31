@@ -8,9 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.BLL.BusinessModels
+namespace COTS.BLL.BusinessModels.TariffDTOModel
+
 {
-    public class TariffManager
+    public class TariffDTOManager
     {     
         public static List<TariffDTO> AssignTariffsTo(SeanceDTO seanceDTO, ISectorService sectorService, ITariffService tariffService)
         {
@@ -18,10 +19,16 @@ namespace COTS.BLL.BusinessModels
 
             var dayWeek = assigner.ByDate();
             var timePeriod = assigner.ByTime();
-            var typeD = seanceDTO.TypeD;
-            var sectors = sectorService.FindAllBySeance(seanceDTO.Id);
+            var typeD = assigner.ByTypeD();
+            var sectors = assigner.BySectors(sectorService);
 
             List<TariffDTO> tariffs = new List<TariffDTO>();
+            foreach (var sector in sectors)
+            {
+                var tariffDTO = tariffService.GetOneByWeekDayTimePeriodTechnologyAndSector(dayWeek, timePeriod, typeD, sector.Id);
+                tariffs.Add(tariffDTO);
+            }
+               
           
             return tariffs;
         }
@@ -43,7 +50,7 @@ namespace COTS.BLL.BusinessModels
                 case DayOfWeek.Sunday: return WeekDays.HOLIDAY;
                 case DayOfWeek.Saturday: return WeekDays.HOLIDAY;
             }
-            return WeekDays.WORKING;
+            return WeekDays.WORKDAY;
         }
 
         public string ByTime()
@@ -54,9 +61,19 @@ namespace COTS.BLL.BusinessModels
             TimeSpan startTimeEverning = new TimeSpan(17, 0, 0);
 
             if (time > startTimeDay && time < startTimeEverning)
-                return TimePeriod.Day;
+                return TimePeriod.DAY;
             else
-                return TimePeriod.Evening;
+                return TimePeriod.EVENING;
+        }
+
+        public string ByTypeD()
+        {
+            return seanceDTO.TechnologyId;
+        }
+
+        public IEnumerable<SectorDTO> BySectors(ISectorService sectorService)
+        {
+            return sectorService.FindAllBySeance(seanceDTO.Id);
         }
 
     }

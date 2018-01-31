@@ -8,6 +8,7 @@ using System.Linq;
 using COTS.DAL.Interfaces;
 using System.Diagnostics;
 using COTS.BLL.BusinessModels.Constants;
+using COTS.BLL.BusinessModels.TariffDTOModel;
 
 namespace COTS.BLL.BusinessModels.Tests
 {
@@ -49,7 +50,7 @@ namespace COTS.BLL.BusinessModels.Tests
             seanceDTO.DateAndTime = workday;
             assigner = new Assigner(seanceDTO);
             var dateWeek = assigner.ByDate();
-            Assert.AreEqual(WeekDays.WORKING, dateWeek);
+            Assert.AreEqual(WeekDays.WORKDAY, dateWeek);
         }
 
         [TestMethod()]
@@ -80,7 +81,7 @@ namespace COTS.BLL.BusinessModels.Tests
             seanceDTO.DateAndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 1,0);          
             assigner = new Assigner(seanceDTO);
             var timePeriod = assigner.ByTime();
-            Assert.AreEqual(TimePeriod.Day, timePeriod);
+            Assert.AreEqual(TimePeriod.DAY, timePeriod);
         }
 
         [TestMethod()]
@@ -90,7 +91,7 @@ namespace COTS.BLL.BusinessModels.Tests
             seanceDTO.DateAndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 17, 1, 0);
             assigner = new Assigner(seanceDTO);
             var timePeriod = assigner.ByTime();
-            Assert.AreEqual(TimePeriod.Evening, timePeriod);
+            Assert.AreEqual(TimePeriod.EVENING, timePeriod);
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using COTS.DAL.Entities;
 using COTS.DAL.Test.CollectionForData.Halls;
 using COTS.DAL.Test.CollectionForData.Seances;
+using COTS.DAL.Test.CollectionForData.Technologies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace COTS.DAL.Test.CollectionForData.Seances
 {

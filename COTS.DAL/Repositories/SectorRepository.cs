@@ -19,12 +19,12 @@ namespace COTS.DAL.Repositories
         public IEnumerable<Sector> FindAllBySeance(long seanceId)
         {
             return context.Database.SqlQuery<Sector>(
-                "SELECT  dbo.Sectors.Id, dbo.Sectors.Name FROM dbo.Sectors "+
+                "SELECT  dbo.Sectors.Id, dbo.Sectors.Name, dbo.Sectors.EnterpriseId FROM dbo.Sectors " +
                 "INNER JOIN dbo.Places on dbo.Sectors.Id = dbo.Places.SectorId "+
                 "INNER JOIN dbo.Halls on dbo.Halls.Id = dbo.Places.HallId "+
                 "INNER JOIN dbo.Seances on dbo.Seances.HallId = dbo.Halls.Id "+
                 "AND dbo.Seances.Id = @seanceId " +
-                "GROUP BY dbo.Sectors.Id, dbo.Sectors.Name"
+                "GROUP BY dbo.Sectors.Id, dbo.Sectors.Name, dbo.Sectors.EnterpriseId"
                 , new SqlParameter("@seanceId", seanceId)
             ).ToList();
         }

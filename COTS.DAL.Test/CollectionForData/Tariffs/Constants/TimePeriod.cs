@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.BLL.BusinessModels.Constants
+namespace COTS.DAL.Test.CollectionForData.Tariffs.Constants
 {
     public static class TimePeriod
     {
-        public const string DAY = "day";
-        public const string EVENING = "evening";
+        public const string Day = "day";
+        public const string Evening = "evening";
     }
 }

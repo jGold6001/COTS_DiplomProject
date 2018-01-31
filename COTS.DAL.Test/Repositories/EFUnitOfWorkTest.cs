@@ -14,6 +14,7 @@ using COTS.DAL.Test.CollectionForData.Tariffs.Florence;
 using System.Diagnostics;
 using System.Linq;
 using COTS.DAL.Test.CollectionForData.Enterprises;
+using COTS.DAL.Test.CollectionForData.Technologies;
 
 namespace COTS.DAL.Test.Repositories
 {
@@ -47,6 +48,9 @@ namespace COTS.DAL.Test.Repositories
         private List<Hall> hallsMpxDafi = MpxDafiHallsCollection.Get();
         private List<Hall> hallsFlorence = FlorenceHallsCollection.Get();
 
+        //technologies
+        private List<Technology> technologies = TechnologiesCollection.Get();
+
         //sectors
         private List<Sector> sectorsMpx = MpxSectorsCollections.Get();
         private List<Sector> sectorFlorence = FlorenceSectorsCollection.Get();
@@ -73,6 +77,7 @@ namespace COTS.DAL.Test.Repositories
         private SectorRepository sectorRepository;
         private TariffRepository tariffRepository;
         private EnterpriseRepository enterpriseRepository;
+        private TechnologyRepository technologyRepository;
 
 
         [TestInitialize]
@@ -98,6 +103,7 @@ namespace COTS.DAL.Test.Repositories
             customerRepository = unitOfwork.Customers as CustomerRepository;
 
             tariffRepository = unitOfwork.Tariffs as TariffRepository;
+            technologyRepository = unitOfwork.Technologies as TechnologyRepository;
         }
 
         [TestMethod]
@@ -125,6 +131,11 @@ namespace COTS.DAL.Test.Repositories
             Cinema mDafi = cinemas[2];
             Cinema florence = cinemas[3];
 
+
+            foreach (var item in technologies)
+            {
+                technologyRepository.AddOrUpdate(item);
+            }
 
             foreach (var item in enterprises)
             {
@@ -279,7 +290,7 @@ namespace COTS.DAL.Test.Repositories
         {
             var seance = this.GetSeanceForTickets();
             var places = this.GetPlaces();
-            var tariff = tariffRepository.FindBy(t => t.Name == "day_holiday_green").FirstOrDefault();
+            var tariff = tariffRepository.FindBy(t => t.Name == "day_holiday_green_2d").FirstOrDefault();
 
             var purchase = new Purchase()
             {
@@ -410,8 +421,17 @@ namespace COTS.DAL.Test.Repositories
             foreach (var item in movieDetailsRepo.GetAll())
                 movieDetailsRepo.Delete(item);
 
+            foreach (var item in technologyRepository.GetAll())
+                technologyRepository.Delete(item);          
+
             foreach (var item in cityRepo.GetAll())
                 cityRepo.Delete(item);
+
+            foreach (var item in tariffRepository.GetAll())
+                tariffRepository.Delete(item);
+
+            foreach (var item in sectorRepository.GetAll())
+                sectorRepository.Delete(item);
 
             foreach (var item in enterpriseRepository.GetAll())
                 enterpriseRepository.Delete(item);

@@ -12,6 +12,7 @@ namespace COTS.BLL.Interfaces
         void AddOrUpdate(TariffDTO cinemaDTO);
         TariffDTO GetOne(long id);
         IEnumerable<TariffDTO> GetAll();
+        TariffDTO GetOneByWeekDayTimePeriodTechnologyAndSector(string weekDay, string timePeriod, string technologyId, long sectorId);     
         void Delete(long id);
     }
 }

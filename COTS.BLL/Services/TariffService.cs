@@ -43,5 +43,11 @@ namespace COTS.BLL.Services
         {
             return mapperUnitOfWork.TariffDTOMapper.MapToObject(UnitOfWork.Tariffs.Get(id));
         }
+
+        public TariffDTO GetOneByWeekDayTimePeriodTechnologyAndSector(string weekDay, string timePeriod, string technologyId, long sectorId)
+        {
+            var tariff = UnitOfWork.Tariffs.FindBy(t => t.WeekDay == weekDay && t.TimePeriod == timePeriod && t.TechnologyId == technologyId && t.SectorId == sectorId).FirstOrDefault();
+            return mapperUnitOfWork.TariffDTOMapper.MapToObject(tariff);
+        }
     }
 }

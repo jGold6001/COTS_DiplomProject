@@ -83,7 +83,9 @@
     <Compile Include="CollectionForData\Seances\MultiplexDafiSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\MultiplexProspectSeancesCollection.cs" />
     <Compile Include="CollectionForData\Seances\MultiplexSkyMallSeancesCollection.cs" />
-    <Compile Include="CollectionForData\Seances\TypeD.cs" />
+    <Compile Include="CollectionForData\Tariffs\Constants\TimePeriod.cs" />
+    <Compile Include="CollectionForData\Tariffs\Constants\WeekDays.cs" />
+    <Compile Include="CollectionForData\Technologies\TypeD.cs" />
     <Compile Include="CollectionForData\Sectors\FlorenceSectorsCollection.cs" />
     <Compile Include="CollectionForData\Sectors\MpxSectorsCollections.cs" />
     <Compile Include="CollectionForData\Tariffs\Florence\FlorenceDayHolidayTariffsCollection.cs" />

@@ -37,7 +37,7 @@ namespace COTS.BLL.Services.Tests
         public void AddOrUpdatePurchaseTest()
         {
             var seanceDTO = seanceService.GetAll().FirstOrDefault();
-            var tariffDTO = tariffService.GetOne(unitOfWork.Tariffs.FindBy(t => t.Name == "day_holiday_green").FirstOrDefault().Id);
+            var tariffDTO = tariffService.GetOne(unitOfWork.Tariffs.FindBy(t => t.Name == "day_holiday_green_2d").FirstOrDefault().Id);
 
             var purchaseDTO = new PurchaseDTO()
             {

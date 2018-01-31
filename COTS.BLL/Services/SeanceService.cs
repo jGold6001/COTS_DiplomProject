@@ -11,6 +11,7 @@ using COTS.DAL.Interfaces;
 using COTS.DAL.Repositories;
 using COTS.BLL.DTO;
 using COTS.BLL.Utils.MapperManager;
+using COTS.BLL.BusinessModels.TariffDTOModel;
 
 namespace COTS.BLL.Services
 {
@@ -19,6 +20,8 @@ namespace COTS.BLL.Services
         IUnitOfWork UnitOfWork { get; set; }
         IMovieService movieService;
         IHallService hallService;
+        ISectorService sectorService;
+        ITariffService tariffService;
 
         SeanceRepository seanceRepo;
         MapperUnitOfWork mapperUnitOfWork;
@@ -31,6 +34,9 @@ namespace COTS.BLL.Services
 
             movieService = new MovieService(unitOfWork);
             hallService = new HallService(unitOfWork);
+            sectorService = new SectorService(unitOfWork);
+            tariffService = new TariffService(unitOfWork);
+
             mapperUnitOfWork = new MapperUnitOfWork();
         }
 
@@ -102,7 +108,7 @@ namespace COTS.BLL.Services
         private SeanceDTO AttachObjetcsToDTO(Seance seance)
         {
             SeanceDTO seanceDTO = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
-            //seanceDTO.Tariffs = AssignTariffs(seanceDTO);
+            seanceDTO.TariffDTOs = TariffDTOManager.AssignTariffsTo(seanceDTO, sectorService, tariffService);
             seanceDTO.MovieDTO = movieService.GetOne(seanceDTO.MovieId);
             seanceDTO.HallDTO = hallService.GetOne(seanceDTO.HallId);
             return seanceDTO;

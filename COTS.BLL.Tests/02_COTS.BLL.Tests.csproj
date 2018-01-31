@@ -65,6 +65,7 @@
     <Compile Include="Services\PurchaseServiceTest.cs" />
     <Compile Include="Services\SeancesServiceTest.cs" />
     <Compile Include="Services\SectorServiceTest.cs" />
+    <Compile Include="Services\TariffServiceTest.cs" />
     <Compile Include="Services\TicketServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>

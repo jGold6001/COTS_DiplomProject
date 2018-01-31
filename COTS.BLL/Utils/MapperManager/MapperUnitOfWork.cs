@@ -21,6 +21,8 @@ namespace COTS.BLL.Utils.MapperManager
         TariffDTOMapper tariffDTOMapper;
         HallDTOMapper hallDTOMapper;
         SectorDTOMapper sectorDTOMapper;
+        TechnologyDTOMapper technologyDTOMapper;
+        EnterpriseDTOMapper enterpriseDTOMapper;
 
         TicketMapper ticketMapper;
         PlaceMapper placeMapper;
@@ -189,6 +191,26 @@ namespace COTS.BLL.Utils.MapperManager
                 if (hallDTOMapper == null)
                     hallDTOMapper = new HallDTOMapper();
                 return hallDTOMapper;
+            }
+        }
+
+        public TechnologyDTOMapper TechnologyDTOMapper
+        {
+            get
+            {
+                if (technologyDTOMapper == null)
+                    technologyDTOMapper = new TechnologyDTOMapper();
+                return technologyDTOMapper;
+            }
+        }
+
+        public EnterpriseDTOMapper EnterpriseDTOMapper
+        {
+            get
+            {
+                if (enterpriseDTOMapper == null)
+                    enterpriseDTOMapper = new EnterpriseDTOMapper();
+                return enterpriseDTOMapper;
             }
         }
 

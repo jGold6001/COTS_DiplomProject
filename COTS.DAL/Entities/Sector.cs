@@ -12,9 +12,7 @@ namespace COTS.DAL.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
-        public string Name { get; set; }
-        public string WeekDay { get; set; }
-        public string TimePeriod { get; set; }
+        public string Name { get; set; }        
         public string EnterpriseId { get; set; }
         public Enterprise Enterprise { get; set; }
         public ICollection<Place> Places { get; set; }

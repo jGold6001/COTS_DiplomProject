@@ -12,7 +12,8 @@ namespace COTS.DAL.Entities
         public DateTime DateAndTime { get; set; }
         public Hall Hall { get; set; }
         public long? HallId { get; set; }
-        public string TypeD { get; set; }       
+        public Technology Technology { get; set; }
+        public string TechnologyId { get; set; }
         public Movie Movie { get; set; }
         public long? MovieId { get; set; }
         
@@ -23,10 +24,10 @@ namespace COTS.DAL.Entities
             Tariffs = new List<Tariff>();
         }
 
-        public Seance(DateTime dateAndTime, string typeD, long hallId)
+        public Seance(DateTime dateAndTime, string technologyId, long hallId)
         {
             DateAndTime = dateAndTime;
-            TypeD = typeD;
+            TechnologyId = technologyId;
             HallId = hallId;
             Tariffs = new List<Tariff>();
         }

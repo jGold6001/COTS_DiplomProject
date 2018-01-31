@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace COTS.BLL.BusinessModels.Constants
+namespace COTS.DAL.Test.CollectionForData.Tariffs.Constants
 {
     public static class WeekDays
     {
-        public const string WORKDAY = "workday";
+        public const string WORKING = "workday";
         public const string HOLIDAY = "holiday";
     }
 }
