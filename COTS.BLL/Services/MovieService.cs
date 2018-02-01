@@ -10,7 +10,7 @@ using AutoMapper;
 using COTS.DAL.Entities;
 using COTS.DAL.Repositories;
 using COTS.BLL.Utils;
-using COTS.BLL.Utils.MapperManager;
+using COTS.BLL.Managers.MapperManager;
 
 namespace COTS.BLL.Services
 {

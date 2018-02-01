@@ -267,9 +267,7 @@ namespace COTS.DAL.Test.Repositories
         public List<Place> GetPlaces()
         {
             var place_1 = placeRepository.Get(placesFlorence[0].Id);
-            var place_2 = placeRepository.Get(placesFlorence[19].Id);
-            place_1.IsBusy = true;
-            place_2.IsBusy = true;
+            var place_2 = placeRepository.Get(placesFlorence[19].Id);           
             placeRepository.AddOrUpdate(place_1);
             placeRepository.AddOrUpdate(place_2);
             unitOfwork.Save();

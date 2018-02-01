@@ -13,8 +13,7 @@ namespace COTS.DAL.Entities
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
         public int Row { get; set; }
-        public int Number { get; set; }
-        public bool IsBusy { get; set; }
+        public int Number { get; set; }       
         public long? HallId { get; set; }
         public Hall Hall { get; set; }      
         public long? SectorId { get; set; }
@@ -24,12 +23,11 @@ namespace COTS.DAL.Entities
             
         }
 
-        public Place(long id, int row, int number, bool isBusy, long hallId, long sectorId)
+        public Place(long id, int row, int number, long hallId, long sectorId)
         {
             this.Id = id;
             this.Row = row;
             this.Number = number;
-            this.IsBusy = isBusy;
             this.HallId = hallId;
             this.SectorId = sectorId;
         }

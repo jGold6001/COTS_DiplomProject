@@ -47,12 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessModels\Constants\CinemaSectors\FlorenceSectors.cs" />
-    <Compile Include="BusinessModels\Constants\CinemaSectors\MpxSectors.cs" />
-    <Compile Include="BusinessModels\Constants\TimePeriod.cs" />
-    <Compile Include="BusinessModels\Constants\TypeD.cs" />
-    <Compile Include="BusinessModels\Constants\WeekDays.cs" />
-    <Compile Include="BusinessModels\TariffDTOModel\TariffDTOManager.cs" />
+    <Compile Include="Constants\CinemaSectors\FlorenceSectors.cs" />
+    <Compile Include="Constants\CinemaSectors\MpxSectors.cs" />
+    <Compile Include="Constants\TimePeriod.cs" />
+    <Compile Include="Constants\TypeD.cs" />
+    <Compile Include="Constants\WeekDays.cs" />
+    <Compile Include="Managers\SeanceManager\AssignerTariff.cs" />
+    <Compile Include="Managers\SeanceManager\SeanceManager.cs" />
     <Compile Include="DTO\CinemaDTO.cs" />
     <Compile Include="DTO\CityDTO.cs" />
     <Compile Include="DTO\EnterpriseDTO.cs" />
@@ -81,26 +82,26 @@
     <Compile Include="Services\SectorService.cs" />
     <Compile Include="Services\TariffService.cs" />
     <Compile Include="Services\TechnologyService.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\CinemaDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\CityDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\EnterpriseDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\HallDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\SectorDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\TariffDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\TechnologyDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\EntityMappers\CustomerMapper.cs" />
-    <Compile Include="Utils\MapperManager\EntityMappers\PurchaseMapper.cs" />
-    <Compile Include="Utils\MapperManager\EntityMappers\TicketMapper.cs" />
-    <Compile Include="Utils\MapperManager\EntityMappers\PlaceMapper.cs" />
-    <Compile Include="Utils\MapperManager\GeneralMapper.cs" />
-    <Compile Include="Utils\MapperManager\MapperUnitOfWork.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\MovieDetailsDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\MovieDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\CustomerDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\PurchaseDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\SeanceDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\TicketDTOMapper.cs" />
-    <Compile Include="Utils\MapperManager\DTOMappers\PlaceDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\CinemaDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\CityDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\EnterpriseDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\HallDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\SectorDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\TariffDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\TechnologyDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\EntityMappers\CustomerMapper.cs" />
+    <Compile Include="Managers\MapperManager\EntityMappers\PurchaseMapper.cs" />
+    <Compile Include="Managers\MapperManager\EntityMappers\TicketMapper.cs" />
+    <Compile Include="Managers\MapperManager\EntityMappers\PlaceMapper.cs" />
+    <Compile Include="Managers\MapperManager\GeneralMapper.cs" />
+    <Compile Include="Managers\MapperManager\MapperUnitOfWork.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\MovieDetailsDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\MovieDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\CustomerDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\PurchaseDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\SeanceDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\TicketDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\PlaceDTOMapper.cs" />
     <Compile Include="Utils\ServiceModule.cs" />
     <Compile Include="Utils\ValidationException.cs" />
     <Compile Include="Interfaces\ICinemaService.cs" />
@@ -119,7 +120,9 @@
     <Compile Include="Services\SeanceService.cs" />
     <Compile Include="Services\TicketService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Managers\PlaceManager\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -25,9 +25,9 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
 
                     Place place = null;
                     if(row == 4)
-                        place = new Place(id, row, num, false, FlorenceHallsCollection.Get()[0].Id, FlorenceSectorsCollection.Get()[1].Id);
+                        place = new Place(id, row, num,  FlorenceHallsCollection.Get()[0].Id, FlorenceSectorsCollection.Get()[1].Id);
                     else
-                        place = new Place(id, row, num, false, FlorenceHallsCollection.Get()[0].Id, FlorenceSectorsCollection.Get()[0].Id);
+                        place = new Place(id, row, num,  FlorenceHallsCollection.Get()[0].Id, FlorenceSectorsCollection.Get()[0].Id);
 
                     places.Add(place);
                 }

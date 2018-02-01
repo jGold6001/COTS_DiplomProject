@@ -55,8 +55,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessModels\AssignerTest.cs" />
-    <Compile Include="BusinessModels\TariffManagerTest.cs" />
+    <Compile Include="Managers\SeanceManager\AssignerTariffTest.cs" />
+    <Compile Include="Managers\SeanceManager\SeanceManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CinemaServiceTest.cs" />
     <Compile Include="Services\CityServiceTest.cs" />

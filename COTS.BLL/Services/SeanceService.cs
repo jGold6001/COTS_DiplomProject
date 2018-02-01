@@ -10,8 +10,8 @@ using AutoMapper;
 using COTS.DAL.Interfaces;
 using COTS.DAL.Repositories;
 using COTS.BLL.DTO;
-using COTS.BLL.Utils.MapperManager;
-using COTS.BLL.BusinessModels.TariffDTOModel;
+using COTS.BLL.Managers.MapperManager;
+using COTS.BLL.Managers.SeanceManager;
 
 namespace COTS.BLL.Services
 {
@@ -108,7 +108,7 @@ namespace COTS.BLL.Services
         private SeanceDTO AttachObjetcsToDTO(Seance seance)
         {
             SeanceDTO seanceDTO = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
-            seanceDTO.TariffDTOs = TariffDTOManager.AssignTariffsTo(seanceDTO, sectorService, tariffService);
+            seanceDTO.TariffDTOs = SeanceManager.AssignTariffsTo(seanceDTO, sectorService, tariffService);
             seanceDTO.MovieDTO = movieService.GetOne(seanceDTO.MovieId);
             seanceDTO.HallDTO = hallService.GetOne(seanceDTO.HallId);
             return seanceDTO;

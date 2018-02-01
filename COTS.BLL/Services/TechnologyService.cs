@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using COTS.BLL.DTO;
 using COTS.DAL.Interfaces;
-using COTS.BLL.Utils.MapperManager;
+using COTS.BLL.Managers.MapperManager;
 using COTS.BLL.Interfaces;
 
 namespace COTS.BLL.Services
