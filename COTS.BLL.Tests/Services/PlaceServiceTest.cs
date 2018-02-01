@@ -28,10 +28,10 @@ namespace COTS.BLL.Tests.Services
         {            
             List<PlaceDTO> places = placeService.GetAllByCityCinemaAndHall("kiev", "florence", "Синий") as List<PlaceDTO>;
             foreach (var item in places)
-            {
                 Trace.WriteLine($"Place id: {item.Id} - row: {item.Row} - num: {item.Number}");
-            }
+
         }
 
+       
     }
 }

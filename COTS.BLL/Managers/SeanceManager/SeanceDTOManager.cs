@@ -9,11 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace COTS.BLL.Managers.SeanceManager
-
 {
-    public class SeanceManager
+    public static class SeanceDTOManager
     {     
-        public static List<TariffDTO> AssignTariffsTo(SeanceDTO seanceDTO, ISectorService sectorService, ITariffService tariffService)
+        public static SeanceDTO AssignTariffsTo(SeanceDTO seanceDTO, ISectorService sectorService, ITariffService tariffService)
         {
             AssignerTariff assigner = new AssignerTariff(seanceDTO);
 
@@ -28,9 +27,8 @@ namespace COTS.BLL.Managers.SeanceManager
                 var tariffDTO = tariffService.GetOneByWeekDayTimePeriodTechnologyAndSector(dayWeek, timePeriod, typeD, sector.Id);
                 tariffs.Add(tariffDTO);
             }
-               
-          
-            return tariffs;
+            seanceDTO.TariffDTOs = tariffs;
+            return seanceDTO;
         }
     }
   

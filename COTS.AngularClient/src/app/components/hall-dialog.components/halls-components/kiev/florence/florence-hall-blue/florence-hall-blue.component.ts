@@ -23,7 +23,7 @@ export class FlorenceHallBlueComponent implements OnInit {
 
 
   ngOnInit() {
-    this.placeService.getDataFromJsonFile('kiev', 'florence', 'Синий')
+    this.placeService.getPlacesByCityCinemaAndHall('kiev', 'florence', 'Синий')
       .subscribe( res =>{
         this.places = res;      
         this.createButtons(); 

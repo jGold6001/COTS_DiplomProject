@@ -17,6 +17,7 @@ namespace COTS.BLL.Services.Tests
         IUnitOfWork unitOfWork;
         ITicketService ticketService;
         ISeanceService seanceService;
+        IPlaceService placeService;
 
         [TestInitialize()]
         public void init()
@@ -24,6 +25,7 @@ namespace COTS.BLL.Services.Tests
             unitOfWork = new EFUnitOfWork("CotsContext");
             ticketService = new TicketService(unitOfWork);
             seanceService = new SeanceService(unitOfWork);
+            placeService = new PlaceService(unitOfWork);
         }
 
         [TestMethod()]
@@ -33,12 +35,12 @@ namespace COTS.BLL.Services.Tests
 
             var ticketDTO = new TicketDTO()
             {
-                Id = "00000",     
-                SeanceId =  seanceDTO.Id,
+                Id = "00000",
+                SeanceId = seanceDTO.Id,
                 State = 1,
                 PlaceId = 9
             };
-         
+
             ticketService.AddOrUpdate(ticketDTO);
         }
 
@@ -81,6 +83,16 @@ namespace COTS.BLL.Services.Tests
         public void DeleteTicketTest()
         {
             ticketService.Delete("00000");
+        }
+
+        [TestMethod()]
+        public void IsPlaceInTicketTest()
+        {
+            var ticket = ticketService.GetAll().FirstOrDefault();
+            var place = placeService.GetOne(ticket.PlaceId);
+
+            var result = ticketService.IsPlaceInTicket(place);
+            Assert.IsTrue(result);
         }
     }
 }

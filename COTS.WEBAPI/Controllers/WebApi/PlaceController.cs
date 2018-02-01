@@ -29,7 +29,7 @@ namespace COTS.WEBAPI.Controllers.WebApi
 
         [Route("getall/{cityId}/{cinemaId}/{hallName}")]
         public IEnumerable<PlaceViewModel> GetByHall(string cityId, string cinemaId, string hallName)
-        {
+        {           
             return mapperUnitOfWork.PlaceViewModelMapper.MapToCollectionObjects(placeService.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
         }
     }

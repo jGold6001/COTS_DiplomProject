@@ -36,7 +36,6 @@ namespace COTS.BLL.Services
             var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
 
             var placeDTO = placeService.GetOne(ticket.PlaceId);
-            placeDTO.IsBusy = true;
             placeService.AddOrUpdate(placeDTO);
 
             UnitOfWork.Tickets.AddOrUpdate(ticket);
@@ -50,8 +49,7 @@ namespace COTS.BLL.Services
 
             var ticket = UnitOfWork.Tickets.Get(id);
 
-            var placeDTO = placeService.GetOne(ticket.PlaceId);
-            placeDTO.IsBusy = false;
+            var placeDTO = placeService.GetOne(ticket.PlaceId);           
             placeService.AddOrUpdate(placeDTO);
 
             UnitOfWork.Tickets.Delete(ticket);
@@ -125,6 +123,14 @@ namespace COTS.BLL.Services
             return ticketsDTOs;
         }
 
-       
+        public bool IsPlaceInTicket(PlaceDTO placeDTO)
+        {
+            var ticketDTO = UnitOfWork.Tickets.FindBy(t => t.PlaceId == placeDTO.Id);
+            if (ticketDTO.Count() == 0)
+                return false;
+
+           return true;
+
+        }
     }
 }

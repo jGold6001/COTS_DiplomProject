@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace COTS.BLL.DTO
+namespace COTS.WEBAPI.Models
 {
-    public class SectorDTO
+    public class SectorViewModel
     {
         public long Id { get; set; }
         public string Name { get; set; }

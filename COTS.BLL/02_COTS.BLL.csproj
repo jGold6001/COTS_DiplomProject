@@ -52,8 +52,9 @@
     <Compile Include="Constants\TimePeriod.cs" />
     <Compile Include="Constants\TypeD.cs" />
     <Compile Include="Constants\WeekDays.cs" />
+    <Compile Include="Managers\PlaceManager\PlaceDTOManager.cs" />
     <Compile Include="Managers\SeanceManager\AssignerTariff.cs" />
-    <Compile Include="Managers\SeanceManager\SeanceManager.cs" />
+    <Compile Include="Managers\SeanceManager\SeanceDTOManager.cs" />
     <Compile Include="DTO\CinemaDTO.cs" />
     <Compile Include="DTO\CityDTO.cs" />
     <Compile Include="DTO\EnterpriseDTO.cs" />
@@ -120,9 +121,7 @@
     <Compile Include="Services\SeanceService.cs" />
     <Compile Include="Services\TicketService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Managers\PlaceManager\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

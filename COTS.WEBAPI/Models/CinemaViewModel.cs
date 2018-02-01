@@ -12,6 +12,7 @@ namespace COTS.WEBAPI.Models
         public string Address { get; set; }
         public string ImagePath { get; set; }
         public string CityId { get; set; }
+        public string EnterpriseId { get; set; }
 
     }
 }

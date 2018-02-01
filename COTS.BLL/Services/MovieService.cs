@@ -18,7 +18,7 @@ namespace COTS.BLL.Services
     {
         IUnitOfWork UnitOfWork { get; set; }
         MovieRepository movieRepo;
-        //IMapper mapper;
+
         MapperUnitOfWork mapperUnitOfWork;
 
         IMovieDetailsService movieDetailsService;

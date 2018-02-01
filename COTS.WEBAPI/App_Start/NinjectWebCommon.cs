@@ -77,6 +77,8 @@ namespace COTS.WEBAPI.App_Start
             kernel.Bind<IPurchaseService>().To<PurchaseService>();
             kernel.Bind<IPlaceService>().To<PlaceService>();
             kernel.Bind<ITariffService>().To<TariffService>();
+            kernel.Bind<ITechnologyService>().To<TechnologyService>();
+            
         }
     }
 }

@@ -12,6 +12,7 @@ namespace COTS.WEBAPI.Models
         public int Number { get; set; }
         public bool IsBusy { get; set; }
         public long? HallId { get; set; }
+        public long? SectorId { get; set; }
 
     }
 }

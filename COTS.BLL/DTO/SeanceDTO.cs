@@ -11,6 +11,7 @@ namespace COTS.BLL.DTO
         public long Id { get; set; }
         public DateTime DateAndTime { get; set; }
         public string TechnologyId { get; set; }
+        public TechnologyDTO TechnologyDTO { get; set; }
         public long? HallId { get; set; }
         public HallDTO HallDTO { get; set; }
         public MovieDTO MovieDTO { get; set; }  

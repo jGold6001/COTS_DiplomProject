@@ -8,6 +8,7 @@ using COTS.BLL.Interfaces;
 using COTS.BLL.Managers.MapperManager;
 using COTS.DAL.Interfaces;
 using COTS.DAL.Repositories;
+using COTS.BLL.Managers.PlaceManager;
 
 namespace COTS.BLL.Services
 {
@@ -16,12 +17,14 @@ namespace COTS.BLL.Services
         IUnitOfWork UnitOfWork { get; set; }
         PlaceRepository placeRepo;
         MapperUnitOfWork mapperUnitOfWork;
+        ITicketService ticketService;
 
         public PlaceService(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
             placeRepo = UnitOfWork.Places as PlaceRepository;
             mapperUnitOfWork = new MapperUnitOfWork();
+            ticketService = new TicketService(unitOfWork);
         }
 
         public void AddOrUpdate(PlaceDTO placeDTO)
@@ -37,6 +40,12 @@ namespace COTS.BLL.Services
 
         public IEnumerable<PlaceDTO> GetAllByCityCinemaAndHall(string cityId, string cinemaId, string hallName)
         {
+            //var placeDTOs = mapperUnitOfWork.PlaceDTOMapper.MapToCollectionObjects(placeRepo.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
+            //var placeDTOsWithIsBusy = new List<PlaceDTO>();
+            //foreach (var item in placeDTOs)
+            //    placeDTOsWithIsBusy.Add(PlaceDTOManager.AssignIsBusyTo(item, ticketService));
+
+            //return placeDTOs;
             return mapperUnitOfWork.PlaceDTOMapper.MapToCollectionObjects(placeRepo.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
         }
     }

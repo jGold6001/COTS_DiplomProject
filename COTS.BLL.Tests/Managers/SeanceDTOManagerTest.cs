@@ -10,10 +10,10 @@ using System.Diagnostics;
 using COTS.BLL.DTO;
 using COTS.BLL.Managers.SeanceManager;
 
-namespace COTS.BLL.Managers.SeanceManager
+namespace COTS.BLL.Managers
 {
     [TestClass()]
-    public class SeanceManagerTest
+    public class SeanceDTOManagerTest
     {
         IUnitOfWork unitOfWork;
         ISeanceService seanceService;
@@ -32,10 +32,9 @@ namespace COTS.BLL.Managers.SeanceManager
         [TestMethod()]
         public void AssignTariffsTest()
         {
-            var seanceDTO = this.GetSeance();
-            var tariffDTOs = SeanceManager.AssignTariffsTo(seanceDTO, sectorService, tariffService);
+            var seanceDTO = SeanceDTOManager.AssignTariffsTo(this.GetSeance(), sectorService, tariffService);
             
-            foreach (var item in tariffDTOs)
+            foreach (var item in seanceDTO.TariffDTOs)
                 Trace.WriteLine($"tariffName - {item.Name} , tariffPrice  - {item.Price}");
         }
 

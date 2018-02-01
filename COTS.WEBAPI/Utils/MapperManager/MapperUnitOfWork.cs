@@ -23,6 +23,8 @@ namespace COTS.WEBAPI.Utils.MapperManager
         TariffViewModelMapper tariffViewModelMapper;
         HallViewModelMapper hallViewModelMapper;
         PlaceViewModelMapper placeViewModelMapper;
+        TechnologyViewModelMapper technologyViewModelMapper;
+        EnterpriseViewModelMapper enterpriseViewModelMapper;
 
         TicketDTOMapper ticketDTOMapper;
         PlaceDTOMapper placeDTOMapper;
@@ -174,6 +176,27 @@ namespace COTS.WEBAPI.Utils.MapperManager
                 if (hallViewModelMapper == null)
                     hallViewModelMapper = new HallViewModelMapper();
                 return hallViewModelMapper;
+            }
+        }
+
+        public TechnologyViewModelMapper TechnologyViewModelMapper
+        {
+            get
+            {
+                if (technologyViewModelMapper == null)
+                    technologyViewModelMapper = new TechnologyViewModelMapper();
+                return technologyViewModelMapper;
+            }
+        }
+
+
+        public EnterpriseViewModelMapper EnterpriseViewModelMapper
+        {
+            get
+            {
+                if (enterpriseViewModelMapper == null)
+                    enterpriseViewModelMapper = new EnterpriseViewModelMapper();
+                return enterpriseViewModelMapper;
             }
         }
 

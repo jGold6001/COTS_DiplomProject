@@ -13,6 +13,7 @@ namespace COTS.WEBAPI.Models
         public PlaceViewModel PlaceViewModel { get; set; }
         public long? PlaceId { get; set; }
         public string PurchaseId { get; set; }
+        public long? TariffId { get; set; }
         public int State { get; set; }
     }
 }

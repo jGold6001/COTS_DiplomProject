@@ -13,8 +13,8 @@ namespace COTS.BLL.Interfaces
         void AddOrUpdate(TicketDTO ticketDTO);
         TicketDTO GetOne(string id);
         IEnumerable<TicketDTO> GetAll();
+        bool IsPlaceInTicket(PlaceDTO placeDTO);
         IEnumerable<TicketDTO> GetByPurchase(string purchaseId);
-
         IEnumerable<TicketDTO> GetByState(int state);
         void Delete(string id);
     }
