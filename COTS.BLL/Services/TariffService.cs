@@ -29,7 +29,7 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
-        public void Delete(long id)
+        public void Delete(long? id)
         {
             throw new NotImplementedException();
         }
@@ -39,7 +39,7 @@ namespace COTS.BLL.Services
             throw new NotImplementedException();
         }
 
-        public TariffDTO GetOne(long id)
+        public TariffDTO GetOne(long? id)
         {
             return mapperUnitOfWork.TariffDTOMapper.MapToObject(UnitOfWork.Tariffs.Get(id));
         }

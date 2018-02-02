@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>COTS.BLL</RootNamespace>
-    <AssemblyName>COTS.BLL</AssemblyName>
+    <AssemblyName>02_COTS.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -121,15 +121,14 @@
     <Compile Include="Services\SeanceService.cs" />
     <Compile Include="Services\TicketService.cs" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\COTS.DAL\01_COTS.DAL.csproj">
       <Project>{e008668a-a01d-4c38-b2ed-4dfd79a6e380}</Project>
       <Name>01_COTS.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

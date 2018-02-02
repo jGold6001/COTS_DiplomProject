@@ -14,7 +14,7 @@ namespace COTS.BLL.Managers.MapperManager.DTOMappers
         public PlaceDTOMapper()
         {
             Mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Place, PlaceDTO>()
-                .ForMember(d => d.IsBusy, opt => opt.MapFrom(src => false))
+                
             ));
         }
 

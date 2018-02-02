@@ -23,8 +23,7 @@ namespace COTS.BLL.Services
         {
             UnitOfWork = unitOfWork;
             placeRepo = UnitOfWork.Places as PlaceRepository;
-            mapperUnitOfWork = new MapperUnitOfWork();
-            ticketService = new TicketService(unitOfWork);
+            mapperUnitOfWork = new MapperUnitOfWork();       
         }
 
         public void AddOrUpdate(PlaceDTO placeDTO)
@@ -38,15 +37,15 @@ namespace COTS.BLL.Services
             return mapperUnitOfWork.PlaceDTOMapper.MapToObject(placeRepo.Get(id));
         }
 
-        public IEnumerable<PlaceDTO> GetAllByCityCinemaAndHall(string cityId, string cinemaId, string hallName)
+        public IEnumerable<PlaceDTO> GetAllByCityCinemaHallAndSeance(string cityId, string cinemaId, string hallName, long seanceId)
         {
-            //var placeDTOs = mapperUnitOfWork.PlaceDTOMapper.MapToCollectionObjects(placeRepo.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
-            //var placeDTOsWithIsBusy = new List<PlaceDTO>();
-            //foreach (var item in placeDTOs)
-            //    placeDTOsWithIsBusy.Add(PlaceDTOManager.AssignIsBusyTo(item, ticketService));
+            ticketService = new TicketService(this.UnitOfWork);
+            var placeDTOs = mapperUnitOfWork.PlaceDTOMapper.MapToCollectionObjects(placeRepo.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
+            var placeDTOsWithIsBusy = new List<PlaceDTO>();
+            foreach (var item in placeDTOs)
+                placeDTOsWithIsBusy.Add(PlaceDTOManager.AssignIsBusyTo(item, seanceId, ticketService));
 
-            //return placeDTOs;
-            return mapperUnitOfWork.PlaceDTOMapper.MapToCollectionObjects(placeRepo.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
+            return placeDTOs;
         }
     }
 }

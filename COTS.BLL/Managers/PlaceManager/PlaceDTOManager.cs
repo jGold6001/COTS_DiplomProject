@@ -10,15 +10,15 @@ namespace COTS.BLL.Managers.PlaceManager
 {
     public class PlaceDTOManager
     {
-        public static PlaceDTO AssignIsBusyTo(PlaceDTO placeDTO, ITicketService ticketService)
+        public static PlaceDTO AssignIsBusyTo(PlaceDTO placeDTO, long seanceId, ITicketService ticketService)
         {
-            var isContainInTicket = ticketService.IsPlaceInTicket(placeDTO);
+            var isContainInTicket = ticketService.IsPlaceInTicket(placeDTO, seanceId);
             if (isContainInTicket)
                 placeDTO.IsBusy = true;
             else
                 placeDTO.IsBusy = false;
 
-            return placeDTO;
+            return placeDTO;          
         }
     }
 }

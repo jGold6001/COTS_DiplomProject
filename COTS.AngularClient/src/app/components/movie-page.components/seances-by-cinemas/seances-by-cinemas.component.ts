@@ -25,7 +25,7 @@ export class SeancesByCinemasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+    //console.log(this.seance);
   }
 
   openDialog(){

@@ -24,11 +24,12 @@ namespace COTS.BLL.Services
         public TechnologyDTO GetOne(string id)
         {
             return mapperUnitOfWork.TechnologyDTOMapper.MapToObject(UnitOfWork.Technologies.Get(id));
+            
         }
 
         public IEnumerable<TechnologyDTO> GetAll()
         {
-            return mapperUnitOfWork.TechnologyDTOMapper.MapToCollectionObjects(UnitOfWork.Technologies.GetAll());
+            return mapperUnitOfWork.TechnologyDTOMapper.MapToCollectionObjects(UnitOfWork.Technologies.GetAll());          
         }
     }
 }

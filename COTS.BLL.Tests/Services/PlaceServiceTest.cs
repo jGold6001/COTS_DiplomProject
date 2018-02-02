@@ -7,6 +7,7 @@ using COTS.BLL.Services;
 using System.Collections.Generic;
 using COTS.BLL.DTO;
 using System.Diagnostics;
+using System.Linq;
 
 namespace COTS.BLL.Tests.Services
 {
@@ -14,6 +15,7 @@ namespace COTS.BLL.Tests.Services
     public class PlaceServiceTest
     {
         IPlaceService placeService;
+        ISeanceService seanceService;
         IUnitOfWork unitOfWork;
 
         [TestInitialize()]
@@ -21,17 +23,42 @@ namespace COTS.BLL.Tests.Services
         {
             unitOfWork = new EFUnitOfWork("CotsContext");
             placeService = new PlaceService(unitOfWork);
+            seanceService = new SeanceService(unitOfWork);
         }
 
         [TestMethod]
-        public void GetAllByCityCinemaAndHallTest()
-        {            
-            List<PlaceDTO> places = placeService.GetAllByCityCinemaAndHall("kiev", "florence", "Синий") as List<PlaceDTO>;
+        public void GetAllByCityCinemaHallAndSeance_isBusyPLacesPresent_Test()
+        {
+            long seanceId = this.GetSeance().Id;
+            List<PlaceDTO> places = placeService.GetAllByCityCinemaHallAndSeance("kiev", "florence", "Синий", seanceId) as List<PlaceDTO>;
             foreach (var item in places)
-                Trace.WriteLine($"Place id: {item.Id} - row: {item.Row} - num: {item.Number}");
+                Trace.WriteLine($"Place id: {item.Id} - row: {item.Row} - num: {item.Number} - isBusy - {item.IsBusy}");
 
         }
 
-       
+        [TestMethod]
+        public void GetAllByCityCinemaHallAndSeance_isAllPlacesFree_Test()
+        {
+            List<PlaceDTO> places = placeService.GetAllByCityCinemaHallAndSeance("kiev", "florence", "Синий", 112123123213) as List<PlaceDTO>;
+            foreach (var item in places)
+                Trace.WriteLine($"Place id: {item.Id} - row: {item.Row} - num: {item.Number} - isBusy - {item.IsBusy}");
+
+        }
+
+        public SeanceDTO GetSeance()
+        {
+            foreach (var item in seanceService.GetAll())
+            {
+                if (item.HallId == 1
+                    && item.DateAndTime.Date == DateTime.Now.Date
+                )
+                {
+                    return item;
+                }
+
+            }
+            return seanceService.GetAll().FirstOrDefault();
+        }
+
     }
 }

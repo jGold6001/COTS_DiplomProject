@@ -6,12 +6,12 @@ import { Place } from '../models/place.model';
 export class DataService{
     
     private placesSelectedSource = new Subject<Place>();
-    private placesCanceledSource = new Subject<Place>();
-    private placesBusySource = new Subject<Place[]>();
-    
+    private placesCanceledSource = new Subject<Place>();    
+    private seanceIdSource  = new Subject<any>();
+
     placesSelected$ = this.placesSelectedSource.asObservable();  
-    placesCanceles$ = this.placesCanceledSource.asObservable();
-    placesBusy$ = this.placesBusySource.asObservable();
+    placesCanceles$ = this.placesCanceledSource.asObservable();    
+    seanceId$ = this.seanceIdSource.asObservable();
 
     selectPlace(place: Place){
         this.placesSelectedSource.next(place);
@@ -21,8 +21,8 @@ export class DataService{
         this.placesCanceledSource.next(place);
     }
 
-    busyPlace(places: Place[]){
-        this.placesBusySource.next(places);
+    setSeanceId(seanceId: any){       
+        this.seanceIdSource.next(seanceId);
     }
 
 }

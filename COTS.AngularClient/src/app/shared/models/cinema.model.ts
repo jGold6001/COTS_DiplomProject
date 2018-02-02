@@ -16,4 +16,5 @@ export class Cinema{
     address: string;
     imagePath: string;
     cityId: string;
+    enterpriseId: string;
 }

@@ -9,26 +9,26 @@ export const environment = {
   production: false,
 
   //webApi
-  APIURL_MOVIE :                        _serverHost +  "/api/movie/",
-  APIURL_MOVIES_PREMERIES_BYCITY :       _serverHost +  "/api/movie/premeries/",
-  APIURL_MOVIES_COMINGSOON_BYCITY :     _serverHost +  "/api/movie/comingsoon/",
-  APIURL_MOVIES_TOP10_BYCITY :          _serverHost +  "/api/movie/top10/",
+  APIURL_MOVIE :                              _serverHost +  "/api/movie/",
+  APIURL_MOVIES_PREMERIES_BYCITY :            _serverHost +  "/api/movie/premeries/",
+  APIURL_MOVIES_COMINGSOON_BYCITY :           _serverHost +  "/api/movie/comingsoon/",
+  APIURL_MOVIES_TOP10_BYCITY :                _serverHost +  "/api/movie/top10/",
 
-  APIURL_CINEMA :                       _serverHost +  "/api/cinema/",
-  APIURL_CINEMAS_BYCITY:                _serverHost +  "/api/cinema/getallbycity/",
+  APIURL_CINEMA :                             _serverHost +  "/api/cinema/",
+  APIURL_CINEMAS_BYCITY:                      _serverHost +  "/api/cinema/getallbycity/",
 
-  APIURL_PLACES_BY_CITY_CINEMA_HALL:    _serverHost + "/api/place/getall/",
+  APIURL_PLACES_BY_CITY_CINEMA_HALL_SEANCE:   _serverHost + "/api/place/getall/",
 
-  APIURL_CITIES:                        _serverHost +  "/api/city/getall",
+  APIURL_CITIES:                              _serverHost +  "/api/city/getall",
 
-  APIURL_SEANCES_BY_CINEMA_MOVIE_DATE:  _serverHost +  "/api/seance/getall/",
-  APIURL_SEANCE:                        _serverHost + "/api/seance/",
+  APIURL_SEANCES_BY_CINEMA_MOVIE_DATE:        _serverHost +  "/api/seance/getall/",
+  APIURL_SEANCE:                              _serverHost + "/api/seance/",
 
-  APIURL_TICKETS_BY_PURCHASE:           _serverHost +  "/api/ticket/by_purchase/",
-  APIURL_TICKETS_GETALL:                _serverHost + "/api/ticket/getall",
+  APIURL_TICKETS_BY_PURCHASE:                 _serverHost +  "/api/ticket/by_purchase/",
+  APIURL_TICKETS_GETALL:                      _serverHost + "/api/ticket/getall",
 
-  APIURL_PURCHASE_SAVE_IN_DB:           _serverHost +  "/api/purchase/save_in_db",  
-  APIURL_PURCHASE:                      _serverHost +  "/api/purchase/",
-  APIURL_PURCHASE_UPDATE:               _serverHost +  "/api/purchase/update",
-  APIURL_PURCHASE_REMOVE:               _serverHost +  "/api/purchase/remove/"
+  APIURL_PURCHASE_SAVE_IN_DB:                 _serverHost +  "/api/purchase/save_in_db",  
+  APIURL_PURCHASE:                            _serverHost +  "/api/purchase/",
+  APIURL_PURCHASE_UPDATE:                     _serverHost +  "/api/purchase/update",
+  APIURL_PURCHASE_REMOVE:                     _serverHost +  "/api/purchase/remove/"
 };

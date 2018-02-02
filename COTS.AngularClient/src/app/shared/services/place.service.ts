@@ -13,8 +13,8 @@ export class PlaceService{
 
     }
 
-    getPlacesByCityCinemaAndHall(cityId, cinemaId, hallName) : Observable<Place[]>{        
-        return this.http.get(`${environment.APIURL_PLACES_BY_CITY_CINEMA_HALL}/${cityId}/${cinemaId}/${hallName}`)
+    getPlacesByCityCinemaHallAndSeance(cityId, cinemaId, hallName, seanceId) : Observable<Place[]>{        
+        return this.http.get(`${environment.APIURL_PLACES_BY_CITY_CINEMA_HALL_SEANCE}/${cityId}/${cinemaId}/${hallName}/${seanceId}`)
             .map(res =>{
                 return JsonConvertor.toPlaces(res.json());
             });

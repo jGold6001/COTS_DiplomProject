@@ -34,7 +34,7 @@ export class MpxSkymallHall1Component implements OnInit {
 
 
   ngOnInit() {
-    this.placeService.getDataFromJsonFile('kiev', 'mpx-skymall', '1')
+    this.placeService.getPlacesByCityCinemaHallAndSeance('kiev', 'mpx-skymall', '1', 0)
       .subscribe( res =>{
         this.places = res;
         this.setIdPlaces();       

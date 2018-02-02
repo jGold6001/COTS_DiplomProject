@@ -19,6 +19,7 @@ namespace COTS.BLL.Services
         
         ISeanceService seanceService;
         IPlaceService placeService;
+        ITariffService tariffService;
         MapperUnitOfWork mapperUnitOfWork;
 
         public TicketService(IUnitOfWork unitOfWork)
@@ -26,6 +27,7 @@ namespace COTS.BLL.Services
             UnitOfWork = unitOfWork;          
             seanceService = new SeanceService(unitOfWork);
             placeService = new PlaceService(unitOfWork);
+            tariffService = new TariffService(unitOfWork);
             mapperUnitOfWork = new MapperUnitOfWork();
         }
         public void AddOrUpdate(TicketDTO ticketDTO)
@@ -34,7 +36,7 @@ namespace COTS.BLL.Services
                 throw new ValidationException("TicketsDTO not set", "");
          
             var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
-
+           
             var placeDTO = placeService.GetOne(ticket.PlaceId);
             placeService.AddOrUpdate(placeDTO);
 
@@ -103,10 +105,11 @@ namespace COTS.BLL.Services
             var ticketDTO = mapperUnitOfWork.TicketDTOMapper.MapToObject(ticket);
             var placeDTO = placeService.GetOne(ticket.PlaceId);
             var seanceDTO = seanceService.GetOne(ticket.SeanceId);
-            
+            var tariffDTO = tariffService.GetOne(ticket.TariffId);
 
             ticketDTO.PlaceDTO = placeDTO;
-            ticketDTO.SeanceDTO = seanceDTO; 
+            ticketDTO.SeanceDTO = seanceDTO;
+            ticketDTO.TariffDTO = tariffDTO;
             return ticketDTO;
         }
 
@@ -118,14 +121,15 @@ namespace COTS.BLL.Services
             {
                 item.PlaceDTO = placeService.GetOne(item.PlaceId);
                 item.SeanceDTO = seanceService.GetOne(item.SeanceId);
+                item.TariffDTO = tariffService.GetOne(item.TariffId);
             }
                
             return ticketsDTOs;
         }
 
-        public bool IsPlaceInTicket(PlaceDTO placeDTO)
+        public bool IsPlaceInTicket(PlaceDTO placeDTO, long seanceId)
         {
-            var ticketDTO = UnitOfWork.Tickets.FindBy(t => t.PlaceId == placeDTO.Id);
+            var ticketDTO = UnitOfWork.Tickets.FindBy(t => t.PlaceId == placeDTO.Id && t.SeanceId == seanceId);
             if (ticketDTO.Count() == 0)
                 return false;
 

@@ -74,7 +74,7 @@ namespace COTS.WEBAPI.Utils.MapperManager
             get
             {
                 if (seanceViewModelMapper == null)
-                    seanceViewModelMapper = new SeanceViewModelMapper(HallViewModelMapper);
+                    seanceViewModelMapper = new SeanceViewModelMapper(HallViewModelMapper, TariffViewModelMapper);
                 return seanceViewModelMapper;
             }
         }

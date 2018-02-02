@@ -91,7 +91,7 @@ namespace COTS.BLL.Services.Tests
             var ticket = ticketService.GetAll().FirstOrDefault();
             var place = placeService.GetOne(ticket.PlaceId);
 
-            var result = ticketService.IsPlaceInTicket(place);
+            var result = ticketService.IsPlaceInTicket(place, ticket.SeanceId.Value);
             Assert.IsTrue(result);
         }
     }

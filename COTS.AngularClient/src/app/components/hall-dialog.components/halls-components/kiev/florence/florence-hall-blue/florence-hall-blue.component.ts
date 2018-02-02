@@ -13,6 +13,7 @@ export class FlorenceHallBlueComponent implements OnInit {
   buttons: any = [];
   places: Place[] = [];
   placesSelected: Place[] = [];
+  seanceId: number;
 
   constructor(
     private dataService: DataService,
@@ -23,19 +24,20 @@ export class FlorenceHallBlueComponent implements OnInit {
 
 
   ngOnInit() {
-    this.placeService.getPlacesByCityCinemaAndHall('kiev', 'florence', 'Синий')
+
+    this.placeService.getPlacesByCityCinemaHallAndSeance('kiev', 'florence', 'Синий', this.seanceId)
       .subscribe( res =>{
         this.places = res;      
         this.createButtons(); 
         this.clickEvents(); 
-      }, err => console.log("File not reading!!!"));
+      }, err => console.log("File not reading!!!")); 
   }
 
   clickEvents(){      
       for(let item in this.buttons){
         let button = this.elRef.nativeElement.querySelector(`#btn_${item}`);
         if(button){
-            this.rd.listen(button, 'click', (event)=>{            
+             this.rd.listen(button, 'click', (event)=>{            
               this.changeColor(button);
               let place: Place = this.getPlace(button); 
               this.passToHallDialog(place);

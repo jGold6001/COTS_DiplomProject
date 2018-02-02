@@ -74,7 +74,7 @@ namespace COTS.BLL.Services.Tests
         [TestMethod()]
         public void GetOnePurchaseTest()
         {
-            var purchseDTO = purchaseService.GetOne("001");
+            var purchseDTO = purchaseService.GetOne("test231243");
             Trace.WriteLine($"id= {purchseDTO.Id}, clientName = {purchseDTO.CustomerDTO.FullName}");
             Trace.WriteLine($"\n\ntickets:");
             foreach (var item in purchseDTO.TicketsDTOs)

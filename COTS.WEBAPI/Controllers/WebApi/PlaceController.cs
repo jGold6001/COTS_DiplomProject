@@ -27,10 +27,10 @@ namespace COTS.WEBAPI.Controllers.WebApi
             mapperUnitOfWork = new MapperUnitOfWork();
         }
 
-        [Route("getall/{cityId}/{cinemaId}/{hallName}")]
-        public IEnumerable<PlaceViewModel> GetByHall(string cityId, string cinemaId, string hallName)
+        [Route("getall/{cityId}/{cinemaId}/{hallName}/{seanceId}")]
+        public IEnumerable<PlaceViewModel> GetByHall(string cityId, string cinemaId, string hallName, long seanceId)
         {           
-            return mapperUnitOfWork.PlaceViewModelMapper.MapToCollectionObjects(placeService.GetAllByCityCinemaAndHall(cityId, cinemaId, hallName));
+            return mapperUnitOfWork.PlaceViewModelMapper.MapToCollectionObjects(placeService.GetAllByCityCinemaHallAndSeance(cityId, cinemaId, hallName, seanceId));
         }
     }
 }

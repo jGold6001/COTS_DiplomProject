@@ -50,6 +50,9 @@ namespace COTS.BLL.Services.Tests
             var seanceId = this.GetSeance().Id;
             var seanceDTO = seanceService.GetOne(seanceId);
             Trace.WriteLine($"IDSeance: {seanceDTO.Id}, Cinema: {seanceDTO.HallDTO.CinemaId}, Movie: {seanceDTO.MovieDTO.Name} and date {seanceDTO.DateAndTime}");
+            foreach (var item in seanceDTO.TariffDTOs)            
+                Trace.WriteLine($"tariffName - {item.Name} tariffPrice - {item.Price}");
+            
         }
 
 

@@ -7,6 +7,7 @@ import { Place } from "../models/place.model";
 import { Customer } from "../models/customer.model";
 import { forEach } from "@angular/router/src/utils/collection";
 import { Hall } from "../models/hall.model";
+import { Tariff } from "../models/tariff.model";
 
 
 export class JsonConvertor{
@@ -60,19 +61,21 @@ export class JsonConvertor{
 
     public static toSeanceArray(data): Seance[] {
         let seances: Seance[] = [];  
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
             let seance: Seance = new Seance();
-            seance.init(data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TypeD); 
+            seance.init(data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TechnologyId); 
             seance.movie = this.toMovieShort(data[i].MovieShortViewModel);
-            seance.hall = this.toHall(data[i].HallViewModel);            
+            seance.hall = this.toHall(data[i].HallViewModel);         
+            seance.tariffs = this.toTariffArray(data[i].TariffViewModels);            
             seances.push(seance);
-        }
+        }       
         return seances;
     }
 
     public static toSeance(data): Seance{
         let seance: Seance = new Seance();
-        seance.init(data.Id, data.TimeBegin, data.DateSeance, data.TypeD);
+        seance.init(data.Id, data.TimeBegin, data.DateSeance, data.TechnologyId);
         seance.movie = this.toMovieShort(data.MovieShortViewModel);
         seance.hall = this.toHall(data.HallViewModel);
         return seance;
@@ -89,19 +92,18 @@ export class JsonConvertor{
         let tickets: Ticket[] = [];
         for (let i = 0; i < data.length; i++) {
             let ticket: Ticket = new Ticket();           
-            ticket.init(
-                data[i].Id, data[i].PurchaseId, data[i].PlaceId, data[i].State
-            );
+            ticket.init(data[i].Id, data[i].PurchaseId, data[i].PlaceId, data[i].State, data[i].TariffId);
             ticket.place = this.toPlace(data[i].PlaceViewModel);
-            ticket.seance = this.toSeance(data[i].SeanceViewModel);   
+            ticket.seance = this.toSeance(data[i].SeanceViewModel);
+            ticket.tariff = this.toTariff(data[i].TariffViewModel);   
             tickets.push(ticket);
-        }
+        }       
         return tickets;
     }
 
     public static toPlace(data): Place{
         let place = new Place();
-        place.init(data.Id, data.Number, data.Row, data.IsBusy, data.HallId);
+        place.init(data.Id, data.Number, data.Row, data.IsBusy, data.HallId, data.SectorId);
         return place;
     }
 
@@ -109,7 +111,7 @@ export class JsonConvertor{
         let places: Place[]=[];
         for(let item of data){
             let place: Place = new Place();
-            place.init(item.Id, item.Number, item.Row, item.IsBusy, item.HallId);        
+            place.init(item.Id, item.Number, item.Row, item.IsBusy, item.HallId, data.SectorId);        
             places.push(place);
         }
         return places;
@@ -121,7 +123,8 @@ export class JsonConvertor{
         if(purchase.customer != null)  
             purchase.customer = this.toCustomer(data.CustomerViewModel);  
                   
-        purchase.tickets = this.toTicketsArray(data.TicketViewModels); 
+        purchase.tickets = this.toTicketsArray(data.TicketViewModels);
+        purchase.sum = data.Sum; 
         return purchase;
     }
 
@@ -129,6 +132,22 @@ export class JsonConvertor{
         let customer: Customer = new Customer();
         customer.init(data.Email, data.FullName, data.Phone);
         return customer;
+    }
+
+    public static toTariffArray(data): Tariff[] {
+        let tariffs: Tariff[] = [];              
+        for(let item of data){
+            let tariff: Tariff = new Tariff();
+            tariff.init(item.Id,item.Name, item.Price, item.SectorId, item.TechnologyId);
+            tariffs.push(tariff);
+        }
+        return tariffs;
+    }
+
+    public static toTariff(data): Tariff {
+        let tariff: Tariff = new Tariff();
+        tariff.init(data.Id,data.Name, data.Price, data.SectorId, data.TechnologyId);
+        return tariff;
     }
 
 }

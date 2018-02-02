@@ -24,11 +24,13 @@ namespace COTS.BLL.Services
         public IEnumerable<EnterpriseDTO> GetAll()
         {
             return mapperUnitOfWork.EnterpriseDTOMapper.MapToCollectionObjects(UnitOfWork.Enterprises.GetAll());
+            
         }
 
         public EnterpriseDTO GetOne(string id)
         {
             return mapperUnitOfWork.EnterpriseDTOMapper.MapToObject(UnitOfWork.Enterprises.Get(id));
+ 
         }
     }
 }

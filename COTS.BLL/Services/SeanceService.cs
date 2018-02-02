@@ -34,9 +34,6 @@ namespace COTS.BLL.Services
 
             movieService = new MovieService(unitOfWork);
             hallService = new HallService(unitOfWork);
-            sectorService = new SectorService(unitOfWork);
-            tariffService = new TariffService(unitOfWork);
-
             mapperUnitOfWork = new MapperUnitOfWork();
         }
 
@@ -92,21 +89,20 @@ namespace COTS.BLL.Services
         }
 
         private IEnumerable<SeanceDTO> AttachObjetcsToDTOList(IEnumerable<Seance> seances)
-        {
-            
+        {            
             IEnumerable<SeanceDTO> seancesDTO = mapperUnitOfWork.SeanceDTOMapper.MapToCollectionObjects(seances);
-
             foreach (var item in seancesDTO)
             {
                 item.MovieDTO = movieService.GetOne(item.MovieId); ;
                 item.HallDTO = hallService.GetOne(item.HallId);
-            }   
-            
+            }               
             return seancesDTO;
         }
 
         private SeanceDTO AttachObjetcsToDTO(Seance seance)
         {
+            sectorService = new SectorService(this.UnitOfWork);
+            tariffService = new TariffService(this.UnitOfWork);
             var seanceWithOutTariffs = mapperUnitOfWork.SeanceDTOMapper.MapToObject(seance);
             var seanceDTO = SeanceDTOManager.AssignTariffsTo(seanceWithOutTariffs, sectorService, tariffService);
             seanceDTO.MovieDTO = movieService.GetOne(seanceDTO.MovieId);

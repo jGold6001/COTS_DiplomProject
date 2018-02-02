@@ -58,7 +58,7 @@ export class HallDialogComponent implements OnInit {
   ngOnInit() {
 
     this.seance = this.data.seance;
- 
+    //console.log(this.seance.tariffs);
     let typeInfo = {
       city:     "kiev",              //this.seance.cinema.cityId,
       cinema:   "florence",      //this.seance.hall.cinema.id,
@@ -67,33 +67,35 @@ export class HallDialogComponent implements OnInit {
 
     
     let componentType = this.getComponentType(typeInfo);
-    let factory = this.domService.createFactory(componentType); 
+    let factory = this.domService.createFactory(componentType);    
     this.componentRef = this.container.createComponent(factory);      
-
-    
-    
+    this.componentRef.instance.seanceId = this.seance.id;
+   
 
     this.dataService.placesSelected$.subscribe( place =>
       {       
-        //this.tariffs = this.seance.tariffs ;          
-        //let tariff = this.tariffs.find(t => t.sector == place.sector);
-
+        this.tariffs = this.seance.tariffs;
+        
+        //let tariff = this.tariffs.find(t => t.sectorId == place.sectorId);
+        let tariff = new Tariff();
         this.places.push(place);
-        this.addPlaceRow(place);  //this.addPlaceRow(place, tarrif);
+        this.addPlaceRow(place, tariff);  
         this.enablePayButton();
-        //this.sum +=tarrif.price;
+        //this.sum += tariff.price;
       }
     );
 
     this.dataService.placesCanceles$.subscribe(place =>
       {
+        // this.tariffs = this.seance.tariffs ;          
+        // let tariff = this.tariffs.find(t => t.sectorId == place.sectorId);
         this.removePlaceRow(place.id);
         this.deleteObjectFromArray(place.id);
         this.disablePayButton();
-        //this.sum -=tarrif.price;
+        //this.sum -=tariff.price;
       }
     );
-
+    
   }
 
 
@@ -137,11 +139,11 @@ export class HallDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  private addPlaceRow(place: Place){  //private addPlaceRow(place: Place, tariff: Tariff){ 
+  private addPlaceRow(place: Place, tariff: Tariff){  
     let container = this.createRowContainerRow(place.id);
     this.setText(container,`Ряд: ${place.row}`);
     this.setText(container,`Место: ${place.num}`);   
-    this.setText(container,`Цена: `); //this.setText(container,`Цена: ${tariff.price}`);
+    this.setText(container,`Цена: ${tariff.price}`); 
   }
 
   private removePlaceRow(placeId : number){

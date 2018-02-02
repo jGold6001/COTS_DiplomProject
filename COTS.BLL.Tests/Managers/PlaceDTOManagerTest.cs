@@ -36,7 +36,8 @@ namespace COTS.BLL.Managers
            var ticketDTO = this.CreateAndGetTicketDTO();
 
             var placeDTO = placeService.GetOne(ticketDTO.PlaceId);
-            var placeDTOChange = PlaceDTOManager.AssignIsBusyTo(placeDTO, ticketService);
+            var seanceId = this.GetSeance().Id;
+            var placeDTOChange = PlaceDTOManager.AssignIsBusyTo(placeDTO, seanceId, ticketService);
 
             Trace.WriteLine($"place id = {placeDTOChange.Id} isBusie = {placeDTOChange.IsBusy}");
         }
@@ -44,18 +45,18 @@ namespace COTS.BLL.Managers
         [TestMethod]
         public void AssignIsBusyTo_isFalse_Test()
         {
-
             var ticketDTO = this.CreateAndGetTicketDTO();
 
             var placeDTO = placeService.GetOne(1);
-            var placeDTOChange = PlaceDTOManager.AssignIsBusyTo(placeDTO, ticketService);
+            var seanceId = this.GetSeance().Id;
+            var placeDTOChange = PlaceDTOManager.AssignIsBusyTo(placeDTO, seanceId, ticketService);
 
             Trace.WriteLine($"place id = {placeDTOChange.Id} isBusie = {placeDTOChange.IsBusy}");
         }
 
         public TicketDTO CreateAndGetTicketDTO()
         {
-            var seanceDTO = seanceService.GetAll().FirstOrDefault();
+            var seanceDTO = this.GetSeance();
 
             var ticketDTO = new TicketDTO()
             {
@@ -67,6 +68,11 @@ namespace COTS.BLL.Managers
 
             ticketService.AddOrUpdate(ticketDTO);
             return ticketDTO;
+        }
+
+        public SeanceDTO GetSeance()
+        {
+            return seanceService.GetAll().FirstOrDefault();
         }
     }
 }

@@ -33,9 +33,7 @@ namespace COTS.WEBAPI.Controllers.WebApi
         [Route("getall/{cinemaId}/{movieId}/{date:datetime}")]
         public IEnumerable<SeanceViewModel> GetAllByCinemaMovieAndDate(string cinemaId, long movieId, DateTime date)
         {
-            return mapperUnitOfWork.SeanceViewModelMapper.MapToCollectionObjects(
-                seanceService.FindAllByCinemaMovieAndDate(cinemaId, movieId, date)
-            );          
+            return mapperUnitOfWork.SeanceViewModelMapper.MapToCollectionObjects(seanceService.FindAllByCinemaMovieAndDate(cinemaId, movieId, date));          
         }
 
         [Route("{id}")]
