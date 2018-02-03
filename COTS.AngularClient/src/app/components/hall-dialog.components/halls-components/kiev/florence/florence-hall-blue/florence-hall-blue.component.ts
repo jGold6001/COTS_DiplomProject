@@ -39,9 +39,9 @@ export class FlorenceHallBlueComponent implements OnInit {
         let index = Number(item) + 1;   
         let button = this.elRef.nativeElement.querySelector(`#btn_${index}`);
         if(button){
-             this.rd.listen(button, 'click', (event)=>{            
-              this.changeColor(button);
-              let place: Place = this.getPlace(button); 
+              this.rd.listen(button, 'click', (event)=>{   
+              let place: Place = this.getPlace(button);   
+              this.changeColor(button, place.sectorId);               
               this.passToHallDialog(place);
             });
         }        
@@ -59,7 +59,7 @@ export class FlorenceHallBlueComponent implements OnInit {
         if(this.places[i].isBusy){
            this.rd.setAttribute(this.buttons[i], "disabled", 'true');
         }else{
-           this.rd.addClass(this.buttons[i], "btn-primary");
+           this.rd.addClass(this.buttons[i], this.setSectorColor(this.places[i].sectorId));
         }               
         this.rd.setAttribute(this.buttons[i], 'id', `btn_${this.places[i].id}`);  
       }
@@ -69,14 +69,20 @@ export class FlorenceHallBlueComponent implements OnInit {
     
   }
 
+  setSectorColor(sectorId: number): string {
+    switch(sectorId){
+      case 1: return "green-sector";
+      case 2: return "red-sector";
+    }
+  }
 
-   changeColor(button){
-    if(button.classList.contains('btn-primary')){
-      button.classList.remove('btn-primary');
+   changeColor(button, sectorId){
+    if(button.classList.contains(this.setSectorColor(sectorId))){
+      button.classList.remove(this.setSectorColor(sectorId));
       button.classList.add('btn-warning');
     }else{
       button.classList.remove('btn-warning');
-      button.classList.add('btn-primary');                
+      button.classList.add(this.setSectorColor(sectorId));                
     }
    }
 
@@ -85,8 +91,7 @@ export class FlorenceHallBlueComponent implements OnInit {
       return this.places.find(p => p.id == placeId);
    }
 
-   passToHallDialog(_place: Place){
-     
+   passToHallDialog(_place: Place){    
       if(!this.placesSelected.includes(_place)){
         this.placesSelected.push(_place);
         this.dataService.selectPlace(_place);

@@ -3,3 +3,8 @@
     font-weight: bold;
     border: 1px solid lightgrey;   
 }
+
+
+.sector_squre_style{
+    width:15px; height: 15px; margin-top: 5px;
+}

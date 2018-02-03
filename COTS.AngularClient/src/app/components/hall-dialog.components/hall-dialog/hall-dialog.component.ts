@@ -81,10 +81,11 @@ export class HallDialogComponent implements OnInit {
         let componentType = this.getComponentType(typeInfo);
         let factory = this.domService.createFactory(componentType);    
         let componentRef = this.container.createComponent(factory);        
-        (componentRef.instance).seanceId = this.seance.id;
-
-              
-        this.tariffs = this.seance.tariffs;                 
+        (componentRef.instance).seanceId = this.seance.id;  
+        this.tariffs = this.seance.tariffs; 
+        
+        this.createSectorTariffs();
+        
         this.dataService.placesSelected$.subscribe( place =>
           {                              
               let tariff = this.tariffs.filter(t=>{ return t.sectorId == place.sectorId })[0];
@@ -110,9 +111,60 @@ export class HallDialogComponent implements OnInit {
      
   }
 
+  setSectorColor(sectorId: number): string {
+    switch(sectorId){
+      case 1: return "green-sector";
+      case 2: return "red-sector";
+    }
+  }
+
+  createSectorTariffs(){
+    let root = this.elRef.nativeElement.querySelector(`#sectors_tariffs`);
+    let outerContainer = this.createDivClass("container");
+    let outerRow = this.createDivClass("row");
+
+    this.rd.appendChild(root, outerContainer);
+    this.rd.appendChild(outerContainer, outerRow);
+
+    for(let item of this.tariffs){
+        let outerCol = this.rd.createElement('div');       
+        this.rd.addClass(outerCol, "col-lg-2");
+        this.rd.addClass(outerCol, "col-md-4");
+        this.rd.addClass(outerCol, "col-6");        
+        //let colLgSix = this.createDivClass("col-lg-6");
+        let innerContainer = this.createDivClass("container");
+        let innerRow = this.createDivClass("row");
+
+        let innerColColor =  this.rd.createElement('div');
+        this.rd.addClass(innerColColor, "col-lg-4");
+        this.rd.addClass(innerColColor, "col-md-2");
+        this.rd.addClass(innerColColor, "col-4");    
+        //let colLgFour = this.createDivClass("col-lg-4");
+
+        let innerColPrice = this.rd.createElement('div');        
+        this.rd.addClass(innerColPrice, "col-lg-8");
+        this.rd.addClass(innerColPrice, "col-md-10");
+        this.rd.addClass(innerColPrice, "col-8");    
+        
+        //let colLgEight = this.createDivClass("col-lg-8");
+        let spanText = this.createSpanText(`${item.price} грн.`);
+
+        this.rd.appendChild(outerRow, outerCol);
+
+        this.rd.appendChild(outerCol, innerContainer);
+        this.rd.appendChild(innerContainer, innerRow);
+
+        this.rd.appendChild(innerRow, innerColColor);
+        this.rd.addClass(innerColColor, "sector_squre_style");
+        this.rd.addClass(innerColColor, this.setSectorColor(item.sectorId));
+
+        this.rd.appendChild(innerRow, innerColPrice);
+        this.rd.appendChild(innerColPrice, spanText);
+    }
+  }
+
 
   goToPayment(){
-
     //create purchase
     let _idPurchase: string = this.zeroPad(this.getRandomInt(1,10000),5);  
     let purchase = {
