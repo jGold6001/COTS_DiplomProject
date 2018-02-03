@@ -8,6 +8,7 @@ import { PlaceService } from '../../../../../../shared/services/place.service';
   templateUrl: './florence-hall-blue.component.html',
   styleUrls: ['./florence-hall-blue.component.css']
 })
+
 export class FlorenceHallBlueComponent implements OnInit {
 
   buttons: any = [];
@@ -26,7 +27,7 @@ export class FlorenceHallBlueComponent implements OnInit {
   ngOnInit() {
 
     this.placeService.getPlacesByCityCinemaHallAndSeance('kiev', 'florence', 'Синий', this.seanceId)
-      .subscribe( res =>{
+      .subscribe( res =>{            
         this.places = res;      
         this.createButtons(); 
         this.clickEvents(); 
@@ -34,8 +35,9 @@ export class FlorenceHallBlueComponent implements OnInit {
   }
 
   clickEvents(){      
-      for(let item in this.buttons){
-        let button = this.elRef.nativeElement.querySelector(`#btn_${item}`);
+      for(let item in this.buttons){ 
+        let index = Number(item) + 1;   
+        let button = this.elRef.nativeElement.querySelector(`#btn_${index}`);
         if(button){
              this.rd.listen(button, 'click', (event)=>{            
               this.changeColor(button);

@@ -25,13 +25,13 @@ export class SeancesByCinemasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //console.log(this.seance);
+    
   }
 
   openDialog(){
     let dialogRef = this.dialog.open(HallDialogComponent, {
       width: '1000px',
-      data: { seance: this.seance }
+      data: { seanceId: this.seance.id }
     });
   }
 

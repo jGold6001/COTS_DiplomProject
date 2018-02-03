@@ -61,13 +61,13 @@ export class JsonConvertor{
 
     public static toSeanceArray(data): Seance[] {
         let seances: Seance[] = [];  
-        console.log(data);
+        
         for (let i = 0; i < data.length; i++) {
             let seance: Seance = new Seance();
             seance.init(data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TechnologyId); 
-            seance.movie = this.toMovieShort(data[i].MovieShortViewModel);
-            seance.hall = this.toHall(data[i].HallViewModel);         
-            seance.tariffs = this.toTariffArray(data[i].TariffViewModels);            
+            // seance.movie = this.toMovieShort(data[i].MovieShortViewModel);
+            // seance.hall = this.toHall(data[i].HallViewModel);         
+            // seance.tariffs = this.toTariffArray(data[i].TariffViewModels);            
             seances.push(seance);
         }       
         return seances;
@@ -78,6 +78,7 @@ export class JsonConvertor{
         seance.init(data.Id, data.TimeBegin, data.DateSeance, data.TechnologyId);
         seance.movie = this.toMovieShort(data.MovieShortViewModel);
         seance.hall = this.toHall(data.HallViewModel);
+        seance.tariffs = this.toTariffArray(data.TariffViewModels); 
         return seance;
     }
 
@@ -111,7 +112,7 @@ export class JsonConvertor{
         let places: Place[]=[];
         for(let item of data){
             let place: Place = new Place();
-            place.init(item.Id, item.Number, item.Row, item.IsBusy, item.HallId, data.SectorId);        
+            place.init(item.Id, item.Number, item.Row, item.IsBusy, item.HallId, item.SectorId);        
             places.push(place);
         }
         return places;

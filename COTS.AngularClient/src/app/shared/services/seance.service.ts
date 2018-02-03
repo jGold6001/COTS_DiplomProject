@@ -27,7 +27,6 @@ export class SeanceService{
             });     
     }
 
-    //go to 
     getOne(id: number){
         return this.http.get(environment.APIURL_SEANCE + id)
             .map(response => {

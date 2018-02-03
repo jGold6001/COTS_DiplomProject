@@ -18,6 +18,10 @@ import { SeanceService } from '../../../shared/services/seance.service';
 import { loadavg } from 'os';
 import { element } from 'protractor';
 import { Tariff } from '../../../shared/models/tariff.model';
+import { Movie } from '../../../shared/models/movie.model';
+import { Hall } from '../../../shared/models/hall.model';
+import { Cinema } from '../../../shared/models/cinema.model';
+import { FlorenceHallBlueComponent } from '../halls-components/kiev/florence/florence-hall-blue/florence-hall-blue.component';
 
 
 @Component({
@@ -34,6 +38,10 @@ export class HallDialogComponent implements OnInit {
   componentRef: ComponentRef<{}>;
 
   seance: Seance;
+  movie: Movie;
+  hall: Hall;
+  cinema: Cinema;
+
   places: Place[] = [];
   tickets: Ticket[] =[];
   purchase: Purchase;
@@ -51,51 +59,55 @@ export class HallDialogComponent implements OnInit {
     private seanceService: SeanceService,
     private router: Router,
     private rd: Renderer2,
-    private elRef:ElementRef,
+    private elRef:ElementRef
   )
   { }
 
   ngOnInit() {
-
-    this.seance = this.data.seance;
-    //console.log(this.seance.tariffs);
-    let typeInfo = {
-      city:     "kiev",              //this.seance.cinema.cityId,
-      cinema:   "florence",      //this.seance.hall.cinema.id,
-      hall:     "Синий"                //this.seance.hall
-    };
-
-    
-    let componentType = this.getComponentType(typeInfo);
-    let factory = this.domService.createFactory(componentType);    
-    this.componentRef = this.container.createComponent(factory);      
-    this.componentRef.instance.seanceId = this.seance.id;
-   
-
-    this.dataService.placesSelected$.subscribe( place =>
-      {       
-        this.tariffs = this.seance.tariffs;
-        
-        //let tariff = this.tariffs.find(t => t.sectorId == place.sectorId);
-        let tariff = new Tariff();
-        this.places.push(place);
-        this.addPlaceRow(place, tariff);  
-        this.enablePayButton();
-        //this.sum += tariff.price;
-      }
-    );
-
-    this.dataService.placesCanceles$.subscribe(place =>
+    this.seanceService.getOne(this.data.seanceId).subscribe( seance => 
       {
-        // this.tariffs = this.seance.tariffs ;          
-        // let tariff = this.tariffs.find(t => t.sectorId == place.sectorId);
-        this.removePlaceRow(place.id);
-        this.deleteObjectFromArray(place.id);
-        this.disablePayButton();
-        //this.sum -=tariff.price;
+        this.seance = seance;
+        this.movie = this.seance.movie;
+        this.hall = this.seance.hall;
+        this.cinema = this.hall.cinema;
+
+        
+        let typeInfo = {
+          city:     "kiev",              //this.seance.cinema.cityId,
+          cinema:   "florence",      //this.seance.hall.cinema.id,
+          hall:     "Синий"                //this.seance.hall
+        };
+      
+        let componentType = this.getComponentType(typeInfo);
+        let factory = this.domService.createFactory(componentType);    
+        let componentRef = this.container.createComponent(factory);        
+        (componentRef.instance).seanceId = this.seance.id;
+
+              
+        this.tariffs = this.seance.tariffs;                 
+        this.dataService.placesSelected$.subscribe( place =>
+          {                              
+              let tariff = this.tariffs.filter(t=>{ return t.sectorId == place.sectorId })[0];
+              this.places.push(place);
+              this.addPlaceRow(place, tariff);  
+              this.enablePayButton();
+              this.sum += tariff.price;           
+          }
+        );
+
+        this.dataService.placesCanceles$.subscribe(place =>
+          {          
+            let tariff = this.tariffs.filter(t=>{ return t.sectorId == place.sectorId })[0];
+            this.removePlaceRow(place.id);
+            this.deleteObjectFromArray(place.id);
+            this.disablePayButton();
+            this.sum -=tariff.price;
+          }
+        );
+       
       }
     );
-    
+     
   }
 
 
