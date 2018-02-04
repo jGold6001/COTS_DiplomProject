@@ -6,5 +6,20 @@
 
 
 .sector_squre_style{
-    width:15px; height: 15px; margin-top: 5px;
+    width: 100px;
+    text-align: center;
+    border-radius: .25rem;   
+}
+
+
+.busy-sector{
+    color:#84878a;
+    background-color:#f8f9fa; 
+    border-color:#57575a;
+}
+
+.selected-sector{
+    color:#212529;
+    background-color:#ffc107;
+    border-color:#ffc107
 }

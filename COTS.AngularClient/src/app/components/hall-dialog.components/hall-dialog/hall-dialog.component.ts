@@ -126,41 +126,35 @@ export class HallDialogComponent implements OnInit {
     this.rd.appendChild(root, outerContainer);
     this.rd.appendChild(outerContainer, outerRow);
 
+    //prices of sectors
     for(let item of this.tariffs){
-        let outerCol = this.rd.createElement('div');       
-        this.rd.addClass(outerCol, "col-lg-2");
-        this.rd.addClass(outerCol, "col-md-4");
-        this.rd.addClass(outerCol, "col-6");        
-        //let colLgSix = this.createDivClass("col-lg-6");
-        let innerContainer = this.createDivClass("container");
-        let innerRow = this.createDivClass("row");
-
-        let innerColColor =  this.rd.createElement('div');
-        this.rd.addClass(innerColColor, "col-lg-4");
-        this.rd.addClass(innerColColor, "col-md-2");
-        this.rd.addClass(innerColColor, "col-4");    
-        //let colLgFour = this.createDivClass("col-lg-4");
-
-        let innerColPrice = this.rd.createElement('div');        
-        this.rd.addClass(innerColPrice, "col-lg-8");
-        this.rd.addClass(innerColPrice, "col-md-10");
-        this.rd.addClass(innerColPrice, "col-8");    
-        
-        //let colLgEight = this.createDivClass("col-lg-8");
-        let spanText = this.createSpanText(`${item.price} грн.`);
-
-        this.rd.appendChild(outerRow, outerCol);
-
-        this.rd.appendChild(outerCol, innerContainer);
-        this.rd.appendChild(innerContainer, innerRow);
-
-        this.rd.appendChild(innerRow, innerColColor);
-        this.rd.addClass(innerColColor, "sector_squre_style");
-        this.rd.addClass(innerColColor, this.setSectorColor(item.sectorId));
-
-        this.rd.appendChild(innerRow, innerColPrice);
-        this.rd.appendChild(innerColPrice, spanText);
+      this.createColorSquare(outerRow, this.setSectorColor(item.sectorId), `${item.price} грн.`);    
     }
+
+    //busy places
+    this.createColorSquare(outerRow, "busy-sector", `Недоступные`);
+
+    //selected places
+    this.createColorSquare(outerRow, "selected-sector", `Выбранные`);
+
+  }
+
+  createColorSquare(outerRow: any, colorClass: string, text: string){
+      let outerCol = this.rd.createElement('div');    
+      this.rd.addClass(outerCol, "col");                                    
+
+      let sector = this.rd.createElement('div');
+      this.rd.addClass(sector, "sector_squre_style");
+      this.rd.addClass(sector, colorClass);  
+      
+      let br = this.rd.createElement('br');
+
+      let spanText = this.createSpanText(text);      
+      
+      this.rd.appendChild(outerRow, outerCol);
+      this.rd.appendChild(outerCol, sector);
+      this.rd.appendChild(outerCol, br);
+      this.rd.appendChild(sector, spanText);
   }
 
 
@@ -210,6 +204,21 @@ export class HallDialogComponent implements OnInit {
     this.setText(container,`Цена: ${tariff.price}`); 
   }
 
+  private setText(divContainer, text: string){
+    let divCol = this.createDivClass('col-4');
+    let span = this.createSpanText(text);
+    this.rd.appendChild(divCol, span);
+    this.rd.appendChild(divContainer, divCol)
+  }
+
+  private setRowAndNumberPlace(){
+    
+  }
+
+  private setTariffPrice(){
+
+  }
+
   private removePlaceRow(placeId : number){
     let placeContainer = this.elRef.nativeElement.querySelector('#selected_places');
     let placeIdDiv = this.elRef.nativeElement.querySelector(`#place_${placeId}`);
@@ -244,12 +253,7 @@ export class HallDialogComponent implements OnInit {
     return divRowInner;
   }
 
-  private setText(divContainer, text: string){
-    let divCol = this.createDivClass('col-4');
-    let span = this.createSpanText(text);
-    this.rd.appendChild(divCol, span);
-    this.rd.appendChild(divContainer, divCol)
-  }
+  
 
   private createDivClass(className: string){
     let div = this.rd.createElement('div');
