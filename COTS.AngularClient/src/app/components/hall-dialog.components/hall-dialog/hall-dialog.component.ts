@@ -15,13 +15,14 @@ import { City } from '../../../shared/models/city.model';
 
 import {serialize} from 'json-typescript-mapper';
 import { SeanceService } from '../../../shared/services/seance.service';
-import { loadavg } from 'os';
+import { loadavg, constants } from 'os';
 import { element } from 'protractor';
 import { Tariff } from '../../../shared/models/tariff.model';
 import { Movie } from '../../../shared/models/movie.model';
 import { Hall } from '../../../shared/models/hall.model';
 import { Cinema } from '../../../shared/models/cinema.model';
-import { FlorenceHallBlueComponent } from '../halls-components/kiev/florence/florence-hall-blue/florence-hall-blue.component';
+import { Sector } from '../../../shared/models/sector.model';
+import { SectorService } from '../../../shared/services/sector.service';
 
 
 @Component({
@@ -48,6 +49,7 @@ export class HallDialogComponent implements OnInit {
   show: boolean = false;
   sum: number = 0;
   tariffs: Tariff[] = [];
+  sectors: Sector[] = [];
 
 
   constructor(
@@ -56,6 +58,7 @@ export class HallDialogComponent implements OnInit {
     private domService: DomService,
     private dataService: DataService,
     private purchaseService: PurchaseService,
+    private sectorService: SectorService,
     private seanceService: SeanceService,
     private router: Router,
     private rd: Renderer2,
@@ -64,14 +67,18 @@ export class HallDialogComponent implements OnInit {
   { }
 
   ngOnInit() {
+
+
     this.seanceService.getOne(this.data.seanceId).subscribe( seance => 
       {
         this.seance = seance;
         this.movie = this.seance.movie;
         this.hall = this.seance.hall;
         this.cinema = this.hall.cinema;
-
         
+        this.sectors = this.data.sectors;
+       
+
         let typeInfo = {
           city:     "kiev",              //this.seance.cinema.cityId,
           cinema:   "florence",      //this.seance.hall.cinema.id,
@@ -86,25 +93,8 @@ export class HallDialogComponent implements OnInit {
         
         this.createSectorTariffs();
         
-        this.dataService.placesSelected$.subscribe( place =>
-          {                              
-              let tariff = this.tariffs.filter(t=>{ return t.sectorId == place.sectorId })[0];
-              this.places.push(place);
-              this.addPlaceRow(place, tariff);  
-              this.enablePayButton();
-              this.sum += tariff.price;           
-          }
-        );
-
-        this.dataService.placesCanceles$.subscribe(place =>
-          {          
-            let tariff = this.tariffs.filter(t=>{ return t.sectorId == place.sectorId })[0];
-            this.removePlaceRow(place.id);
-            this.deleteObjectFromArray(place.id);
-            this.disablePayButton();
-            this.sum -=tariff.price;
-          }
-        );
+        this.dataService.placesSelected$.subscribe( place => this.createTicket(place));
+        this.dataService.placesCanceles$.subscribe(place => this.cancelTicket(place));
        
       }
     );
@@ -112,10 +102,9 @@ export class HallDialogComponent implements OnInit {
   }
 
   setSectorColor(sectorId: number): string {
-    switch(sectorId){
-      case 1: return "green-sector";
-      case 2: return "red-sector";
-    }
+    let sector = this.sectors.find(s => s.id == sectorId);
+    let sectorName = sector.name.toLowerCase();
+    return `${sectorName}-sector`;
   }
 
   createSectorTariffs(){
@@ -145,15 +134,12 @@ export class HallDialogComponent implements OnInit {
 
       let sector = this.rd.createElement('div');
       this.rd.addClass(sector, "sector_squre_style");
-      this.rd.addClass(sector, colorClass);  
-      
-      let br = this.rd.createElement('br');
+      this.rd.addClass(sector, colorClass);       
 
       let spanText = this.createSpanText(text);      
       
       this.rd.appendChild(outerRow, outerCol);
       this.rd.appendChild(outerCol, sector);
-      this.rd.appendChild(outerCol, br);
       this.rd.appendChild(sector, spanText);
   }
 
@@ -192,45 +178,75 @@ export class HallDialogComponent implements OnInit {
   
   }
 
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   private addPlaceRow(place: Place, tariff: Tariff){  
     let container = this.createRowContainerRow(place.id);
-    this.setText(container,`Ряд: ${place.row}`);
-    this.setText(container,`Место: ${place.num}`);   
-    this.setText(container,`Цена: ${tariff.price}`); 
-  }
-
-  private setText(divContainer, text: string){
-    let divCol = this.createDivClass('col-4');
-    let span = this.createSpanText(text);
-    this.rd.appendChild(divCol, span);
-    this.rd.appendChild(divContainer, divCol)
-  }
-
-  private setRowAndNumberPlace(){
+    let row =  this.createDivClass('row');
     
+    this.setColText(row,`Ряд: ${place.row}`, 'col-lg-4', 'col-md-4');
+    this.setColText(row,`Место: ${place.num}`, 'col-lg-4', 'col-md-4');
+    this.setColText(row,`${tariff.price} грн.`, 'col-lg-2', 'col-md-2');
+    this.setBtnDelete(row, place);
+
+    this.rd.appendChild(container, row);
   }
 
-  private setTariffPrice(){
-
+  private setColText(rootDiv, text: string, className_lg, className_md){
+    let div = this.rd.createElement('div');
+    this.rd.addClass(div, className_lg);
+    this.rd.addClass(div, className_md);
+    let span = this.createSpanText(text);
+    this.rd.appendChild(rootDiv, div);
+    this.rd.appendChild(div, span);
   }
+
+  private setBtnDelete(row, place: Place){
+    let div = this.rd.createElement('div');
+    this.rd.addClass(div, 'col-lg-2');
+    this.rd.addClass(div, 'col-md-2');
+
+    let button = this.rd.createElement('button');
+    this.rd.addClass(button, 'btn');
+    this.rd.addClass(button, 'button-margin');
+    this.rd.setAttribute(button, 'id', `place_${place.id}`);
+    let x = this.rd.createText("Отмена");
+    this.rd.listen(button, 'click', ()=>
+    {
+      this.cancelTicket(place);
+      this.dataService.removePlace(place);
+    });
+
+    this.rd.appendChild(row, div);
+    this.rd.appendChild(div, button);
+    this.rd.appendChild(button, x);   
+  }
+
+  cancelTicket(place: Place){
+    let tariff = this.tariffs.filter(t=>{ return t.sectorId == place.sectorId })[0];
+    this.removePlaceRow(place.id);
+    this.deleteObjectFromArray(place.id);
+    this.disablePayButton();
+    this.sum -=tariff.price;
+  }
+
+  createTicket(place: Place){
+    let tariff = this.tariffs.filter(t=>{ return t.sectorId == place.sectorId })[0];
+    this.places.push(place);
+    this.addPlaceRow(place, tariff);  
+    this.enablePayButton();
+    this.sum += tariff.price;    
+  }
+
 
   private removePlaceRow(placeId : number){
     let placeContainer = this.elRef.nativeElement.querySelector('#selected_places');
     let placeIdDiv = this.elRef.nativeElement.querySelector(`#place_${placeId}`);
-    this.rd.removeChild(placeContainer, placeIdDiv);
-    
+    this.rd.removeChild(placeContainer, placeIdDiv);    
   }
 
   private getComponentType(typeInfo: any) {
     return CitiesMappings.city[typeInfo.city].cinema[typeInfo.cinema].hall[typeInfo.hall];
   }
 
-  
   private getRandomInt(min, max): number {
     return Math.floor(Math.random() * (max - min)) + min;
   }
@@ -242,17 +258,18 @@ export class HallDialogComponent implements OnInit {
 
   private createRowContainerRow(placeId: number){
     let placeContainer = this.elRef.nativeElement.querySelector('#selected_places');
+
     let divPlace = this.createDivId(`place_${placeId}`);
+    this.rd.addClass(divPlace, "light-grey-border");
     let divContainer = this.createDivClass('container');
     let divRowOuter = this.createDivClass('row');
-    let divRowInner = this.createDivClass('row');
-    this.rd.appendChild(divContainer, divRowInner);
-    this.rd.appendChild(divRowOuter, divContainer)
-    this.rd.appendChild(divPlace, divRowOuter);
+    
     this.rd.appendChild(placeContainer, divPlace);
-    return divRowInner;
+    this.rd.appendChild(divPlace, divRowOuter);
+    this.rd.appendChild(divRowOuter, divContainer)
+    
+    return divContainer;
   }
-
   
 
   private createDivClass(className: string){

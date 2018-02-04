@@ -89,6 +89,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TicketsDialogComponent } from './components/purchase-page.components/tickets-dialog/tickets-dialog.component';
 import { PurchaseService } from './shared/services/purchase.service';
 import { PlaceService } from './shared/services/place.service';
+import { SectorService } from './shared/services/sector.service';
 
 
 @NgModule({
@@ -199,6 +200,7 @@ import { PlaceService } from './shared/services/place.service';
   providers: [
     GeocodingApiService,
     MovieService, 
+    SectorService,
     CityService, 
     CinemaService,
     SeanceService,

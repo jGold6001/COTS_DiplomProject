@@ -32,6 +32,17 @@ export class FlorenceHallBlueComponent implements OnInit {
         this.createButtons(); 
         this.clickEvents(); 
       }, err => console.log("File not reading!!!")); 
+
+      this.dataService.placesRemoved$.subscribe( place =>
+      {
+        let button = this.elRef.nativeElement.querySelector(`#btn_${place.id}`);
+        this.changeColor(button, place.sectorId);
+        if(!this.placesSelected.includes(place)){
+          this.placesSelected.push(place);
+        }else{        
+          this.deleteObjectFromArray(place.id);
+        }
+      });
   }
 
   clickEvents(){      
@@ -98,9 +109,9 @@ export class FlorenceHallBlueComponent implements OnInit {
       }else{        
         this.dataService.cancelPlace(_place);
         this.deleteObjectFromArray(_place.id);
-      }
-       
+      }    
    }
+
 
    private deleteObjectFromArray(id){
     for(let place of this.placesSelected){

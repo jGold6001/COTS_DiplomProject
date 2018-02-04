@@ -9,6 +9,8 @@ import { CinemaService } from '../../../shared/services/cinema.service';
 import { MovieService } from '../../../shared/services/movie.service';
 import { HallDialogComponent } from '../../hall-dialog.components/hall-dialog/hall-dialog.component';
 import { Hall } from '../../../shared/models/hall.model';
+import { SectorService } from '../../../shared/services/sector.service';
+import { Sector } from '../../../shared/models/sector.model';
 
 
 @Component({
@@ -19,19 +21,26 @@ import { Hall } from '../../../shared/models/hall.model';
 export class SeancesByCinemasComponent implements OnInit {
 
   @Input() seance: Seance;
-  
+  @Input() enterpriseId: string;
+  sectors: Sector[] = [];
+
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private sectorService: SectorService
   ) { }
 
   ngOnInit() {
-    
+    this.sectorService.getAllByEnterprise(this.enterpriseId).subscribe( res =>
+      {
+        this.sectors = res;
+      }
+    )
   }
 
   openDialog(){
     let dialogRef = this.dialog.open(HallDialogComponent, {
       width: '1000px',
-      data: { seanceId: this.seance.id }
+      data: { seanceId: this.seance.id, sectors:  this.sectors}
     });
   }
 

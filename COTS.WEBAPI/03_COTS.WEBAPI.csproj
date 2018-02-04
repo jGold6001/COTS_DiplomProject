@@ -171,6 +171,7 @@
     <Compile Include="Controllers\WebApi\MovieController.cs" />
     <Compile Include="Controllers\WebApi\PlaceController.cs" />
     <Compile Include="Controllers\WebApi\PurchaseController.cs" />
+    <Compile Include="Controllers\WebApi\SectorController.cs" />
     <Compile Include="Controllers\WebApi\TicketController.cs" />
     <Compile Include="Controllers\WebApi\SeanceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,6 +208,7 @@
     <Compile Include="Utils\MapperManager\ViewModelMappers\PurchaseViewModelMapper.cs" />
     <Compile Include="Utils\MapperManager\ViewModelMappers\SeanceViewModelMapper.cs" />
     <Compile Include="Utils\MapperManager\DTOMappers\TicketDTOMapper.cs" />
+    <Compile Include="Utils\MapperManager\ViewModelMappers\SectorViewModelMapper.cs" />
     <Compile Include="Utils\MapperManager\ViewModelMappers\TariffViewModelMapper.cs" />
     <Compile Include="Utils\MapperManager\ViewModelMappers\TechnologyViewModelMapper.cs" />
     <Compile Include="Utils\MapperManager\ViewModelMappers\TicketViewModelMapper.cs" />

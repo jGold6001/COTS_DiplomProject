@@ -38,5 +38,10 @@ namespace COTS.BLL.Services
         {
             return mapperUnitOfWork.SectorDTOMapper.MapToObject(sectorRepository.Get(id));
         }
+
+        public IEnumerable<SectorDTO> FindAllByEnterprice(string enterpriseId)
+        {
+            return mapperUnitOfWork.SectorDTOMapper.MapToCollectionObjects(sectorRepository.FindBy(s => s.EnterpriseId == enterpriseId));
+        }
     }
 }

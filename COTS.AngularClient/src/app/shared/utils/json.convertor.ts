@@ -8,11 +8,12 @@ import { Customer } from "../models/customer.model";
 import { forEach } from "@angular/router/src/utils/collection";
 import { Hall } from "../models/hall.model";
 import { Tariff } from "../models/tariff.model";
+import { Sector } from "../models/sector.model";
 
 
 export class JsonConvertor{
 
-    public static toMoviesShortArray(data): Movie[] {
+    public static toMoviesShortArray(data): Movie[] {   
         let movies: Movie[] = [];
         for (let i = 0; i < data.length; i++) {
             let movie: Movie = new Movie();
@@ -47,7 +48,7 @@ export class JsonConvertor{
         let cinemas: Cinema[] = [];
         for (let i = 0; i < data.length; i++){
             let cinema: Cinema = new Cinema();
-            cinema.init(data[i].Id, data[i].Name, data[i].Address, data[i].ImagePath, data[i].CityId);
+            cinema.init(data[i].Id, data[i].Name, data[i].Address, data[i].ImagePath, data[i].CityId, data[i].EnterpriseId);
             cinemas.push(cinema);
         }
         return cinemas;
@@ -55,7 +56,7 @@ export class JsonConvertor{
 
     public static toCinema(data): Cinema{
         let cinema: Cinema = new Cinema();
-        cinema.init(data.Id, data.Name, data.Address, data.ImagePath, data.CityId);
+        cinema.init(data.Id, data.Name, data.Address, data.ImagePath, data.CityId, data.EnterpriseId);
         return cinema;
     }
 
@@ -64,10 +65,7 @@ export class JsonConvertor{
         
         for (let i = 0; i < data.length; i++) {
             let seance: Seance = new Seance();
-            seance.init(data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TechnologyId); 
-            // seance.movie = this.toMovieShort(data[i].MovieShortViewModel);
-            // seance.hall = this.toHall(data[i].HallViewModel);         
-            // seance.tariffs = this.toTariffArray(data[i].TariffViewModels);            
+            seance.init(data[i].Id, data[i].TimeBegin, data[i].DateSeance, data[i].TechnologyId);              
             seances.push(seance);
         }       
         return seances;
@@ -149,6 +147,16 @@ export class JsonConvertor{
         let tariff: Tariff = new Tariff();
         tariff.init(data.Id,data.Name, data.Price, data.SectorId, data.TechnologyId);
         return tariff;
+    }
+
+    public static toSectorArray(data): Sector[]{
+        let sectors: Sector[] = [];
+        for(let item of data){
+            let sector: Sector = new Sector();
+            sector.init(item.Id, item.Name, item.EnterpriseId);
+            sectors.push(sector);
+        }        
+        return sectors;
     }
 
 }

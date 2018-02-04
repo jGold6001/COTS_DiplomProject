@@ -12,6 +12,7 @@ namespace COTS.BLL.Interfaces
         SectorDTO GetOne(long? id);
         IEnumerable<SectorDTO> GetAll();
         IEnumerable<SectorDTO> FindAllBySeance(long? seanceId);
+        IEnumerable<SectorDTO> FindAllByEnterprice(string enterpriseId);
 
     }
 }

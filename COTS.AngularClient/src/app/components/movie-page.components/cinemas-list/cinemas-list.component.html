@@ -7,7 +7,8 @@
     <div class="col-lg-9 col-md-6">
         <div class="container">
             <div class="row">
-                    <app-seances-by-cinemas ngOnChanges                   
+                    <app-seances-by-cinemas ngOnChanges 
+                    [enterpriseId] = "cinema.enterpriseId"               
                     *ngFor="let seance of seances"
                     [seance] = "seance"
                 ></app-seances-by-cinemas>

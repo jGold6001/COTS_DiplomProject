@@ -25,6 +25,7 @@ namespace COTS.WEBAPI.Utils.MapperManager
         PlaceViewModelMapper placeViewModelMapper;
         TechnologyViewModelMapper technologyViewModelMapper;
         EnterpriseViewModelMapper enterpriseViewModelMapper;
+        SectorViewModelMapper sectorViewModelMapper;
 
         TicketDTOMapper ticketDTOMapper;
         PlaceDTOMapper placeDTOMapper;
@@ -197,6 +198,16 @@ namespace COTS.WEBAPI.Utils.MapperManager
                 if (enterpriseViewModelMapper == null)
                     enterpriseViewModelMapper = new EnterpriseViewModelMapper();
                 return enterpriseViewModelMapper;
+            }
+        }
+
+        public SectorViewModelMapper SectorViewModelMapper
+        {
+            get
+            {
+                if (sectorViewModelMapper == null)
+                    sectorViewModelMapper = new SectorViewModelMapper();
+                return sectorViewModelMapper;
             }
         }
 
