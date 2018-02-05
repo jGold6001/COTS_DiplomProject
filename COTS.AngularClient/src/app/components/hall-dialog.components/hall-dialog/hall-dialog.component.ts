@@ -149,24 +149,27 @@ export class HallDialogComponent implements OnInit {
     let _idPurchase: string = this.zeroPad(this.getRandomInt(1,10000),5);  
     let purchase = {
       Id: _idPurchase,
+      Sum: this.sum,
       TicketViewModels: []
     };
    
     //create tickets
     for(let place of this.places){ 
-       //let tariff = this.tariffs.find(t => t.sector == place.sector);
+
+      let tariff = this.tariffs.find(t => t.sectorId == place.sectorId);
       let TicketViewModel = {
         Id: this.zeroPad(this.getRandomInt(1,100000),6),
         PurchaseId: _idPurchase,
         State: 1,
         SeanceId: this.seance.id,
         PlaceId: place.id, 
-        //TariffId:  tariff.id;   
+        TariffId:  tariff.id  
       };     
       purchase.TicketViewModels.push(TicketViewModel);
-      //purchase.sum = this.sum;
     } 
     
+
+
     //post to server
     this.purchaseService.saveInDb(purchase);
 

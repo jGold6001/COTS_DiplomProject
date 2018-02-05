@@ -40,7 +40,7 @@ export class PurchasePageComponent implements OnInit {
   cinema: Cinema= new Cinema(); 
   hall: Hall = new Hall();
   customer: Customer = new Customer();
-
+  technology: string;
 
   constructor(
    private route: ActivatedRoute,
@@ -58,7 +58,8 @@ export class PurchasePageComponent implements OnInit {
         this.seance = this.tickets[0].seance;
         this.movie = this.seance.movie;
         this.cinema = this.seance.hall.cinema;
-        this.hall = this.seance.hall;    
+        this.hall = this.seance.hall;  
+        this.technology = this.seance.technologyId.toUpperCase();
       }, () => console.error("Ошибка при получении данных с сервера"));
 
       this.startTimer(420);

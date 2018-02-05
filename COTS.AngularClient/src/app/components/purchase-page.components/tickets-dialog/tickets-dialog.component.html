@@ -39,10 +39,10 @@
                                     <b>Зал:</b> {{hall.name}}, <b>Ряд:</b>{{ticket.place.row}}, <b>Место:</b> {{ticket.place.num}}
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Тариф:</b> {{tariff.name}}
+                                    <b>Тариф:</b> {{getTariff(ticket.id).name}}
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Цена:</b> {{tariff.price}}
+                                    <b>Цена:</b> {{getTariff(ticket.id).price}}
                                 </li>
                             </ul>
                         </div>

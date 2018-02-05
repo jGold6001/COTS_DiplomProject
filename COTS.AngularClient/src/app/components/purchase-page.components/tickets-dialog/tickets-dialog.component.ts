@@ -22,23 +22,39 @@ export class TicketsDialogComponent implements OnInit {
   cinema: Cinema;
   seance: Seance;
   hall: Hall;
-  tariff: Tariff;
+  tariffs: any[] = [];
   
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.purchase = this.data.purchase;  
-    this.tickets = this.purchase.tickets;   
+    this.tickets = this.purchase.tickets;
+    this.tariffs = this.createSpesialTariffs();
+    
+
     this.seance = this.tickets[0].seance;
     this.movie = this.seance.movie;
     this.hall =  this.seance.hall;
     this.cinema = this.hall.cinema;
-   
+    
+  }
 
-    this.tariff = new Tariff();
-    this.tariff.name = "None";
-    this.tariff.price = 0;
+  private createSpesialTariffs(): any[]{
+    let _tariffs: any[] = [];
+    for(let item of this.tickets){
+        let _tariff= {
+          ticketId: item.id,
+          name: item.tariff.name.split("_", 4)[2].toUpperCase(),
+          price: item.tariff.price
+        }
+        _tariffs.push(_tariff);
+    }
+    return _tariffs;
+  }
+
+  getTariff(ticketId: string){
+    return this.tariffs.find(t => t.ticketId == ticketId);
   }
 
   

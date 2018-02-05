@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Constants\CinemaSectors\FlorenceSectors.cs" />
     <Compile Include="Constants\CinemaSectors\MpxSectors.cs" />
+    <Compile Include="Constants\TicketState.cs" />
     <Compile Include="Constants\TimePeriod.cs" />
     <Compile Include="Constants\TypeD.cs" />
     <Compile Include="Constants\WeekDays.cs" />

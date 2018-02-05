@@ -40,7 +40,7 @@ namespace COTS.BLL.Services
             var tickets = ticketService.GetByPurchase(id);
             if(tickets.Count() > 0)
             {
-                foreach (var item in ticketService.GetByPurchase(id))
+                foreach (var item in tickets)
                     ticketService.Delete(item.Id);
             }         
 

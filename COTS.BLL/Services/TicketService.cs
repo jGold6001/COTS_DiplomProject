@@ -10,6 +10,7 @@ using AutoMapper;
 using COTS.BLL.Utils;
 using COTS.DAL.Entities;
 using COTS.BLL.Managers.MapperManager;
+using COTS.BLL.Constants;
 
 namespace COTS.BLL.Services
 {
@@ -36,9 +37,10 @@ namespace COTS.BLL.Services
                 throw new ValidationException("TicketsDTO not set", "");
          
             var ticket = mapperUnitOfWork.TicketMapper.MapToObject(ticketDTO);
-           
-            var placeDTO = placeService.GetOne(ticket.PlaceId);
-            placeService.AddOrUpdate(placeDTO);
+
+            
+            if (ticket.State == TicketStates.BOOKING)
+                ticket.State = TicketStates.SOLD;
 
             UnitOfWork.Tickets.AddOrUpdate(ticket);
             UnitOfWork.Save();
@@ -50,9 +52,6 @@ namespace COTS.BLL.Services
                 throw new ValidationException("'id' not set", "");
 
             var ticket = UnitOfWork.Tickets.Get(id);
-
-            var placeDTO = placeService.GetOne(ticket.PlaceId);           
-            placeService.AddOrUpdate(placeDTO);
 
             UnitOfWork.Tickets.Delete(ticket);
             UnitOfWork.Save();
