@@ -1,0 +1,15 @@
+.red-sector{background-color: red; color: white !important; border-color: rgb(219, 11, 11) !important;}
+.red-sector:hover{color:white;background-color:rgb(201, 7, 7);border-color:rgb(202, 16, 16)}
+.red-sector.focus,.red-sector:focus{box-shadow:0 0 0 .2rem rgba(241, 39, 13, 0.5)}
+
+.green-sector{background-color: green; color: white !important; border-color: rgb(5, 129, 5) !important;}
+.green-sector:hover{color:white;background-color:rgb(2, 80, 2);border-color:rgb(5, 134, 5)}
+.green-sector.focus,.green-sector:focus{box-shadow:0 0 0 .2rem rgba(4, 153, 11, 0.5)}
+
+.blue-sector{background-color: blue; color: white !important; border-color: rgb(6, 6, 207) !important;}
+.blue-sector:hover{color:white;background-color:rgb(4, 4, 177);border-color:rgb(6, 6, 207)}
+.blue-sector.focus,.blue-sector:focus{box-shadow:0 0 0 .2rem rgba(41, 9, 219, 0.5)}
+
+.cyan-sector{ background-color: cyan; color: black !important; border-color:rgb(56, 214, 214) !important;}
+.cyan-sector:hover{color:black;background-color:rgb(8, 187, 187);border-color:rgb(56, 214, 214)}
+.cyan-sector.focus,.cyan-sector:focus{box-shadow:0 0 0 .2rem rgba(32, 209, 240, 0.5)}

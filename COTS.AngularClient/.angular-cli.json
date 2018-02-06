@@ -20,7 +20,9 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../src/assets/css/enterprises_sectors/kinoKiev.css"
+        "../src/app/components/hall-dialog.components/halls-components/css/basic_buttons_hall.css",
+        "../src/app/components/hall-dialog.components/halls-components/css/enterprises_sectors/kinoKiev.css",
+        "../src/app/components/hall-dialog.components/halls-components/css/enterprises_sectors/mpx.css"
       ],
       "scripts": [
       ],

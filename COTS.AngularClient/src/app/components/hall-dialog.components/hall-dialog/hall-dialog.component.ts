@@ -93,7 +93,7 @@ export class HallDialogComponent implements OnInit {
         
         this.createSectorTariffs();
         
-        this.dataService.placesSelected$.subscribe( place => this.createTicket(place));
+        this.dataService.placesSelected$.subscribe(place => this.createTicket(place));
         this.dataService.placesCanceles$.subscribe(place => this.cancelTicket(place));
        
       }

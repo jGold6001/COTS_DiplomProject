@@ -1,0 +1,36 @@
+.selected-seat{color:#212529 !important; background-color:#ffc107; border-color:#ffc107 !important; }
+.selected-seat:hover{color:#212529;background-color:#e0a800;border-color:#d39e00}
+.selected-seat.focus,.selected-seat:focus{box-shadow:0 0 0 .2rem rgba(255,193,7,.5)}
+
+.hall{
+    font-weight: bold;
+}
+
+.td-row-left, .td-row-right{
+    width: 30px;
+}
+ 
+.td-row-right{
+    text-align: end;
+}
+
+.screen{
+    background-color: lightgray;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 0 0 5px 5px;
+}
+
+.table-hall{
+    margin: 0 auto;
+}
+
+.btn-form{
+    width: 25px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    color: gray;
+    margin: 2px;
+    font-weight: bold;
+}

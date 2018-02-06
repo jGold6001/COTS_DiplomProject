@@ -73,7 +73,6 @@ import { MpxProspectHall1Component } from './components/hall-dialog.components/h
 import { MpxProspectHall2Component } from './components/hall-dialog.components/halls-components/kiev/mpx_prospect/mpx-prospect-hall-2/mpx-prospect-hall-2.component';
 import { MpxProspectHall4Component } from './components/hall-dialog.components/halls-components/kiev/mpx_prospect/mpx-prospect-hall-4/mpx-prospect-hall-4.component';
 import { MpxProspectHall5Component } from './components/hall-dialog.components/halls-components/kiev/mpx_prospect/mpx-prospect-hall-5/mpx-prospect-hall-5.component';
-import { FlorenceHallBigComponent } from './components/hall-dialog.components/halls-components/kiev/florence/florence-hall-big/florence-hall-big.component';
 import { FlorenceHallLittleComponent } from './components/hall-dialog.components/halls-components/kiev/florence/florence-hall-little/florence-hall-little.component';
 import { FlorenceHallRedComponent } from './components/hall-dialog.components/halls-components/kiev/florence/florence-hall-red/florence-hall-red.component';
 import { FlorenceHallBlueComponent } from './components/hall-dialog.components/halls-components/kiev/florence/florence-hall-blue/florence-hall-blue.component';
@@ -112,7 +111,6 @@ import { SectorService } from './shared/services/sector.service';
     MpxProspectHall2Component,
     MpxProspectHall4Component,
     MpxProspectHall5Component,
-    FlorenceHallBigComponent,
     FlorenceHallLittleComponent,
     FlorenceHallRedComponent,
     FlorenceHallBlueComponent,
@@ -187,7 +185,6 @@ import { SectorService } from './shared/services/sector.service';
     MpxProspectHall2Component,
     MpxProspectHall4Component,
     MpxProspectHall5Component,
-    FlorenceHallBigComponent,
     FlorenceHallLittleComponent,
     FlorenceHallRedComponent,
     FlorenceHallBlueComponent,

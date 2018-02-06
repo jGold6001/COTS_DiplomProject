@@ -1,0 +1,11 @@
+.good-sector{
+    background-color: greenyellow ;
+    color: black;
+    border-color: rgb(10, 240, 10);
+}
+
+.super_lux-sector{
+    background-color: darkcyan;
+    color: white;
+    border-color: rgb(3, 85, 85);
+}

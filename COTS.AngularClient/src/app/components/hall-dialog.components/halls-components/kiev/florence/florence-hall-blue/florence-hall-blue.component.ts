@@ -10,7 +10,7 @@ import { PlaceService } from '../../../../../../shared/services/place.service';
 })
 
 export class FlorenceHallBlueComponent implements OnInit {
-
+ 
   buttons: any = [];
   places: Place[] = [];
   placesSelected: Place[] = [];
@@ -20,8 +20,8 @@ export class FlorenceHallBlueComponent implements OnInit {
     private dataService: DataService,
     private rd: Renderer2,
     private elRef:ElementRef,
-    private placeService: PlaceService
-  ) { }
+    private placeService: PlaceService,
+  ) {}
 
 
   ngOnInit() {
@@ -44,6 +44,8 @@ export class FlorenceHallBlueComponent implements OnInit {
         }
       });
   }
+
+
 
   clickEvents(){      
       for(let item in this.buttons){ 
