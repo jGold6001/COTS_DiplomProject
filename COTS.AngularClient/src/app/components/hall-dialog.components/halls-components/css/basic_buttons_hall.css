@@ -26,8 +26,10 @@
 }
 
 .btn-form{
-    width: 25px;
-    height: 30px;
+    width: 30px;
+    height: 40px;
+    font-size: 10pt;
+    text-align: center;
     border-radius: 5px;
     border: 1px solid lightgrey;
     color: gray;
