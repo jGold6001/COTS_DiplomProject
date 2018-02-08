@@ -65,22 +65,6 @@ import { CinemasCardsComponent } from './components/main-page.components/cinemas
 import { SeancesByCinemasComponent } from './components/movie-page.components/seances-by-cinemas/seances-by-cinemas.component';
 import { CinemasListComponent } from './components/movie-page.components/cinemas-list/cinemas-list.component';
 import { HallDialogComponent } from './components/hall-dialog.components/hall-dialog/hall-dialog.component';
-import { MpxSkymallHall1Component } from './components/hall-dialog.components/halls-components/kiev/mpx_skymall/mpx-skymall-hall-1/mpx-skymall-hall-1.component';
-import { MpxSkymallHall2Component } from './components/hall-dialog.components/halls-components/kiev/mpx_skymall/mpx-skymall-hall-2/mpx-skymall-hall-2.component';
-import { MpxSkymallHall3Component } from './components/hall-dialog.components/halls-components/kiev/mpx_skymall/mpx-skymall-hall-3/mpx-skymall-hall-3.component';
-import { MpxSkymallHall4Component } from './components/hall-dialog.components/halls-components/kiev/mpx_skymall/mpx-skymall-hall-4/mpx-skymall-hall-4.component';
-import { MpxProspectHall1Component } from './components/hall-dialog.components/halls-components/kiev/mpx_prospect/mpx-prospect-hall-1/mpx-prospect-hall-1.component';
-import { MpxProspectHall2Component } from './components/hall-dialog.components/halls-components/kiev/mpx_prospect/mpx-prospect-hall-2/mpx-prospect-hall-2.component';
-import { MpxProspectHall4Component } from './components/hall-dialog.components/halls-components/kiev/mpx_prospect/mpx-prospect-hall-4/mpx-prospect-hall-4.component';
-import { MpxProspectHall5Component } from './components/hall-dialog.components/halls-components/kiev/mpx_prospect/mpx-prospect-hall-5/mpx-prospect-hall-5.component';
-import { FlorenceHallLittleComponent } from './components/hall-dialog.components/halls-components/kiev/florence/florence-hall-little/florence-hall-little.component';
-import { FlorenceHallRedComponent } from './components/hall-dialog.components/halls-components/kiev/florence/florence-hall-red/florence-hall-red.component';
-import { FlorenceHallBlueComponent } from './components/hall-dialog.components/halls-components/kiev/florence/florence-hall-blue/florence-hall-blue.component';
-import { MpxDafiHall2Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-2/mpx-dafi-hall-2.component';
-import { MpxDafiHall3Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-3/mpx-dafi-hall-3.component';
-import { MpxDafiHall4Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-4/mpx-dafi-hall-4.component';
-import { MpxDafiHall6Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-6/mpx-dafi-hall-6.component';
-import { MpxDafiHall7Component } from './components/hall-dialog.components/halls-components/harkov/mpx_dafi/mpx-dafi-hall-7/mpx-dafi-hall-7.component';
 import { DataService } from './shared/services/data.service';
 import { PurchasePageComponent } from './components/purchase-page.components/purchase-page/purchase-page.component';
 import { TicketService } from './shared/services/ticket.service';
@@ -103,22 +87,6 @@ import { SectorService } from './shared/services/sector.service';
     SeancesByCinemasComponent,
     CinemasListComponent,
     HallDialogComponent,
-    MpxSkymallHall1Component,
-    MpxSkymallHall2Component,
-    MpxSkymallHall3Component,
-    MpxSkymallHall4Component,
-    MpxProspectHall1Component,
-    MpxProspectHall2Component,
-    MpxProspectHall4Component,
-    MpxProspectHall5Component,
-    FlorenceHallLittleComponent,
-    FlorenceHallRedComponent,
-    FlorenceHallBlueComponent,
-    MpxDafiHall2Component,
-    MpxDafiHall3Component,
-    MpxDafiHall4Component,
-    MpxDafiHall6Component,
-    MpxDafiHall7Component,
     PurchasePageComponent,
     TicketsDialogComponent,
   ],
@@ -175,24 +143,7 @@ import { SectorService } from './shared/services/sector.service';
   entryComponents: [
     SeancesByCinemasComponent, 
     HallDialogComponent,
-    TicketsDialogComponent,
-
-    MpxSkymallHall1Component,
-    MpxSkymallHall2Component,
-    MpxSkymallHall3Component,
-    MpxSkymallHall4Component,
-    MpxProspectHall1Component,
-    MpxProspectHall2Component,
-    MpxProspectHall4Component,
-    MpxProspectHall5Component,
-    FlorenceHallLittleComponent,
-    FlorenceHallRedComponent,
-    FlorenceHallBlueComponent,
-    MpxDafiHall2Component,
-    MpxDafiHall3Component,
-    MpxDafiHall4Component,
-    MpxDafiHall6Component,
-    MpxDafiHall7Component
+    TicketsDialogComponent
   ],
   providers: [
     GeocodingApiService,

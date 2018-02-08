@@ -6,12 +6,10 @@ import { MoviePageComponent } from "./components/movie-page.components/movie-pag
 import { PurchasePageComponent } from "./components/purchase-page.components/purchase-page/purchase-page.component";
 import { HallDialogComponent } from "./components/hall-dialog.components/hall-dialog/hall-dialog.component";
 
-import { FlorenceHallRedComponent } from "./components/hall-dialog.components/halls-components/kiev/florence/florence-hall-red/florence-hall-red.component";
-
 
 const routes: Routes = [
   { path: "", component: MainPageComponent }, 
-  { path: "hall", component: FlorenceHallRedComponent },
+  { path: "hall", component: null },
   { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},

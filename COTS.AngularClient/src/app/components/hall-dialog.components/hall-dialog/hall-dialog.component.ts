@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, Input, ElementRef, Renderer2, ViewChild, Vie
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Seance } from '../../../shared/models/seance.model';
 import { DomService } from '../../../shared/services/dom.service';
-import { CitiesMappings } from '../../../shared/mappings-consts/cities/cities.mappings';
+import { HallMappings } from '../../../shared/mappings-consts/halls.mappings';
 import { DataService } from '../../../shared/services/data.service';
 import { Router } from '@angular/router';
 import { Place } from '../../../shared/models/place.model';
@@ -79,11 +79,20 @@ export class HallDialogComponent implements OnInit {
         this.sectors = this.data.sectors;
        
 
-        let typeInfo = {
-          city:     "kiev",              //this.seance.cinema.cityId,
-          cinema:   "florence",      //this.seance.hall.cinema.id,
-          hall:     "Синий"                //this.seance.hall
-        };
+
+
+
+        switch(this.seance.hall.name){
+            case "Синий": "1";
+              break;
+            case "Малый": "2";
+              break; 
+            case "Красный": "3";
+              break;
+            case "Зеленый": "4"
+        }
+
+        let typeInfo = "1";
       
         let componentType = this.getComponentType(typeInfo);
         let factory = this.domService.createFactory(componentType);    
@@ -246,8 +255,8 @@ export class HallDialogComponent implements OnInit {
     this.rd.removeChild(placeContainer, placeIdDiv);    
   }
 
-  private getComponentType(typeInfo: any) {
-    return CitiesMappings.city[typeInfo.city].cinema[typeInfo.cinema].hall[typeInfo.hall];
+  private getComponentType(hall: any) {
+    return HallMappings.hall[hall];
   }
 
   private getRandomInt(min, max): number {
