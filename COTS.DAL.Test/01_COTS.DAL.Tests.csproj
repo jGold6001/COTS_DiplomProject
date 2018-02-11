@@ -101,13 +101,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CollectionForData\Tariffs\Mpx\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\COTS.DAL\01_COTS.DAL.csproj">
       <Project>{e008668a-a01d-4c38-b2ed-4dfd79a6e380}</Project>
       <Name>01_COTS.DAL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CollectionForData\Tariffs\Mpx\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

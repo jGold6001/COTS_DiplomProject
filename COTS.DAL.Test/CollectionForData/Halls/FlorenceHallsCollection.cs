@@ -16,8 +16,8 @@ namespace COTS.DAL.Test.CollectionForData.Halls
             {
                 new Hall(1, "Синий", CinemasCollection.Get()[3].Id),
                 new Hall(2, "Красный", CinemasCollection.Get()[3].Id),
-                new Hall(3, "Маленький", CinemasCollection.Get()[3].Id),
-                new Hall(4, "Большой", CinemasCollection.Get()[3].Id),
+                new Hall(3, "Зеленый", CinemasCollection.Get()[3].Id),
+                new Hall(4, "Малый", CinemasCollection.Get()[3].Id),
             };
         }
     }

@@ -79,17 +79,15 @@ export class HallDialogComponent implements OnInit {
         this.sectors = this.data.sectors;
        
 
-
-
-
         switch(this.seance.hall.name){
             case "Синий": "1";
+              break;          
+            case "Красный": "2";
               break;
-            case "Малый": "2";
+            case "Зеленый": "3"
+              break;
+            case "Малый": "4";
               break; 
-            case "Красный": "3";
-              break;
-            case "Зеленый": "4"
         }
 
         let typeInfo = "1";

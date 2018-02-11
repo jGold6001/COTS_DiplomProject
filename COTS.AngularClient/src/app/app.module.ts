@@ -73,6 +73,10 @@ import { TicketsDialogComponent } from './components/purchase-page.components/ti
 import { PurchaseService } from './shared/services/purchase.service';
 import { PlaceService } from './shared/services/place.service';
 import { SectorService } from './shared/services/sector.service';
+import { HallFirstComponent } from './components/hall-dialog.components/halls-components/hall-first/hall-first.component';
+import { HallSecondComponent } from './components/hall-dialog.components/halls-components/hall-second/hall-second.component';
+import { HallThirdComponent } from './components/hall-dialog.components/halls-components/hall-third/hall-third.component';
+import { HallFourthComponent } from './components/hall-dialog.components/halls-components/hall-fourth/hall-fourth.component';
 
 
 @NgModule({
@@ -89,6 +93,10 @@ import { SectorService } from './shared/services/sector.service';
     HallDialogComponent,
     PurchasePageComponent,
     TicketsDialogComponent,
+    HallFirstComponent,
+    HallSecondComponent,
+    HallThirdComponent,
+    HallFourthComponent,
   ],
   imports: [
     BrowserModule,
@@ -158,6 +166,10 @@ import { SectorService } from './shared/services/sector.service';
     TicketService,
     PlaceService,
     PurchaseService,
+    HallFirstComponent,
+    HallSecondComponent,
+    HallThirdComponent,
+    HallFourthComponent,
     { provide: LOCALE_ID, useValue: "ru" }
   ],
   bootstrap: [AppComponent]

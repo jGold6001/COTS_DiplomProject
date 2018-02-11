@@ -5,11 +5,13 @@ import { CinemaPageComponent } from "./components/cinema-page.components/cinema-
 import { MoviePageComponent } from "./components/movie-page.components/movie-page/movie-page.component";
 import { PurchasePageComponent } from "./components/purchase-page.components/purchase-page/purchase-page.component";
 import { HallDialogComponent } from "./components/hall-dialog.components/hall-dialog/hall-dialog.component";
+import { HallFourthComponent } from "./components/hall-dialog.components/halls-components/hall-fourth/hall-fourth.component";
+
 
 
 const routes: Routes = [
   { path: "", component: MainPageComponent }, 
-  { path: "hall", component: null },
+  { path: "hall", component: HallFourthComponent },
   { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},
