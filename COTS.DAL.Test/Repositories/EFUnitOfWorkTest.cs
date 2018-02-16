@@ -15,6 +15,10 @@ using System.Diagnostics;
 using System.Linq;
 using COTS.DAL.Test.CollectionForData.Enterprises;
 using COTS.DAL.Test.CollectionForData.Technologies;
+using COTS.DAL.Test.CollectionForData.Places.MpxSkyMall;
+using COTS.DAL.Test.CollectionForData.Places.MpxProspect;
+using COTS.DAL.Test.CollectionForData.Places.MpxDafi;
+using COTS.DAL.Test.CollectionForData.Tariffs.Mpx;
 
 namespace COTS.DAL.Test.Repositories
 {
@@ -58,10 +62,37 @@ namespace COTS.DAL.Test.Repositories
         //tariffs
         private List<Tariff> tariffsFlorenceDayWorking = FlorenceDayWorkdayTariffsCollection.Get();
         private List<Tariff> tariffsFlorenceDayHoliday = FlorenceDayHolidayTariffsCollection.Get();
+        private List<Tariff> tariffsFlorenceEveningWorking = FlorenceEveningWorkdayTariffsCollection.Get();
+        private List<Tariff> tariffsFlorenceEveningHoliday = FlorenceEveningHolidayTariffsCollection.Get();
 
-        //places
-        private List<Place> placesFlorence = FlorenceBluePlacesCollection.Get();
+        private List<Tariff> tariffsMpxDayWorking = MpxDayWorkdayTariffsCollection.Get();
+        private List<Tariff> tariffsMpxDayHoliday = MpxDayHolidayTariffsCollection.Get();
+        private List<Tariff> tariffsMpxEveningWorking = MpxEveningWorkdayTariffsCollection.Get();
+        private List<Tariff> tariffsMpxEveningHoliday = MpxEveningHolidayTariffsCollection.Get();
 
+        //places of florence
+        private List<Place> placesFlorenceBlue = FlorenceBluePlacesCollection.Get();
+        private List<Place> placesFlorenceLittle = FlorenceLittlePlacesCollection.Get();
+        private List<Place> placesFlorenceGreen = FlorenceGreenPlacesCollection.Get();
+        private List<Place> placesFlorenceRed = FlorenceRedPlacesCollection.Get();
+
+        //places of skymall
+        private List<Place> placesSkymallOne = MpxSkyMallHallOnePlacesCollection.Get();
+        private List<Place> placesSkymallTwo = MpxSkyMallHallTwoPlacesCollection.Get();
+        private List<Place> placesSkymallThree = MpxSkyMallHallThreePlacesCollection.Get();
+        private List<Place> placesSkymallFour = MpxSkyMallHallFourPlacesCollection.Get();
+
+        //places of prospect
+        private List<Place> placesProspectOne = MpxProspectOnePlacesCollection.Get();
+        private List<Place> placesProspectTwo = MpxProspectTwoPlacesCollection.Get();
+        private List<Place> placesProspectThree = MpxProspectThreePlacesCollection.Get();
+        private List<Place> placesProspectFour = MpxProspectFourPlacesCollection.Get();
+
+        //places of dafi
+        private List<Place> placesDafiOne = MpxDafiOnePlacesCollection.Get();
+        private List<Place> placesDafiTwo = MpxDafiTwoPlacesCollection.Get();
+        private List<Place> placesDafiThree = MpxDafiThreePlacesCollection.Get();
+        private List<Place> placesDafiFour = MpxDafiFourPlacesCollection.Get();
 
         //repositories
         private MovieRepository movieRepo;
@@ -107,13 +138,49 @@ namespace COTS.DAL.Test.Repositories
         }
 
         [TestMethod]
-        public void PlacesTest()
-        {
-            foreach (var item in placesFlorence)
+        public void PlacesFlorenceHallGreenTest()
+        {           
+
+            foreach (var item in placesFlorenceGreen)
             {
-                Trace.WriteLine($"id: {item.Id}, row: {item.Row}, number: {item.Number} ");
+                Trace.WriteLine($"id: {item.Id}, row: {item.Row}, number: {item.Number}, sector: {item.SectorId} ");
             }
+
         }
+
+        [TestMethod]
+        public void PlacesFlorenceHallLittleTest()
+        {
+
+            foreach (var item in placesFlorenceLittle)
+            {
+                Trace.WriteLine($"id: {item.Id}, row: {item.Row}, number: {item.Number}, sector: {item.SectorId} ");
+            }
+
+        }
+
+
+        [TestMethod]
+        public void PlacesFlorenceHallBlueTest()
+        {
+
+            foreach (var item in placesFlorenceBlue)
+            {
+                Trace.WriteLine($"id: {item.Id}, row: {item.Row}, number: {item.Number}, sector: {item.SectorId} ");
+            }
+
+        }
+
+        [TestMethod]
+        public void PlacesFlorenceHallRedTest()
+        {
+            foreach (var item in placesFlorenceRed)
+            {
+                Trace.WriteLine($"id: {item.Id}, row: {item.Row}, number: {item.Number}, sector: {item.SectorId} ");
+            }
+
+        }
+
 
         [TestMethod()]
         public void AddDataTest()
@@ -159,7 +226,30 @@ namespace COTS.DAL.Test.Repositories
             halls.AddRange(hallsMpxProspect);
             halls.AddRange(hallsMpxSkyMall);
 
-            foreach (var item in placesFlorence)
+
+            var places = new List<Place>();
+            places.AddRange(placesFlorenceGreen);
+            places.AddRange(placesFlorenceLittle);
+            places.AddRange(placesFlorenceBlue);
+            places.AddRange(placesFlorenceRed);
+
+            places.AddRange(placesSkymallOne);
+            places.AddRange(placesSkymallTwo);
+            places.AddRange(placesSkymallThree);
+            places.AddRange(placesSkymallFour);
+
+            places.AddRange(placesProspectOne);
+            places.AddRange(placesProspectTwo);
+            places.AddRange(placesProspectThree);
+            places.AddRange(placesProspectFour);
+
+            places.AddRange(placesDafiOne);
+            places.AddRange(placesDafiTwo);
+            places.AddRange(placesDafiThree);
+            places.AddRange(placesDafiFour);
+
+
+            foreach (var item in places)
             {                
                 placeRepository.AddOrUpdate(item);
             }
@@ -182,6 +272,13 @@ namespace COTS.DAL.Test.Repositories
             var tariffs = new List<Tariff>();
             tariffs.AddRange(tariffsFlorenceDayHoliday);
             tariffs.AddRange(tariffsFlorenceDayWorking);
+            tariffs.AddRange(tariffsFlorenceEveningHoliday);
+            tariffs.AddRange(tariffsFlorenceEveningWorking);
+
+            tariffs.AddRange(tariffsMpxDayHoliday);
+            tariffs.AddRange(tariffsMpxDayWorking);
+            tariffs.AddRange(tariffsMpxEveningHoliday);
+            tariffs.AddRange(tariffsMpxEveningWorking);
 
             foreach (var item in tariffs)
             {
@@ -247,8 +344,6 @@ namespace COTS.DAL.Test.Repositories
             unitOfwork.Save();
         }
 
-       
-
         public Seance GetSeanceForTickets()
         {
             foreach (var item in seanceRepo.GetAll())
@@ -266,15 +361,15 @@ namespace COTS.DAL.Test.Repositories
 
         public List<Place> GetPlaces()
         {
-            var place_1 = placeRepository.Get(placesFlorence[0].Id);
-            var place_2 = placeRepository.Get(placesFlorence[19].Id);           
+            var place_1 = placeRepository.Get(placesFlorenceBlue[0].Id);
+            var place_2 = placeRepository.Get(placesFlorenceBlue[19].Id);           
             placeRepository.AddOrUpdate(place_1);
             placeRepository.AddOrUpdate(place_2);
             unitOfwork.Save();
 
             return new List<Place>(){
-                placeRepository.Get(placesFlorence[0].Id),
-                placeRepository.Get(placesFlorence[19].Id)
+                placeRepository.Get(placesFlorenceBlue[0].Id),
+                placeRepository.Get(placesFlorenceBlue[19].Id)
             };
         }
 
@@ -457,7 +552,7 @@ namespace COTS.DAL.Test.Repositories
 
             unitOfwork.Save();
         }
-
+      
        
     }
 }

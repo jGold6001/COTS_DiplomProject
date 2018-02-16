@@ -14,10 +14,10 @@ namespace COTS.DAL.Test.CollectionForData.Halls
         {
             return new List<Hall>()
             {
-                new Hall(1, "Синий", CinemasCollection.Get()[3].Id),
-                new Hall(2, "Красный", CinemasCollection.Get()[3].Id),
-                new Hall(3, "Зеленый", CinemasCollection.Get()[3].Id),
-                new Hall(4, "Малый", CinemasCollection.Get()[3].Id),
+                new Hall(1, "Зеленый", CinemasCollection.Get()[3].Id),            
+                new Hall(2, "Малый", CinemasCollection.Get()[3].Id),
+                new Hall(3, "Синий", CinemasCollection.Get()[3].Id),
+                new Hall(4, "Красный", CinemasCollection.Get()[3].Id),                               
             };
         }
     }

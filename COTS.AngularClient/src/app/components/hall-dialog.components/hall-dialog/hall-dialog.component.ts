@@ -80,13 +80,13 @@ export class HallDialogComponent implements OnInit {
        
 
         switch(this.seance.hall.name){
-            case "Синий": "1";
-              break;          
-            case "Красный": "2";
+            case "Зеленый": "1";
+              break; 
+            case "Малый": "2";                 
               break;
-            case "Зеленый": "3"
+            case "Синий": "3"
               break;
-            case "Малый": "4";
+            case "Красный": "4";
               break; 
         }
 

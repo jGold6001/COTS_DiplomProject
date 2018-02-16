@@ -63,10 +63,11 @@
     <Compile Include="CollectionForData\Halls\MpxProspectHallsCollection.cs" />
     <Compile Include="CollectionForData\Halls\MpxSkyMallHallsCollection.cs" />
     <Compile Include="CollectionForData\Movies\MoviesCollection.cs" />
-    <Compile Include="CollectionForData\Places\Florence\FlorenceBigPlacesCollection.cs" />
+    <Compile Include="CollectionForData\Places\Florence\FlorenceGreenPlacesCollection.cs" />
     <Compile Include="CollectionForData\Places\Florence\FlorenceBluePlacesCollection.cs" />
     <Compile Include="CollectionForData\Places\Florence\FlorenceLittlePlacesCollection.cs" />
     <Compile Include="CollectionForData\Places\Florence\FlorenceRedPlacesCollection.cs" />
+    <Compile Include="CollectionForData\Places\HallFirstPlacesCollection.cs" />
     <Compile Include="CollectionForData\Places\MpxDafi\MpxDafiFourPlacesCollection.cs" />
     <Compile Include="CollectionForData\Places\MpxDafi\MpxDafiOnePlacesCollection.cs" />
     <Compile Include="CollectionForData\Places\MpxDafi\MpxDafiThreePlacesCollection.cs" />
@@ -85,6 +86,10 @@
     <Compile Include="CollectionForData\Seances\MultiplexSkyMallSeancesCollection.cs" />
     <Compile Include="CollectionForData\Tariffs\Constants\TimePeriod.cs" />
     <Compile Include="CollectionForData\Tariffs\Constants\WeekDays.cs" />
+    <Compile Include="CollectionForData\Tariffs\Mpx\MpxDayHolidayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Tariffs\Mpx\MpxDayWorkdayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Tariffs\Mpx\MpxEveningHolidayTariffsCollection.cs" />
+    <Compile Include="CollectionForData\Tariffs\Mpx\MpxEveningWorkdayTariffsCollection.cs" />
     <Compile Include="CollectionForData\Technologies\TypeD.cs" />
     <Compile Include="CollectionForData\Sectors\FlorenceSectorsCollection.cs" />
     <Compile Include="CollectionForData\Sectors\MpxSectorsCollections.cs" />
@@ -100,9 +105,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CollectionForData\Tariffs\Mpx\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\COTS.DAL\01_COTS.DAL.csproj">
       <Project>{e008668a-a01d-4c38-b2ed-4dfd79a6e380}</Project>
