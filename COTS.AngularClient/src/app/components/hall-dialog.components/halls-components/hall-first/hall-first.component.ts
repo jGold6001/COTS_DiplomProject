@@ -13,7 +13,8 @@ export class HallFirstComponent implements OnInit {
   buttons: any = [];
   places: Place[] = [];
   placesSelected: Place[] = [];
-  seanceId: number;
+  data: any;
+  //seanceId: number;
 
   constructor(
     private dataService: DataService,
@@ -24,13 +25,12 @@ export class HallFirstComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.placeService.getPlacesByCityCinemaHallAndSeance('kiev', 'florence', 'Синий', this.seanceId)
+    this.placeService.getPlacesByCityCinemaHallAndSeance(this.data.city, this.data.cinema, this.data.hall, this.data.seance)
       .subscribe( res =>{            
         this.places = res;      
         this.createButtons(); 
         this.clickEvents(); 
-      }, err => console.log("File not reading!!!")); 
+      }, err => console.error("File not reading!!!")); 
 
       this.dataService.placesRemoved$.subscribe( place =>
       {
@@ -44,30 +44,12 @@ export class HallFirstComponent implements OnInit {
       });
   }
 
-
-
-  clickEvents(){      
-      for(let item in this.buttons){ 
-        let index = Number(item) + 1;   
-        let button = this.elRef.nativeElement.querySelector(`#btn_${index}`);
-        if(button){
-              this.rd.listen(button, 'click', (event)=>{   
-              let place: Place = this.getPlace(button);   
-              this.changeColor(button, place.sectorId);               
-              this.passToHallDialog(place);
-            });
-        }        
-      }
-   }
-
   createButtons(){
     this.buttons = this.elRef.nativeElement.getElementsByTagName("button");
 
     if(this.buttons.length == this.places.length){
       
-      for(let i=0; i<this.places.length; i++){
-        this.rd.addClass(this.buttons[i], "btn");  
-  
+      for(let i=0; i<this.places.length; i++){     
         if(this.places[i].isBusy){
            this.rd.setAttribute(this.buttons[i], "disabled", 'true');
         }else{
@@ -81,10 +63,28 @@ export class HallFirstComponent implements OnInit {
     
   }
 
+
+  clickEvents(){      
+      for(let item of this.buttons){          
+        let button = this.elRef.nativeElement.querySelector(`#${item.id}`);
+        if(button){
+              this.rd.listen(button, 'click', (event)=>{   
+              let place: Place = this.getPlace(button);   
+              this.changeColor(button, place.sectorId);               
+              this.passToHallDialog(place);
+            });
+        }        
+      }
+   }
+
   setSectorColor(sectorId: number): string {
     switch(sectorId){
       case 1: return "green-sector";
       case 2: return "red-sector";
+      case 3: return "cyan-sector";
+      case 4: return "blue-sector";
+      case 5: return "good-sector";
+      case 6: return "super_lux-sector";
     }
   }
 

@@ -1,11 +1,7 @@
-.good-sector{
-    background-color: greenyellow ;
-    color: black;
-    border-color: rgb(10, 240, 10);
-}
+.good-sector{background-color: greenyellow ;color: black !important; border-color: rgb(10, 240, 10) !important;}
+.good-sector:hover{color:black;background-color:rgb(80, 201, 24);border-color:rgb(39, 168, 22)}
+.good-sector.focus,.red-sector:focus{box-shadow:0 0 0 .2rem rgba(14, 177, 8, 0.5)}
 
-.super_lux-sector{
-    background-color: darkcyan;
-    color: white;
-    border-color: rgb(3, 85, 85);
-}
+.super_lux-sector{ background-color: darkcyan; color: white !important; border-color: rgb(3, 85, 85) !important;}
+.super_lux-sector:hover{color:white;background-color:rgb(5, 98, 110);border-color:rgb(4, 84, 104)}
+.super_lux-sector.focus,.red-sector:focus{box-shadow:0 0 0 .2rem rgba(4, 111, 119, 0.5)}

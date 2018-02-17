@@ -68,7 +68,6 @@ export class HallDialogComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.seanceService.getOne(this.data.seanceId).subscribe( seance => 
       {
         this.seance = seance;
@@ -76,28 +75,23 @@ export class HallDialogComponent implements OnInit {
         this.hall = this.seance.hall;
         this.cinema = this.hall.cinema;
         
-        this.sectors = this.data.sectors;
-       
+        this.sectors = this.data.sectors;            
 
-        switch(this.seance.hall.name){
-            case "Зеленый": "1";
-              break; 
-            case "Малый": "2";                 
-              break;
-            case "Синий": "3"
-              break;
-            case "Красный": "4";
-              break; 
-        }
-
-        let typeInfo = "1";
+        let typeInfo = this.seance.hall.name;
       
         let componentType = this.getComponentType(typeInfo);
         let factory = this.domService.createFactory(componentType);    
-        let componentRef = this.container.createComponent(factory);        
-        (componentRef.instance).seanceId = this.seance.id;  
+        let componentRef = this.container.createComponent(factory); 
+
+        let dataInfo = {
+            city: this.cinema.cityId,
+            cinema: this.cinema.id,
+            hall: this.hall.name,
+            seance: this.seance.id
+        };
+        (componentRef.instance).data = dataInfo;
+
         this.tariffs = this.seance.tariffs; 
-        
         this.createSectorTariffs();
         
         this.dataService.placesSelected$.subscribe(place => this.createTicket(place));
@@ -111,6 +105,9 @@ export class HallDialogComponent implements OnInit {
   setSectorColor(sectorId: number): string {
     let sector = this.sectors.find(s => s.id == sectorId);
     let sectorName = sector.name.toLowerCase();
+    if(sectorName.includes(" "))
+        sectorName = sectorName.replace(" ", "_");
+
     return `${sectorName}-sector`;
   }
 

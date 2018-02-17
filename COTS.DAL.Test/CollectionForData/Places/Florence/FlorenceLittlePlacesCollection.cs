@@ -16,15 +16,25 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             int startIndex = 128;
             var places = new List<Place>();
 
-            //row 1-3 sector green
-            for (int r = 0; r < 3; r++)
+            //row 1 sector green          
+            for (int s = 7; s > 0; s--)
             {
+                long id = startIndex++;
+                int row = 1;
+                var place = new Place(id, row, s, FlorenceHallsCollection.Get()[1].Id, FlorenceSectorsCollection.Get()[0].Id);
+                places.Add(place);
+            }
+            
 
+
+            //row 2-3 red
+            for (int r = 1; r < 3; r++)
+            {    
                 for (int s = 7; s > 0; s--)
                 {
                     long id = startIndex++;
                     int row = (r + 1);
-                    var place = new Place(id, row, s, FlorenceHallsCollection.Get()[1].Id, FlorenceSectorsCollection.Get()[0].Id);
+                    var place = new Place(id, row, s, FlorenceHallsCollection.Get()[1].Id, FlorenceSectorsCollection.Get()[1].Id);
                     places.Add(place);
                 }
             }
@@ -44,7 +54,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             }
 
 
-            //row 6 sector red
+            //row 6 sector cyan
             for (int s = 7; s > 0; s--)
             {
                 long id = startIndex++;

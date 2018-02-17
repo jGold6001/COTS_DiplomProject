@@ -17,21 +17,21 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             var places = new List<Place>();
 
             //row 1-3 green sector          
-            for (int s = 4; s > 0; s--)
+            for (int s = 1; s <=4; s++)
             {
                 long id = startIndex++;
                 int row = 1;
                 var place = new Place(id, row, s, FlorenceHallsCollection.Get()[3].Id, FlorenceSectorsCollection.Get()[0].Id);
                 places.Add(place);
             }
-            for (int s = 6; s > 0; s--)
+            for (int s = 1; s <= 6; s++)
             {
                 long id = startIndex++;
                 int row = 2;
                 var place = new Place(id, row, s, FlorenceHallsCollection.Get()[3].Id, FlorenceSectorsCollection.Get()[0].Id);
                 places.Add(place);
             }
-            for (int s = 8; s > 0; s--)
+            for (int s = 1; s <= 8; s++)
             {
                 long id = startIndex++;
                 int row = 3;
@@ -44,7 +44,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             //row 4-5 blue sector
             for (int r = 3; r < 5; r++)
             {
-                for (int s = 10; s > 0; s--)
+                for (int s = 1; s <= 10; s++)
                 {
                     long id = startIndex++;
                     int row = (r + 1);
@@ -56,7 +56,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             //row 6-7 red sector
             for (int r = 5; r < 7; r++)
             {
-                for (int s = 10; s > 0; s--)
+                for (int s = 1; s <= 10; s++)
                 {
                     long id = startIndex++;
                     int row = (r + 1);
@@ -66,7 +66,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             }
 
             //row 9 cyan sector
-            for (int s = 12; s > 0; s--)
+            for (int s = 1; s <= 12; s++)
             {
                 long id = startIndex++;
                 int row = 8;

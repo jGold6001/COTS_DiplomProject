@@ -7,6 +7,10 @@ import { HallSecondComponent } from "../../components/hall-dialog.components/hal
 
 export class HallMappings{
     public static hall = {
+        "Зеленый": HallFirstComponent,
+        "Малый": HallSecondComponent,
+        "Синий": HallThirdComponent,
+        "Красный": HallFourthComponent,
         "1": HallFirstComponent,
         "2": HallSecondComponent,
         "3": HallThirdComponent,

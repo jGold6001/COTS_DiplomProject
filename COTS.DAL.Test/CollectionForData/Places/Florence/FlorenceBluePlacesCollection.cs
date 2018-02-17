@@ -20,7 +20,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             for (int r = 0; r < 3; r++)
             {
 
-                for (int s = 10; s > 0; s--)
+                for (int s = 1; s <= 10; s++)
                 {
                     long id = startIndex++;
                     int row = (r + 1);
@@ -32,7 +32,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             //row 4-6 blue sector
             for (int r = 3; r < 6; r++)
             {
-                for (int s = 10; s > 0; s--)
+                for (int s = 1; s <= 10; s++)
                 {
                     long id = startIndex++;
                     int row = (r + 1);
@@ -44,7 +44,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             //row 7-9 red sector
             for (int r = 6; r < 9; r++)
             {
-                for (int s = 10; s > 0; s--)
+                for (int s = 1; s <= 10; s++)
                 {
                     long id = startIndex++;
                     int row = (r + 1);
@@ -54,7 +54,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             }
 
             //row 10 cyan sector
-            for (int s = 12; s > 0; s--)
+            for (int s = 1; s <= 12; s++)
             {
                 long id = startIndex++;
                 int row = 10;
