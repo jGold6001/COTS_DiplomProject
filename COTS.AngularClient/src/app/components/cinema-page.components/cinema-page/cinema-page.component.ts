@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, UrlTree, UrlSegmentGroup, UrlSegment, PRIMARY_O
 import { Cinema } from '../../../shared/models/cinema.model';
 import { CinemaService } from '../../../shared/services/cinema.service';
 import { GeocodingApiService } from '../../../shared/services/geocodingApi.service';
+import { Movie } from '../../../shared/models/movie.model';
+import { MovieService } from '../../../shared/services/movie.service';
 
 
 
@@ -15,14 +17,18 @@ export class CinemaPageComponent implements OnInit {
 
   id: string;
   cinema: Cinema;
+  movies: Movie[]= [];
 
   lat: number;
   lng: number;
   zoom: number = 11;
+
+  dates: Date[]=[];
   
   constructor(
     private route: ActivatedRoute,
     private cinemaService: CinemaService,
+    private movieService: MovieService,
     private geocodingAPIService: GeocodingApiService,
     private router: Router
   ) { }
@@ -38,6 +44,20 @@ export class CinemaPageComponent implements OnInit {
       this.updateLatLngFromAdress();
     } , () => console.error("Ошибка при получении данных с сервера"));
 
+    this.movieService.getTop10ByCity(this.cityId).subscribe(r =>
+      {
+        this.movies = r;
+      });
+
+    this.setDates();
+  }
+
+  private setDates(){
+    for (let index = 0; index < 9; index++) {
+      var date: Date = new Date();
+      date.setDate(date.getDate()+index);
+      this.dates.push(date); 
+    }
   }
 
   private updateLatLngFromAdress(){
@@ -53,30 +73,6 @@ export class CinemaPageComponent implements OnInit {
             console.log('geocodingAPIService', 'Other error', response.status);
         }
     });
-  }
-
-  get _cinemaName(): string{
-    let value: string;
-    try {
-      value = this.cinema.name;
-    } catch (ex) {}
-    return value;
-  }
-
-  get _cinemaAddress(): string{
-    let value: string;
-    try {
-      value = this.cinema.address;
-    } catch (ex) {}
-    return value;
-  }
-
-  get _cinemaImage(): string{
-    let value: string;
-    try {
-      value = this.cinema.imagePath;
-    } catch (ex) {}
-    return value;
   }
 
   get cityId(): string{

@@ -11,7 +11,7 @@
                   <div class="col-12">
                       <div class="container">
                         <div class="row">
-                            <h4 class="card-title">{{_cinemaName}}</h4>
+                            <h4 class="card-title">{{cinema?.name}}</h4>
                         </div>                     
                       </div>
                   </div>              
@@ -29,7 +29,7 @@
                   <div class="row">
                       <div class="container">                    
                           <div class="row">               
-                                <img src="{{_cinemaImage}}" />                                
+                                <img src="{{cinema?.imagePath}}" />                                
                           </div>                       
                       </div>
                   </div>
@@ -46,7 +46,7 @@
                                   <h6 class="card-text">Адрес:</h6>
                               </div>
                               <div class=row>
-                                  <p class="card-text">{{_cinemaAddress}}</p>
+                                  <p class="card-text">{{cinema?.address}}</p>
                               </div>
                             </div>
                       </div>
@@ -66,7 +66,29 @@
                   </div>        
               </div>
             </div>
+
+            <!--SEANCES-BY-MOVIES-->
             <br/>
+            <div class="container">
+                    <div class="row">
+                    <div class="col-lg-12">
+                        <tabset [justified]="true">                
+                            <tab *ngFor="let date of dates"
+                            heading='{{date | date: "dd MMM" }}'>
+                                <div class="container">
+                                    <app-movies-list
+                                        [date] = "date"                        
+                                        *ngFor="let movie of movies"
+                                        [movie]= "movie"
+                                        [enterpriseId] = "cinema.enterpriseId"
+                                    ></app-movies-list>
+                                </div>
+                            </tab>
+                        </tabset>
+                    </div>
+                    </div>
+                </div>
+                <br/>
         </div>
       </div>
     </div>   

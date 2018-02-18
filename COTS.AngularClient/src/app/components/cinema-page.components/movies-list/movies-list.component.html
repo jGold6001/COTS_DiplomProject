@@ -1,0 +1,20 @@
+<br/>
+<div class="container">
+    <div class="row">
+    <div class="col-lg-3 col-md-6">
+        {{movie.name}}
+    </div>
+    <div class="col-lg-9 col-md-6">
+        <div class="container">
+            <div class="row">
+                    <app-seances-by-movies ngOnChanges 
+                    [enterpriseId] = "enterpriseId"               
+                    *ngFor="let seance of seances"
+                    [seance] = "seance"
+                ></app-seances-by-movies>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</div>
