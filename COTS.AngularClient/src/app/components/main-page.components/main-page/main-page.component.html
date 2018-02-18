@@ -17,16 +17,7 @@
                 </div>
                 <div class="col-sm-12 col-md-8">
                     <br/>
-                    <form class="seances-form">
-                        <!-- <mat-form-field class="find-full-width">
-                            <input matInput placeholder="Выберите фильм или кинотеатр" aria-label="Seances" [matAutocomplete]="auto" [formControl]="seancesCtrl" >
-                            <mat-autocomplete #auto="matAutocomplete">                        
-                                <mat-option *ngFor="let object of filteredSeances | async" [value]="object.name">                                
-                                    <span>{{ object.name }}</span> 
-                                </mat-option>
-                            </mat-autocomplete>
-                        </mat-form-field>                                           -->
-                    </form>
+                    <app-finder></app-finder>                  
                 </div>                          
             </div>
         </div>

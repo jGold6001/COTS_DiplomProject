@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, ElementRef, Renderer2, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver} from '@angular/core';
+import { Component, OnInit, Inject, Input, ElementRef, Renderer2, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnDestroy} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Seance } from '../../../shared/models/seance.model';
 import { DomService } from '../../../shared/services/dom.service';
@@ -24,19 +24,20 @@ import { Cinema } from '../../../shared/models/cinema.model';
 import { Sector } from '../../../shared/models/sector.model';
 import { SectorService } from '../../../shared/services/sector.service';
 
-
 @Component({
   selector: 'app-hall-dialog',
   templateUrl: './hall-dialog.component.html',
   styleUrls: ['./hall-dialog.component.css']
 })
 
-export class HallDialogComponent implements OnInit {
+export class HallDialogComponent implements OnInit, OnDestroy {
 
   @ViewChild('hallcomponent', { read: ViewContainerRef })
     
   container: ViewContainerRef;
   componentRef: ComponentRef<{}>;
+
+
 
   seance: Seance;
   movie: Movie;
@@ -51,6 +52,7 @@ export class HallDialogComponent implements OnInit {
   tariffs: Tariff[] = [];
   sectors: Sector[] = [];
 
+  technology: string;
 
   constructor(
     public dialogRef: MatDialogRef<HallDialogComponent>,
@@ -75,13 +77,17 @@ export class HallDialogComponent implements OnInit {
         this.hall = this.seance.hall;
         this.cinema = this.hall.cinema;
         
+        this.technology = this.seance.technologyId.toUpperCase();
+        
         this.sectors = this.data.sectors;            
 
         let typeInfo = this.seance.hall.name;
       
         let componentType = this.getComponentType(typeInfo);
         let factory = this.domService.createFactory(componentType);    
-        let componentRef = this.container.createComponent(factory); 
+        this.componentRef = this.container.createComponent(factory); 
+
+        
 
         let dataInfo = {
             city: this.cinema.cityId,
@@ -89,14 +95,16 @@ export class HallDialogComponent implements OnInit {
             hall: this.hall.name,
             seance: this.seance.id
         };
-        (componentRef.instance).data = dataInfo;
+        (this.componentRef.instance).data = dataInfo;
 
         this.tariffs = this.seance.tariffs; 
+        
         this.createSectorTariffs();
         
         this.dataService.placesSelected$.subscribe(place => this.createTicket(place));
         this.dataService.placesCanceles$.subscribe(place => this.cancelTicket(place));
-       
+        
+        
       }
     );
      
@@ -219,7 +227,7 @@ export class HallDialogComponent implements OnInit {
     this.rd.listen(button, 'click', ()=>
     {
       this.cancelTicket(place);
-      this.dataService.removePlace(place);
+      this.dataService.removePlace(place);   
     });
 
     this.rd.appendChild(row, div);
@@ -326,6 +334,12 @@ export class HallDialogComponent implements OnInit {
     return places;
   }
 
- 
+  ngOnDestroy(){   
+      if(this.componentRef)
+        this.componentRef.destroy(); 
+
+    
+            
+  }
 
 }

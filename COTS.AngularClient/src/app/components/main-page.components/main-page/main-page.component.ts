@@ -21,6 +21,7 @@ export class MainPageComponent implements OnInit{
 
   cityCtrl: FormControl = new FormControl();
   filteredCities: Observable<any[]>;
+
   rerender = false;
 
   cities: City[] = [];
@@ -92,10 +93,7 @@ export class MainPageComponent implements OnInit{
       .subscribe(r => this.cinemas = r,  () => console.error("Ошибка при получении данных с сервера"));
   }
 
-  // filterFind(name){
-  //   //go to
-  //   return null;
-  // }
+ 
 
   private filterCities(name) {
     return this.cities.filter(city =>

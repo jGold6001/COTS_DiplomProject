@@ -12,10 +12,10 @@
                   <div class="col-12">
                       <div class="container">
                           <div class="row">
-                              <h4 class="card-title">{{_movieName}}</h4>
+                              <h4 class="card-title">{{movie?.name}}</h4>
                           </div>
                           <div class="row">
-                                <p class="card-title">{{_movieAgeCategory}}</p>
+                                <p class="card-title">{{movie?.ageCategory}}</p>
                             </div>
                             
                         </div>
@@ -37,11 +37,11 @@
                             <div class="col-lg-6">
                               <div class="container">
                                 <div class="row">
-                                    <img src="{{_movieImage}}" />
+                                    <img src="{{movie?.imagePath}}" />
                                 </div>
                                 <div class="row text-center">
                                     <div class="container">
-                                        <a href="{{_movieTrailer}}"  target="_parent">Смотреть Трейлер</a>
+                                        <a href="{{movie?.trailerUrl}}"  target="_parent">Смотреть Трейлер</a>
                                     </div>                       
                                 </div>
                               </div>
@@ -54,7 +54,7 @@
                                             <h6 class="card-text">Описание</h6>
                                         </div>
                                         <div class=row>
-                                            <p class="card-text">{{_movieDescription}}</p>
+                                            <p class="card-text">{{movie?.description}}</p>
                                         </div>
                                       </div>
                                 </div>
@@ -75,7 +75,7 @@
                                 <h6 class="card-text">Премьера:</h6>
                             </div>
                             <div class=row>
-                                <p class="card-text">{{_movieDateIssue}}</p>
+                                <p class="card-text">{{movie?.dateIssue}}</p>
                             </div>
                           </div>
                     </div>
@@ -86,7 +86,7 @@
                                 <h6 class="card-text">Страна(ы):</h6>
                             </div>
                             <div class=row>
-                                <p class="card-text">{{_movieCountry}}</p>
+                                <p class="card-text">{{movie?.country}}</p>
                             </div>
                           </div>
                     </div>
@@ -97,7 +97,7 @@
                                 <h6 class="card-text">Длительность:</h6>
                             </div>
                             <div class=row>
-                                <p class="card-text"> {{_movieDuration}} мин.</p>
+                                <p class="card-text"> {{movie?.duration}} мин.</p>
                             </div>
                           </div>
                     </div>
@@ -108,7 +108,7 @@
                                 <h6 class="card-text">Жанр: </h6>
                             </div>
                             <div class=row>
-                                <p class="card-text">{{_movieGenre}}</p>
+                                <p class="card-text">{{movie?.genre}}</p>
                             </div>
                           </div>
                     </div>
@@ -119,7 +119,7 @@
                                 <h6 class="card-text">Режиссер:</h6>
                             </div>
                             <div class=row>
-                                <p class="card-text">{{_movieDirector}}</p>
+                                <p class="card-text">{{movie?.director}}</p>
                             </div>
                           </div>
                     </div>
@@ -130,7 +130,7 @@
                                 <h6 class="card-text">В ролях:</h6>
                             </div>
                             <div class=row>
-                                <p class="card-text">{{_movieActors}}</p>
+                                <p class="card-text">{{movie?.actors}}</p>
                             </div>
                           </div>
                     </div>

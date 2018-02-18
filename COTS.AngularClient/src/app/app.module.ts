@@ -77,6 +77,9 @@ import { HallFirstComponent } from './components/hall-dialog.components/halls-co
 import { HallSecondComponent } from './components/hall-dialog.components/halls-components/hall-second/hall-second.component';
 import { HallThirdComponent } from './components/hall-dialog.components/halls-components/hall-third/hall-third.component';
 import { HallFourthComponent } from './components/hall-dialog.components/halls-components/hall-fourth/hall-fourth.component';
+import { FinderComponent } from './components/main-page.components/finder/finder.component';
+import { MoviesListComponent } from './components/cinema-page.components/movies-list/movies-list.component';
+import { SeancesByMoviesComponent } from './components/cinema-page.components/seances-by-movies/seances-by-movies.component';
 
 
 @NgModule({
@@ -97,6 +100,9 @@ import { HallFourthComponent } from './components/hall-dialog.components/halls-c
     HallSecondComponent,
     HallThirdComponent,
     HallFourthComponent,
+    FinderComponent,
+    MoviesListComponent,
+    SeancesByMoviesComponent,
   ],
   imports: [
     BrowserModule,

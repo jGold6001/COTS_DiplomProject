@@ -1,20 +1,23 @@
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, OnDestroy } from '@angular/core';
 import { Place } from '../../../../shared/models/place.model';
 import { DataService } from '../../../../shared/services/data.service';
 import { PlaceService } from '../../../../shared/services/place.service';
+import { ISubscription } from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'app-hall-first',
   templateUrl: './hall-first.component.html',
   styleUrls: ['./hall-first.component.css']
 })
-export class HallFirstComponent implements OnInit {
+export class HallFirstComponent implements OnInit, OnDestroy {
 
   buttons: any = [];
   places: Place[] = [];
   placesSelected: Place[] = [];
   data: any;
-  //seanceId: number;
+  subscription: ISubscription;
+ 
 
   constructor(
     private dataService: DataService,
@@ -32,9 +35,10 @@ export class HallFirstComponent implements OnInit {
         this.clickEvents(); 
       }, err => console.error("File not reading!!!")); 
 
-      this.dataService.placesRemoved$.subscribe( place =>
+      this.subscription = this.dataService.placesRemoved$.subscribe( place =>
       {
-        let button = this.elRef.nativeElement.querySelector(`#btn_${place.id}`);
+      
+        let button = this.elRef.nativeElement.querySelector(`#btn_${place.id}`);       
         this.changeColor(button, place.sectorId);
         if(!this.placesSelected.includes(place)){
           this.placesSelected.push(place);
@@ -45,7 +49,7 @@ export class HallFirstComponent implements OnInit {
   }
 
   createButtons(){
-    this.buttons = this.elRef.nativeElement.getElementsByTagName("button");
+    this.buttons = this.elRef.nativeElement.getElementsByClassName("seats_one");
 
     if(this.buttons.length == this.places.length){
       
@@ -69,7 +73,7 @@ export class HallFirstComponent implements OnInit {
         let button = this.elRef.nativeElement.querySelector(`#${item.id}`);
         if(button){
               this.rd.listen(button, 'click', (event)=>{   
-              let place: Place = this.getPlace(button);   
+              let place: Place = this.getPlace(button); 
               this.changeColor(button, place.sectorId);               
               this.passToHallDialog(place);
             });
@@ -89,13 +93,15 @@ export class HallFirstComponent implements OnInit {
   }
 
    changeColor(button, sectorId){
+ 
     if(button.classList.contains(this.setSectorColor(sectorId))){
       button.classList.remove(this.setSectorColor(sectorId));
-      button.classList.add('btn-warning');
+      button.classList.add('selected-seat');
     }else{
-      button.classList.remove('btn-warning');
+      button.classList.remove('selected-seat');
       button.classList.add(this.setSectorColor(sectorId));                
     }
+  
    }
 
    getPlace(button): Place {
@@ -120,4 +126,9 @@ export class HallFirstComponent implements OnInit {
         this.placesSelected.splice(this.placesSelected.indexOf(place),1);
     }
   }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
+
 }

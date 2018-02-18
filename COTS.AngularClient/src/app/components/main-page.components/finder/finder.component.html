@@ -1,0 +1,11 @@
+<form class="finder-form" *ngIf="!rerender">
+    <mat-form-field class="finder-full-width">
+      <input matInput placeholder="Поиск по названию фильма или кинотеатра" aria-label="Finder" [matAutocomplete]="auto" [formControl]="finderCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let object of filteredData | async" [value]="object.name" (click)="onDataSelect(object)">
+          <img style="vertical-align:middle;" aria-hidden src="{{object.img}}" height="25" />
+          <span>{{ object.name }}</span>          
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>

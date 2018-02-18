@@ -1,7 +1,8 @@
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, OnDestroy } from '@angular/core';
 import { Place } from '../../../../shared/models/place.model';
 import { DataService } from '../../../../shared/services/data.service';
 import { PlaceService } from '../../../../shared/services/place.service';
+import { ISubscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -9,13 +10,14 @@ import { PlaceService } from '../../../../shared/services/place.service';
   templateUrl: './hall-third.component.html',
   styleUrls: ['./hall-third.component.css']
 })
-export class HallThirdComponent implements OnInit {
+export class HallThirdComponent implements OnInit, OnDestroy {
 
  
   buttons: any = [];
   places: Place[] = [];
   placesSelected: Place[] = [];
   data: any;
+  subscription: ISubscription;
 
   constructor(
     private dataService: DataService,
@@ -33,7 +35,7 @@ export class HallThirdComponent implements OnInit {
         this.clickEvents(); 
       }, err => console.error("File not reading!!!")); 
 
-      this.dataService.placesRemoved$.subscribe( place =>
+      this.subscription = this.dataService.placesRemoved$.subscribe( place =>
       {
         let button = this.elRef.nativeElement.querySelector(`#btn_${place.id}`);
         this.changeColor(button, place.sectorId);
@@ -46,7 +48,7 @@ export class HallThirdComponent implements OnInit {
   }
 
   createButtons(){
-    this.buttons = this.elRef.nativeElement.getElementsByTagName("button");
+    this.buttons = this.elRef.nativeElement.getElementsByClassName("seats_third");
 
     if(this.buttons.length == this.places.length){
       
@@ -92,9 +94,9 @@ export class HallThirdComponent implements OnInit {
    changeColor(button, sectorId){
     if(button.classList.contains(this.setSectorColor(sectorId))){
       button.classList.remove(this.setSectorColor(sectorId));
-      button.classList.add('btn-warning');
+      button.classList.add('selected-seat');
     }else{
-      button.classList.remove('btn-warning');
+      button.classList.remove('selected-seat');
       button.classList.add(this.setSectorColor(sectorId));                
     }
    }
@@ -120,5 +122,10 @@ export class HallThirdComponent implements OnInit {
       if(place.id == id)
         this.placesSelected.splice(this.placesSelected.indexOf(place),1);
     }
+    
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 }
