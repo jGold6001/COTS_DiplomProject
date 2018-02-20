@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AuthenticationDialogComponent } from '../authentication-dialog/authentication-dialog.component';
 
@@ -15,15 +15,23 @@ export class AdminPageComponent implements OnInit {
     private dialog: MatDialog,
   ) { }
 
+
   ngOnInit() {
-    this.isSingIn = false;
-    this.openDialog();
+    setTimeout(() => {
+      this.isSingIn = false;
+      this.openDialog();
+    }, 10);
   }
 
   openDialog(){
     let dialogRef = this.dialog.open(AuthenticationDialogComponent, {
       width: '600px',
       disableClose: true,     
+    });
+
+    dialogRef.afterClosed().subscribe(() =>
+    {
+      this.isSingIn = true;
     });
   }
 

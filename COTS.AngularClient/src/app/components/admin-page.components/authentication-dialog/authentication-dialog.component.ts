@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationDialogComponent implements OnInit {
 
+  hide: boolean = true;
+  model: any={};
+  user: User;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onTestDialog(){
+    console.log(this.model);
+  }
+
+}
+
+export class User{
+    login: string;
+    password: string;
 }

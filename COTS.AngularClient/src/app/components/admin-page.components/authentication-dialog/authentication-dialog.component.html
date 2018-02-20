@@ -1,3 +1,36 @@
-<p>
-  authentication-dialog works!
-</p>
+<div class="container">
+    <div class="auth-title">
+      <h4>Авторизация</h4>
+    </div>
+    <div class="auth-container">
+      <mat-form-field>
+        <mat-select placeholder="Выберете город">
+          <mat-option value="kiev" >Киев</mat-option>
+          <mat-option value="harkov" >Харьков</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Выберете кинотеатр">
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Введите логин" name="login" [(ngModel)]="model.login" #login="ngModel" required required minlength="4" >  
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput placeholder="Введите пароль" type="password"  name="password" [(ngModel)]="model.password" #password="ngModel" required>   
+      </mat-form-field>
+
+      <div class="btn-container"> 
+          <button mat-button class="button_style" (click)="onTestDialog()">Testing</button>
+          <button mat-button class="button_style">Войти</button>
+          <button mat-button class="button_style">Отмена</button>          
+      </div>
+
+    </div>
+ 
+</div> 
+

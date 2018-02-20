@@ -39,12 +39,12 @@ export class FinderComponent implements OnInit {
       this.cityId = params['cityId'];
     });
     
-    let city = this.cityId == null ? 'kiev' : this.cityId;
+    this.cityId = this.cityId == null ? 'kiev' : this.cityId;
     
-    this.cinemaService.getAllByCity(city)
+    this.cinemaService.getAllByCity(this.cityId)
       .subscribe(r =>{
         this.cinemas = r;
-        this.movieService.getTop10ByCity(city)
+        this.movieService.getTop10ByCity(this.cityId)
         .subscribe(r =>{
           this.movies = r;
           this.selection();
@@ -94,6 +94,7 @@ export class FinderComponent implements OnInit {
 
 
   onDataSelect(object: any){
+    
     if(object.type == "movie")
         this.router.navigate([this.cityId, object.type, object.id]);
     else

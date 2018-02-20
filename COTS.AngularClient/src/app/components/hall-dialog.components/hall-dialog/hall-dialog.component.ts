@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, ElementRef, Renderer2, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnDestroy} from '@angular/core';
+import { Component, OnInit, Inject, Input, ElementRef, Renderer2, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnDestroy, AfterViewInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Seance } from '../../../shared/models/seance.model';
 import { DomService } from '../../../shared/services/dom.service';
@@ -23,6 +23,10 @@ import { Hall } from '../../../shared/models/hall.model';
 import { Cinema } from '../../../shared/models/cinema.model';
 import { Sector } from '../../../shared/models/sector.model';
 import { SectorService } from '../../../shared/services/sector.service';
+import { HallFirstComponent } from '../halls-components/hall-first/hall-first.component';
+import { HallSecondComponent } from '../halls-components/hall-second/hall-second.component';
+import { HallThirdComponent } from '../halls-components/hall-third/hall-third.component';
+import { HallFourthComponent } from '../halls-components/hall-fourth/hall-fourth.component';
 
 @Component({
   selector: 'app-hall-dialog',
@@ -51,7 +55,6 @@ export class HallDialogComponent implements OnInit, OnDestroy {
   sum: number = 0;
   tariffs: Tariff[] = [];
   sectors: Sector[] = [];
-
   technology: string;
 
   constructor(
@@ -87,15 +90,15 @@ export class HallDialogComponent implements OnInit, OnDestroy {
         let factory = this.domService.createFactory(componentType);    
         this.componentRef = this.container.createComponent(factory); 
 
-        
-
         let dataInfo = {
-            city: this.cinema.cityId,
-            cinema: this.cinema.id,
-            hall: this.hall.name,
-            seance: this.seance.id
+          city: this.cinema.cityId,
+          cinema: this.cinema.id,
+          hall: this.hall.name,
+          seance: this.seance.id
         };
-        (this.componentRef.instance).data = dataInfo;
+
+        //(this.componentRef.instance).data = this.dataInfo;
+        this.passDataToDynamicComponent(typeInfo, dataInfo);
 
         this.tariffs = this.seance.tariffs; 
         
@@ -109,6 +112,28 @@ export class HallDialogComponent implements OnInit, OnDestroy {
     );
      
   }
+
+  passDataToDynamicComponent(typeInfo, dataInfo){
+    switch(typeInfo){
+      case "Зеленый": (<HallFirstComponent>this.componentRef.instance).data = dataInfo;
+        break;
+      case "Малый": (<HallSecondComponent>this.componentRef.instance).data = dataInfo;
+        break;          
+      case "Синий": (<HallThirdComponent>this.componentRef.instance).data = dataInfo;
+        break;
+      case "Красный": (<HallFourthComponent>this.componentRef.instance).data = dataInfo;
+        break;
+      case "1": (<HallFirstComponent>this.componentRef.instance).data = dataInfo;
+        break;
+      case "2": (<HallSecondComponent>this.componentRef.instance).data = dataInfo;
+        break;
+      case "3": (<HallThirdComponent>this.componentRef.instance).data = dataInfo;
+        break;
+      case "4": (<HallFourthComponent>this.componentRef.instance).data = dataInfo;
+        break;
+    }
+  }
+
 
   setSectorColor(sectorId: number): string {
     let sector = this.sectors.find(s => s.id == sectorId);
@@ -336,10 +361,7 @@ export class HallDialogComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){   
       if(this.componentRef)
-        this.componentRef.destroy(); 
-
-    
-            
+        this.componentRef.destroy();            
   }
 
 }

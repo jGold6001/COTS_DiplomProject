@@ -80,6 +80,8 @@ import { HallFourthComponent } from './components/hall-dialog.components/halls-c
 import { FinderComponent } from './components/main-page.components/finder/finder.component';
 import { MoviesListComponent } from './components/cinema-page.components/movies-list/movies-list.component';
 import { SeancesByMoviesComponent } from './components/cinema-page.components/seances-by-movies/seances-by-movies.component';
+import { AuthenticationDialogComponent } from './components/admin-page.components/authentication-dialog/authentication-dialog.component';
+import { AdminPageComponent } from './components/admin-page.components/admin-page/admin-page.component';
 
 
 @NgModule({
@@ -103,6 +105,8 @@ import { SeancesByMoviesComponent } from './components/cinema-page.components/se
     FinderComponent,
     MoviesListComponent,
     SeancesByMoviesComponent,
+    AuthenticationDialogComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -157,7 +161,12 @@ import { SeancesByMoviesComponent } from './components/cinema-page.components/se
   entryComponents: [
     SeancesByCinemasComponent, 
     HallDialogComponent,
-    TicketsDialogComponent
+    TicketsDialogComponent,
+    AuthenticationDialogComponent,
+    HallFirstComponent,
+    HallSecondComponent,
+    HallThirdComponent,
+    HallFourthComponent
   ],
   providers: [
     GeocodingApiService,

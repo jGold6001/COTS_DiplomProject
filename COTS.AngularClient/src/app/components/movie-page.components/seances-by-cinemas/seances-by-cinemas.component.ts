@@ -40,6 +40,7 @@ export class SeancesByCinemasComponent implements OnInit {
   openDialog(){
     let dialogRef = this.dialog.open(HallDialogComponent, {
       width: '1200px',
+      disableClose: true,
       data: { seanceId: this.seance.id, sectors:  this.sectors}
     });
   }

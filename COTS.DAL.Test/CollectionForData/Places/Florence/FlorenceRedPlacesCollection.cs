@@ -48,7 +48,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
                 {
                     long id = startIndex++;
                     int row = (r + 1);
-                    var place = new Place(id, row, s, FlorenceHallsCollection.Get()[2].Id, FlorenceSectorsCollection.Get()[3].Id);
+                    var place = new Place(id, row, s, FlorenceHallsCollection.Get()[3].Id, FlorenceSectorsCollection.Get()[3].Id);
                     places.Add(place);
                 }
             }
@@ -60,7 +60,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
                 {
                     long id = startIndex++;
                     int row = (r + 1);
-                    var place = new Place(id, row, s, FlorenceHallsCollection.Get()[2].Id, FlorenceSectorsCollection.Get()[1].Id);
+                    var place = new Place(id, row, s, FlorenceHallsCollection.Get()[3].Id, FlorenceSectorsCollection.Get()[1].Id);
                     places.Add(place);
                 }
             }
@@ -70,7 +70,7 @@ namespace COTS.DAL.Test.CollectionForData.Places.Florence
             {
                 long id = startIndex++;
                 int row = 8;
-                var place = new Place(id, row, s, FlorenceHallsCollection.Get()[2].Id, FlorenceSectorsCollection.Get()[2].Id);
+                var place = new Place(id, row, s, FlorenceHallsCollection.Get()[3].Id, FlorenceSectorsCollection.Get()[2].Id);
                 places.Add(place);
             }
 
