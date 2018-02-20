@@ -53,6 +53,12 @@
     <Compile Include="Constants\TimePeriod.cs" />
     <Compile Include="Constants\TypeD.cs" />
     <Compile Include="Constants\WeekDays.cs" />
+    <Compile Include="DTO\UserDetailsDTO.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
+    <Compile Include="DTO\UserRoleDTO.cs" />
+    <Compile Include="Interfaces\IUserRoleService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Interfaces\IUserDetailsService.cs" />
     <Compile Include="Managers\PlaceManager\PlaceDTOManager.cs" />
     <Compile Include="Managers\SeanceManager\AssignerTariff.cs" />
     <Compile Include="Managers\SeanceManager\SeanceDTOManager.cs" />

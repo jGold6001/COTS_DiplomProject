@@ -28,6 +28,10 @@ namespace COTS.DAL.Interfaces
         IRepository<Ticket> Tickets {get;}    
         IRepository<Purchase> Purchases { get; }
         IRepository<Customer> Customers { get; }
+
+        IRepository<User> Users { get; }
+        IRepository<UserDetails> UserDetailses { get; }
+        IRepository<UserRole> UserRoles { get; }
         void Save();
     }
 }

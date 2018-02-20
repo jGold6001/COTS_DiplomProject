@@ -19,6 +19,7 @@ using COTS.DAL.Test.CollectionForData.Places.MpxSkyMall;
 using COTS.DAL.Test.CollectionForData.Places.MpxProspect;
 using COTS.DAL.Test.CollectionForData.Places.MpxDafi;
 using COTS.DAL.Test.CollectionForData.Tariffs.Mpx;
+using COTS.DAL.Test.CollectionForData.Users;
 
 namespace COTS.DAL.Test.Repositories
 {
@@ -94,6 +95,10 @@ namespace COTS.DAL.Test.Repositories
         private List<Place> placesDafiThree = MpxDafiThreePlacesCollection.Get();
         private List<Place> placesDafiFour = MpxDafiFourPlacesCollection.Get();
 
+        //user 
+        private List<User> users = UsersCollection.Get();
+        private List<UserRole> usersRoles = UserRolesCollection.Get();
+
         //repositories
         private MovieRepository movieRepo;
         private MovieDetailsRepository movieDetailsRepo;
@@ -109,6 +114,9 @@ namespace COTS.DAL.Test.Repositories
         private TariffRepository tariffRepository;
         private EnterpriseRepository enterpriseRepository;
         private TechnologyRepository technologyRepository;
+        private UserDetailsRepository userDetailsRepository;
+        private UserRoleRepository userRoleRepository;
+        private UserRepository userRepository;
 
 
         [TestInitialize]
@@ -135,6 +143,10 @@ namespace COTS.DAL.Test.Repositories
 
             tariffRepository = unitOfwork.Tariffs as TariffRepository;
             technologyRepository = unitOfwork.Technologies as TechnologyRepository;
+
+            userDetailsRepository = unitOfwork.UserDetailses as UserDetailsRepository;
+            userRepository = unitOfwork.Users as UserRepository;
+            userRoleRepository = unitOfwork.UserRoles as UserRoleRepository;
         }
 
         [TestMethod]
@@ -196,8 +208,7 @@ namespace COTS.DAL.Test.Repositories
             Cinema mSkymall = cinemas[0];
             Cinema mProspect = cinemas[1];
             Cinema mDafi = cinemas[2];
-            Cinema florence = cinemas[3];
-
+            Cinema florence = cinemas[3];           
 
             foreach (var item in technologies)
             {
@@ -339,7 +350,19 @@ namespace COTS.DAL.Test.Repositories
 
                 seanceRepo.AddOrUpdate(seancesMultDafi[i]);
             }
-            
+
+            foreach (var item in usersRoles)
+                userRoleRepository.AddOrUpdate(item);
+
+
+            foreach (var item in users)
+            {
+                userRepository.AddOrUpdate(item);
+                userDetailsRepository.AddOrUpdate(item.UserDetails);
+            }
+
+
+
            
             unitOfwork.Save();
         }
@@ -549,6 +572,15 @@ namespace COTS.DAL.Test.Repositories
 
             foreach (var item in customerRepository.GetAll())
                 customerRepository.Delete(item);
+
+            foreach (var item in userRoleRepository.GetAll())
+                userRoleRepository.Delete(item);
+
+            foreach (var item in userRepository.GetAll())
+                userRepository.Delete(item);
+
+            foreach (var item in userDetailsRepository.GetAll())
+                userDetailsRepository.Delete(item);
 
             unitOfwork.Save();
         }

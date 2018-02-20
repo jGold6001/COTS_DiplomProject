@@ -35,6 +35,10 @@ namespace COTS.DAL.Repositories
         private PurchaseRepository purchaseRepository;
         private CustomerRepository customerRepository;
 
+        private UserRepository userRepository;
+        private UserDetailsRepository userDetailsRepository;
+        private UserRoleRepository userRoleRepository;
+
 
         public EFUnitOfWork(string connectionString)
         {
@@ -180,6 +184,36 @@ namespace COTS.DAL.Repositories
                 if (customerRepository == null)
                     customerRepository = new CustomerRepository(db);
                 return customerRepository;
+            }
+        }
+
+        public IRepository<User> Users
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository(db);
+                return userRepository;
+            }
+        }
+
+        public IRepository<UserDetails> UserDetailses
+        {
+            get
+            {
+                if (userDetailsRepository == null)
+                    userDetailsRepository = new UserDetailsRepository(db);
+                return userDetailsRepository;
+            }
+        }
+
+        public IRepository<UserRole> UserRoles
+        {
+            get
+            {
+                if (userRoleRepository == null)
+                    userRoleRepository = new UserRoleRepository(db);
+                return userRoleRepository;
             }
         }
 

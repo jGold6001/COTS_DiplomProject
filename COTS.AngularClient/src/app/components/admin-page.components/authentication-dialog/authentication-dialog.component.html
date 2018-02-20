@@ -4,15 +4,18 @@
     </div>
     <div class="auth-container">
       <mat-form-field>
-        <mat-select placeholder="Выберете город">
-          <mat-option value="kiev" >Киев</mat-option>
-          <mat-option value="harkov" >Харьков</mat-option>
+        <mat-select placeholder="Выберете город" [(ngModel)]="model.city" name="city" (selectionChange)="onSelectCity(model.city)">
+          <mat-option *ngFor="let city of cities" [value]="city.name">
+            {{city.name}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Выберете кинотеатр">
-          <mat-option value="option">Option</mat-option>
+        <mat-select placeholder="Выберете кинотеатр" [(ngModel)]="model.cinema" name="cinema" >
+          <mat-option *ngFor="let cinema of cinemas" [value]="cinema.name" >
+            {{cinema.name}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       

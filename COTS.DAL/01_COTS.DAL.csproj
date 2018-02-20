@@ -55,6 +55,9 @@
     <Compile Include="Entities\MovieDetails.cs" />
     <Compile Include="Entities\Sector.cs" />
     <Compile Include="Entities\Technology.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserDetails.cs" />
+    <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Entities\Сustomer.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Tariff.cs" />
@@ -81,6 +84,9 @@
     <Compile Include="Repositories\TariffRepository.cs" />
     <Compile Include="Repositories\TechnologyRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
+    <Compile Include="Repositories\UserDetailsRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\UserRoleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

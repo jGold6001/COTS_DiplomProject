@@ -32,7 +32,12 @@ namespace COTS.DAL.EF
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<Purchase> Purchases { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-      
+
+
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserDetails> UserDetailses { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+
       
     }
 }
