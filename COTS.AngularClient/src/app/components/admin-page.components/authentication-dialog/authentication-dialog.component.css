@@ -15,3 +15,11 @@
     background: white;
     border: 1px solid gray;   
 }
+
+.error-login{
+    border: 1px solid red;
+    background: rgba(231, 117, 117, 0.726);
+    color: red;
+    padding: 2px;
+    text-align: center;  
+}

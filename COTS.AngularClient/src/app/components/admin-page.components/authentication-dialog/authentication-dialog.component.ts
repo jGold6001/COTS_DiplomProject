@@ -19,6 +19,7 @@ export class AuthenticationDialogComponent implements OnInit {
   user: User;
   cities: City[] =[];
   cinemas: Cinema[] = [];
+  wrongLogin: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<AuthenticationDialogComponent>,
@@ -44,12 +45,16 @@ export class AuthenticationDialogComponent implements OnInit {
 
   }
 
-  onTestDialog(){
+  
+  onEnterToAdmin(){
     this.user = this.convertToUser(this.model);   
     this.userService.isExist(this.user).subscribe(result =>
-      {          
-        this.dialogRef.close(); 
-      },err => console.error("wrong login or password") );
+      {                 
+        this.dialogRef.close(this.user);         
+      },err =>{
+        this.wrongLogin = true;
+        console.error("wrong login or password"); 
+      } );
   }
 
   onSelectCity(cityName: string){

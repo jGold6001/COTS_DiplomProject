@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AuthenticationDialogComponent } from '../authentication-dialog/authentication-dialog.component';
+import { User } from '../../../shared/models/user.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -9,18 +11,22 @@ import { AuthenticationDialogComponent } from '../authentication-dialog/authenti
 })
 export class AdminPageComponent implements OnInit {
 
+
   isSingIn: boolean;
+  user: User;
 
   constructor(
     private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.isSingIn = false;
-      this.openDialog();
-    }, 10);
+  ngOnInit() {   
+      setTimeout(() => {
+        this.isSingIn = false;
+        this.openDialog();
+      }, 10);  
   }
 
   openDialog(){
@@ -29,8 +35,11 @@ export class AdminPageComponent implements OnInit {
       disableClose: true,     
     });
 
-    dialogRef.afterClosed().subscribe(() =>
+    dialogRef.afterClosed().subscribe( user =>
     {
+      this.user = user;
+      console.log(this.user);
+      //this.router.navigate(["admin", this.user.login]);
       this.isSingIn = true;
     });
   }

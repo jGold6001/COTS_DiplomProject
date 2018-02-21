@@ -16,6 +16,7 @@ import { AdminPageComponent } from "./components/admin-page.components/admin-pag
 const routes: Routes = [
   { path: "", component: MainPageComponent }, 
   { path: "admin", component: AdminPageComponent},
+  { path: "admin/:login", component: AdminPageComponent},
   { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},
