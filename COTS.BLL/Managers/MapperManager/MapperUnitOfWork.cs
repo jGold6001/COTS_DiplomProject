@@ -23,6 +23,10 @@ namespace COTS.BLL.Managers.MapperManager
         SectorDTOMapper sectorDTOMapper;
         TechnologyDTOMapper technologyDTOMapper;
         EnterpriseDTOMapper enterpriseDTOMapper;
+        UserDTOMapper userDTOMapper;
+        UserDetailsDTOMapper userDetailsDTOMapper;
+        UserRoleDTOMapper userRoleDTOMapper;
+        
 
         TicketMapper ticketMapper;
         PlaceMapper placeMapper;
@@ -214,6 +218,36 @@ namespace COTS.BLL.Managers.MapperManager
             }
         }
 
+        public UserDTOMapper UserDTOMapper
+        {
+            get
+            {
+                if (userDTOMapper == null)
+                    userDTOMapper = new UserDTOMapper();
+                return userDTOMapper;
+            }
+        }
+
+        public UserDetailsDTOMapper UserDetailsDTOMapper
+        {
+            get
+            {
+                if (userDetailsDTOMapper == null)
+                    userDetailsDTOMapper = new UserDetailsDTOMapper();
+                return userDetailsDTOMapper;
+            }
+        }
+
+        public UserRoleDTOMapper UserRoleDTOMapper
+        {
+            get
+            {
+                if (userRoleDTOMapper == null)
+                    userRoleDTOMapper = new UserRoleDTOMapper();
+                return userRoleDTOMapper;
+            }
+
+        }
 
     }
 }

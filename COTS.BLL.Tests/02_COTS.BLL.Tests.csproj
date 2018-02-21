@@ -68,6 +68,7 @@
     <Compile Include="Services\SectorServiceTest.cs" />
     <Compile Include="Services\TariffServiceTest.cs" />
     <Compile Include="Services\TicketServiceTest.cs" />
+    <Compile Include="Services\UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

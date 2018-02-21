@@ -82,6 +82,7 @@ import { MoviesListComponent } from './components/cinema-page.components/movies-
 import { SeancesByMoviesComponent } from './components/cinema-page.components/seances-by-movies/seances-by-movies.component';
 import { AuthenticationDialogComponent } from './components/admin-page.components/authentication-dialog/authentication-dialog.component';
 import { AdminPageComponent } from './components/admin-page.components/admin-page/admin-page.component';
+import { UserService } from './shared/services/user.service';
 
 
 @NgModule({
@@ -181,10 +182,7 @@ import { AdminPageComponent } from './components/admin-page.components/admin-pag
     TicketService,
     PlaceService,
     PurchaseService,
-    HallFirstComponent,
-    HallSecondComponent,
-    HallThirdComponent,
-    HallFourthComponent,
+    UserService,
     { provide: LOCALE_ID, useValue: "ru" }
   ],
   bootstrap: [AppComponent]

@@ -59,6 +59,9 @@
     <Compile Include="Interfaces\IUserRoleService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IUserDetailsService.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\UserDetailsDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\UserDTOMapper.cs" />
+    <Compile Include="Managers\MapperManager\DTOMappers\UserRoleDTOMapper.cs" />
     <Compile Include="Managers\PlaceManager\PlaceDTOManager.cs" />
     <Compile Include="Managers\SeanceManager\AssignerTariff.cs" />
     <Compile Include="Managers\SeanceManager\SeanceDTOManager.cs" />
@@ -110,6 +113,9 @@
     <Compile Include="Managers\MapperManager\DTOMappers\SeanceDTOMapper.cs" />
     <Compile Include="Managers\MapperManager\DTOMappers\TicketDTOMapper.cs" />
     <Compile Include="Managers\MapperManager\DTOMappers\PlaceDTOMapper.cs" />
+    <Compile Include="Services\UserDetailsService.cs" />
+    <Compile Include="Services\UserRoleService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Utils\ServiceModule.cs" />
     <Compile Include="Utils\ValidationException.cs" />
     <Compile Include="Interfaces\ICinemaService.cs" />
@@ -137,5 +143,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

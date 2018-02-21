@@ -13,5 +13,7 @@ namespace COTS.DAL.Repositories
         public UserRepository(DbContext context) : base(context)
         {
         }
+
+        
     }
 }

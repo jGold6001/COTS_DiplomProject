@@ -1,4 +1,5 @@
-﻿using System;
+﻿using COTS.BLL.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace COTS.BLL.Interfaces
 {
     public interface IUserRoleService
     {
+        void AddOrUpdate(UserRoleDTO userRoleDTO);
+        void Delete(long id);
+        IEnumerable<UserRoleDTO> GetAll();
+        UserRoleDTO GetOne(long id);
+
     }
 }

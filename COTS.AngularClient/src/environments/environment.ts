@@ -31,5 +31,8 @@ export const environment = {
   APIURL_PURCHASE:                            _serverHost +  "/api/purchase/",
   APIURL_PURCHASE_UPDATE:                     _serverHost +  "/api/purchase/update",
   APIURL_PURCHASE_REMOVE:                     _serverHost +  "/api/purchase/remove/",
+
   APIURL_SECTORS_BY_ENTERTAIMENT:             _serverHost +  "/api/sector/getall/",
+
+  APIURL_USER_IS_EXIST:                       _serverHost + "/api/user/is_exist"
 };

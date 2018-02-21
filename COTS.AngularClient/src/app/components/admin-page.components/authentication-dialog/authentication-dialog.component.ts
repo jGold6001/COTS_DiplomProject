@@ -3,6 +3,7 @@ import { CityService } from '../../../shared/services/city.service';
 import { CinemaService } from '../../../shared/services/cinema.service';
 import { City } from '../../../shared/models/city.model';
 import { Cinema } from '../../../shared/models/cinema.model';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-authentication-dialog',
@@ -17,7 +18,8 @@ export class AuthenticationDialogComponent implements OnInit {
 
   constructor(
     private cityService: CityService,
-    private cinemaService: CinemaService
+    private cinemaService: CinemaService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,8 @@ export class AuthenticationDialogComponent implements OnInit {
 
   onTestDialog(){
     console.log(this.model);
+
+    //this.userService.isExist()
   }
 
   onSelectCity(cityName: string){

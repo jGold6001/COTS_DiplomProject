@@ -26,9 +26,12 @@ namespace COTS.WEBAPI.Utils.MapperManager
         TechnologyViewModelMapper technologyViewModelMapper;
         EnterpriseViewModelMapper enterpriseViewModelMapper;
         SectorViewModelMapper sectorViewModelMapper;
+        UserFullViewModelMapper userFullViewModelMapper;
+        UserShortViewModelMapper userShortViewModelMapper;
 
         TicketDTOMapper ticketDTOMapper;
         PlaceDTOMapper placeDTOMapper;
+        UserDTOMapper userDTOMapper;
 
         public MovieShortViewModelMapper MovieShortViewModelMapper
         {
@@ -211,5 +214,34 @@ namespace COTS.WEBAPI.Utils.MapperManager
             }
         }
 
+        public UserShortViewModelMapper UserShortViewModelMapper
+        {
+            get
+            {
+                if (userShortViewModelMapper == null)
+                    userShortViewModelMapper = new UserShortViewModelMapper();
+                return userShortViewModelMapper;
+            }
+        }
+
+        public UserFullViewModelMapper UserFullViewModelMapper
+        {
+            get
+            {
+                if (userFullViewModelMapper == null)
+                    userFullViewModelMapper = new UserFullViewModelMapper();
+                return userFullViewModelMapper;
+            }
+        }
+
+        public UserDTOMapper UserDTOMapper
+        {
+            get
+            {
+                if (userDTOMapper == null)
+                    userDTOMapper = new UserDTOMapper();
+                return userDTOMapper;
+            }
+        }
     }
 }

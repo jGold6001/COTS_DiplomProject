@@ -1,0 +1,25 @@
+{
+  "Login":"admin",
+  "Password" : "admin",
+  "UserRoleId" : "1"
+}
+
+{
+   "CinemaId" : "florence",
+   "UserRoleId" : "1",
+   "Login" : "JayFlorence_A",
+   "Password" : "adminQWERTY"
+}
+
+{
+   "CinemaId" : "florence",
+   "UserRoleId" : "1",
+   "Login" : "JayFlorence_A121",
+   "Password" : "adminQWERTY"
+}
+
+
+User-Agent: Fiddler
+Content-Type: application/x-www-form-urlencoded
+Host: localhost:59837
+Content-Length: 100

@@ -13,6 +13,6 @@ namespace COTS.BLL.Interfaces
         void AddOrUpdate(CinemaDTO cinemaDTO);
         CinemaDTO GetOne(string id);
         IEnumerable<CinemaDTO> FindAllByCity(string id);        
-        void Delete(string id);
+        void Delete(string id);       
     }
 }
