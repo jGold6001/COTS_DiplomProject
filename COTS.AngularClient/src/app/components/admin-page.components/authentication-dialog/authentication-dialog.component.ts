@@ -4,6 +4,9 @@ import { CinemaService } from '../../../shared/services/cinema.service';
 import { City } from '../../../shared/models/city.model';
 import { Cinema } from '../../../shared/models/cinema.model';
 import { UserService } from '../../../shared/services/user.service';
+import { User } from '../../../shared/models/user.model';
+import { request } from 'http';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-authentication-dialog',
@@ -13,10 +16,12 @@ import { UserService } from '../../../shared/services/user.service';
 export class AuthenticationDialogComponent implements OnInit {
 
   model: any={};
+  user: User;
   cities: City[] =[];
   cinemas: Cinema[] = [];
 
   constructor(
+    public dialogRef: MatDialogRef<AuthenticationDialogComponent>,
     private cityService: CityService,
     private cinemaService: CinemaService,
     private userService: UserService
@@ -40,9 +45,11 @@ export class AuthenticationDialogComponent implements OnInit {
   }
 
   onTestDialog(){
-    console.log(this.model);
-
-    //this.userService.isExist()
+    this.user = this.convertToUser(this.model);   
+    this.userService.isExist(this.user).subscribe(result =>
+      {          
+        this.dialogRef.close(); 
+      },err => console.error("wrong login or password") );
   }
 
   onSelectCity(cityName: string){
@@ -54,4 +61,13 @@ export class AuthenticationDialogComponent implements OnInit {
       });
   }
 
+  convertToUser(model: any): User{
+    this.user = new User();
+    let cinemaId = this.cinemas.find(c => c.name == model.cinema).id;
+    this.user.init(model.login, model.password, cinemaId);
+    return  this.user;
+  }
+
 }
+
+

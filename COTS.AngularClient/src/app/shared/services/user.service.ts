@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Http } from "@angular/http";
 import { JsonConvertor } from "../utils/json.convertor";
+import { User } from "../models/user.model";
 
 
 @Injectable()
@@ -16,9 +17,11 @@ export class UserService{
     ){ }
 
 
-    isExist(user: any){
-        return this.httpClient.post(environment.APIURL_USER_IS_EXIST, user)
-            .subscribe(null,err => console.log("Error occured"));
+    isExist(user: User){
+        return this.http.post(environment.APIURL_USER_IS_EXIST, user)
+            .map( response => {
+                return  response.status;
+            });          
     }
 
 }

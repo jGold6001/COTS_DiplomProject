@@ -35,7 +35,7 @@ namespace COTS.WEBAPI.Controllers.WebApi
             if (userService.IsUserExist(userDTO))
                 return Ok();
 
-            return BadRequest();
+            return NotFound();
         }
     }
 }

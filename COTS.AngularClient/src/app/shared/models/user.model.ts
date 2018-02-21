@@ -1,11 +1,10 @@
 
 export class User{
     
-    init(login: string, password: string, cinemaId: string, userRole: number){
+    init(login: string, password: string, cinemaId: string){
         this.login = login;
         this.password = password;
         this.cinemaId = cinemaId;
-        this.userRole = userRole;
     }
 
     initFullModel(  id: number,login: string, password: string, cinemaId: string, userRole: number, firstName: string, lastName: string, position: string){
