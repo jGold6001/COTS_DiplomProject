@@ -1,15 +1,37 @@
 <div class="admin_panel" >
+    
+    <!--for dialog-->
     <div class="container" style="height: 800px;" *ngIf="!isSingIn"></div>
+
+    <!--loading after dialog-->
+   
     <div class="container" *ngIf="isSingIn">
+      <br/>
       <div class="row">
-        <p>
-          admin-page works!
-          
-        </p>
+        <div class="container" id="up_part_panel">
+          <div class="row">
+            <div class="col" id="user_info">
+              <p><b>ФИО</b></p>
+              <p><b>Должность:</b> кем работает</p>
+              <p><b>Место роботы:</b> в каком киноткатре</p>
+            </div>
+            <div class="col text-right">
+                <button class="btn-logout" (click)="onLogOut()">LogOut</button>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <br/>
       <div class="row">
+          <div class="container" id="down_part_panel">
+
+            </div>
+      </div>
+
+      <!-- <div class="row">
         <button class="btn-logout" (click)="onLogOut()">LogOut</button>
-      </div>
+      </div> -->
     </div>
 
 </div>

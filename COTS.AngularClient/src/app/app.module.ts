@@ -83,6 +83,7 @@ import { SeancesByMoviesComponent } from './components/cinema-page.components/se
 import { AuthenticationDialogComponent } from './components/admin-page.components/authentication-dialog/authentication-dialog.component';
 import { AdminPageComponent } from './components/admin-page.components/admin-page/admin-page.component';
 import { UserService } from './shared/services/user.service';
+import { ClientComponent } from './components/client/client.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { UserService } from './shared/services/user.service';
     SeancesByMoviesComponent,
     AuthenticationDialogComponent,
     AdminPageComponent,
+    ClientComponent,
   ],
   imports: [
     BrowserModule,
