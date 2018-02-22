@@ -40,7 +40,7 @@ export class MainPageComponent implements OnInit{
     private cityService: CityService
   ) { }
 
-  ngOnInit() {   
+  ngOnInit() {    
     this.cityService.getAll()
       .subscribe(r =>{
           this.cities = r;
@@ -104,7 +104,7 @@ export class MainPageComponent implements OnInit{
   private doRerender() {
     this.rerender = true;
     this.cdRef.detectChanges();
-    this.rerender = false;
+    this.rerender = false;    
   }
 
 }

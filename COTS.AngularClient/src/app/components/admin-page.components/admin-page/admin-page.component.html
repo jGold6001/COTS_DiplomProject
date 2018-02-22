@@ -1,11 +1,17 @@
-<div class="container" style="height: 800px;" *ngIf="!isSingIn"></div>
-<div class="container" *ngIf="isSingIn">
-  <div class="row">
-    <p>
-      admin-page works!
-      
-    </p>
-  </div>
+<div class="admin_panel" >
+    <div class="container" style="height: 800px;" *ngIf="!isSingIn"></div>
+    <div class="container" *ngIf="isSingIn">
+      <div class="row">
+        <p>
+          admin-page works!
+          
+        </p>
+      </div>
+      <div class="row">
+        <button class="btn-logout" (click)="onLogOut()">LogOut</button>
+      </div>
+    </div>
+
 </div>
 
 

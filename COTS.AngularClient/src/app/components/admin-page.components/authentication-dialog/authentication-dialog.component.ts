@@ -57,6 +57,10 @@ export class AuthenticationDialogComponent implements OnInit {
       } );
   }
 
+  onWindowReload(){
+    window.location.reload();
+  }
+
   onSelectCity(cityName: string){
     let cityId = this.cities.find(c => c.name == cityName).id;
     this.cinemaService.getAllByCity(cityId).subscribe( data =>
