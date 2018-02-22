@@ -80,10 +80,15 @@ import { HallFourthComponent } from './components/hall-dialog.components/halls-c
 import { FinderComponent } from './components/main-page.components/finder/finder.component';
 import { MoviesListComponent } from './components/cinema-page.components/movies-list/movies-list.component';
 import { SeancesByMoviesComponent } from './components/cinema-page.components/seances-by-movies/seances-by-movies.component';
-import { AuthenticationDialogComponent } from './components/admin-page.components/authentication-dialog/authentication-dialog.component';
 import { AdminPageComponent } from './components/admin-page.components/admin-page/admin-page.component';
 import { UserService } from './shared/services/user.service';
-import { ClientComponent } from './components/client/client.component';
+import { AuthPageComponent } from './components/admin-page.components/auth-page/auth-page.component';
+import { SeanceBlockComponent } from './components/admin-page.components/seance-block/seance-block.component';
+import { MovieBlockComponent } from './components/admin-page.components/movie-block/movie-block.component';
+import { TariffBlockComponent } from './components/admin-page.components/tariff-block/tariff-block.component';
+import { EmployeeBlockComponent } from './components/admin-page.components/employee-block/employee-block.component';
+import { StatisticBlockComponent } from './components/admin-page.components/statistic-block/statistic-block.component';
+import { ConfigBlockComponent } from './components/admin-page.components/config-block/config-block.component';
 
 
 @NgModule({
@@ -107,9 +112,14 @@ import { ClientComponent } from './components/client/client.component';
     FinderComponent,
     MoviesListComponent,
     SeancesByMoviesComponent,
-    AuthenticationDialogComponent,
     AdminPageComponent,
-    ClientComponent,
+    AuthPageComponent,
+    SeanceBlockComponent,
+    MovieBlockComponent,
+    TariffBlockComponent,
+    EmployeeBlockComponent,
+    StatisticBlockComponent,
+    ConfigBlockComponent
   ],
   imports: [
     BrowserModule,
@@ -165,7 +175,6 @@ import { ClientComponent } from './components/client/client.component';
     SeancesByCinemasComponent, 
     HallDialogComponent,
     TicketsDialogComponent,
-    AuthenticationDialogComponent,
     HallFirstComponent,
     HallSecondComponent,
     HallThirdComponent,

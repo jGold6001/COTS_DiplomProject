@@ -34,5 +34,6 @@ export const environment = {
 
   APIURL_SECTORS_BY_ENTERTAIMENT:             _serverHost +  "/api/sector/getall/",
 
-  APIURL_USER_IS_EXIST:                       _serverHost + "/api/user/is_exist"
+  APIURL_USER_IS_EXIST:                       _serverHost + "/api/user/is_exist",
+  APIURL_USER:                                _serverHost + "/api/user/",
 };

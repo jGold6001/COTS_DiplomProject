@@ -14,6 +14,6 @@ namespace COTS.BLL.Interfaces
         bool IsUserExist(UserDTO userDTO);
         IEnumerable<UserDTO> GetAllByCinema(string cinemaId);
         UserDTO GetOne(long id);
-      
+        UserDTO GetOneByLogin(string login);
     }
 }

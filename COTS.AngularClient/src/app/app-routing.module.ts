@@ -10,12 +10,14 @@ import { HallThirdComponent } from "./components/hall-dialog.components/halls-co
 import { HallSecondComponent } from "./components/hall-dialog.components/halls-components/hall-second/hall-second.component";
 import { HallFirstComponent } from "./components/hall-dialog.components/halls-components/hall-first/hall-first.component";
 import { AdminPageComponent } from "./components/admin-page.components/admin-page/admin-page.component";
+import { AuthPageComponent } from "./components/admin-page.components/auth-page/auth-page.component";
 
 
 
 const routes: Routes = [
   { path: "", component: MainPageComponent }, 
-  { path: "admin", component: AdminPageComponent},
+  { path: "login", component: AuthPageComponent},
+  { path: ":sessionId/:cinemaId/:userId", component: AdminPageComponent},
   { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},

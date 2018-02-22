@@ -1,40 +1,73 @@
-<div class="admin_panel" >
-    
-    <!--for dialog-->
-    <div class="container" style="height: 800px;" *ngIf="!isSingIn"></div>
+<div id="admin_panel" >
 
-    <!--loading after dialog-->
-   
+   <!--if sessionId removed-->
+    <div class="container" *ngIf="!isSingIn">
+      <div class="row" style="text-align:center; padding:40px;">
+        <h2>Извините ссылка не доступная</h2>
+      </div>
+      <div class="row">
+          <div style="height: 700px;"></div>
+      </div>
+    </div>
+    
+    <!--if sessionId exist-->
     <div class="container" *ngIf="isSingIn">
       <br/>
       <div class="row">
         <div class="container" id="up_part_panel">
           <div class="row">
             <div class="col" id="user_info">
-              <p><b>ФИО</b></p>
-              <p><b>Должность:</b> кем работает</p>
-              <p><b>Место роботы:</b> в каком киноткатре</p>
+              <h4>{{user?.firstName.toUpperCase()}} {{user?.lastName.toUpperCase()}}</h4>
+              <p><b>Должность:</b> {{user?.position}}</p>
+              <p *ngIf="showPlaceOfWork"><b>Место роботы:</b> {{cinema?.name}}, {{cinema?.address}}</p>
             </div>
             <div class="col text-right">
-                <button class="btn-logout" (click)="onLogOut()">LogOut</button>
+                <button mat-button class="btn-logout button_style" (click)="onLogOut()">Выйти</button>
             </div>
           </div>
         </div>
       </div>
 
-      <br/>
       <div class="row">
           <div class="container" id="down_part_panel">
-
+            <div class="row">
+                <div class="col-lg-2" id="side_menu">
+                  <div class="container">
+                    <div class="row btn-menu-row">
+                      <button mat-button class="btn-menu" (click)="selectedPointMenu=1" >Сеансы</button>
+                    </div>
+                    <div class="row btn-menu-row">
+                      <button mat-button class="btn-menu" (click)="selectedPointMenu=2">Фильмы</button>
+                    </div>
+                    <div class="row btn-menu-row" *ngIf="quota==1">
+                      <button mat-button class="btn-menu"  (click)="selectedPointMenu=3">Тарифы</button>
+                    </div>
+                    <div class="row btn-menu-row" *ngIf="quota==1">
+                      <button mat-button class="btn-menu" (click)="selectedPointMenu=4">Сотрудники</button>
+                    </div>
+                    <div class="row btn-menu-row">
+                      <button mat-button class="btn-menu"  (click)="selectedPointMenu=5">Статистика</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-8" id="content_menu">
+                  <div class="container">
+                    <div class="row" [ngSwitch]="selectedPointMenu">
+                        <app-seance-block *ngSwitchCase="1"></app-seance-block>
+                        <app-movie-block  *ngSwitchCase="2"></app-movie-block>
+                        <app-tariff-block *ngSwitchCase="3"></app-tariff-block>
+                        <app-employee-block *ngSwitchCase="4"></app-employee-block>
+                        <app-statistic-block *ngSwitchCase="5"></app-statistic-block>
+                    </div>
+                  </div>
+                </div>
             </div>
+          </div>
       </div>
-
-      <!-- <div class="row">
-        <button class="btn-logout" (click)="onLogOut()">LogOut</button>
-      </div> -->
     </div>
-
+    <br/>
 </div>
+
 
 
 

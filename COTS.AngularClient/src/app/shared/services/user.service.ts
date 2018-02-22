@@ -20,8 +20,15 @@ export class UserService{
     isExist(user: User){
         return this.http.post(environment.APIURL_USER_IS_EXIST, user)
             .map( response => {
-                return  response.status;
+                return  JsonConvertor.toUserFull(response.json());
             });          
+    }
+
+    getOne(id: number) : Observable<User>{
+        return this.http.get(environment.APIURL_USER + id)
+            .map( response => {
+                return JsonConvertor.toUserFull(response.json());
+            });    
     }
 
 }

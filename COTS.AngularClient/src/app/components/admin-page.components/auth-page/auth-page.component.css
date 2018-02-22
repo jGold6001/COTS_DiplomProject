@@ -1,11 +1,12 @@
 .auth-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
 }
 
 .auth-container > * {
     width: 100%;
 }
+
 
 .btn-container{
     text-align: right;
@@ -22,4 +23,13 @@
     color: red;
     padding: 2px;
     text-align: center;  
+}
+
+#auth_form{
+    border: 1px solid lightgray;
+    padding: 3px;
+}
+
+#auth{
+    width: 800px;
 }

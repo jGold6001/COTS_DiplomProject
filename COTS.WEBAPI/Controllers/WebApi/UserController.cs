@@ -33,9 +33,17 @@ namespace COTS.WEBAPI.Controllers.WebApi
         {
             var userDTO = mapperUnitOfWork.UserDTOMapper.MapToObject(userShortViewModel);
             if (userService.IsUserExist(userDTO))
-                return Ok();
-
+            {
+                var userFullVM = mapperUnitOfWork.UserFullViewModelMapper.MapToObject(userService.GetOneByLogin(userDTO.Login));
+                return Ok<UserFullViewModel>(userFullVM);
+            }              
             return NotFound();
+        }
+
+        [Route("{id}")]
+        public UserFullViewModel GetOne(long id)
+        {
+            return mapperUnitOfWork.UserFullViewModelMapper.MapToObject(userService.GetOne(id));
         }
     }
 }

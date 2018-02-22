@@ -8,6 +8,7 @@ using COTS.BLL.DTO;
 using COTS.DAL.Interfaces;
 using COTS.BLL.Managers.MapperManager;
 using COTS.DAL.Repositories;
+using COTS.DAL.Entities;
 
 namespace COTS.BLL.Services
 {
@@ -16,6 +17,7 @@ namespace COTS.BLL.Services
         IUnitOfWork UnitOfWork { get; set; }
         MapperUnitOfWork mapperUnitOfWork;
         UserRepository userRepo;
+        IUserDetailsService userDetailsService;
 
         public UserService(IUnitOfWork unitOfWork)
         {
@@ -51,7 +53,16 @@ namespace COTS.BLL.Services
 
         public UserDTO GetOne(long id)
         {
-            return mapperUnitOfWork.UserDTOMapper.MapToObject(userRepo.Get(id));
+            var user = userRepo.Get(id);
+            var userDTO = AttachObjetcToDTO(user);
+            return userDTO;
+        }
+
+        public UserDTO GetOneByLogin(string login)
+        {
+            var user = userRepo.FindBy(u => u.Login == login).FirstOrDefault();
+            var userDTO = AttachObjetcToDTO(user);
+            return userDTO;
         }
 
         private bool IsAdmin(UserDTO userDTO)
@@ -61,5 +72,15 @@ namespace COTS.BLL.Services
 
             return false;
         }
+
+        private UserDTO AttachObjetcToDTO(User user)
+        {
+            userDetailsService = new UserDetailsService(this.UnitOfWork);
+            var userDTO = mapperUnitOfWork.UserDTOMapper.MapToObject(user);
+            userDTO.UserDetailsDTO = userDetailsService.GetOne(user.Id);
+            return userDTO;
+        }
+
+       
     }
 }

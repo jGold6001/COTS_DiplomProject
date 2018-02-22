@@ -1,31 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../shared/models/user.model';
+import { Cinema } from '../../../shared/models/cinema.model';
+import { City } from '../../../shared/models/city.model';
 import { CityService } from '../../../shared/services/city.service';
 import { CinemaService } from '../../../shared/services/cinema.service';
-import { City } from '../../../shared/models/city.model';
-import { Cinema } from '../../../shared/models/cinema.model';
 import { UserService } from '../../../shared/services/user.service';
-import { User } from '../../../shared/models/user.model';
-import { request } from 'http';
-import { MatDialogRef } from '@angular/material';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-authentication-dialog',
-  templateUrl: './authentication-dialog.component.html',
-  styleUrls: ['./authentication-dialog.component.css']
+  selector: 'app-auth-page',
+  templateUrl: './auth-page.component.html',
+  styleUrls: ['./auth-page.component.css']
 })
-export class AuthenticationDialogComponent implements OnInit {
+export class AuthPageComponent implements OnInit {
 
   model: any={};
   user: User;
   cities: City[] =[];
+  cityId: string;
   cinemas: Cinema[] = [];
   wrongLogin: boolean = false;
+  routeData: any;
 
   constructor(
-    public dialogRef: MatDialogRef<AuthenticationDialogComponent>,
     private cityService: CityService,
     private cinemaService: CinemaService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -48,9 +50,12 @@ export class AuthenticationDialogComponent implements OnInit {
   
   onEnterToAdmin(){
     this.user = this.convertToUser(this.model);   
-    this.userService.isExist(this.user).subscribe(result =>
-      {                 
-        this.dialogRef.close(this.user);         
+    this.userService.isExist(this.user).subscribe(user =>
+      {
+         let cinema = user.cinemaId == null ? 'admin' : user.cinemaId;
+         let quid = this.uuidv4();
+         sessionStorage.setItem("sessionId", quid);             
+         this.router.navigate([quid, cinema, user.id]);      
       },err =>{
         this.wrongLogin = true;
         console.error("wrong login or password"); 
@@ -62,11 +67,11 @@ export class AuthenticationDialogComponent implements OnInit {
   }
 
   onSelectCity(cityName: string){
-    let cityId = this.cities.find(c => c.name == cityName).id;
-    this.cinemaService.getAllByCity(cityId).subscribe( data =>
+    this.cityId = this.cities.find(c => c.name == cityName).id;   
+    this.cinemaService.getAllByCity(this.cityId).subscribe( data =>
       {
           this.cinemas = data.sort();
-          this.model.cinema = this.cinemas[0].name;
+          this.model.cinema = this.cinemas[0].name;         
       });
   }
 
@@ -77,6 +82,11 @@ export class AuthenticationDialogComponent implements OnInit {
     return  this.user;
   }
 
+  private uuidv4(): any{
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
 }
-
-

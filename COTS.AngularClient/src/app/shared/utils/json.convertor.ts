@@ -9,6 +9,7 @@ import { forEach } from "@angular/router/src/utils/collection";
 import { Hall } from "../models/hall.model";
 import { Tariff } from "../models/tariff.model";
 import { Sector } from "../models/sector.model";
+import { User } from "../models/user.model";
 
 
 export class JsonConvertor{
@@ -157,6 +158,12 @@ export class JsonConvertor{
             sectors.push(sector);
         }        
         return sectors;
+    }
+
+    public static toUserFull(data): User{
+        let user: User = new User();
+        user.initFullModel(data.Id, data.Login, data.Password, data.CinemaId, data.UserRoleId, data.FirstName, data.LastName, data.Position);
+        return user; 
     }
 
 }

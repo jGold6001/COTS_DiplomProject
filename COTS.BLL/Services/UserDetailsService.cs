@@ -38,7 +38,7 @@ namespace COTS.BLL.Services
 
         public UserDetailsDTO GetOne(long id)
         {
-            throw new NotImplementedException();
+            return mapperUnitOfWork.UserDetailsDTOMapper.MapToObject(UnitOfWork.UserDetailses.Get(id));
         }
     }
 }
