@@ -22,6 +22,7 @@ export class AuthPageComponent implements OnInit {
   cinemas: Cinema[] = [];
   wrongLogin: boolean = false;
   routeData: any;
+  isLogin: boolean;
 
   constructor(
     private cityService: CityService,
@@ -31,20 +32,24 @@ export class AuthPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   
-    this.cityService.getAll().subscribe( data =>
-    {
-        this.cities = data;
-        this.model.city = this.cities.find(c => c.id == 'kiev').name;
-        let cityId = this.cities.find(c => c.id == 'kiev').id;
 
-        this.cinemaService.getAllByCity(cityId).subscribe( data =>
+    if(sessionStorage.getItem("sessionId") != null ){
+      this.isLogin = true;
+    }else{
+      this.isLogin = false;
+      this.cityService.getAll().subscribe( data =>
         {
-            this.cinemas = data.sort();
-            this.model.cinema = this.cinemas[0].name;
+            this.cities = data;
+            this.model.city = this.cities.find(c => c.id == 'kiev').name;
+            let cityId = this.cities.find(c => c.id == 'kiev').id;
+    
+            this.cinemaService.getAllByCity(cityId).subscribe( data =>
+            {
+                this.cinemas = data.sort();
+                this.model.cinema = this.cinemas[0].name;
+            });
         });
-    });
-
+    }
   }
 
   
@@ -54,7 +59,7 @@ export class AuthPageComponent implements OnInit {
       {
          let cinema = user.cinemaId == null ? 'admin' : user.cinemaId;
          let quid = this.uuidv4();
-         sessionStorage.setItem("sessionId", quid);             
+         sessionStorage.setItem("sessionId", quid);          
          this.router.navigate([quid, cinema, user.id]);      
       },err =>{
         this.wrongLogin = true;

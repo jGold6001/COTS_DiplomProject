@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeanceBlockComponent implements OnInit {
 
+  typesOfShoes = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  enableList: boolean;
+
   constructor() { }
 
   ngOnInit() {
+    this.enableList = false;
   }
 
 }

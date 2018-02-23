@@ -1,5 +1,14 @@
 <br/>
-<div class="container" id="auth">
+<div class="container" *ngIf="isLogin">
+  <div class="row" style="text-align:center; padding:40px;">
+    <h2>Извините, кто-то использует админ панель!</h2>
+  </div>
+  <div class="row">
+      <div style="height: 700px;"></div>
+  </div>
+</div>
+
+<div class="container" id="auth" *ngIf="!isLogin">
     <div class="auth-title">
       <h4>Авторизация</h4>
     </div>
@@ -38,9 +47,9 @@
       </div>
 
     </div>
-    <div style="height: 350px;">
+    <!-- <div style="height: 350px;">
 
-    </div>
+    </div> -->
  
 </div> 
 <br/>
