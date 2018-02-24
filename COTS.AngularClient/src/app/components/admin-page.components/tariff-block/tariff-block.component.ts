@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TariffBlockComponent implements OnInit {
 
+  enableList: boolean;
+  typesOfShoes = ['Tariff_1','Tariff_2','Tariff_3'];
+
   constructor() { }
 
   ngOnInit() {

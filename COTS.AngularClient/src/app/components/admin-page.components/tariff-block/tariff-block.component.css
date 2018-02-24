@@ -1,0 +1,13 @@
+.btn_content_style{
+    background: #ee387e;
+    font-weight: bold;
+    color: white;
+    border: 1px solid white;
+}
+
+
+.button_style{
+    background: white;
+    border: 1px solid gray; 
+    color: black;  
+}
