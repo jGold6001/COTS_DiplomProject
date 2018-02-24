@@ -23,11 +23,11 @@
 }  
 
 /* #down_part_panel #side_menu{
-    
+    height: 600px; 
 } */
 
 #down_part_panel{
-    border: 1px solid #98dafc;     
+    border: 1px solid #98dafc;    
 }
 
 #side_menu{

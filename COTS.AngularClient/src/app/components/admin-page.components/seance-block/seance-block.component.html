@@ -1,9 +1,8 @@
 <div class="container">
 
-  <!--buttons-->
+  <!--filter-->
   <div class="row">
-    <div class="container">
-     
+    <div class="container">   
       <div class="row">
         <div class="container">
           <br/>
@@ -65,13 +64,21 @@
       <div class="container">
         <div class="row">
           <mat-list class="container" >                     
-              <mat-list-item *ngFor="let shoe of typesOfShoes" class="row" id="list_seances">
-                <div class="col-lg-6">
+              <mat-list-item *ngFor="let shoe of typesOfShoes" class="row content_bg">
+                <div class="col-lg-8">
                   {{shoe}}
                 </div>
-                <div class="col-lg-6 text-right">
-                  <button mat-button class="button_style">Редактировать</button>
-                  <button mat-button class="button_style">Удалить</button>
+                <div class="col-lg-4 text-right">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-6">
+                          <button mat-button class="btn_content_style">Редактировать</button>
+                      </div>
+                      <div class="col-lg-6">
+                          <button mat-button class="btn_content_style">Удалить</button>
+                      </div>
+                    </div>
+                  </div> 
                 </div>
               </mat-list-item>
             </mat-list>       

@@ -1,3 +1,26 @@
-<p>
-  statistic-block works!
-</p>
+<div class="container">
+  
+  <!--menu-->
+  <br/>
+  <div class="row horizontal_menu">
+    <div class="col-lg-3">
+      <button mat-button class="btn_content_style" (click)="selectedPointMenu=1">Рейтинг фильмов</button>
+    </div>
+    <div class="col-lg-3">
+      <button mat-button class="btn_content_style" (click)="selectedPointMenu=2">Финансовый отчет</button>
+    </div>
+  </div>
+
+  <br/>
+  <div class="row">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12" [ngSwitch]="selectedPointMenu">
+            <app-rating-movies *ngSwitchCase="1"></app-rating-movies>
+            <app-financial-statements *ngSwitchCase="2"></app-financial-statements>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</div>

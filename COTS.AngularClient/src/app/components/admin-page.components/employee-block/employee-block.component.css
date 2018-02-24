@@ -1,0 +1,25 @@
+.btn_content_style{
+    background: #ee387e;
+    color: white;
+    border: 1px solid white;
+}
+
+
+.button_style{
+    background: white;
+    border: 1px solid gray; 
+    color: black;  
+}
+
+.content_bg{
+    background: rgba(241, 196, 217, 0.507);
+}
+
+.container_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container_form > * {
+    width: 100%;
+}

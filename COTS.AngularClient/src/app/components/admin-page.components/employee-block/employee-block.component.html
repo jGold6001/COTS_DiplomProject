@@ -1,3 +1,71 @@
-<p>
-  employee-block works!
-</p>
+<div class="container">
+
+    <!--filter-->
+    <div class="row">
+      <div class="container">
+  
+        <br/>
+        <div class="row">
+          <div class="col">
+            <b>Поиск: </b>
+          </div>        
+        </div>
+    
+        <div class="row">       
+          <div class="col-lg-6 controls_style container_form">
+            <mat-form-field>
+                <input type="text" placeholder="Введите фамилию сотрудника" aria-label="movie" matInput [formControl]="movieControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{ option.name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+          </div>
+
+        </div>
+      </div>  
+    </div>
+  
+    <!--result-->
+    <div class="row" id="result_container" *ngIf="!enableList">
+        <br/>
+        <div class="container">
+          <div class="row">
+            <mat-list class="container" >                     
+                <mat-list-item *ngFor="let shoe of typesOfShoes" class="row content_bg">
+                  <div class="col-lg-8">
+                    {{shoe}}
+                  </div>
+                  <div class="col-lg-4 text-right">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-lg-6">
+                            <button mat-button class="btn_content_style">Редактировать</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button mat-button class="btn_content_style">Удалить</button>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                </mat-list-item>
+              </mat-list>       
+          </div>
+        </div>
+     </div>
+     <br/>
+  
+    <!--button-->
+    <div class="row">        
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+              <button mat-button class="btn_content_style">Добавить сотрудника</button>    
+          </div>
+        </div>
+      </div>    
+    </div>
+    <br/> 
+  
+  </div>

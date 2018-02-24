@@ -1,6 +1,5 @@
 .btn_content_style{
     background: #ee387e;
-    font-weight: bold;
     color: white;
     border: 1px solid white;
 }
@@ -12,6 +11,6 @@
     color: black;  
 }
 
-/* .btn_controls_style{
-    vertical-align: ;
-} */
+.content_bg{
+    background: rgba(241, 196, 217, 0.507);
+}

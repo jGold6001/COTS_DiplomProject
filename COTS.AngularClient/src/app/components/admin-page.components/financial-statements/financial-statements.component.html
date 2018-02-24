@@ -1,0 +1,59 @@
+<div class="container">
+
+  <!--Date selection-->
+  <div class="row"> 
+    <div class="col-lg-12 align-self-center">
+      <span style="margin-right: 5px;">Выберете период для вывода отчетности:  </span>  
+
+      <mat-form-field style="margin-right: 5px;">
+        <input matInput [matDatepicker]="picker2" placeholder="Конец периода">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Начало периода">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!--result-->
+  
+  <div class="row" *ngIf="!enableResult">
+    <div class="col-lg-12">
+        <mat-accordion>
+           <!--panel one-->
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Будние
+                </mat-panel-title>
+                <mat-panel-description>
+                  Нажмите на панель
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              Информация о тарифах...
+
+            </mat-expansion-panel>
+
+            <!--panel two-->
+            <mat-expansion-panel>                              
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Выходные
+                </mat-panel-title>
+                <mat-panel-description>
+                    Нажмите на панель
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              Информация о тарифах...
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+    <br/>
+  </div>
+
+</div>

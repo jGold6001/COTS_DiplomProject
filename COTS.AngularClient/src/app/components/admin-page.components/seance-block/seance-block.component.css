@@ -1,18 +1,9 @@
-/* .controls_style{
-    width: 70%;
-} */
 
 .btn_content_style{
     background: #ee387e;
-    font-weight: bold;
     color: white;
     border: 1px solid white;
 }
-
-/* .btn_content_styles{
-
-} */
-
 
 .button_style{
     background: white;
@@ -20,6 +11,6 @@
     color: black;  
 }
 
-/* #list_seances{
-    background: rgb(238, 130, 175);
-} */
+.content_bg{
+    background: rgba(241, 196, 217, 0.507);
+}

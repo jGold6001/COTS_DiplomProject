@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticBlockComponent implements OnInit {
 
+  selectedPointMenu: number = 2;
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

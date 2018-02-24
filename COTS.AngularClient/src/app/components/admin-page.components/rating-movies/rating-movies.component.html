@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <mat-list class="container">
+        <mat-list-item class="row content_bg" *ngFor="let movie of movies">         
+          <div class="col-lg-8">
+              {{movie.name}} 
+          </div>
+          <div class="col-lg-4">
+              {{movie.rating}}
+          </div>        
+        </mat-list-item>
+    </mat-list>
+  </div>
+  <br/>
+</div>
