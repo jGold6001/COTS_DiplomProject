@@ -48,6 +48,9 @@
                     <div class="row btn-menu-row">
                       <button mat-button class="btn-menu"  (click)="selectedPointMenu=5">Статистика</button>
                     </div>
+                    <div class="row btn-menu-row" *ngIf="quota==1">
+                        <button mat-button class="btn-menu"  (click)="selectedPointMenu=6">Покупки</button>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-10" id="content_menu">
@@ -59,6 +62,7 @@
                         <app-tariff-block *ngSwitchCase="3"></app-tariff-block>
                         <app-employee-block *ngSwitchCase="4"></app-employee-block>
                         <app-statistic-block *ngSwitchCase="5"></app-statistic-block>
+                        <app-purchase-block *ngSwitchCase="6"></app-purchase-block>
                       </div>                    
                     </div>
                   </div>

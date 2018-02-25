@@ -19,7 +19,7 @@ export class AdminPageComponent implements OnInit {
   routeData: any;
   isAdmin: boolean;
   isSingIn: boolean;
-  selectedPointMenu: number = 5;
+  selectedPointMenu: number = 6;
   quota:number;
 
 

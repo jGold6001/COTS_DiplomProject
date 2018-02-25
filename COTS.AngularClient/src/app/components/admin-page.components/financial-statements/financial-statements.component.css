@@ -1,3 +1,9 @@
 .content_bg{
     background: rgba(241, 196, 217, 0.507);
 }
+
+.button_style{
+    background: white;
+    border: 1px solid gray; 
+    color: black;  
+}

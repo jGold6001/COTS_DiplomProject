@@ -1,0 +1,46 @@
+<div class="container">
+ 
+  <!--filter-->
+  <div class="row">
+    <div class="container">
+
+      <br/>
+      <div class="row">
+        <div class="col">
+          <b>Поиск по номеру(покупки, билета), или данным посетителя (фамилия, телефон, e-mail): </b>
+        </div>        
+      </div>
+  
+      <div class="row">       
+        <div class="col-lg-4 controls_style container_form">
+          <mat-form-field>
+              <input type="text" placeholder="Введите значение" aria-label="client" matInput [formControl]="clientControl">              
+            </mat-form-field>
+        </div>
+      </div>
+
+      <!--result-->
+    <div class="row" id="result_container" *ngIf="!enableList">
+      <br/>
+      <div class="container">
+        <div class="row">
+          Номер заказа №000000
+        </div>
+
+        <div class="row">
+          Клиент
+          емаил
+          тел
+        </div>
+
+        <div class="row">
+          билеты списком
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    </div>  
+  </div>
+
+</div>

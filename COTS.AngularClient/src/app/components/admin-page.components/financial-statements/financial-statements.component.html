@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container content_bg">
 
   <!--Date selection-->
   <div class="row"> 
@@ -23,37 +23,21 @@
   
   <div class="row" *ngIf="!enableResult">
     <div class="col-lg-12">
-        <mat-accordion>
-           <!--panel one-->
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
+        <mat-accordion>          
+            <mat-expansion-panel class="content_bg">                              
+              <mat-expansion-panel-header class="content_bg">
                 <mat-panel-title>
-                  Будние
+                 Просмотреть отчетность за период с ... - ...
                 </mat-panel-title>
                 <mat-panel-description>
-                  Нажмите на панель
+                    Кликните на панель
                 </mat-panel-description>
               </mat-expansion-panel-header>
-          
-              Информация о тарифах...
-
-            </mat-expansion-panel>
-
-            <!--panel two-->
-            <mat-expansion-panel>                              
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Выходные
-                </mat-panel-title>
-                <mat-panel-description>
-                    Нажмите на панель
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              Информация о тарифах...
+                Информация о сеансах...
             </mat-expansion-panel>
           </mat-accordion>
     </div>
-    <br/>
+    
   </div>
-
+  <br/>
 </div>
