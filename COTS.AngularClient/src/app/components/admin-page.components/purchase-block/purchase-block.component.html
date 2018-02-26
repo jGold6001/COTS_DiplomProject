@@ -20,22 +20,92 @@
       </div>
 
       <!--result-->
-    <div class="row" id="result_container" *ngIf="!enableList">
+    <div class="row content_bg" id="result_container" *ngIf="!enableList">
       <br/>
       <div class="container">
-        <div class="row">
-          Номер заказа №000000
+        <div class="row part_styles">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+                <h5>Номер заказа №_____</h5>
+              </div>
+              <div class="col-lg-6">
+                <button mat-button class="btn_content_style">Отменить заказ</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <p>Общая сумма: ___ грн.</p>
+              </div>           
+            </div>
+          </div>
         </div>
 
-        <div class="row">
-          Клиент
-          емаил
-          тел
+        <div class="row part_styles">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h5>Сеанс</h5>
+              </div>
+            </div>          
+            <div class="row">
+              <div class="col-lg-12">
+                <p>Фильм: ____ (---)</p>
+                <p>Дата: ____, Время: ____</p> 
+                <p>Зал: ___, </p>
+              </div>            
+            </div>
+          </div>
         </div>
 
-        <div class="row">
-          билеты списком
+        <div class="row part_styles">         
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+                <h5>Клиент</h5>
+              </div>
+              <div class="col-lg-6">
+                <button mat-button class="btn_content_style">Изменить данные клиента</button>
+              </div>
+            </div>         
+            <div class="row">
+              <div class="col-lg-12">
+                <p>Ф____ И____ О____</p>
+                <p>Телефон: ______</p>
+                <p>E-mail: ______</p>
+              </div>           
+            </div>
+          </div>
         </div>
+
+        <div class="row part_styles">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h5>Билеты</h5>
+              </div>            
+            </div>         
+            <div class="row">
+              <mat-list class="col-lg-12">
+                  <mat-list-item *ngFor="let ticket of tickets; last as last" class="container">  
+                    <div class="row" mat-line>
+                      <div class="col-lg-12">
+                          <b>№{{ticket.num}}</b>
+                      </div>                         
+                    </div>                                      
+                    <div class="row" mat-line>
+                      <div class="col-lg-6">
+                          <b>Ряд:</b> {{ticket.row}}, <b>Место:</b> {{ticket.seat}}, <b>Тарифф:</b> {{ticket.sector}},<b> Цена:</b> {{ticket.price}} грн.                                                                         
+                          <button mat-button class="btn_content_style" style="margin-left: 60px;">Удалить</button>
+                      </div>                         
+                    </div>                       
+                  <mat-divider  *ngIf="!last"></mat-divider>  
+                </mat-list-item>                           
+              </mat-list>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
     <br/>

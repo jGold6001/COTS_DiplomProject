@@ -89,6 +89,9 @@ import { TariffBlockComponent } from './components/admin-page.components/tariff-
 import { EmployeeBlockComponent } from './components/admin-page.components/employee-block/employee-block.component';
 import { StatisticBlockComponent } from './components/admin-page.components/statistic-block/statistic-block.component';
 import { ConfigBlockComponent } from './components/admin-page.components/config-block/config-block.component';
+import { RatingMoviesComponent } from './components/admin-page.components/rating-movies/rating-movies.component';
+import { FinancialStatementsComponent } from './components/admin-page.components/financial-statements/financial-statements.component';
+import { PurchaseBlockComponent } from './components/admin-page.components/purchase-block/purchase-block.component';
 
 
 @NgModule({
@@ -119,7 +122,10 @@ import { ConfigBlockComponent } from './components/admin-page.components/config-
     TariffBlockComponent,
     EmployeeBlockComponent,
     StatisticBlockComponent,
-    ConfigBlockComponent
+    ConfigBlockComponent,
+    RatingMoviesComponent,
+    FinancialStatementsComponent,
+    PurchaseBlockComponent
   ],
   imports: [
     BrowserModule,
@@ -169,7 +175,8 @@ import { ConfigBlockComponent } from './components/admin-page.components/config-
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+    
   ],
   entryComponents: [
     SeancesByCinemasComponent, 

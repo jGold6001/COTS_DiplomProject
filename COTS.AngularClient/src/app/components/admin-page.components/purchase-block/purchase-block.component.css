@@ -1,3 +1,18 @@
 .container_form > * {
     width: 100%;
 }
+
+.btn_content_style{
+    background: #ee387e;
+    color: white;
+    border: 1px solid white;
+}
+
+.part_styles{
+    border-bottom: 1px solid #f14f8e7a;
+    padding: 10px;
+}
+
+.content_bg{
+    background: rgba(241, 196, 217, 0.507);
+}
