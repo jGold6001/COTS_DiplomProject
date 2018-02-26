@@ -92,6 +92,7 @@ import { ConfigBlockComponent } from './components/admin-page.components/config-
 import { RatingMoviesComponent } from './components/admin-page.components/rating-movies/rating-movies.component';
 import { FinancialStatementsComponent } from './components/admin-page.components/financial-statements/financial-statements.component';
 import { PurchaseBlockComponent } from './components/admin-page.components/purchase-block/purchase-block.component';
+import { SeanceDialogComponent } from './components/admin-page.components/seance-dialog/seance-dialog.component';
 
 
 @NgModule({
@@ -125,7 +126,8 @@ import { PurchaseBlockComponent } from './components/admin-page.components/purch
     ConfigBlockComponent,
     RatingMoviesComponent,
     FinancialStatementsComponent,
-    PurchaseBlockComponent
+    PurchaseBlockComponent,
+    SeanceDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -185,7 +187,8 @@ import { PurchaseBlockComponent } from './components/admin-page.components/purch
     HallFirstComponent,
     HallSecondComponent,
     HallThirdComponent,
-    HallFourthComponent
+    HallFourthComponent,
+    SeanceDialogComponent
   ],
   providers: [
     GeocodingApiService,

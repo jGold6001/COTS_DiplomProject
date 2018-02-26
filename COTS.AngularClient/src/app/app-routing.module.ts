@@ -16,12 +16,14 @@ import { AuthPageComponent } from "./components/admin-page.components/auth-page/
 
 const routes: Routes = [
   { path: "", component: MainPageComponent }, 
+  // { path: "dialog", component: null},
   { path: "login", component: AuthPageComponent},
   { path: ":sessionId/:cinemaId/:userId", component: AdminPageComponent},
   { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},
   { path: ":cityId/cinema/:id", component: CinemaPageComponent}
+ 
 ];
 
 @NgModule({

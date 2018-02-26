@@ -14,3 +14,26 @@
 .content_bg{
     background: rgba(241, 196, 217, 0.507);
 }
+
+.controls_style > *{
+    width: 100%;
+}
+
+
+
+
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 410px;
+  }
+  
+  .mat-header-cell.mat-sort-header-sorted {
+    color: black;
+  }
