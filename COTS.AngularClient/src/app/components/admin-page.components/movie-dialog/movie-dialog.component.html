@@ -1,0 +1,146 @@
+<div class="container" *ngIf="isReadOnly">
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="https://s3.amazonaws.com/cinema.tickets.ua/movie/poster/thumb/movie-1506527424.jpg?1506527519" />
+        </div>
+        <div class="col-lg-8">
+            <p><b>_______________</b></p>
+            <p><b>Жанр: </b> ______</p>
+            <p><b>Дата выхода: </b> ______</p>
+            <p><b>Продолжительность: </b> ______</p>
+            <p><b>Возрастная категория: </b> ______</p>
+            <p><b>Страна: </b> ______</p>
+            <p><b>Режисер: </b> ______</p>
+            <p><b>Актеры: </b> Райан Гослинг, Харрисон Форд, Джаред Лето, Дейв Баутиста</p>
+            <p><b>Описание: </b> Шестерка любимых героев — Эпплджек, Сумеречная Искорка, Флаттершай, Пинки Пай, Рарити и Радуга Дэш — теперь на большом экране! Король Шторм хочет лишить пони магии и захватывает Кантерлот. Под угрозой будущее всей Эквестрии! Чтобы остановить злодея, пони покидают родные края и отправляются в путешествие, полное чудес и опасностей. Им предстоит покорить волшебные горы, погрузиться в подводные миры и даже оказаться на летучем пиратском корабле!</p>
+        </div>
+    </div>
+    <div class="row justify-content-end">     
+        <div class="col-lg-2 text-right">
+            <button mat-button class="btn_content_style" mat-dialog-close>Оk</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!isReadOnly">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>{{dialogDestiny}} фильм</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="row">              
+                <!-- name -->
+                <div class="col-lg-6 form-container">
+                    <mat-form-field hintLabel="Введите значение">
+                        <input matInput placeholder="Название" type="text">
+                    </mat-form-field>
+                </div>                       
+                <!-- ganre -->
+                <div class="col-lg-6 form-container">
+                    <mat-form-field hintLabel="Выберете от 1-го до несколько значений">
+                        <mat-select placeholder="Жанр" [formControl]="genreControl" multiple>
+                            <mat-option *ngFor="let genre of genreList" [value]="genre">{{genre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!-- Image -->
+                <div class="col-lg-6 form-container">
+                    <mat-form-field hintLabel="Введите url изображения">
+                        <input matInput placeholder="Изображение" type="url">
+                    </mat-form-field>
+                </div>
+
+                <!-- Trailer -->
+                <div class="col-lg-6 form-container">
+                    <mat-form-field hintLabel="Введите url трейлера">
+                        <input matInput placeholder="Трейлер" type="url">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Date -->
+                <div class="col-lg-4 form-container">
+                    <mat-form-field hintLabel="Кликните на календарь и выберете дату">
+                        <input matInput [matDatepicker]="picker" placeholder="Дата запуска">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <!-- Duration -->
+                <div class="col-lg-4 form-container">
+                    <mat-form-field hintLabel="Введите целое число в минутах">
+                        <input matInput placeholder="Продолжительность" type="number"  maxlength="3" >
+                    </mat-form-field>                  
+                </div>
+
+                <!-- Age Category -->
+                <div class="col-lg-4 form-container">
+                    <mat-form-field hintLabel="Выберете значение">
+                        <mat-select placeholder="Возрастное ограничение" >
+                            <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{ food.viewValue }}
+                            </mat-option> -->
+                        </mat-select>                        
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Country -->
+                <div class="col-lg-6 form-container">
+                    <mat-form-field hintLabel="Выберете значение">
+                        <mat-select placeholder="Страна">
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!-- Director -->
+                <div class="col-lg-6 form-container">
+                    <mat-form-field hintLabel="Введите значение">
+                        <input matInput placeholder="Режисер" type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Actors -->
+                <div class="col-lg-12 form-container">
+                    <mat-form-field hintLabel="Введите список значений через запятую">
+                        <textarea matInput placeholder="Актеры"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Description -->
+                <div class="col-lg-12 form-container">
+                    <mat-form-field hintLabel="Введите текст">
+                        <textarea matInput placeholder="Описание"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>       
+    
+        </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-lg-2 text-right">
+            <button mat-button class="btn_content_style" (click)="clickAdd()">{{dialogDestiny}}</button>
+        </div>
+        <div class="col-lg-2 text-right">
+            <button mat-button class="btn_content_style" mat-dialog-close>Отмена</button>
+        </div>
+    </div>
+</div>
+

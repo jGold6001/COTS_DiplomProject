@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class SeanceDialogComponent implements OnInit {
 
   dialogDestiny: string;
-
+  
   constructor(
     public dialogRef: MatDialogRef<SeanceDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

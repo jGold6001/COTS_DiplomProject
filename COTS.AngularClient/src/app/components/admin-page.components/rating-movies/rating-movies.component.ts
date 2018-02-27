@@ -28,7 +28,6 @@ export class RatingMoviesComponent implements OnInit {
       {
         return m2.rating-m1.rating;
       });
-    console.log(this.movies);
   }
 
 }

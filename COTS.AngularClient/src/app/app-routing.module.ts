@@ -11,12 +11,13 @@ import { HallSecondComponent } from "./components/hall-dialog.components/halls-c
 import { HallFirstComponent } from "./components/hall-dialog.components/halls-components/hall-first/hall-first.component";
 import { AdminPageComponent } from "./components/admin-page.components/admin-page/admin-page.component";
 import { AuthPageComponent } from "./components/admin-page.components/auth-page/auth-page.component";
+import { MovieDialogComponent } from "./components/admin-page.components/movie-dialog/movie-dialog.component";
 
 
 
 const routes: Routes = [
   { path: "", component: MainPageComponent }, 
-  // { path: "dialog", component: null},
+  { path: "dialog", component: MovieDialogComponent},
   { path: "login", component: AuthPageComponent},
   { path: ":sessionId/:cinemaId/:userId", component: AdminPageComponent},
   { path: "purchase/:id", component: PurchasePageComponent},

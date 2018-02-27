@@ -13,7 +13,7 @@
           </div>
           <div class="row">
               <div class="col-lg-2 controls_style">
-                <mat-form-field >
+                <mat-form-field hintLabel="Выберете значение">
                     <mat-select placeholder="Зал">
                       <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
                         {{ food.viewValue }}
@@ -23,7 +23,7 @@
               </div>
       
               <div class="col-lg-2 controls_style">
-                <mat-form-field>
+                <mat-form-field hintLabel="Кликните на календарь и выберете дату">
                   <input matInput [matDatepicker]="picker" placeholder="Дата">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
@@ -31,7 +31,7 @@
               </div>
       
               <div class="col-lg-2 controls_style">
-                <mat-form-field>
+                <mat-form-field hintLabel="Выберете значение">
                   <mat-select placeholder="Время">
                     <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
                       {{ food.viewValue }}
@@ -41,7 +41,7 @@
               </div>
       
               <div class="col-lg-2 controls_style">
-                <mat-form-field>
+                <mat-form-field hintLabel="Выберете значение">
                   <mat-select placeholder="Фильм">
                     <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
                       {{ food.viewValue }}
@@ -51,8 +51,8 @@
               </div>
 
               <div class="col-lg-2 controls_style">
-                <mat-form-field class="controls_style">
-                  <mat-select placeholder="Технология">
+                <mat-form-field class="controls_style" hintLabel="Выберете значение">
+                  <mat-select placeholder="Технология" >
                     <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
                       {{ food.viewValue }}
                     </mat-option> -->
@@ -60,6 +60,7 @@
                 </mat-form-field>
               </div>
           </div>
+          <br/>
         </div>    
       </div>
 
