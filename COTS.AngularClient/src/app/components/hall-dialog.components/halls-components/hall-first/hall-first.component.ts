@@ -17,7 +17,6 @@ export class HallFirstComponent implements OnInit, OnDestroy {
   placesSelected: Place[] = [];
   data: any;
   subscription: ISubscription;
- 
 
   constructor(
     private dataService: DataService,
@@ -29,7 +28,7 @@ export class HallFirstComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.placeService.getPlacesByCityCinemaHallAndSeance(this.data.city, this.data.cinema, this.data.hall, this.data.seance)
-      .subscribe( res =>{            
+      .subscribe( res =>{           
         this.places = res;      
         this.createButtons(); 
         this.clickEvents(); 
@@ -47,6 +46,7 @@ export class HallFirstComponent implements OnInit, OnDestroy {
         }
       });
   }
+
 
   createButtons(){
     this.buttons = this.elRef.nativeElement.getElementsByClassName("seats_one");

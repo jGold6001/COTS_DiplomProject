@@ -28,9 +28,9 @@ export class HallFourthComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.placeService.getPlacesByCityCinemaHallAndSeance(this.data.city, this.data.cinema, this.data.hall, this.data.seance)
       .subscribe( res =>{            
-        this.places = res;        
+        this.places = res;      
         this.createButtons(); 
-        this.clickEvents(); 
+        this.clickEvents();  
       }, err => console.error("File not reading!!!")); 
 
       this.subscription = this.dataService.placesRemoved$.subscribe( place =>
@@ -45,6 +45,7 @@ export class HallFourthComponent implements OnInit, OnDestroy {
         }
       });
   }
+
 
   createButtons(){
     this.buttons = this.elRef.nativeElement.getElementsByClassName("seats_four");

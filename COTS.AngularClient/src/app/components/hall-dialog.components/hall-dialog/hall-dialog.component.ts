@@ -41,8 +41,6 @@ export class HallDialogComponent implements OnInit, OnDestroy {
   container: ViewContainerRef;
   componentRef: ComponentRef<{}>;
 
-
-
   seance: Seance;
   movie: Movie;
   hall: Hall;
@@ -52,6 +50,7 @@ export class HallDialogComponent implements OnInit, OnDestroy {
   tickets: Ticket[] =[];
   purchase: Purchase;
   show: boolean = false;
+  showInfo: boolean = false;
   sum: number = 0;
   tariffs: Tariff[] = [];
   sectors: Sector[] = [];
@@ -70,9 +69,9 @@ export class HallDialogComponent implements OnInit, OnDestroy {
     private elRef:ElementRef
   )
   { }
+  
 
   ngOnInit() {
-
     this.seanceService.getOne(this.data.seanceId).subscribe( seance => 
       {
         this.seance = seance;
@@ -85,11 +84,11 @@ export class HallDialogComponent implements OnInit, OnDestroy {
         this.sectors = this.data.sectors;            
 
         let typeInfo = this.seance.hall.name;
-      
+        this.showInfo = true;
         let componentType = this.getComponentType(typeInfo);
         let factory = this.domService.createFactory(componentType);    
         this.componentRef = this.container.createComponent(factory); 
-
+        
         let dataInfo = {
           city: this.cinema.cityId,
           cinema: this.cinema.id,
@@ -107,12 +106,10 @@ export class HallDialogComponent implements OnInit, OnDestroy {
         this.dataService.placesSelected$.subscribe(place => this.createTicket(place));
         this.dataService.placesCanceles$.subscribe(place => this.cancelTicket(place));
         
-        
       }
     );
-     
   }
-
+  
   passDataToDynamicComponent(typeInfo, dataInfo){
     switch(typeInfo){
       case "Зеленый": (<HallFirstComponent>this.componentRef.instance).data = dataInfo;

@@ -21,7 +21,7 @@ namespace COTS.WEBAPI
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            var corsAttr = new EnableCorsAttribute("http://localhost:4201", "*", "*");
+            var corsAttr = new EnableCorsAttribute("http://localhost:4201, http://thecotsclient.azurewebsites.net", "*", "*");
             config.EnableCors(corsAttr);
         }
     }

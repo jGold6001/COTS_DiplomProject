@@ -24,6 +24,7 @@ export class CinemaPageComponent implements OnInit {
   zoom: number = 11;
 
   dates: Date[]=[];
+  isLoad= false;
   
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class CinemaPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading();
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
@@ -50,6 +52,12 @@ export class CinemaPageComponent implements OnInit {
       });
 
     this.setDates();
+  }
+
+  loading(){
+    setTimeout(() => {
+      this.isLoad= true;
+    }, 2000)
   }
 
   private setDates(){

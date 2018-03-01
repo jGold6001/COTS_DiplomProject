@@ -37,6 +37,17 @@ namespace COTS.BLL.Tests.Services
         }
 
         [TestMethod]
+        public void GetAllByHallAndSeance_isBusyPLacesPresent_Test()
+        {
+            long seanceId = this.GetSeance().Id;
+            List<PlaceDTO> places = placeService.GetAllBySeanceAndHall(3, seanceId) as List<PlaceDTO>;
+            Trace.WriteLine(places.Count());
+            foreach (var item in places)
+                Trace.WriteLine($"Place id: {item.Id} - row: {item.Row} - num: {item.Number} - isBusy - {item.IsBusy}");
+
+        }
+
+        [TestMethod]
         public void GetAllByCityCinemaHallAndSeance_isAllPlacesFree_Test()
         {
             List<PlaceDTO> places = placeService.GetAllByCityCinemaHallAndSeance("kiev", "florence", "Синий", 112123123213) as List<PlaceDTO>;

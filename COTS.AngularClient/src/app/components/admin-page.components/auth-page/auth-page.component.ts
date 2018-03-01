@@ -60,7 +60,7 @@ export class AuthPageComponent implements OnInit {
          let cinema = user.cinemaId == null ? 'admin' : user.cinemaId;
          let quid = this.uuidv4();
          sessionStorage.setItem("sessionId", quid);          
-         this.router.navigate([quid, cinema, user.id]);      
+         this.router.navigate(['login',quid, cinema, user.id]);      
       },err =>{
         this.wrongLogin = true;
         console.error("wrong login or password"); 

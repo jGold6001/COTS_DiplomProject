@@ -1,6 +1,12 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+body{
+    background-color: #312c32;
+}
 
+main{
+    background-image: url('../src/assets/img/bg.png');
+}
 
 /*template colors*/
 .light-blue-jay{
@@ -15,4 +21,12 @@
     background-color: #312c32 !important;
 }
 
+#main_container{
+    background: rgb(240, 242, 243);
+}
 
+
+.spinner-container{
+    padding: 300px 0;
+    margin: auto 0;
+}

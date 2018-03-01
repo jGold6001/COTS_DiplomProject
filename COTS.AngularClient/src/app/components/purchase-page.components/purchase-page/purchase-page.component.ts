@@ -41,6 +41,7 @@ export class PurchasePageComponent implements OnInit {
   hall: Hall = new Hall();
   customer: Customer = new Customer();
   technology: string;
+  isLoad=false;
 
   constructor(
    private route: ActivatedRoute,
@@ -51,6 +52,7 @@ export class PurchasePageComponent implements OnInit {
   {}
 
   ngOnInit() {
+    this.loading();
     this.purchaseService.getPurchase(this.purchaseId)
       .subscribe(data => {
         this.purchase = data;
@@ -63,6 +65,12 @@ export class PurchasePageComponent implements OnInit {
       }, () => console.error("Ошибка при получении данных с сервера"));
 
       this.startTimer(420);
+  }
+
+  loading(){
+    setTimeout(() => {
+      this.isLoad= true;
+    }, 2000)
   }
 
   private get purchaseId(): string{ 

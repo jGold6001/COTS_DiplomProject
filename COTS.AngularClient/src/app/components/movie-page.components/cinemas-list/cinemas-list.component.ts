@@ -17,6 +17,7 @@ export class CinemasListComponent implements OnInit {
   @Input() date: Date;
 
   seances: Seance[] =[];
+  isLoad= false;
 
   constructor( 
     private seanceService: SeanceService,
@@ -24,11 +25,18 @@ export class CinemasListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading();
     this.seanceService.getAllByCinemaMovieDate(this.cinema.id, this.movieId, this.date)
         .subscribe(r =>{
             this.seances = r; 
         } , () => console.error("Ошибка при получении данных с сервера"));
 
+  }
+
+  loading(){
+    setTimeout(() => {
+      this.isLoad= true;
+    }, 2000)
   }
 
   ngOnChanges(changes: SimpleChanges) {

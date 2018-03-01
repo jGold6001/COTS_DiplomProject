@@ -17,6 +17,7 @@ export class MoviePageComponent implements OnInit {
   id: number;
   movie: Movie;
   cinemas: Cinema[] = [];
+  isLoad= false;
 
   dates: Date[]=[];
 
@@ -28,6 +29,8 @@ export class MoviePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+   
+    this.loading();
     this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -44,6 +47,12 @@ export class MoviePageComponent implements OnInit {
     },  () => console.error("Ошибка при получении данных с сервера"));
 
     this.setDates();
+  }
+
+  loading(){
+    setTimeout(() => {
+      this.isLoad= true;
+    }, 2000)
   }
 
   get cityId(): string{

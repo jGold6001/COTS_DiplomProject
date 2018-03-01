@@ -18,6 +18,7 @@ export class HallThirdComponent implements OnInit, OnDestroy {
   placesSelected: Place[] = [];
   data: any;
   subscription: ISubscription;
+ 
 
   constructor(
     private dataService: DataService,
@@ -30,7 +31,8 @@ export class HallThirdComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.placeService.getPlacesByCityCinemaHallAndSeance(this.data.city, this.data.cinema, this.data.hall, this.data.seance)
       .subscribe( res =>{            
-        this.places = res;      
+        this.places = res;     
+        
         this.createButtons(); 
         this.clickEvents(); 
       }, err => console.error("File not reading!!!")); 

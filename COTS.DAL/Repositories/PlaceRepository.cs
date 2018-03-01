@@ -28,10 +28,20 @@ namespace COTS.DAL.Repositories
                 "dbo.Cinemas.CityId = dbo.Cities.Id " +
                 "AND dbo.Cities.Id = @cityId " +
                 "AND dbo.Cinemas.Id = @cinemaId " +
-                "AND dbo.Halls.Name = @hallName",               
+                "AND dbo.Halls.Name = @hallName",
                 new SqlParameter("@cityId", cityId),
                 new SqlParameter("@cinemaId", cinemaId),
                 new SqlParameter("@hallName", hallName)
+            ).ToList();
+        }
+
+
+        public IEnumerable<Place> GetAllByHall(long hallId)
+        {
+            return context.Database.SqlQuery<Place>(
+                "SELECT * FROM dbo.Places " +
+                "WHERE dbo.Places.HallId = @hallId",                            
+                new SqlParameter("@hallId", hallId)
             ).ToList();
         }
 

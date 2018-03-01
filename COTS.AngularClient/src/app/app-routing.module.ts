@@ -17,18 +17,16 @@ import { MovieDialogComponent } from "./components/admin-page.components/movie-d
 
 const routes: Routes = [
   { path: "", component: MainPageComponent }, 
-  { path: "dialog", component: MovieDialogComponent},
   { path: "login", component: AuthPageComponent},
-  { path: ":sessionId/:cinemaId/:userId", component: AdminPageComponent},
+  { path: "login/:sessionId/:cinemaId/:userId", component: AdminPageComponent},
   { path: "purchase/:id", component: PurchasePageComponent},
   { path: ":cityId", component: MainPageComponent },
   { path: ":cityId/movie/:id", component: MoviePageComponent},
   { path: ":cityId/cinema/:id", component: CinemaPageComponent}
- 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

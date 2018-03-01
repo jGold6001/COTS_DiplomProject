@@ -1,5 +1,17 @@
 <br/>
-<div class="container">
+
+<section class="container" *ngIf="!isLoad">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-2">
+            <div class="spinner-container">
+                <mat-spinner [diameter]='100' ></mat-spinner>
+            </div>            
+        </div>
+    </div>
+</section>
+    
+
+<div class="container" *ngIf="isLoad">
   <div class="row">
 
     <div class="card w-100">

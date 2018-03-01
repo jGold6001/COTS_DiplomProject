@@ -11,6 +11,7 @@ namespace COTS.BLL.Interfaces
     {      
         PlaceDTO GetOne(long? id);
         IEnumerable<PlaceDTO> GetAllByCityCinemaHallAndSeance(string cityId, string cinemaId, string hallName, long seanceId);
+        IEnumerable<PlaceDTO> GetAllBySeanceAndHall(long hallId, long seanceId);
         void AddOrUpdate(PlaceDTO placeDTO);
     }
 }

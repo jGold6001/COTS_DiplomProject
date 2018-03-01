@@ -47,5 +47,16 @@ namespace COTS.BLL.Services
 
             return placeDTOs;
         }
+
+        public IEnumerable<PlaceDTO> GetAllBySeanceAndHall(long hallId, long seanceId)
+        {
+            ticketService = new TicketService(this.UnitOfWork);
+            var placeDTOs = mapperUnitOfWork.PlaceDTOMapper.MapToCollectionObjects(placeRepo.GetAllByHall(hallId));
+            var placeDTOsWithIsBusy = new List<PlaceDTO>();
+            foreach (var item in placeDTOs)
+                placeDTOsWithIsBusy.Add(PlaceDTOManager.AssignIsBusyTo(item, seanceId, ticketService));
+
+            return placeDTOs;
+        }
     }
 }

@@ -17,13 +17,14 @@ export class MoviesListComponent implements OnInit {
   cinemaId: string;
 
   seances: Seance[] =[];
+  isLoad= false;
 
   constructor( 
     private seanceService: SeanceService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-   
+    this.loading();
     this.route.params.subscribe(params => {
       this.cinemaId = params['id'];
     });
@@ -34,6 +35,10 @@ export class MoviesListComponent implements OnInit {
     } , () => console.error("Ошибка при получении данных с сервера"));
   }
 
-
+  loading(){
+    setTimeout(() => {
+      this.isLoad= true;
+    }, 2000)
+  }
 
 }

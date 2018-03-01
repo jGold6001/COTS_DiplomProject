@@ -23,6 +23,7 @@ export class MainPageComponent implements OnInit{
   filteredCities: Observable<any[]>;
 
   rerender = false;
+  isLoad= false;
 
   cities: City[] = [];
   cinemas: Cinema[] = [];
@@ -40,7 +41,10 @@ export class MainPageComponent implements OnInit{
     private cityService: CityService
   ) { }
 
-  ngOnInit() {    
+  ngOnInit() {  
+
+    this.loading();
+    
     this.cityService.getAll()
       .subscribe(r =>{
           this.cities = r;
@@ -48,6 +52,13 @@ export class MainPageComponent implements OnInit{
         }, () => console.error("Ошибка при получении данных с сервера"));
   }
   
+
+  loading(){
+    setTimeout(() => {
+      this.isLoad= true;
+    }, 2000)
+  }
+
   onCitySelect(city: City){
     this.router.navigate([city.id]);
     this.setInputFild(city.id);
@@ -102,6 +113,7 @@ export class MainPageComponent implements OnInit{
 
   
   private doRerender() {
+    this.loading();
     this.rerender = true;
     this.cdRef.detectChanges();
     this.rerender = false;    
